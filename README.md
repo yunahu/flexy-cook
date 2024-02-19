@@ -2,7 +2,9 @@
 By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 
 ## Project Overview:
-   This project is a recipe web application that provide multiple features to the customer who have various requirements on cooking and recipe searching.
+   This recipe web application is to provide an easy-to-use tool for people who would like to cook and would like to explore the cuisine world.
+
+   The two APIs: Spoonacular and Todo List APIs provide some of the most commonly expected features for foodies such as searching for recipes and one-click converting cooking steps into checklists.
 
 ### Features of this web application includes:
 - Commonly used searching options:
