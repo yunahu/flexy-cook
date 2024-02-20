@@ -43,4 +43,4 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 
 
 ## AI Usage Disclosure Forms:
-- Monica: [AI Disclosure Form For Project Milestone 1](P1_AI_Declaration_Monica_Gao_100354959)
+- Monica: [AI Disclosure Form For Project Milestone 1](AI_Disclosure_Forms/P1_AI_Declaration_Monica_Gao_100354959.pdf)
