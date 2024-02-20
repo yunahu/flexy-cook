@@ -40,3 +40,7 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 - To practice collaborating using Github and project management skills.
 - To get a peek of step flows of real projects in the industry.
 - To deeply explore the differences between Kanban and Scrum Agile models.
+
+
+## AI Usage Disclosure Forms:
+- Monica: [AI Disclosure Form For Project Milestone 1](P1_AI_Declaration_Monica_Gao_100354959)
