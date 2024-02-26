@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Router from './Router';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import 'src/App.css';
+import Router from 'src/Router';
+import Navbar from 'src/components/Navbar';
+import Footer from 'src/components/Footer';
 
 const App = () => {
   return (
