@@ -1,4 +1,12 @@
 .container {
-	background-color: blue;
-	color: white;
+   padding: 1em;
+	background-color: var(--dark-primary);
+
+   text-align: center;
+   vertical-align: center;
+	color: var(--white);
+}
+
+span {
+   font: italic 1vw underline;
 }

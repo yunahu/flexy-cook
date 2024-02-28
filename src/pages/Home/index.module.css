@@ -1,3 +1,15 @@
+:root {
+   --dark-text: #323539;
+   --dark-primary: #435334;
+   --primary: #9EB384;
+   --light-primary: #CEDEBD;
+   --light: #FAF1E4;
+   --white: #fff;
+
+}
+
 .container {
-	padding: 100px;
+   width: 90%;
+   margin: auto;
+	padding: 1em;
 }
