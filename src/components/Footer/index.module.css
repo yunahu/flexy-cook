@@ -3,10 +3,10 @@
 	background-color: var(--dark-primary);
 
    text-align: center;
-   vertical-align: center;
+   vertical-align: text-top;
 	color: var(--white);
 }
 
 span {
-   font: italic 1vw underline;
+   font: italic 1vh underline;
 }

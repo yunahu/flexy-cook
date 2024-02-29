@@ -17,7 +17,7 @@ const getResponsiveFontSize = () => {
    /* To calculate for a font size based on current screen size */
    let screenWidth = window.innerWidth * 0.01;
    let screenHeight = window.innerHeight * 0.01;
-   return (screenWidth + screenHeight) * 0.9;
+   return (screenWidth + screenHeight) * 1.1;
 }
 
 const Footer = () => {
@@ -27,9 +27,10 @@ const Footer = () => {
          <style type="text/css"> {`
             .btn-footer {
                width: 100%;
-               height: 100%;
+               height: 8vh;
+               max-height: 60px;
                background-color: var(--dark-primary);
-               font: bold ${getResponsiveFontSize()}px 'Noto Sans', sans-serif;
+               font: bold 1.2em 'Noto Sans', sans-serif;
                color: var(--white);
             }
 
@@ -39,7 +40,11 @@ const Footer = () => {
             }
 
             #logo {
-               font: ${getResponsiveFontSize() * 1.4}px 'Comic Sans MS', sans-serif;
+               font: 1.3em 'Comic Sans MS', sans-serif;
+            }
+
+            @media screen and (max-width: 540px) {
+               #logo { display: none; }
             }
 
          `} </style>
@@ -52,7 +57,7 @@ const Footer = () => {
             <Col sm>
                <Button variant='footer'><Tools /> APIs</Button>
             </Col>
-            <Col md={{order: 12}} lg={{order: 6}} className={styles.container}>
+            <Col sm>
                <div id='logo'><EggFried /> FlexyCook</div>
             </Col>
             <Col sm>
@@ -63,7 +68,7 @@ const Footer = () => {
             </Col>
          </Row>
          <Row>    {/* Copyright */}
-            <Col xs={12}>
+            <Col xs>
                <span>&copy; CPSC 2350 - Group 4</span>
             </Col>
          </Row>
