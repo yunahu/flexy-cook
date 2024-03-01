@@ -1,0 +1,14 @@
+.goBtn {
+   background-color: var(--primary);
+   color: var(--white);
+   border-color: var(--primary);
+}
+
+.goBtn:hover {
+   background-color: var(--dark-primary);
+}
+
+.cardImg {
+   display: inline-block;
+   object-fit: cover;
+}
