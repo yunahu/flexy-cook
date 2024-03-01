@@ -1,30 +1,11 @@
 import { useState } from "react";
-import Tag from "./Tag";
+import axios from "axios";
+
+import Tag from "../../../components/Tag";
+import SearchBar from "src/components/Searchbar";
 import { getRecipe, getRecipeFromID } from "src/services/spoonacular";
 
-// const Counter = () => {
-//   const [count, setCount] = useState(0);
-
-//   const handleMinusClick = () => {
-//     setCount(count - 1);
-//   }
-
-//   const handlePlusClick = () => {
-//     setCount(count + 1);
-//   }
-
-//   const countColor = count % 2 === 0 ? "green" : "red";
-
-//   return (
-//     <div>
-//       <button onClick={handleMinusClick}>-</button>
-//       <h2 style={{ color: countColor }}>{count}</h2>
-//       <button onClick={handlePlusClick}>+</button>
-//     </div>
-//   );
-// }
-
-const Search = ({ btnText = "Search" }) => {
+const Search = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState([]);
@@ -35,21 +16,28 @@ const Search = ({ btnText = "Search" }) => {
 
   const fetchRecipes = async () => {
     try {
-      getRecipe({ includeIngredients: search }).then(async (res) => {
-        console.log(res);
-        setRecipes(res.results);
+      axios
+        .get("http://localhost:3000/spoonacular/searchRecipe", {
+          params: { includeIngredients: search },
+        })
+        .then(async (res) => {
+          setRecipes(res.data.results);
+          const recipeId = res.data.results.map((recipe) => recipe.id);
+          console.log(recipeId);
+          console.log(res);
 
-        const recipeId = res.results.map((recipe) => recipe.id);
-        console.log(recipeId);
-
-        const recipeDetail = await Promise.all(
-          recipeId.map((id) =>
-            getRecipeFromID({ id: id, includeNutrition: true })
-          )
-        );
-        setRecipeDetails(recipeDetail);
-        console.log(recipeDetail);
-      });
+          const recipeDetail = await Promise.all(
+            recipeId.map((id) =>
+              axios
+                .get("http://localhost:3000/spoonacular/getRecipe", {
+                  params: { id, includeNutrition: true },
+                })
+                .then((res) => res.data)
+            )
+          );
+          setRecipeDetails(recipeDetail);
+          console.log(recipeDetail);
+        });
     } catch (error) {
       console.error("Error fetching recipes:", error);
     }
@@ -61,21 +49,27 @@ const Search = ({ btnText = "Search" }) => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder={"Search"}
+      <SearchBar
+        text="Search"
         value={search}
         onChange={handleOnChange}
+        btnClick={handleBtnClick}
+        btnText="search"
       />
-      <button onClick={handleBtnClick}>{btnText}</button>
       {recipeDetails?.map((recipeDetail) => (
         //recipeDetails.tags?.map
         <div key={recipeDetail.id}>
           <h1>{recipeDetail.title}</h1>
           <img src={recipeDetail.image} />
-          {recipeDetail.cuisines.length > 0 && <Tag title={recipeDetail.cuisines} bg="secondary" />}
-          {recipeDetail.diets.length > 0 && <Tag title={recipeDetail.diets} bg="info"/>}
-          {recipeDetail.servings && <Tag title={recipeDetail.servings} bg="dark" />}
+          {recipeDetail.cuisines.length > 0 && (
+            <Tag title={recipeDetail.cuisines} bg="secondary" />
+          )}
+          {recipeDetail.diets.length > 0 && (
+            <Tag title={recipeDetail.diets} bg="info" />
+          )}
+          {recipeDetail.servings && (
+            <Tag title={recipeDetail.servings} bg="dark" />
+          )}
         </div>
       ))}
     </div>
