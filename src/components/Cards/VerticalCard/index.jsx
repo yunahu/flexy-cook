@@ -11,7 +11,7 @@ const VerticalCard = (props) => {
    */
    return (
       <>
-         <CardBootstrap style={{ width:props.width, height:props.height }}>
+         <CardBootstrap style={{ width:props.width, height:props.height }} className={'shadow-sm'}>
 
             <CardBootstrap.Img variant='top' src={props.imgURL} className={styles.cardImg}/>
 

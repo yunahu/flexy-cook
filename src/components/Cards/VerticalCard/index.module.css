@@ -1,6 +1,9 @@
 .goBtn {
+   margin: 10px 0;
+   padding: 10px 20px;
    background-color: var(--primary);
    color: var(--white);
+   font-weight: bold;
    border-color: var(--primary);
 }
 

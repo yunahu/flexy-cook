@@ -8,11 +8,10 @@ import Card from './components/Card';
 const Home = () => {
 	return (
 		<div className={styles.container}>
-
-			<VerticalCard className={styles.lg_sq_card}
+         
+         <VerticalCard className={styles.lg_sq_card}
             width='30rem'
-            height='100%'
-            imgURL={'public/sample_pic.jpg' }
+            imgURL={'src//assets/images/sample-pic-horizontal.jpg' }
             title={'Some Random Recipe'}
             description={'This is recipe description blablabla ... '}
             info={{ equip:'Oven', time:'40 minutes', size:'2 servings' }}
