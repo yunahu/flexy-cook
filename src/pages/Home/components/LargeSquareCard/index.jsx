@@ -1,19 +1,19 @@
 import Button from 'react-bootstrap/Button';
 import CardBootstrap from 'react-bootstrap/Card';
-import InfoSection from 'src/components/Cards/InfoSection';
+import InfoSection from 'src/components/Cards/CardInfoSection';
 
 import styles from './index.module.css';
 
-const VerticalCard = (props) => {
+const Large_Square_Card = (props) => {
    /**
     * info: object with equip, time, size as keys
     *  tags: array of objects, each has color, text as keys
    */
    return (
       <>
-         <CardBootstrap style={{ width:props.width, height:props.height }} className={'shadow-sm'}>
+         <CardBootstrap style={{ width:props.width }} className={'shadow-sm'}>
 
-            <CardBootstrap.Img variant='top' src={props.imgURL} className={styles.cardImg}/>
+            <CardBootstrap.Img variant='top' src={props.imgURL} className={styles.cardImg} height={props.height}/>
 
             <CardBootstrap.Body>
 
@@ -33,4 +33,4 @@ const VerticalCard = (props) => {
    );
 };
 
-export default VerticalCard;
+export default Large_Square_Card;
