@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import CardBootstrap from 'react-bootstrap/Card';
-import InfoSection from 'src/components/Cards/CardInfoSection';
+import CookingInfo from 'src/components/Cards/CookingInfo';
+import Tags from 'src/components/Cards/Tags';
 
 import styles from './index.module.css';
 
@@ -21,7 +22,8 @@ const Large_Square_Card = (props) => {
 
                <CardBootstrap.Text>{props.description}</CardBootstrap.Text>
 
-               <InfoSection info={props.info} tags={props.tags}/>
+               <CookingInfo info={props.info}/>
+               <Tags tags={props.tags}/>
 
                <Button className={styles.goBtn} bg={styles.goBtn}>Check It Out</Button>
 
