@@ -7,7 +7,7 @@ import SingleCarousel from './components/CarouselBanner/SingleCarousel';
 const dummyData = () => {
    return { /** A dummy object with present data */
       width: '30rem',
-      height: '400rem',  /** must be px value */
+      height: '400rem',  /** must be px/rem value */
       // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
       imgURL: 'src/assets/images/sample_pic.jpg',
       title: 'Some Random Recipe',
