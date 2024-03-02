@@ -1,10 +1,5 @@
 import styles from './index.module.css';
 import Search from './components/Search';
- 
-// <div>
-//   <input type="text" placeholder="Search" />
-//   <button>Search</button>
-// </div>;
 
 const SearchPage = () => {
 
