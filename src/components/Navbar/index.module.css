@@ -1,0 +1,108 @@
+
+
+.button {
+    background-color: #9EB384;
+    border: 1px solid #435334;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  .advanceButton{
+    background-color: #9EB384;
+    border: 1px solid #435334;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+
+  }
+  .searchbar{
+    margin-top: 10px;
+  }
+  .button:hover {
+    background-color: #435334;
+  }
+.nav{
+    background-color: #CEDEBD;
+    padding: 10px 100px 10px 100px;   
+}  
+.logo{
+    width: 100px;
+    height: auto;
+}
+.logo-dropdown{
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.dropIcon{
+    width: 30px;
+  height: 30px;
+}
+
+.categoriesText {
+  margin-top: 5px;
+}
+
+.dropdown {
+  margin-top: 5px;
+}
+
+.searchbar{
+    margin-bottom: 5px;
+}
+
+@media (max-width: 767px) {
+    .searchbar {
+      flex-direction: column;
+    }
+  
+    .button {
+      margin-top: 10px;
+    }
+  
+    .iconContainer {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+    .icon {
+        display: none;
+      
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .navItems {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .icon {
+        display: none;
+      
+    }
+  }
