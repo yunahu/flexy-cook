@@ -1,12 +1,23 @@
-import Badge from 'react-bootstrap/Badge';
+import Badge from "react-bootstrap/Badge";
+import styles from "./Tag.module.css";
 
-const Tag = ({ title, bg = "primary", className = "class"}) => {
+const map = {
+  primary: styles["bg-primary"],
+  secondary: styles["bg-secondary"],
+  success: styles["bg-success"],
+  danger: styles["bg-danger"],
+  warning: styles["bg-warning"],
+  info: styles["bg-info"],
+  light: styles["bg-light"],
+  dark: styles["bg-dark"],
+};
+
+const Tag = ({ title, bg = "primary"}) => {
   return (
-    <Badge pill bg={bg} className={className}> 
+    <Badge pill bg={bg} className={map[bg]}>
       {title}
     </Badge>
   );
 };
-
 
 export default Tag;

@@ -4,6 +4,7 @@ import axios from "axios";
 import Tag from "../../../components/Tag";
 import SearchBar from "src/components/Searchbar";
 import { capitalize } from "src/utils/common";
+import { findStrongestTaste } from "../utils/searchFunctions";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -54,22 +55,6 @@ const Search = () => {
     fetchRecipes();
   };
 
-  const findStrongestTaste = (tastes) => {
-    if (tastes.bitterness == 100){
-      return "Bitter";
-    }else if(tastes.fattiness == 100){
-      return "Fatty";
-    }else if(tastes.saltiness == 100){
-      return "Salty";
-    }else if(tastes.sourness == 100){
-      return "Sour";
-    }else if(tastes.spiciness == 100){
-      return "Spicy";
-    }else if(tastes.sweetness == 100){
-      return "Sweet";
-    }
-  };
-
   return (
     <div>
       <SearchBar
@@ -89,10 +74,10 @@ const Search = () => {
           {recipeDetail[0].readyInMinutes} minutes
           {recipeDetail[0].servings} servings
 
-          {<Tag title={findStrongestTaste(recipeDetail[1])} bg="dark" />}
+          <Tag title={findStrongestTaste(recipeDetail[1])} bg="dark" />
 
           {recipeDetail[0].cuisines.length > 0 && (
-            <Tag title={capitalize(recipeDetail[0].cuisines[0])} bg="secondary" />
+            <Tag title={capitalize(recipeDetail[0].cuisines[0])} bg="success" />
           )}
 
           {recipeDetail[0].diets.length > 0 && (
