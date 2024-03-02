@@ -8,7 +8,7 @@ import styles from './index.module.css';
 const Large_Square_Card = (props) => {
    /**
     * info: object with equip, time, size as keys
-    *  tags: array of objects, each has color, text as keys
+    * tags: array of objects, each has color, text as keys
    */
    return (
       <>

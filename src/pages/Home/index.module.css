@@ -1,15 +1,20 @@
-:root {
-   --dark-text: #323539;
-   --dark-primary: #435334;
-   --primary: #9EB384;
-   --light-primary: #CEDEBD;
-   --light: #FAF1E4;
-   --white: #fff;
-
-}
-
 .container {
    width: 90%;
    margin: auto;
 	padding: 1em;
+}
+
+.banner {
+   margin: 0;
+   padding: 0;
+}
+
+@media screen and (max-width: 840px) {
+
+   .container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
+
 }
