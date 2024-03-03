@@ -11,7 +11,7 @@ import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
 const CookingInfo = ({ size, time, calories }) => {
   /*
       info {
-         equip: 'Oven',
+         calories: 'Oven',
          time: 40,
          size: 2
       }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-import Tag from "../../../components/Tag";
-import SearchBar from "src/components/Searchbar";
+import SearchBar from "src/components/Searchbar/Searchbar";
+import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "../utils/searchFunctions";
 
@@ -29,17 +29,17 @@ const Search = () => {
 
           const recipeDetail = await Promise.all(
             recipeId.map((id) =>
-            Promise.all([
-              axios
-                .get("http://localhost:3000/spoonacular/getRecipe", {
-                  params: { id, includeNutrition: true },
-                })
-                .then((res) => res.data),
+              Promise.all([
                 axios
-                .get("http://localhost:3000/spoonacular/getRecipeTaste", {
-                  params: { id, normalize: true },
-                })
-                .then((res) => res.data)
+                  .get("http://localhost:3000/spoonacular/getRecipe", {
+                    params: { id, includeNutrition: true },
+                  })
+                  .then((res) => res.data),
+                axios
+                  .get("http://localhost:3000/spoonacular/getRecipeTaste", {
+                    params: { id, normalize: true },
+                  })
+                  .then((res) => res.data),
               ])
             )
           );
@@ -64,30 +64,67 @@ const Search = () => {
         btnClick={handleBtnClick}
         btnText="search"
       />
-      {recipeDetails?.map((recipeDetail) => (
+      {recipeDetails?.map((recipeDetail) => {
         //recipeDetails.tags?.map
-        <div key={recipeDetail[0].id}>
-          <h2>{recipeDetail[0].title}</h2>
-          <img src={recipeDetail[0].image} />
-          {recipeDetail[0].dishTypes.length > 0 &&
-            capitalize(recipeDetail[0].dishTypes[0])}
-          {recipeDetail[0].readyInMinutes} minutes
-          {recipeDetail[0].servings} servings
 
-          <Tag title={findStrongestTaste(recipeDetail[1])} bg="dark" />
+        const tags = [
+          // {
+          //   text: recipeDetail[0].dishTypes.length > 0  && capitalize(recipeDetail[0].dishTypes[0]),
+          //   type: "primary"
+          // },
+          {
+            text:
+              recipeDetail[0].cuisines.length > 0
+                ? capitalize(recipeDetail[0].cuisines[0])
+                : null,
+            type: "success",
+          },
+          {
+            text:
+              recipeDetail[0].diets.length > 0
+                ? capitalize(recipeDetail[0].diets[0])
+                : null,
+            type: "warning",
+          },
+          {
+            text:
+              recipeDetail[0].dishTypes.length > 0
+                ? capitalize(recipeDetail[0].dishTypes[0])
+                : null,
+            type: "dark",
+          },
+          {
+            text: recipeDetail[0].veryPopular ? "Popular" : null,
+            type: "info",
+          },
+          {
+            text: recipeDetail[0].cheap ? "Cheap" : null,
+            type: "info",
+          },
+          {
+            text: recipeDetail[0].veryHealthy ? "Healthy" : null,
+            type: "info",
+          },
+          {
+            text: findStrongestTaste(recipeDetail[1]),
+            type: "light",
+          },
+        ];
 
-          {recipeDetail[0].cuisines.length > 0 && (
-            <Tag title={capitalize(recipeDetail[0].cuisines[0])} bg="success" />
-          )}
-
-          {recipeDetail[0].diets.length > 0 && (
-            <Tag title={capitalize(recipeDetail[0].diets[0])} bg="info" />
-          )}
-          {recipeDetail[0].veryPopular && <Tag title="Popular" bg="light" />}
-          {recipeDetail[0].cheap && <Tag title="Cheap" bg="light" />}
-          {recipeDetail[0].veryHealthy && <Tag title="Healthy" bg="light" />}
-        </div>
-      ))}
+        return (
+          <div key={recipeDetail[0].id}>
+            <LargeSquareCard
+              imgURL={recipeDetail[0].image}
+              title={recipeDetail[0].title}
+              ingredients={recipeDetail[0].extendedIngredients.map((ingredient) => ingredient.name).join(", ")}
+              tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
+              time={recipeDetail[0].readyInMinutes}
+              size={recipeDetail[0].servings}
+              calories={Math.floor(recipeDetail[0].nutrition.nutrients[0].amount)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
