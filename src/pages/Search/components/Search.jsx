@@ -4,7 +4,7 @@ import axios from "axios";
 import SearchBar from "src/components/Searchbar/Searchbar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import { capitalize } from "src/utils/common";
-import { findStrongestTaste } from "../utils/searchFunctions";
+import { findStrongestTaste } from "src/utils/spoonacularFunctinos";
 
 const Search = () => {
   const [search, setSearch] = useState("");
