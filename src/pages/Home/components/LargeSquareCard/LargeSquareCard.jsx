@@ -5,7 +5,7 @@ import Tags from "src/components/Cards/Tags/Tags";
 
 import styles from "./LargeSquareCard.module.css";
 
-const LargeSquareCard = (
+const LargeSquareCard = ({
   imgURL,
   width,
   height,
@@ -15,6 +15,7 @@ const LargeSquareCard = (
   time,
   size,
   calories
+}
 ) => {
   /**
    * info: object with equip, time, size as keys
