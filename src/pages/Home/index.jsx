@@ -1,5 +1,5 @@
 import styles from './index.module.css';
-import Large_Square_Card from './components/LargeSquareCard';
+import LargeSquareCard from './components/LargeSquareCard/LargeSquareCard';
 import CarouselBanner from './components/CarouselBanner';
 import SingleCarousel from './components/CarouselBanner/SingleCarousel';
 

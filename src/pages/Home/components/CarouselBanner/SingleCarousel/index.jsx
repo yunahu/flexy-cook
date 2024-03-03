@@ -1,7 +1,7 @@
 import { Button, Carousel, Image } from 'react-bootstrap';
 
-import CookingInfo from 'src/components/Cards/CookingInfo';
-import Tags from 'src/components/Cards/Tags';
+import CookingInfo from 'src/components/Cards/CookingInfo/CookingInfo';
+import Tags from 'src/components/Cards/Tags/Tags';
 
 import styles from './index.module.css';
 
