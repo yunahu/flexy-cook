@@ -21,7 +21,7 @@ const Tags = ({ tags }) => {
   return (
     <Stack direction="horizontal" gap={2}>
       {tags.map((tag) =>
-        <Tag bg={tag.type} title={tag.text}/>
+        <Tag key={tag.text} bg={tag.type} title={tag.text}/>
       )}
     </Stack>
   );

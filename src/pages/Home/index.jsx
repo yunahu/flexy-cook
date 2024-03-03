@@ -27,26 +27,26 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <LargeSquareCard
+      {/* <LargeSquareCard
         className={styles.lg_sq_card}
         width={recipeInfo.width}
         height={recipeInfo.height}
         imgURL={recipeInfo.imgURL}
         title={recipeInfo.title}
         calories={recipeInfo.calories}
-        time={recipeInfo.info}
+        time={recipeInfo.time}
         size={recipeInfo.size}
         ingredients={recipeInfo.ingredients}
         tags={recipeInfo.tags}
-      />
+      /> */}
 
-      {/* <SingleCarousel
+      <SingleCarousel
             height={recipeInfo.height}
             img={recipeInfo.imgURL}
             title={recipeInfo.title}
             info={recipeInfo.info}
             tags={recipeInfo.tags}
-         /> */}
+         />
 
       {/* <CarouselBanner item1={recipeInfo} item2={recipeInfo} item3={recipeInfo}/> */}
     </div>
