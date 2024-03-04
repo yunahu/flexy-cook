@@ -1,50 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctinos";
+import { getDislikes, addDislike } from "./utils/recommend";
+import RefreshButton from "../RefreshButton/RefreshButton";
 
-const DailyRecommendation = () => {
-  const [recipes, setRecipes] = useState([]);
+const NUM_RECIPE = 3;
+
+const FavoriteRecommendation = () => {
   const [recipeDetails, setRecipeDetails] = useState([]);
 
+  const fetchRecipes = useCallback(async () => {
+    const dislikes = getDislikes();
+
+    try {
+      const res = await axios.get(
+        "http://localhost:3000/spoonacular/randomRecipe",
+        {
+          params: { number: 20 },
+        }
+      );
+
+      const recipes = res.data.recipes
+        .filter((recipe) => !dislikes.includes(recipe.id))
+        .slice(0, NUM_RECIPE);
+
+      const recipeDetail = await Promise.all(
+        recipes.map((recipe) =>
+          Promise.all([
+            axios
+              .get("http://localhost:3000/spoonacular/getRecipe", {
+                params: { id: recipe.id, includeNutrition: true },
+              })
+              .then((res) => res.data),
+            axios
+              .get("http://localhost:3000/spoonacular/getRecipeTaste", {
+                params: { id: recipe.id, normalize: true },
+              })
+              .then((res) => res.data),
+          ])
+        )
+      );
+      setRecipeDetails(recipeDetail);
+      console.log(recipeDetail);
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        axios
-          .get("http://localhost:3000/spoonacular/randomRecipe", {
-            params: { number: 1 },
-          })
-          .then(async (res) => {
-            setRecipes(res.data.recipes);
-            console.log(res.data.recipes);
-            const recipeId = res.data.recipes.map((recipe) => recipe.id);
-            console.log(recipeId);
-
-            const recipeDetail = await Promise.all(
-              recipeId.map((id) =>
-                Promise.all([
-                  axios
-                    .get("http://localhost:3000/spoonacular/getRecipe", {
-                      params: { id, includeNutrition: true },
-                    })
-                    .then((res) => res.data),
-                  axios
-                    .get("http://localhost:3000/spoonacular/getRecipeTaste", {
-                      params: { id, normalize: true },
-                    })
-                    .then((res) => res.data),
-                ])
-              )
-            );
-            setRecipeDetails(recipeDetail);
-            console.log(recipeDetail);
-          });
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      }
-    };
-
     fetchRecipes();
   }, []);
 
@@ -111,6 +116,13 @@ const DailyRecommendation = () => {
           </div>
         );
       })}
+      <RefreshButton
+        fetchRecipe={fetchRecipes}
+        onClick={() => {
+          const ids = recipeDetails.map((recipeDetail) => recipeDetail[0].id);
+          addDislike(ids);
+        }}
+      />
     </div>
   );
 };

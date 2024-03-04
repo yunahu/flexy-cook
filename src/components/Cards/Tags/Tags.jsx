@@ -20,9 +20,9 @@ const Tags = ({ tags }) => {
    */
   return (
     <Stack direction="horizontal" gap={2}>
-      {tags.map((tag) =>
-        <Tag bg={tag.type} title={tag.text}/>
-      )}
+      {tags.map((tag, index) => (
+        <Tag key={`${index}_${tag.text}`} bg={tag.type} title={tag.text} />
+      ))}
     </Stack>
   );
 };

@@ -1,12 +1,12 @@
-import styles from './index.module.css';
-import Card from './components/Card';
+import styles from "./index.module.css";
+import FavoriteRecommendation from "./components/FavoriteRecommendation/FavoriteRecommendation";
 
 const Home = () => {
-	return (
-		<div className={styles.container}>
-			<Card />
-		</div>
-	);
+  return (
+    <div className={styles.container}>
+      <FavoriteRecommendation />
+    </div>
+  );
 };
 
 export default Home;
