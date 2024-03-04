@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Nav, Navbar as NavbarBootstrap, NavDropdown, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
+// eslint-disable-next-line no-unused-vars
 import { CardList, CartqPlus } from 'react-bootstrap-icons';
 import { BrightnessHighFill } from 'react-bootstrap-icons';
 import { CartPlusFill } from 'react-bootstrap-icons';
@@ -9,6 +11,7 @@ import { CartPlusFill } from 'react-bootstrap-icons';
 import logo from './img/logo.png';
 
 const Navbar = () => {
+  // eslint-disable-next-line no-unused-vars
   const handleSearch = (event) => {
     event.preventDefault();
     // Handle search logic here
