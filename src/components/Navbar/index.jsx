@@ -2,11 +2,11 @@ import React from 'react';
 import { Nav, Navbar as NavbarBootstrap, NavDropdown, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import { CardList, CartPlus } from 'react-bootstrap-icons';
+import { CardList, CartqPlus } from 'react-bootstrap-icons';
 import { BrightnessHighFill } from 'react-bootstrap-icons';
 import { CartPlusFill } from 'react-bootstrap-icons';
 
-import logo from './img/logo.png'; 
+import logo from './img/logo.png';
 
 const Navbar = () => {
   const handleSearch = (event) => {
