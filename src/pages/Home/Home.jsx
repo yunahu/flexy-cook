@@ -1,7 +1,7 @@
 import styles from './index.module.css';
-import Large_Square_Card from './components/LargeSquareCard';
-import CarouselBanner from './components/CarouselBanner';
-import SingleCarousel from './components/CarouselBanner/SingleCarousel';
+import Large_Square_Card from './components/LargeSquareCard/LargeSquareCard';
+import CarouselBanner from './components/CarouselBanner/CarouselBanner';
+import SingleCarousel from './components/CarouselBanner/SingleCarousel/SingleCarousel';
 
 
 const dummyData = () => {
