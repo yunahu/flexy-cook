@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Nav, Navbar as NavbarBootstrap, NavDropdown, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styles from './index.module.css';
+import styles from './Navbar.module.css';
 
 import { CardList } from 'react-bootstrap-icons';
 import { BrightnessHighFill } from 'react-bootstrap-icons';

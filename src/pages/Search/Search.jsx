@@ -1,4 +1,4 @@
-import styles from './index.module.css';
+import styles from './Search.module.css';
 import Search from './components/Search';
 
 const SearchPage = () => {

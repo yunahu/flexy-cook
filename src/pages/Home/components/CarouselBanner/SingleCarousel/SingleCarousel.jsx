@@ -3,7 +3,7 @@ import { Button, Carousel, Image } from 'react-bootstrap';
 import CookingInfo from 'src/components/Cards/CookingInfo/CookingInfo';
 import Tags from 'src/components/Cards/Tags/Tags';
 
-import styles from './index.module.css';
+import styles from './SingleCarousel.module.css';
 
 const SingleCarousel = ({props}) => {
    /**

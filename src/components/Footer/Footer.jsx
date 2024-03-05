@@ -1,4 +1,4 @@
-import styles from './index.module.css';
+import styles from './Footer.module.css';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

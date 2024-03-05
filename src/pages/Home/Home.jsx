@@ -1,4 +1,4 @@
-import styles from './index.module.css';
+import styles from './Home.module.css';
 import Large_Square_Card from './components/LargeSquareCard/LargeSquareCard';
 import CarouselBanner from './components/CarouselBanner/CarouselBanner';
 import SingleCarousel from './components/CarouselBanner/SingleCarousel/SingleCarousel';

@@ -1,5 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import styles from "src/components/DropdownMenu/DropdownMenu.module.css";
+import styles from "./DropdownMenu.module.css";
 
 const map = {
   info: styles["btn-info"],
