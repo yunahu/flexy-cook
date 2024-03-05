@@ -131,7 +131,7 @@
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 575px) {
   .nav {
     display: block;
     text-align: center;
@@ -144,7 +144,7 @@
   }
 
   .icon,
-  .logo,
+  
   .logoCenter {
     display: none;
 

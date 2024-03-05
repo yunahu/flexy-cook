@@ -13,20 +13,24 @@ const Navbar = () => {
   return (
     <div className={styles.container}>
       <NavbarBootstrap className={styles.nav}>
-  <NavbarBootstrap.Brand as={Link} to="/">
-    <img src={logo} alt="Logo" className={styles.logo} />
-  </NavbarBootstrap.Brand>
-  <div className={styles.left}>
-    <div className={styles.iconHome}>
-      <House className={styles.icon} />
-      <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
-        Home
-      </Nav.Link>
-    </div>
-  </div>
- 
+        <NavbarBootstrap.Brand as={Link} to="/">
+          <img src={logo} alt="Logo" className={styles.logo} />
+        </NavbarBootstrap.Brand>
 
         <Nav className={`ms-auto ${styles.right}`}>
+          <div className={styles.iconContainer}>
+            <House className={styles.icon} />
+            <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
+              Home
+            </Nav.Link>
+          </div>
+          <div className={styles.iconContainer}>
+            <Search className={styles.icon} />
+            <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
+              Search
+            </Nav.Link>
+          </div>
+
           <div className={styles.iconContainer}>
             <BrightnessHighFill className={styles.icon} />
             <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
