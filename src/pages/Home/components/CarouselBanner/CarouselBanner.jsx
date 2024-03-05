@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 
-import SingleCarousel from './SingleCarousel';
+import SingleCarousel from './SingleCarousel/SingleCarousel';
 
 import styles from './index.module.css';
 
