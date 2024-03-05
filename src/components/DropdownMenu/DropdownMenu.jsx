@@ -4,6 +4,7 @@ import styles from "src/components/DropdownMenu/DropdownMenu.module.css";
 const map = {
   info: styles["btn-info"],
   success: styles["btn-success"],
+  //if you want to add more colors, you can add more
 };
 
 // exampleItems{
@@ -14,6 +15,7 @@ const map = {
 
 function DropdownMenu({ buttonTitle, items, background = "success" }) {
   return (
+    // if you want to add more props, you can add
     <Dropdown className={styles.container}>
       <Dropdown.Toggle
         variant={background}
