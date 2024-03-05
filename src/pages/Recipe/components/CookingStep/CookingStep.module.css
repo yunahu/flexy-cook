@@ -1,0 +1,40 @@
+.stepsCard {
+   width: 90%;
+   overflow: hidden;
+   margin: 15px auto;
+   box-shadow: 1px 1px 2px lightgray;
+}
+
+.row {
+   height: 100% !important;
+}
+
+.imgBlock {
+   margin: 0;
+   padding-right: 0;
+   border-right: 3px solid var(--dark-primary);
+}
+
+.cardImg {
+   width: 100%;
+   display: inline-block;
+   object-fit: cover;
+
+   border-radius: 0;
+}
+
+.cardText {
+   padding-left: 0;
+}
+
+.stepNum {
+   border-radius: 50px !important;
+}
+
+
+@media screen and (max-width: 860px) {
+   .stepsCard {
+      width: 100%;
+      margin-left: auto 0;
+   }
+}
