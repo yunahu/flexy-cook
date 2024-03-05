@@ -9,7 +9,7 @@ const dummyData = () => {
       width: '30rem',
       height: '300px',  /** must be px/rem value */
       // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-      number: 1,
+      number: 3,
       step: 'blablabla',
       ingredients: [
          {

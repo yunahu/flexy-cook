@@ -19,10 +19,29 @@ const displayList = (objArr) => {
    return strList;
 }
 
-// Fill the step number tag with random colors
-// const randomColor = (tagItem) => {
-
-// };
+// Fill the step number tag with different colors according to the step number
+const colorByNum = (num) => {
+   switch (num % 7) {
+      case 1:
+         return 'primary';
+      case 2:
+         return 'secondary';
+      case 3:
+         return 'info';
+      case 4:
+         return 'success';
+      case 5:
+         return 'warning';
+      case 6:
+         return 'danger';
+      case 7:
+         return 'light';
+      case 0:
+         return 'dark';
+      default:
+         return 'primary';
+   }
+};
 
 const CookingStep = ({step_info}) => {
    return (
@@ -47,7 +66,7 @@ const CookingStep = ({step_info}) => {
                         </Col>
                         
                         <Col xs={1}>
-                           <Tag title={step_info.number} bg={step_info.tagbg} className={styles.stepNum}/>
+                           <Tag title={step_info.number} bg={colorByNum(step_info.number)} className={styles.stepNum}/>
                         </Col>
                      </Stack>
                   </CardBootstrap.Body>
