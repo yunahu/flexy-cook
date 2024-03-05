@@ -1,0 +1,26 @@
+.btn-success {
+  /* transparent & text-color:black */
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: black;
+}
+
+.btn-primary {
+  /* transparent & text-color:while */
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: white;
+}
+
+:hover.btn-success,
+.show {
+  background-color: #9eb384 !important;
+}
+
+:active.btn-success {
+  background-color: #9eb384 !important;
+}
+
+.container button[aria-expanded="true"] {
+  background-color: #9eb384 !important;
+}
