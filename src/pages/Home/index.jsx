@@ -3,9 +3,7 @@ import FavoriteRecommendation from "./components/FavoriteRecommendation/Favorite
 
 const Home = () => {
   return (
-    <div className={styles.container}>
-      <FavoriteRecommendation />
-    </div>
+    <div className={styles.container}>{/* <FavoriteRecommendation /> */}</div>
   );
 };
 
