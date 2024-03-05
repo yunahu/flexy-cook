@@ -2,27 +2,42 @@ import React from 'react';
 import { Nav, Navbar as NavbarBootstrap, NavDropdown, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import { CardList, CartPlus } from 'react-bootstrap-icons';
+import { CardList, FilePostFill, GearWideConnected, PersonCircle, House, Search } from 'react-bootstrap-icons';
 import { BrightnessHighFill } from 'react-bootstrap-icons';
 import { CartPlusFill } from 'react-bootstrap-icons';
 
-import logo from './img/logo.png'; 
+
+import logo from './img/logo.png';
 
 const Navbar = () => {
   const handleSearch = (event) => {
     event.preventDefault();
-    // Handle search logic here
+    history.push('../pages/Search'); // Navigate to the search page
   };
 
   return (
     <div className={styles.container}>
-      <NavbarBootstrap expand="lg" className={styles.nav}>
+      <NavbarBootstrap className={styles.nav}>
         <NavbarBootstrap.Brand as={Link} to="/">
+          <div className={styles.iconHome}>
+            <House className={styles.icon} />
+            <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
+              Home
+            </Nav.Link>
+          </div>
+          
           <img src={logo} alt="Logo" className={styles.logo} />
         </NavbarBootstrap.Brand>
+        <div className={styles.iconHome}>
+              <Search className={styles.icon} />
+              <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
+                Search
+              </Nav.Link>
+            </div>
         <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
-        <NavbarBootstrap.Collapse id="basic-navbar-nav" className="justify-content-center">
+        <NavbarBootstrap.Collapse className="justify-content-center">
           <div className="d-flex flex-column align-items-center">
+            
             <form className="d-flex">
               <InputGroup className={styles.searchbar}>
                 <FormControl
@@ -33,6 +48,9 @@ const Navbar = () => {
                 <Button className={styles.button} type="submit">Search</Button>
               </InputGroup>
             </form>
+            <NavbarBootstrap.Brand as={Link} to="/" className={styles.logoCenter}>
+              <img src={logo} alt="Logo" className={styles.logoCenter} />
+            </NavbarBootstrap.Brand>
             <NavDropdown title="Advanced Search" id="basic-nav-dropdown" className={styles.advanceButton}>
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -42,7 +60,7 @@ const Navbar = () => {
             </NavDropdown>
           </div>
         </NavbarBootstrap.Collapse>
-        <Nav className="ml-auto">
+        <Nav className={styles.right}>
           <div className={styles.iconContainer}>
             <BrightnessHighFill className={styles.icon} />
             <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
@@ -52,19 +70,21 @@ const Navbar = () => {
           <div className={styles.iconContainer}>
             <CardList className={styles.icon} />
             <NavDropdown title="Todo List" id="basic-nav-dropdown" className={styles.categoriesText}>
-              <NavDropdown.Item href="#action/3.1"><CartPlusFill className={styles.dropIcon} />Shopping List</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1" className={styles.drop}><CartPlusFill className={styles.dropIcon} />Shopping List</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2"><CartPlusFill className={styles.dropIcon} />Memos</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2" className={styles.drop}><FilePostFill className={styles.dropIcon} />Memos</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.3"><CartPlusFill className={styles.dropIcon} />Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" className={styles.drop}><GearWideConnected className={styles.dropIcon} />Manage My Tasks</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4"><CartPlusFill className={styles.dropIcon} />Separated link</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4" className={styles.drop}><PersonCircle className={styles.dropIcon} />Login with todoist</NavDropdown.Item>
             </NavDropdown>
           </div>
         </Nav>
       </NavbarBootstrap>
     </div>
   );
+  handleSearch();
 };
+
 
 export default Navbar;
