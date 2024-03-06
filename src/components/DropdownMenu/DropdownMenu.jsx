@@ -13,7 +13,7 @@ const map = {
 //   key: "goSearch"
 // }
 
-function DropdownMenu({ buttonTitle, items, background = "success" }) {
+const DropdownMenu = ({ buttonTitle, items, background = "success" }) => {
   return (
     // if you want to add more props, you can add
     <Dropdown className={styles.container}>
@@ -34,6 +34,6 @@ function DropdownMenu({ buttonTitle, items, background = "success" }) {
       </Dropdown.Menu>
     </Dropdown>
   );
-}
+};
 
 export default DropdownMenu;

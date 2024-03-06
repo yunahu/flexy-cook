@@ -3,6 +3,7 @@ import axios from "axios";
 
 import SearchBar from "src/components/Searchbar/Searchbar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
+import AdvancedSearch from "./AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "../utils/searchFunctions";
 
@@ -57,6 +58,7 @@ const Search = () => {
 
   return (
     <div>
+      <AdvancedSearch buttonTitle={"Advanced Search"} />
       <SearchBar
         text="onion, canned tomato, pasta"
         value={search}
@@ -116,11 +118,15 @@ const Search = () => {
             <LargeSquareCard
               imgURL={recipeDetail[0].image}
               title={recipeDetail[0].title}
-              ingredients={recipeDetail[0].extendedIngredients.map((ingredient) => ingredient.name).join(", ")}
+              ingredients={recipeDetail[0].extendedIngredients
+                .map((ingredient) => ingredient.name)
+                .join(", ")}
               tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
               time={recipeDetail[0].readyInMinutes}
               size={recipeDetail[0].servings}
-              calories={Math.floor(recipeDetail[0].nutrition.nutrients[0].amount)}
+              calories={Math.floor(
+                recipeDetail[0].nutrition.nutrients[0].amount
+              )}
             />
           </div>
         );
