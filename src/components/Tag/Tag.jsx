@@ -12,6 +12,7 @@ const map = {
   dark: styles["bg-dark"],
 };
 
+// eslint-disable-next-line react/prop-types
 const Tag = ({ title, bg = "primary"}) => {
   return (
     <Badge pill bg={bg} className={map[bg]}>

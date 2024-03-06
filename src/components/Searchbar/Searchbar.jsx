@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 // import { Search } from "react-bootstrap-icons";
 
+// eslint-disable-next-line react/prop-types
 function SearchBar({ text, value, onChange, btnClick, btnText }) {
   return (
     <InputGroup className="mb-3">
