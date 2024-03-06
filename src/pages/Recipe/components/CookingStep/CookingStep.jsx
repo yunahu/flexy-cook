@@ -14,7 +14,7 @@ import { Stack } from 'react-bootstrap';
 const displayList = (objArr) => {
    let strList = "";
    objArr.forEach(obj => {
-      strList += obj.name;
+      strList += obj.name + ", ";
    });
    return strList;
 }
@@ -43,30 +43,30 @@ const colorByNum = (num) => {
    }
 };
 
-const CookingStep = ({step_info}) => {
+const CookingStep = ({height, number, image, step, equipment, ingredients }) => {
    return (
       <>
-         <CardBootstrap className={styles.stepsCard} height={step_info.height}>
+         <CardBootstrap className={styles.stepsCard} height={height}>
             <Row>
                <Col xs={4} className={styles.imgBlock}>
-                  <CardBootstrap.Img src={step_info.equipment[0].image} className={styles.cardImg}/>
+                  <CardBootstrap.Img src={image} className={styles.cardImg}/>
                </Col>
 
                <Col xs={8} className={styles.cardText}>
                   <CardBootstrap.Body className={styles.cardBody}>
                      <Stack direction='horizontal'> {/** This stack is to put step number to the right & limit text width */}
                         <Col>
-                           <CardBootstrap.Title>{step_info.step}</CardBootstrap.Title>
+                           <CardBootstrap.Title>{step}</CardBootstrap.Title>
 
                            <CardBootstrap.Text>
-                              <FontAwesomeIcon icon={faKitchenSet} />&ensp;Equipments: {displayList(step_info.equipment)} ...
+                              <FontAwesomeIcon icon={faKitchenSet} />&ensp;Equipments: {displayList(equipment)} ...
                               <br />
-                              <FontAwesomeIcon icon={faCarrot} />&ensp;Ingredients: {displayList(step_info.ingredients)} ...
+                              <FontAwesomeIcon icon={faCarrot} />&ensp;Ingredients: {displayList(ingredients)} ...
                            </CardBootstrap.Text>
                         </Col>
                         
                         <Col xs={1}>
-                           <Tag title={step_info.number} bg={colorByNum(step_info.number)} className={styles.stepNum}/>
+                           <Tag title={number} bg={colorByNum(number)} className={styles.stepNum}/>
                         </Col>
                      </Stack>
                   </CardBootstrap.Body>

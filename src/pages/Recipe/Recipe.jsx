@@ -42,9 +42,10 @@ const Recipe = () => {
 	return (
       <>
          <h1>Recipe Page Content Test</h1>
-         <CookingStep step_info={recipeInfo} />
-         <CookingStep step_info={recipeInfo} />
-         <CookingStep step_info={recipeInfo} />
+         <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
+         <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
+         <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
+
 
 
 
