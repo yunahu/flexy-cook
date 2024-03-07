@@ -14,8 +14,8 @@ export const findStrongestTaste = (tastes) => {
     }
 };
 
-export const defineScale = (Nutrient) => {
-    switch (Nutrient) {
+export const defineScale = (nutrient) => {
+    switch (nutrient) {
         case "Carbs":
         case "Protein":
         case "Fat":
@@ -24,33 +24,21 @@ export const defineScale = (Nutrient) => {
         case "Alcohol":
             return 'g';
 
-
         case "Iron":
         case "Sodium":
         case "Caffeine":
-            return 'mg';
-
-
-            return 'g';
         case "Magnesium":
-            return 'mg';
-        case "Folate":
-            return 'μg';
         case "Zinc":
-            return 'mg';
-        case "FolicAcid":
-            return 'μg';
         case "Calcium":
-            return 'mg';
         case "Cholesterol":
-            return 'mg';
         case "VitaminC":
-            return 'mg';
         case "VitaminE":
             return 'mg';
+
+        case "Folate":
+        case "FolicAcid":
         case "VitaminB12":
             return 'μg';
-
 
         case "Calories":
             return 'kcal';

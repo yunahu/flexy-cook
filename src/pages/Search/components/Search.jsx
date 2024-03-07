@@ -3,7 +3,7 @@ import axios from "axios";
 
 import SearchBar from "src/components/Searchbar/Searchbar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
-import AdvancedSearch from "./AdvancedSearch/AdvancedSearch";
+import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "../utils/searchFunctions";
 
@@ -58,7 +58,7 @@ const Search = () => {
 
   return (
     <div>
-      <AdvancedSearch buttonTitle={"Advanced Search"} />
+      <AdvancedSearchMenu buttonTitle="Advanced Search" />
       <SearchBar
         text="onion, canned tomato, pasta"
         value={search}
@@ -66,6 +66,7 @@ const Search = () => {
         btnClick={handleBtnClick}
         btnText="search"
       />
+
       {recipeDetails?.map((recipeDetail) => {
         //recipeDetails.tags?.map
 

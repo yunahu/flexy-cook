@@ -19,7 +19,7 @@ const DropdownMenu = ({ buttonTitle, items, background = "success" }) => {
     <Dropdown className={styles.container}>
       <Dropdown.Toggle
         variant={background}
-        className={map[background]}
+        className={`${map[background]}`}
         id="dropdown-basic"
       >
         {buttonTitle}

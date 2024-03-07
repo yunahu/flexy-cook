@@ -24,3 +24,10 @@
 .container button[aria-expanded="true"] {
   background-color: #9eb384 !important;
 }
+
+.container {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,7 +1,10 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import ModifiedButton from "src/components/ModifiedButton/ModifiedButton.jsx";
+import DeletableTag from "../DeletableTag/DeletableTag";
 import { defineScale } from "../../utils/searchFunctions";
-import styles from "src/components/DropdownMenu/DropdownMenu.module.css";
+import { colorByNum } from "src/utils/common";
+import dropdownStyles from "src/components/DropdownMenu/DropdownMenu.module.css";
+import styles from "../AdvancedSearch/AdvancedSearch.module.css";
 
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -11,8 +14,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const map = {
-  info: styles["btn-info"],
-  success: styles["btn-success"],
+  info: dropdownStyles["btn-info"],
+  success: dropdownStyles["btn-success"],
   //if you want to add more colors, you can add more
 };
 
@@ -22,10 +25,11 @@ const map = {
 //   key: "goSearch"
 // }
 
-const DropdownMenu = ({ buttonTitle, background = "success" }) => {
+const AdvancedSearchMenu = ({ buttonTitle, background = "success" }) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState();
+  const [tags, setTags] = useState([]);
 
   const handleSelectChangeNutrient = (e) => {
     setSelectedNutrient(e.target.value);
@@ -36,32 +40,50 @@ const DropdownMenu = ({ buttonTitle, background = "success" }) => {
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
+  const deleteTag = (index) => {
+    setTags((previousTags) => {
+      const newTags = [...previousTags];
+      newTags.splice(index, 1);
+      return newTags;
+    });
+  };
+
+  const addTag = (e) => {
+    const tag = {
+      minOrMax: selectedMinOrMax,
+      nutrient: selectedNutrient,
+      amount: amount,
+      scale: defineScale(selectedNutrient),
+    };
+    setTags([...tags, tag]);
+  };
 
   const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
 
   return (
     // if you want to add more props, you can add
-    <Dropdown className={styles.container}>
+    <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
       <Dropdown.Toggle
         variant={background}
-        className={map[background]}
+        className={`${map[background]} ${dropdownStyles.toggle}`}
         id="dropdown-basic"
       >
         {buttonTitle}
       </Dropdown.Toggle>
-
       <Dropdown.Menu>
         <Container>
-          <Row>
+          <Row className={styles.searchBy}>
             <Col>Search By:</Col>
             <Col>
               <Form.Select
                 aria-label="Default select example"
                 onChange={handleSelectChangeMinOrMax}
               >
-                <option>Select Min/Max</option>
-                <option value="min">Min</option>
-                <option value="max">Max</option>
+                <option value="None" selected>
+                  Select Min/Max
+                </option>
+                <option value="Min">Min</option>
+                <option value="Max">Max</option>
               </Form.Select>
             </Col>
             <Col>
@@ -70,7 +92,9 @@ const DropdownMenu = ({ buttonTitle, background = "success" }) => {
                 id="selectedNutrient"
                 onChange={handleSelectChangeNutrient}
               >
-                <option>Select Nutrient</option>
+                <option value="None" selected>
+                  Select Nutrient
+                </option>
                 <option value="Carbs">Carbs</option>
                 <option value="Protein">Protein</option>
                 <option value="Fat">Fat</option>
@@ -107,8 +131,29 @@ const DropdownMenu = ({ buttonTitle, background = "success" }) => {
               </InputGroup>
             </Col>
             <Col>
-              <ModifiedButton title="+" variant="dark" disabled={disabled} />
+              <ModifiedButton
+                title="+"
+                variant="dark"
+                disabled={disabled}
+                onClick={addTag}
+              />
             </Col>
+          </Row>
+          <Row>
+            {tags.map((tag, index) => (
+              <Col key={`${tag.amount}${tag.nutrient}`}>
+                <DeletableTag
+                  bg={colorByNum(index)}
+                  minOrMax={tag.minOrMax}
+                  nutrient={tag.nutrient}
+                  amount={tag.amount}
+                  scale={tag.scale}
+                  onClick={() => {
+                    deleteTag(index);
+                  }}
+                />
+              </Col>
+            ))}
           </Row>
           {/* {items.map((item) => (
           <Dropdown.Item key={item.key} href={item.ref}>
@@ -121,4 +166,4 @@ const DropdownMenu = ({ buttonTitle, background = "success" }) => {
   );
 };
 
-export default DropdownMenu;
+export default AdvancedSearchMenu;
