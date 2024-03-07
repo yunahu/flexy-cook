@@ -13,10 +13,10 @@ const map = {
 //   key: "goSearch"
 // }
 
-const DropdownMenu = ({ buttonTitle, items, background = "success" }) => {
+const DropdownMenu = ({ drop, buttonTitle, items, background = "success" }) => {
   return (
     // if you want to add more props, you can add
-    <Dropdown className={styles.container}>
+    <Dropdown className={styles.container} drop={drop}>
       <Dropdown.Toggle
         variant={background}
         className={`${map[background]}`}
