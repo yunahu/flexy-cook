@@ -9,14 +9,20 @@ const map = {
   warning: styles["variant-warning"],
   info: styles["variant-info"],
   light: styles["variant-light"],
-  dark: styles["variant-dark"],
+  dark: styles["variant-dark"], //for advanced search button
 };
 
-const ModifiedButton = ({ title, disabled, onClick, variant = "primary" }) => {
+const ModifiedButton = ({
+  title,
+  disabled,
+  onClick,
+  className,
+  variant = "primary",
+}) => {
   return (
     <Button
       variant={variant}
-      className={map[variant]}
+      className={map[variant] + " " + className}
       disabled={disabled}
       onClick={onClick}
     >

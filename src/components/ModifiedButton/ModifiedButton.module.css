@@ -28,7 +28,35 @@
   border: 0;
 }
 
+/* for the advanced search button */
+:disabled.variant-dark {
+  background-color: white !important;
+  border: 2px solid #9eb384 !important;
+  color: #9eb384 !important;
+  font-weight: 600 !important;
+}
+
+:visited.variant-dark {
+  background-color: white !important;
+  border: 2px solid #9eb384 !important;
+  color: #9eb384 !important;
+}
+
+:active.variant-dark {
+  background-color: white !important;
+  border: 3px solid rgba(158, 179, 132, 0.3) !important;
+  color: rgba(158, 179, 132, 0.5) !important;
+}
+
+:hover.variant-dark {
+  background-color: white !important;
+  border: 2px solid #9eb384 !important;
+  color: #9eb384 !important;
+}
+
 .variant-dark {
-  background-color: #5c6bc0 !important;
-  border: 0;
+  background-color: white !important;
+  border: 2px solid #9eb384;
+  color: #9eb384;
+  padding: 0;
 }
