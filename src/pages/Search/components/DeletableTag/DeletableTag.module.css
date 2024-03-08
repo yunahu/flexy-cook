@@ -1,29 +1,33 @@
 .bg-primary {
-  background-color: #ff7043 !important;
-}
-
-.bg-info {
-  background-color: #ab47bc !important;
+  background-color: #f06292 !important;
 }
 
 .bg-secondary {
-  background-color: #ffcc80 !important;
+  background-color: #ba68c8 !important;
+}
+
+.bg-info {
+  background-color: #81c784 !important;
 }
 
 .bg-success {
-  background-color: #66bb6a !important;
+  background-color: #4fc3f7 !important;
 }
 
 .bg-warning {
-  background-color: #8d6e63 !important;
+  background-color: #a1887f !important;
+}
+
+.bg-danger {
+  background-color: #7986cb !important;
 }
 
 .bg-light {
-  background-color: #9ccc65 !important;
+  background-color: #e57373 !important;
 }
 
 .bg-dark {
-  background-color: #5c6bc0 !important;
+  background-color: #ffb74d !important;
 }
 
 .budgeContent {
@@ -33,5 +37,7 @@
 }
 
 .nutrientData {
+  font-size: 15px;
+  font-weight: 300;
   margin-right: 4px;
 }

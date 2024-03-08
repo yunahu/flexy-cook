@@ -58,7 +58,7 @@ const Search = () => {
 
   return (
     <div>
-      <AdvancedSearchMenu buttonTitle="Advanced Search" />
+      <AdvancedSearchMenu />
       <SearchBar
         text="onion, canned tomato, pasta"
         value={search}

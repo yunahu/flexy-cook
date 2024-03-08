@@ -17,6 +17,7 @@ const ModifiedButton = ({
   disabled,
   onClick,
   className,
+  size,
   variant = "primary",
 }) => {
   return (
@@ -25,6 +26,7 @@ const ModifiedButton = ({
       className={map[variant] + " " + className}
       disabled={disabled}
       onClick={onClick}
+      size={size}
     >
       {title}
     </Button>

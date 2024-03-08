@@ -2,4 +2,85 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.amountInput {
+  max-width: 7.5rem;
+}
+
+.searchByText {
+  margin-left: 0.35em;
+}
+
+.tags {
+  margin-top: 3.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-direction: row;
+  position: absolute;
+  translate: 0 -2.5rem;
+}
+
+.buttonContainer {
+  padding: 0;
+}
+
+.addTagButton {
+  width: 2rem;
+  height: 2rem;
+}
+
+.menuContainer {
+  border: 2.5px solid #9eb384;
+  max-width: 45%;
+  min-height: 35vh;
+  padding: 1rem 0.7rem;
+}
+
+.hrLineBottom {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  opacity: 0.25;
+}
+
+.hrLineTop {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  opacity: 0.25;
+}
+
+.shortBottom {
+  width: 4rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.longBottom {
+  width: 30rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.divider {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0rem;
+}
+
+.shortTop {
+  width: 4rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.longTop {
+  width: 30rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.hrText {
+  margin: 0.25rem 1rem;
+  text-wrap: nowrap;
 }
