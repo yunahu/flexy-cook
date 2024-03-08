@@ -1,10 +1,3 @@
-.btn-success {
-  /* transparent & text-color:black */
-  background-color: rgb(255, 112, 67, 0) !important;
-  border-color: rgb(255, 112, 67, 0) !important;
-  color: black;
-}
-
 .btn-primary {
   /* transparent & text-color:while */
   background-color: rgb(255, 112, 67, 0) !important;
@@ -12,15 +5,33 @@
   color: white;
 }
 
+.btn-success {
+  /* transparent & text-color:black */
+  padding: 0.7rem;
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: black;
+}
+
 :hover.btn-success,
 .show {
+  padding: 0.7rem;
   background-color: #9eb384 !important;
 }
 
 :active.btn-success {
+  padding: 0.7rem;
   background-color: #9eb384 !important;
 }
 
 .container button[aria-expanded="true"] {
+  padding: 0.7rem;
   background-color: #9eb384 !important;
+}
+
+.container {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
