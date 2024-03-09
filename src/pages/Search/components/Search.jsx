@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -14,8 +14,11 @@ const Search = () => {
   const [recipeDetails, setRecipeDetails] = useState([]);
 
   const location = useLocation();
-  const selectId = location.state?.id;
-  console.log(selectId);
+  const { ingredients, tags } = location.state || {};
+  useEffect(() => {
+    console.log("Ingredients:", ingredients);
+    console.log("Tags:", tags);
+  }, [ingredients, tags]);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);

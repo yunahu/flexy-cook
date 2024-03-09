@@ -1,0 +1,71 @@
+.btn-primary {
+  /* transparent & text-color:while */
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: white;
+}
+
+.btn-success {
+  /* transparent & text-color:435334 */
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: #435334;
+  font: 17px "Noto Sans", sans-serif;
+  padding: 0.7rem;
+}
+
+.btn-success:hover,
+.show {
+  background-color: #9eb384 !important;
+  padding: 0.7rem;
+}
+
+.btn-success:active {
+  background-color: #9eb384 !important;
+  padding: 0.7rem;
+}
+
+.container button[aria-expanded="true"] {
+  background-color: #9eb384 !important;
+  padding: 0.7rem;
+}
+
+.container {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.4rem;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+}
+
+.cardIcon {
+  width: auto;
+  height: 2.5rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .cardIcon {
+    height: 2rem;
+  }
+}

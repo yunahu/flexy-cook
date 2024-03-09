@@ -1,6 +1,12 @@
+div.homeIcon,
+div.searchIcon,
+div.menu {
+  display: none;
+}
+
 .container {
   background-color: #cedebd;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   position: relative;
 }
 
@@ -10,13 +16,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8rem;
+  gap: 7vw;
   font: 17px "Noto Sans", sans-serif;
-}
-
-div.homeIcon,
-div.searchIcon {
-  display: none;
 }
 
 .searches {
@@ -28,7 +29,7 @@ div.searchIcon {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 2vw;
 }
 
 .logo {
@@ -45,6 +46,8 @@ div.searchIcon {
   gap: 0.1rem;
   min-width: 6.5rem;
   border-radius: 5px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .iconContainer:hover {
@@ -66,14 +69,15 @@ div.searchIcon {
 }
 
 .icon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   color: #435334;
 }
 
 .iconText {
   color: #435334;
   padding: 0.7rem;
+  transition: none;
 }
 
 .todoDrop {
@@ -82,7 +86,7 @@ div.searchIcon {
 }
 
 .searchBar {
-  width: 10rem;
+  width: 35vw;
 }
 
 @media (max-width: 834px) {
@@ -90,29 +94,47 @@ div.searchIcon {
     display: none;
   }
 
+  .iconContainer {
+    min-width: 5rem;
+  }
+
   div.homeIcon,
   div.searchIcon {
-    display: block;
+    display: flex;
   }
 
   .navElements {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 3vw;
-    font: 17px "Noto Sans", sans-serif;
+    gap: 13vw;
+  }
+}
+
+@media (max-width: 680px) {
+  .navElements {
+    gap: 5%;
   }
 }
 
 @media (max-width: 575px) {
-  .navItems {
-    flex-direction: column;
-    align-items: center;
+  .searchIcon,
+  div.iconContainer,
+  .todo {
+    display: none;
+  }
+  div.homeIcon,
+  div.menu {
+    display: flex;
   }
 
   .icon {
-    display: none;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .navElements {
+    gap: 10%;
+  }
+
+  .iconContainer {
+    min-width: 4rem;
   }
 }

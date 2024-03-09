@@ -2,11 +2,10 @@
 import SearchBar from "../Searchbar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import styles from "./Navbar.module.css";
-import DropdownMenu from "src/components/DropdownMenu/DropdownMenu.jsx";
-
-import { Nav, Navbar as NavbarBootstrap, NavDropdown } from "react-bootstrap";
+import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 
 import {
   CardList,
@@ -21,10 +20,15 @@ import logo from "./img/logo.png";
 const Navbar = () => {
   let navigate = useNavigate();
 
-  const [search, setSearch] = useState("");
+  const [ingredients, setSearch] = useState("");
+  const [tags, setTags] = useState([]);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
+  };
+
+  const handleTagsChange = (tags) => {
+    setTags(tags);
   };
 
   const items = [
@@ -57,7 +61,7 @@ const Navbar = () => {
   return (
     <nav className={styles.container}>
       <div className={styles.navElements}>
-        <nav className={styles.navDropdowns}>
+        <div className={styles.navDropdowns}>
           <div className={`${styles.iconContainer} ${styles.homeIcon}`}>
             <FontAwesomeIcon icon={faHouse} className={styles.icon} />
             <Nav.Link as={Link} to="/" className={styles.iconText}>
@@ -70,7 +74,7 @@ const Navbar = () => {
               Search
             </Nav.Link>
           </div>
-        </nav>
+        </div>
         <NavbarBootstrap.Brand as={Link} to="/">
           <img src={logo} alt="Logo" className={styles.logo} />
         </NavbarBootstrap.Brand>
@@ -79,28 +83,36 @@ const Navbar = () => {
             text="onion, canned tomato"
             btnText={"Search"}
             className={styles.searchBar}
-            value={search}
+            value={ingredients}
             onChange={handleOnChange}
-            btnClick={() => navigate("/search", { state: { id: search } })}
+            btnClick={() =>
+              navigate("/search", { state: { ingredients, tags } })
+            }
           />
-          <AdvancedSearchMenu />
+          <AdvancedSearchMenu onTagsChange={handleTagsChange} />
         </div>
-        <nav className={styles.navDropdowns}>
+        <div className={styles.navDropdowns}>
           <div className={styles.iconContainer}>
             <BrightnessHighFill className={styles.icon} />
             <Nav.Link as={Link} to="/categories" className={styles.iconText}>
               Theme
             </Nav.Link>
           </div>
-          <div className={styles.iconContainer}>
-            <CardList className={`${styles.icon} ${styles.cardIcon}`} />
-            <DropdownMenu
+          <div className={styles.todo}>
+            <NavDropdownMenu
               drop="down-centered"
-              buttonTitle="Todo List"
+              buttonTitle="TODO"
               items={items}
             />
           </div>
-        </nav>
+          <div className={styles.menu}>
+            <NavDropdownMenu
+              drop="down-centered"
+              buttonTitle="Menu"
+              items={items}
+            />
+          </div>
+        </div>
       </div>
     </nav>
   );

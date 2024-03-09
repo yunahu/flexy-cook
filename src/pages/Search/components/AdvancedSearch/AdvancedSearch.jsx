@@ -23,7 +23,7 @@ const map = {
 //   key: "goSearch"
 // }
 
-const AdvancedSearchMenu = ({ background = "success" }) => {
+const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState();
@@ -66,106 +66,106 @@ const AdvancedSearchMenu = ({ background = "success" }) => {
     setSelectedNutrient("None");
     setSelectedMinOrMax("None");
     setAmount("");
+    onTagsChange([...tags, tag]);
   };
+
   // if the input is empty, disable the button
   const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
 
   return (
-    <>
-      <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
-        <Dropdown.Toggle
-          variant={background}
-          className={`${map[background]} ${dropdownStyles.toggle}`}
-          id="dropdown-basic"
-        >
-          Advanced Search
-        </Dropdown.Toggle>
-        <Dropdown.Menu className={styles.menuContainer}>
-          <Container>
-            <div className={styles.divider}>
-              <DividerWithText text="Select filter" />
-            </div>
-            <div>
-              <span className={styles.searchByText}>Search By:</span>
-              <div className={styles.searchBy}>
-                <Form.Select
-                  aria-label="MinOrMax"
-                  value={selectedMinOrMax}
-                  onChange={handleSelectChangeMinOrMax}
-                >
-                  <option selected>Select Min/Max</option>
-                  <option value="Min">Min</option>
-                  <option value="Max">Max</option>
-                </Form.Select>
-                <Form.Select
-                  aria-label="Nutrient"
-                  id="selectedNutrient"
-                  onChange={handleSelectChangeNutrient}
-                  value={selectedNutrient}
-                >
-                  <option selected>Select Nutrient</option>
-                  <option value="Carbs">Carbs</option>
-                  <option value="Protein">Protein</option>
-                  <option value="Fat">Fat</option>
-                  <option value="Fiber">Fiber</option>
-                  <option value="Iron">Iron</option>
-                  <option value="Sodium">Sodium</option>
-                  <option value="Sugar">Sugar</option>
-                  <option value="Magnesium">Magnesium</option>
-                  <option value="Folate">Folate</option>
-                  <option value="Zinc">Zinc</option>
-                  <option value="FolicAcid">FolicAcid</option>
-                  <option value="Calcium">Calcium</option>
-                  <option value="Cholesterol">Cholesterol</option>
-                  <option value="VitaminC">VitaminC</option>
-                  <option value="VitaminE">VitaminE</option>
-                  <option value="VitaminB12">VitaminB12</option>
-                  <option value="Caffeine">Caffeine</option>
-                  <option value="Alcohol">Alcohol</option>
-                  <option value="Calories">Calories</option>
-                </Form.Select>
-                <InputGroup className={styles.amountInput}>
-                  <Form.Control
-                    placeholder="Amount"
-                    aria-label="Nutrient amount"
-                    value={amount}
-                    type="text"
-                    onChange={handleAmountChange}
-                  />
-                  <InputGroup.Text>
-                    {defineScale(selectedNutrient)}
-                  </InputGroup.Text>
-                </InputGroup>
-                <ModifiedButton
-                  className={styles.addTagButton}
-                  title="+"
-                  variant="dark"
-                  size="sm"
-                  disabled={disabled}
-                  onClick={addTag}
+    <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
+      <Dropdown.Toggle
+        variant={background}
+        className={`${map[background]} ${dropdownStyles.toggle}`}
+        id="dropdown-basic"
+      >
+        Advanced Search
+      </Dropdown.Toggle>
+      <Dropdown.Menu className={styles.menuContainer}>
+        <Container>
+          <div className={styles.divider}>
+            <DividerWithText text="Select filter" />
+          </div>
+          <div>
+            <span className={styles.searchByText}>Search By:</span>
+            <div className={styles.searchBy}>
+              <Form.Select
+                aria-label="MinOrMax"
+                value={selectedMinOrMax}
+                onChange={handleSelectChangeMinOrMax}
+              >
+                <option selected>Select Min/Max</option>
+                <option value="Min">Min</option>
+                <option value="Max">Max</option>
+              </Form.Select>
+              <Form.Select
+                aria-label="Nutrient"
+                id="selectedNutrient"
+                onChange={handleSelectChangeNutrient}
+                value={selectedNutrient}
+              >
+                <option selected>Select Nutrient</option>
+                <option value="Carbs">Carbs</option>
+                <option value="Protein">Protein</option>
+                <option value="Fat">Fat</option>
+                <option value="Fiber">Fiber</option>
+                <option value="Iron">Iron</option>
+                <option value="Sodium">Sodium</option>
+                <option value="Sugar">Sugar</option>
+                <option value="Magnesium">Magnesium</option>
+                <option value="Folate">Folate</option>
+                <option value="Zinc">Zinc</option>
+                <option value="FolicAcid">FolicAcid</option>
+                <option value="Calcium">Calcium</option>
+                <option value="Cholesterol">Cholesterol</option>
+                <option value="VitaminC">VitaminC</option>
+                <option value="VitaminE">VitaminE</option>
+                <option value="VitaminB12">VitaminB12</option>
+                <option value="Caffeine">Caffeine</option>
+                <option value="Alcohol">Alcohol</option>
+                <option value="Calories">Calories</option>
+              </Form.Select>
+              <InputGroup className={styles.amountInput}>
+                <Form.Control
+                  placeholder="Amount"
+                  aria-label="Nutrient amount"
+                  value={amount}
+                  type="text"
+                  onChange={handleAmountChange}
                 />
-              </div>
+                <InputGroup.Text>
+                  {defineScale(selectedNutrient)}
+                </InputGroup.Text>
+              </InputGroup>
+              <ModifiedButton
+                className={styles.addTagButton}
+                title="+"
+                variant="dark"
+                size="sm"
+                disabled={disabled}
+                onClick={addTag}
+              />
             </div>
-            <DividerWithText text="Selected filters" />
-            <div className={styles.tags}>
-              {tags.map((tag, index) => (
-                <DeletableTag
-                  key={`${tag.amount}${tag.nutrient}`}
-                  bg={colorByNum(index)}
-                  minOrMax={tag.minOrMax}
-                  nutrient={tag.nutrient}
-                  amount={tag.amount}
-                  scale={tag.scale}
-                  onClick={() => {
-                    deleteTag(index);
-                  }}
-                />
-              ))}
-            </div>
-          </Container>
-        </Dropdown.Menu>
-      </Dropdown>
-    </>
+          </div>
+          <DividerWithText text="Selected filters" />
+          <div className={styles.tags}>
+            {tags.map((tag, index) => (
+              <DeletableTag
+                key={`${tag.amount}${tag.nutrient}`}
+                bg={colorByNum(index)}
+                minOrMax={tag.minOrMax}
+                nutrient={tag.nutrient}
+                amount={tag.amount}
+                scale={tag.scale}
+                onClick={() => {
+                  deleteTag(index);
+                }}
+              />
+            ))}
+          </div>
+        </Container>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 

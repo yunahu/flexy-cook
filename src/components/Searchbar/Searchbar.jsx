@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
-function SearchBar({ text, value, onChange, btnClick, btnText }) {
+function SearchBar({ text, value, onChange, btnClick, btnText, className }) {
   return (
-    <InputGroup className={styles.container}>
+    <InputGroup className={`${styles.container} ${className}`}>
       <Form.Control
         placeholder={text}
         aria-label="Search"
