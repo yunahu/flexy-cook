@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { addSubtask, addTask, closeTask, deleteTask, getActiveTasks, updateTask } from 'src/services/todoist';
-import styles from './index.module.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
-import Dropdown from 'react-bootstrap/Dropdown';
+import styles from './TodoList.module.css';
+import { addSubtask, addTask, closeTask, deleteTask, getActiveTasks, updateTask } from 'src/services/todoist';
 
 const findTask = (taskId, tasks) => {
 	for (const task of tasks) {

@@ -1,10 +1,10 @@
-import styles from './index.module.css';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import { addProject, addSection, getAuth, getProjects, getSections } from 'src/services/todoist';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import styles from './TodoListsModal.module.css';
 import TodoList from './components/TodoList/TodoList';
+import { addProject, addSection, getAuth, getProjects, getSections } from 'src/services/todoist';
 
 const getFlexyCookProject = async () => {
 	try {
