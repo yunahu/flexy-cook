@@ -1,3 +1,4 @@
+/** XLarge Screen size approach */
 .container {
    width: 90%;
    margin: auto;
@@ -9,27 +10,43 @@
    padding: 0;
 }
 
-.recommendation_md {
-   display: none;
+.recommendation_xl {
+   display: flex;
+   width: 100%;
+   padding: 0;
+   margin: 0;
 }
 
 .recommendation_lg {
-   display: flex;
-   width: 100%;
+   display: none;
 }
 
 .sm_3_cards {
+   width: 100%;
    height: 100%;
+   font-size: smaller;
 }
 
+/** Large & medium screen size break point */
 @media screen and (max-width: 990px) {
+   .recommendation_xl {
+         display: none;
+      }
 
-   .recommendation_md {
+   .recommendation_lg {
+      height: 30vh;
+      min-height: 600px;
       display: flex;
    }
 
-   .recommendation_lg {
-      display: none;
+   
+
+}
+
+/** Medium screen size break point */
+@media screen and (max-width: 576px) {
+   .recommendation_lg > div > div {
+      height: 100%;
    }
 
 }

@@ -13,3 +13,15 @@ body {
    margin: 0;
    padding: 0;
 }
+
+@media screen and (max-width: 990px) {
+   body {
+      font-size: 80%;
+   }
+}
+
+@media screen and (max-width: 576px) {
+   body {
+      font-size: 60%;
+   }
+}

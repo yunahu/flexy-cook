@@ -8,6 +8,7 @@
 
 .cardBody {
    align-self: center;
+   justify-content: space-around;
 }
 
 
@@ -18,6 +19,9 @@
    color: var(--white);
    font-weight: bold;
    border-color: var(--primary);
+
+   position: absolute;
+   bottom: 5%;
 }
 
 .goBtn:hover {

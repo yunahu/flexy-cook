@@ -34,8 +34,8 @@ const Home = () => {
 	return (
 		<div className={styles.container}>
 
-         <Row className={styles.recommendation_lg}>
-            <Col lg={6}> {/** Large square recommendation card */}
+         <Row className={styles.recommendation_xl}>
+            <Col lg={6} style={{ 'padding-left': 0 }}> {/** Large square recommendation card */}
                <Large_Square_Card className={styles.lg_sq_card}
                   width={'100%'}
                   // height={recipeInfo.height}
@@ -47,8 +47,8 @@ const Home = () => {
                />
             </Col>
 
-            <Col lg={6}> {/** Small horizontal recommendation cards x3 */}
-               <Stack direction='vertical' gap={3} className={styles.sm_3_cards}>
+            <Col lg={6} style={{ 'padding-right': 0 }}> {/** Small horizontal recommendation cards x3 */}
+               <Stack direction='vertical' gap={3} className={styles.sm_3_cards} >
                   <HorizontalCard className={styles.lg_hori_card}
                      width={'100%'}
                      height={'100%'}
@@ -80,7 +80,7 @@ const Home = () => {
             </Col>
          </Row>
 
-         <Row className={styles.recommendation_md}>
+         <Row className={styles.recommendation_lg}>
             <Col xs={12}>
                <CarouselBanner
                   item1={recipeInfo}

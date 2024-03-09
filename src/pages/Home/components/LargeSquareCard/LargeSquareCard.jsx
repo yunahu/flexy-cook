@@ -5,7 +5,7 @@ import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
 
 import styles from "./LargeSquareCard.module.css";
-import { Container, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 
 const LargeSquareCard = ({
   imgURL,
@@ -31,20 +31,22 @@ const LargeSquareCard = ({
             />
 
             <CardBootstrap.Body>
-               <Container className={styles.cardBody}>
+               <Stack direction='vertical' className={styles.cardBody} gap={2}>
                   <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
-                  <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
-                  <CardBootstrap.Text>{ingredients}</CardBootstrap.Text>
-
+                  <Stack direction='vertical' gap={1}>
+                     <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
+                     <CardBootstrap.Text>{ingredients}</CardBootstrap.Text>
+                  </Stack>
+                  
                   <CookingInfo size={size} time={time} calories={calories} />
                   <Tags tags={tags} />
-               </Container>
+               </Stack>
 
                <Button className={styles.goBtn} bg={styles.goBtn}>
                   Check It Out
                </Button>
-               
+
             </CardBootstrap.Body>
          </Stack>
       </CardBootstrap>
