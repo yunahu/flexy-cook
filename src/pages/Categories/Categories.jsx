@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
-import TodoListsModal from 'src/components/TodoListsModal';
+import TodoListsModal from 'src/components/TodoListsModal/TodoListsModal';
 
 const Categories = () => {	
   const [modalShow, setModalShow] = useState(false);

@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import { addProject, addSection, getAuth, getProjects, getSections } from 'src/services/todoist';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import TodoList from './components/TodoList';
+import TodoList from './components/TodoList/TodoList';
 
 const getFlexyCookProject = async () => {
 	try {
