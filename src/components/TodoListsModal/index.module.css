@@ -1,0 +1,17 @@
+:global(.modal-content) {
+	width: 790px;
+	height: 640px;
+}
+
+:global(.tab-content) {
+	overflow-y: scroll;
+	height: 527px;
+}
+
+.header {
+	border: none !important;
+}
+
+.tabs :global(.nav-link) {
+	color: black !important; 
+}

@@ -1,0 +1,84 @@
+.taskContainer {
+	display: flex;
+	flex-direction: row;
+	margin: 0px 20px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	border-top: dashed 0.5px gray;
+	align-items: center;
+	justify-content: center;
+
+	:hover {
+		cursor: pointer;
+	}
+}
+
+.checkCircleContainer {
+	width: 25px;
+	height: 25px;
+	border: 1px solid gray;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.checkCircle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	display: none;	
+}
+
+.checkCircleContainer:hover .checkCircle {
+	display: flex; 
+}
+
+.taskTitle {
+	flex: 1;
+	line-height: 30px;
+	padding: 5px 10px;
+	overflow-x: hidden;
+}
+
+.dropdownContainer {
+	width: 38px;
+	height: 38px;
+	margin-left: 20px;
+}
+
+.taskDropdown {
+	visibility: hidden;
+	height: 38px;
+}
+
+.taskContainer:hover .taskDropdown {
+	visibility: visible;
+}
+
+.dropdownToggle {
+	padding: 0px;
+}
+
+.dropdownToggle:after {
+	display: none !important;
+}
+
+.gearIcon {
+	width: 36px;
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plusIcon {
+	height: 30px;
+	width: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 7px;
+}

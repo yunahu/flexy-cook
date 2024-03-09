@@ -44,6 +44,8 @@ export const deleteProject = projectId => todoistAPI.delete(`/projects/${project
 
 // Sections
 
+export const getSections = projectId => todoistAPI.get(`/sections?project_id=${projectId}`);
+
 export const getSection = sectionId => todoistAPI.get(`/sections/${sectionId}`);
 
 export const updateSection = (sectionId, sectionNewName) => todoistAPI.post(`/sections/${sectionId}`, { name: sectionNewName });
@@ -55,7 +57,7 @@ export const deleteSection = sectionId => todoistAPI.delete(`/sections/${section
 
 // Tasks
 
-export const getActiveTasks = (projectId, sectionId) => todoistAPI.post('/tasks', { project_id: projectId, section_id: sectionId });
+export const getActiveTasks = (projectId, sectionId) => todoistAPI.get('/tasks', { params: { project_id: projectId, section_id: sectionId } });
 
 export const getActiveTask = taskId => todoistAPI.get(`/tasks/${taskId}`);
 
