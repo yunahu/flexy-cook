@@ -1,3 +1,11 @@
+.lg_sq_card {
+   box-shadow: 1px 1px 2px lightgray;
+   height: 100%;
+
+   overflow: hidden;
+}
+
+
 .goBtn {
    margin: 10px 0;
    padding: 10px 20px;
@@ -12,6 +20,7 @@
 }
 
 .cardImg {
+   width: 100%;
    display: inline-block;
    object-fit: cover;
 }

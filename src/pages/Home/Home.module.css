@@ -9,12 +9,28 @@
    padding: 0;
 }
 
+.recommendation-md {
+   display: none !important;
+}
+
+.recommendation-lg {
+   display: inline-block !important;
+}
+
 @media screen and (max-width: 840px) {
 
    .container {
       width: 100%;
       margin: 0;
       padding: 0;
+   }
+
+   .recommendation-md {
+      display: inline-block !important;
+   }
+
+   .recommendation-lg {
+      display: none !important;
    }
 
 }
