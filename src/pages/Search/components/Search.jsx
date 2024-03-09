@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-import SearchBar from "src/components/Searchbar/Searchbar";
+import SearchBar from "src/components/Searchbar/SearchBar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
+import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "../utils/searchFunctions";
 
@@ -10,6 +12,13 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState([]);
+
+  const location = useLocation();
+  const { ingredients, tags } = location.state || {};
+  useEffect(() => {
+    console.log("Ingredients:", ingredients);
+    console.log("Tags:", tags);
+  }, [ingredients, tags]);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -57,6 +66,7 @@ const Search = () => {
 
   return (
     <div>
+      <AdvancedSearchMenu />
       <SearchBar
         text="onion, canned tomato, pasta"
         value={search}
@@ -64,6 +74,7 @@ const Search = () => {
         btnClick={handleBtnClick}
         btnText="search"
       />
+
       {recipeDetails?.map((recipeDetail) => {
         //recipeDetails.tags?.map
 
@@ -116,11 +127,15 @@ const Search = () => {
             <LargeSquareCard
               imgURL={recipeDetail[0].image}
               title={recipeDetail[0].title}
-              ingredients={recipeDetail[0].extendedIngredients.map((ingredient) => ingredient.name).join(", ")}
+              ingredients={recipeDetail[0].extendedIngredients
+                .map((ingredient) => ingredient.name)
+                .join(", ")}
               tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
               time={recipeDetail[0].readyInMinutes}
               size={recipeDetail[0].servings}
-              calories={Math.floor(recipeDetail[0].nutrition.nutrients[0].amount)}
+              calories={Math.floor(
+                recipeDetail[0].nutrition.nutrients[0].amount
+              )}
             />
           </div>
         );

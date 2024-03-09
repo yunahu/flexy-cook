@@ -1,0 +1,27 @@
+.hrLine {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  opacity: 0.25;
+}
+
+.divider {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0rem;
+}
+
+.short {
+  width: 4rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.long {
+  width: 30rem;
+  border-top: var(--bs-border-width) solid;
+}
+
+.hrText {
+  margin: 0.25rem 1rem;
+  text-wrap: nowrap;
+}
