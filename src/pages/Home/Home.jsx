@@ -35,7 +35,7 @@ const Home = () => {
 		<div className={styles.container}>
 
          <Row className={styles.recommendation_xl}>
-            <Col lg={6} style={{ 'padding-left': 0 }}> {/** Large square recommendation card */}
+            <Col lg={6} style={{ paddingLeft: 0 }}> {/** Large square recommendation card */}
                <Large_Square_Card className={styles.lg_sq_card}
                   width={'100%'}
                   // height={recipeInfo.height}
@@ -47,7 +47,7 @@ const Home = () => {
                />
             </Col>
 
-            <Col lg={6} style={{ 'padding-right': 0 }}> {/** Small horizontal recommendation cards x3 */}
+            <Col lg={6} style={{ paddingRight: 0 }}> {/** Small horizontal recommendation cards x3 */}
                <Stack direction='vertical' gap={3} className={styles.sm_3_cards} >
                   <HorizontalCard className={styles.lg_hori_card}
                      width={'100%'}
@@ -91,7 +91,7 @@ const Home = () => {
          </Row>
 
          {/** set label={''} for a not-labeled divider */}
-         <Divider width={'100%'} label={'Scroll Down'} labelWidth={'10vw'}/>
+         <Row><Divider width={'100%'} label={'Scroll Down'} labelWidth={'10vw'}/></Row>
          
 
          <Stack gap={3}> {/** horizontal recommendation cards */}

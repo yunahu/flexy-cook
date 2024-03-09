@@ -3,18 +3,17 @@
    text-align: center;
 }
 
-.label {
-   display: inline-block;
-   align-self: center;
-   position: relative;
-   top: -40px;
-
-   background-color: white;
+.container svg {
    color: grey;
-   font-size: .7rem;
-   font-style: normal;
 }
 
-hr + svg {
-   color: grey;
+.label {
+   padding: 0 15px;
+   font-size: 0.8rem;
+   font-style: normal;
+   color: gray;
+}
+
+.container hr {
+   flex-grow: 1;
 }
