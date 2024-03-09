@@ -9,32 +9,27 @@
    padding: 0;
 }
 
-.recommendation-md {
-   display: none !important;
+.recommendation_md {
+   display: none;
 }
 
-.recommendation-lg {
-   display: inline-block !important;
+.recommendation_lg {
+   display: flex;
+   width: 100%;
 }
 
 .sm_3_cards {
    height: 100%;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 990px) {
 
-   .container {
-      width: 100%;
-      margin: 0;
-      padding: 0;
+   .recommendation_md {
+      display: flex;
    }
 
-   .recommendation-md {
-      display: inline-block !important;
-   }
-
-   .recommendation-lg {
-      display: none !important;
+   .recommendation_lg {
+      display: none;
    }
 
 }

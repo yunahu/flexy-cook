@@ -1,7 +1,6 @@
 import styles from './Home.module.css';
 import Large_Square_Card from './components/LargeSquareCard/LargeSquareCard';
 import CarouselBanner from './components/CarouselBanner/CarouselBanner';
-import SingleCarousel from './components/CarouselBanner/SingleCarousel/SingleCarousel';
 import HorizontalCard from './components/HorizontalCard/HorizontalCard';
 import { Row, Col, Stack } from 'react-bootstrap';
 import Divider from 'src/components/Divider/Divider';
@@ -9,7 +8,7 @@ import Divider from 'src/components/Divider/Divider';
 
 const dummyData = () => {
    return { /** A dummy object with present data */
-      width: '30rem',
+      // width: '30rem',
       // height: '40vh',  /** must be px/rem value */
       imgURL: 'src/assets/images/sample-pic-horizontal.jpg',
       // imgURL: 'src/assets/images/sample_pic.jpg',
@@ -35,7 +34,7 @@ const Home = () => {
 	return (
 		<div className={styles.container}>
 
-         <Row className={'recommendation-lg'}>
+         <Row className={styles.recommendation_lg}>
             <Col lg={6}> {/** Large square recommendation card */}
                <Large_Square_Card className={styles.lg_sq_card}
                   width={'100%'}
@@ -81,17 +80,13 @@ const Home = () => {
             </Col>
          </Row>
 
-         <Row className={'recommendation-md'}>
+         <Row className={styles.recommendation_md}>
             <Col xs={12}>
-               {/* <SingleCarousel
-                  height={recipeInfo.height}
-                  img={recipeInfo.imgURL}
-                  title={recipeInfo.title}
-                  info={recipeInfo.info}
-                  tags={recipeInfo.tags}
-               /> */}
-
-               {/* <CarouselBanner item1={recipeInfo} item2={recipeInfo} item3={recipeInfo}/> */}
+               <CarouselBanner
+                  item1={recipeInfo}
+                  item2={recipeInfo}
+                  item3={recipeInfo}
+               />
             </Col>
          </Row>
 
