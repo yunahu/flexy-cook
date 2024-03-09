@@ -1,0 +1,20 @@
+.container {
+   margin: 15px auto;
+   text-align: center;
+}
+
+.label {
+   display: inline-block;
+   align-self: center;
+   position: relative;
+   top: -40px;
+
+   background-color: white;
+   color: grey;
+   font-size: .7rem;
+   font-style: normal;
+}
+
+hr + svg {
+   color: grey;
+}

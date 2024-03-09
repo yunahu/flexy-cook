@@ -4,6 +4,7 @@ import CarouselBanner from './components/CarouselBanner/CarouselBanner';
 import SingleCarousel from './components/CarouselBanner/SingleCarousel/SingleCarousel';
 import HorizontalCard from './components/HorizontalCard/HorizontalCard';
 import { Row, Col, Stack } from 'react-bootstrap';
+import Divider from 'src/components/Divider/Divider';
 
 
 const dummyData = () => {
@@ -67,7 +68,9 @@ const Home = () => {
             </Col>
          </Row>
 
-         <Row><hr></hr></Row>
+         {/** set label={''} for a not-labeled divider */}
+         <Divider width={'100%'} label={'Scroll Down'} labelWidth={'10vw'}/>
+         
 
          <Stack>
             <HorizontalCard className={styles.lg_hori_card}
