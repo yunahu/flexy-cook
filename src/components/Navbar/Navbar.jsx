@@ -1,71 +1,108 @@
 // import React from 'react';
-import { Nav, Navbar as NavbarBootstrap, NavDropdown, InputGroup, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import styles from './Navbar.module.css';
+import SearchBar from "../Searchbar/SearchBar";
+import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
+import styles from "./Navbar.module.css";
+import DropdownMenu from "src/components/DropdownMenu/DropdownMenu.jsx";
 
-import { CardList } from 'react-bootstrap-icons';
-import { BrightnessHighFill } from 'react-bootstrap-icons';
-import { CartPlusFill } from 'react-bootstrap-icons';
+import { Nav, Navbar as NavbarBootstrap, NavDropdown } from "react-bootstrap";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import logo from './img/logo.png';
+import {
+  CardList,
+  CartPlusFill,
+  BrightnessHighFill,
+} from "react-bootstrap-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
+
+import logo from "./img/logo.png";
 
 const Navbar = () => {
-  // eslint-disable-next-line no-unused-vars
-  const handleSearch = (event) => {
-    event.preventDefault();
-    // Handle search logic here
+  let navigate = useNavigate();
+
+  const [search, setSearch] = useState("");
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
   };
 
+  const items = [
+    {
+      icon: <CartPlusFill size={25}></CartPlusFill>,
+      title: "Shopping List",
+      ref: "",
+      key: "shoppingList",
+    },
+    {
+      icon: <CartPlusFill size={25}></CartPlusFill>,
+      title: "Memos",
+      ref: "",
+      key: "memo",
+    },
+    {
+      icon: <CartPlusFill size={25}></CartPlusFill>,
+      title: "Something",
+      ref: "",
+      key: "something",
+    },
+    {
+      icon: <CartPlusFill size={25}></CartPlusFill>,
+      title: "Separated link",
+      ref: "",
+      key: "link",
+    },
+  ];
+
   return (
-    <div className={styles.container}>
-      <NavbarBootstrap expand="lg" className={styles.nav}>
+    <nav className={styles.container}>
+      <div className={styles.navElements}>
+        <nav className={styles.navDropdowns}>
+          <div className={`${styles.iconContainer} ${styles.homeIcon}`}>
+            <FontAwesomeIcon icon={faHouse} className={styles.icon} />
+            <Nav.Link as={Link} to="/" className={styles.iconText}>
+              Home
+            </Nav.Link>
+          </div>
+          <div className={`${styles.iconContainer} ${styles.searchIcon}`}>
+            <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+            <Nav.Link as={Link} to="/search" className={styles.iconText}>
+              Search
+            </Nav.Link>
+          </div>
+        </nav>
         <NavbarBootstrap.Brand as={Link} to="/">
           <img src={logo} alt="Logo" className={styles.logo} />
         </NavbarBootstrap.Brand>
-        <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
-        <NavbarBootstrap.Collapse id="basic-navbar-nav" className="justify-content-center">
-          <div className="d-flex flex-column align-items-center">
-            <form className="d-flex">
-              <InputGroup className={styles.searchbar}>
-                <FormControl
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <Button className={styles.button} type="submit">Search</Button>
-              </InputGroup>
-            </form>
-            <NavDropdown title="Advanced Search" id="basic-nav-dropdown" className={styles.advanceButton}>
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
-          </div>
-        </NavbarBootstrap.Collapse>
-        <Nav className="ml-auto">
+        <div className={styles.searches}>
+          <SearchBar
+            text="onion, canned tomato"
+            btnText={"Search"}
+            className={styles.searchBar}
+            value={search}
+            onChange={handleOnChange}
+            btnClick={() => navigate("/search", { state: { id: search } })}
+          />
+          <AdvancedSearchMenu />
+        </div>
+        <nav className={styles.navDropdowns}>
           <div className={styles.iconContainer}>
             <BrightnessHighFill className={styles.icon} />
-            <Nav.Link as={Link} to="/categories" className={styles.categoriesText}>
+            <Nav.Link as={Link} to="/categories" className={styles.iconText}>
               Theme
             </Nav.Link>
           </div>
           <div className={styles.iconContainer}>
-            <CardList className={styles.icon} />
-            <NavDropdown title="Todo List" id="basic-nav-dropdown" className={styles.categoriesText}>
-              <NavDropdown.Item href="#action/3.1"><CartPlusFill className={styles.dropIcon} />Shopping List</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2"><CartPlusFill className={styles.dropIcon} />Memos</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.3"><CartPlusFill className={styles.dropIcon} />Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4"><CartPlusFill className={styles.dropIcon} />Separated link</NavDropdown.Item>
-            </NavDropdown>
+            <CardList className={`${styles.icon} ${styles.cardIcon}`} />
+            <DropdownMenu
+              drop="down-centered"
+              buttonTitle="Todo List"
+              items={items}
+            />
           </div>
-        </Nav>
-      </NavbarBootstrap>
-    </div>
+        </nav>
+      </div>
+    </nav>
   );
 };
 

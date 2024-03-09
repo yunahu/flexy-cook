@@ -6,11 +6,12 @@
 }
 
 .btn-success {
-  /* transparent & text-color:black */
+  /* transparent & text-color:435334 */
   padding: 0.7rem;
   background-color: rgb(255, 112, 67, 0) !important;
   border-color: rgb(255, 112, 67, 0) !important;
-  color: black;
+  color: #435334;
+  font: 17px "Noto Sans", sans-serif;
 }
 
 :hover.btn-success,
@@ -33,5 +34,14 @@
   width: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.4rem;
+}
+
+.itemContainer {
+  display: flex;
   align-items: center;
 }

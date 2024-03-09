@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-import SearchBar from "src/components/Searchbar/Searchbar";
+import SearchBar from "src/components/Searchbar/SearchBar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
@@ -11,6 +12,10 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState([]);
+
+  const location = useLocation();
+  const selectId = location.state?.id;
+  console.log(selectId);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);

@@ -1,108 +1,118 @@
-
-
-.button {
-    background-color: #9EB384;
-    border: 1px solid #435334;
-    border-radius: 5px 5px 5px 5px;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-  .advanceButton{
-    background-color: #9EB384;
-    border: 1px solid #435334;
-    border-radius: 5px 5px 5px 5px;
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    transition-duration: 0.4s;
-
-  }
-  .searchbar{
-    margin-top: 10px;
-  }
-  .button:hover {
-    background-color: #435334;
-  }
-.nav{
-    background-color: #CEDEBD;
-    padding: 10px 100px 10px 100px;   
-}  
-.logo{
-    width: 100px;
-    height: auto;
-}
-.logo-dropdown{
-    width: 50px;
-    height: 50px;
+.container {
+  background-color: #cedebd;
+  padding: 0 1rem;
+  position: relative;
 }
 
+.navElements {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+  font: 17px "Noto Sans", sans-serif;
+}
 
+div.homeIcon,
+div.searchIcon {
+  display: none;
+}
 
+.searches {
+  margin-top: 1.3rem;
+}
+
+.navDropdowns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo {
+  width: 8rem;
+  height: auto;
+  padding: 65.33px, 0 !important;
+}
 
 .iconContainer {
+  padding-top: 0.7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 10px;
+  gap: 0.1rem;
+  min-width: 6.5rem;
+  border-radius: 5px;
+}
+
+.iconContainer:hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  background-color: #9eb384;
+  color: white;
+  padding: 0.5rem 0 0 0;
+}
+
+.iconContainer:hover .icon {
+  color: white;
+}
+
+.iconContainer:hover .iconText {
+  color: white;
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
-}
-.dropIcon{
-    width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
+  color: #435334;
 }
 
-.categoriesText {
-  margin-top: 5px;
+.iconText {
+  color: #435334;
+  padding: 0.7rem;
 }
 
-.dropdown {
-  margin-top: 5px;
+.todoDrop {
+  margin-top: 4rem;
+  color: #435334;
 }
 
-.searchbar{
-    margin-bottom: 5px;
+.searchBar {
+  width: 10rem;
 }
 
-@media (max-width: 767px) {
-    .searchbar {
-      flex-direction: column;
-    }
-  
-    .button {
-      margin-top: 10px;
-    }
-  
-    .iconContainer {
-      margin-right: 0;
-      margin-left: 10px;
-    }
-    .icon {
-        display: none;
-      
-    }
+@media (max-width: 834px) {
+  .searches {
+    display: none;
   }
-  
-  @media (max-width: 575px) {
-    .navItems {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .icon {
-        display: none;
-      
-    }
+
+  div.homeIcon,
+  div.searchIcon {
+    display: block;
   }
+
+  .navElements {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+    font: 17px "Noto Sans", sans-serif;
+  }
+}
+
+@media (max-width: 575px) {
+  .navItems {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon {
+    display: none;
+  }
+}

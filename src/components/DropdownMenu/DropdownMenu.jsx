@@ -8,6 +8,7 @@ const map = {
 };
 
 // exampleItems{
+//   icon:
 //   title: "Search"
 //   ref: "/search"
 //   key: "goSearch"
@@ -26,10 +27,20 @@ const DropdownMenu = ({ drop, buttonTitle, items, background = "success" }) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {items.map((item) => (
-          <Dropdown.Item key={item.key} href={item.ref}>
-            {item.title}
-          </Dropdown.Item>
+        {items.map((item, index) => (
+          <>
+            <Dropdown.Item
+              key={item.key}
+              href={item.ref}
+              className={styles.itemContainer}
+            >
+              <span className={styles.icon}>
+                {item.icon ? item.icon : null}
+              </span>
+              <span className={styles.text}>{item.title}</span>
+            </Dropdown.Item>
+            {index !== items.length - 1 && <Dropdown.Divider />}
+          </>
         ))}
       </Dropdown.Menu>
     </Dropdown>
