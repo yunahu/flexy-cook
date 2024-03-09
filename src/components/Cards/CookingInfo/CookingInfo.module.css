@@ -1,24 +1,18 @@
 .wrapper {
   color: var(--dark-text);
-  margin: 5px;
+  margin: 1%;
   padding: 0;
   width: 100%;
-  text-align: left;
+  text-align: start;
   vertical-align: center;
 }
 
-.col {
-  margin: 10px;
-  padding: 0;
-  border-right: 2px solid;
-  text-align: left;
-  justify-content: space-between;
+.vr {
+   color: grey;
 }
 
-.col:first-of-type {
-  margin-left: 0;
+.p-2 {
+   padding-left: 0 !important;
+   text-align: start;
 }
 
-.col:last-of-type {
-  border: none;
-}
