@@ -17,7 +17,6 @@ import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "./img/logo.png";
 
-import logo from './img/logo.png';
 const Navbar = () => {
   let navigate = useNavigate();
 
