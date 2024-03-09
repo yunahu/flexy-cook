@@ -24,7 +24,7 @@ const HorizontalCard = ({
   return (
     <>
       <CardBootstrap className={styles.hori_Card} style={{ width: width }}>
-         <Row>
+         <Row style={{ height: '100%' }}>
             <Col xs={4} className={styles.imgBlock}>
                <CardBootstrap.Img src={imgURL} className={styles.cardImg} />
             </Col>

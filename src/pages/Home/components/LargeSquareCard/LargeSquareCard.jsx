@@ -5,11 +5,10 @@ import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
 
 import styles from "./LargeSquareCard.module.css";
-import { Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 
 const LargeSquareCard = ({
   imgURL,
-  width,
   title,
   ingredients,
   tags,
@@ -24,26 +23,28 @@ const LargeSquareCard = ({
    */
   return (
     <>
-      <CardBootstrap style={{ width: width }} className={styles.lg_sq_card}>
+      <CardBootstrap className={styles.lg_sq_card}>
          <Stack direction='vertical'>
-            <CardBootstrap.Img
-               variant="top"
+            <CardBootstrap.Img variant="top"
                src={imgURL}
                className={styles.cardImg}
             />
 
             <CardBootstrap.Body>
-               <CardBootstrap.Title>{title}</CardBootstrap.Title>
+               <Container className={styles.cardBody}>
+                  <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
-               <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
-               <CardBootstrap.Text>{ingredients}</CardBootstrap.Text>
+                  <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
+                  <CardBootstrap.Text>{ingredients}</CardBootstrap.Text>
 
-               <CookingInfo size={size} time={time} calories={calories} />
-               <Tags tags={tags} />
+                  <CookingInfo size={size} time={time} calories={calories} />
+                  <Tags tags={tags} />
+               </Container>
 
                <Button className={styles.goBtn} bg={styles.goBtn}>
                   Check It Out
                </Button>
+               
             </CardBootstrap.Body>
          </Stack>
       </CardBootstrap>

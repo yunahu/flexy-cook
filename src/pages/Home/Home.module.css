@@ -17,6 +17,10 @@
    display: inline-block !important;
 }
 
+.sm_3_cards {
+   height: 100%;
+}
+
 @media screen and (max-width: 840px) {
 
    .container {

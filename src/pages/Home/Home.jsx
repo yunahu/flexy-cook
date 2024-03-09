@@ -10,7 +10,7 @@ import Divider from 'src/components/Divider/Divider';
 const dummyData = () => {
    return { /** A dummy object with present data */
       width: '30rem',
-      height: '40vh',  /** must be px/rem value */
+      // height: '40vh',  /** must be px/rem value */
       imgURL: 'src/assets/images/sample-pic-horizontal.jpg',
       // imgURL: 'src/assets/images/sample_pic.jpg',
       title: 'Some Random Recipe',
@@ -36,10 +36,10 @@ const Home = () => {
 		<div className={styles.container}>
 
          <Row className={'recommendation-lg'}>
-            <Col lg={6}>
+            <Col lg={6}> {/** Large square recommendation card */}
                <Large_Square_Card className={styles.lg_sq_card}
-                  width={recipeInfo.width}
-                  height={recipeInfo.height}
+                  width={'100%'}
+                  // height={recipeInfo.height}
                   imgURL={recipeInfo.imgURL}
                   title={recipeInfo.title}
                   description={recipeInfo.description}
@@ -48,10 +48,37 @@ const Home = () => {
                />
             </Col>
 
-            <Col lg={6}>
-               {/* small horizontal cards here */}
+            <Col lg={6}> {/** Small horizontal recommendation cards x3 */}
+               <Stack direction='vertical' gap={3} className={styles.sm_3_cards}>
+                  <HorizontalCard className={styles.lg_hori_card}
+                     width={'100%'}
+                     height={'100%'}
+                     imgURL={recipeInfo.imgURL}
+                     title={recipeInfo.title}
+                     description={recipeInfo.description}
+                     info={recipeInfo.info}
+                     tags={recipeInfo.tags}
+                  />
+                  <HorizontalCard className={styles.lg_hori_card}
+                     width={'100%'}
+                     height={'100%'}
+                     imgURL={recipeInfo.imgURL}
+                     title={recipeInfo.title}
+                     description={recipeInfo.description}
+                     info={recipeInfo.info}
+                     tags={recipeInfo.tags}
+                  />
+                  <HorizontalCard className={styles.lg_hori_card}
+                     width={'100%'}
+                     height={'100%'}
+                     imgURL={recipeInfo.imgURL}
+                     title={recipeInfo.title}
+                     description={recipeInfo.description}
+                     info={recipeInfo.info}
+                     tags={recipeInfo.tags}
+                  />
+               </Stack>
             </Col>
-            
          </Row>
 
          <Row className={'recommendation-md'}>
@@ -72,7 +99,7 @@ const Home = () => {
          <Divider width={'100%'} label={'Scroll Down'} labelWidth={'10vw'}/>
          
 
-         <Stack>
+         <Stack gap={3}> {/** horizontal recommendation cards */}
             <HorizontalCard className={styles.lg_hori_card}
                   width={'100%'}
                   height={'30vh'}
