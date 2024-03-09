@@ -1,14 +1,13 @@
 :root {
-   --dark-text: #323539;
-   --dark-primary: #435334;
-   --primary: #9EB384;
-   --light-primary: #CEDEBD;
-   --light: #FAF1E4;
-   --white: #fff;
-
+  --dark-text: #323539;
+  --dark-primary: #435334;
+  --primary: #9eb384;
+  --light-primary: #cedebd;
+  --light: #faf1e4;
+  --white: #fff;
 }
-
+/* 
 body {
 	width: 90%;
    margin: auto;
-}
+} */

@@ -1,21 +1,28 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-// import { Search } from "react-bootstrap-icons";
+import styles from "./SearchBar.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
-function SearchBar({ text, value, onChange, btnClick, btnText }) {
+function SearchBar({ text, value, onChange, btnClick, btnText, className }) {
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className={`${styles.container} ${className}`}>
       <Form.Control
         placeholder={text}
         aria-label="Search"
-        aria-describedby="basic-addon2"
-        value = {value}
+        value={value}
         type="text"
         onChange={onChange}
+        className={styles.form}
       />
-      <Button variant="outline-secondary" id="button-addon2" onClick={btnClick}>
+      <Button
+        variant="outline-secondary"
+        className={styles["outline-secondary"]}
+        onClick={btnClick}
+      >
+        <FontAwesomeIcon icon={faSearch} className={styles.icon} />
         {btnText}
       </Button>
     </InputGroup>

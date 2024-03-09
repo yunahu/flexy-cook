@@ -1,5 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import styles from "./DropdownMenu.module.css";
+import styles from "./NavDropdownMenu.module.css";
+import { CardList } from "react-bootstrap-icons";
 
 const map = {
   info: styles["btn-info"],
@@ -14,18 +15,26 @@ const map = {
 //   key: "goSearch"
 // }
 
-const DropdownMenu = ({ drop, buttonTitle, items, background = "success" }) => {
+const NavDropdownMenu = ({
+  drop,
+  buttonTitle,
+  items,
+  className,
+  background = "success",
+}) => {
   return (
     // if you want to add more props, you can add
-    <Dropdown className={styles.container} drop={drop}>
-      <Dropdown.Toggle
-        variant={background}
-        className={`${map[background]}`}
-        id="dropdown-basic"
-      >
-        {buttonTitle}
-      </Dropdown.Toggle>
-
+    <Dropdown className={`${styles.container} ${className}`} drop={drop}>
+      <div className={styles.iconContainer}>
+        <Dropdown.Toggle
+          variant={background}
+          className={`${map[background]}`}
+          id="dropdown-basic"
+        >
+          <CardList className={` ${styles.cardIcon}`} />
+          <span className={styles.iconText}>{buttonTitle}</span>
+        </Dropdown.Toggle>
+      </div>
       <Dropdown.Menu>
         {items.map((item, index) => (
           <>
@@ -47,4 +56,4 @@ const DropdownMenu = ({ drop, buttonTitle, items, background = "success" }) => {
   );
 };
 
-export default DropdownMenu;
+export default NavDropdownMenu;

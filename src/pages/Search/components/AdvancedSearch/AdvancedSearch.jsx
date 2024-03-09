@@ -23,7 +23,7 @@ const map = {
 //   key: "goSearch"
 // }
 
-const AdvancedSearchMenu = ({ background = "success" }) => {
+const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState();
@@ -66,7 +66,9 @@ const AdvancedSearchMenu = ({ background = "success" }) => {
     setSelectedNutrient("None");
     setSelectedMinOrMax("None");
     setAmount("");
+    onTagsChange([...tags, tag]);
   };
+
   // if the input is empty, disable the button
   const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
 
