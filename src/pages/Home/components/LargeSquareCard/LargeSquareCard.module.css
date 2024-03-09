@@ -1,0 +1,17 @@
+.goBtn {
+   margin: 10px 0;
+   padding: 10px 20px;
+   background-color: var(--primary);
+   color: var(--white);
+   font-weight: bold;
+   border-color: var(--primary);
+}
+
+.goBtn:hover {
+   background-color: var(--dark-primary);
+}
+
+.cardImg {
+   display: inline-block;
+   object-fit: cover;
+}

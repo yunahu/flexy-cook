@@ -1,0 +1,20 @@
+.container {
+   width: 90%;
+   margin: auto;
+	padding: 1em;
+}
+
+.banner {
+   margin: 0;
+   padding: 0;
+}
+
+@media screen and (max-width: 840px) {
+
+   .container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
+
+}

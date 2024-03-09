@@ -1,0 +1,12 @@
+.container {
+  padding: 1em;
+  background-color: var(--dark-primary);
+
+  text-align: center;
+  vertical-align: text-top;
+  color: var(--white);
+}
+
+.container span {
+  font: italic 1vh underline;
+}

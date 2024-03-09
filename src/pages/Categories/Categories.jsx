@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import styles from './index.module.css';
+import styles from './Categories.module.css';
 import { getAuth, getProjects } from 'src/services/todoist';
 import axios from 'axios';
 
