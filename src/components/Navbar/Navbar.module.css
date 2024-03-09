@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .button {
   background-color: #9EB384;
   border: 1px solid #435334;
@@ -56,17 +57,80 @@
 
 .small{
   display: none;
+=======
+div.homeIcon,
+div.searchIcon,
+div.menu {
+  display: none;
 }
 
+.container {
+  background-color: #cedebd;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.navElements {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7vw;
+  font: 17px "Noto Sans", sans-serif;
+>>>>>>> origin/main
+}
+
+.searches {
+  margin-top: 1.3rem;
+}
+
+.navDropdowns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.logo {
+  width: 8rem;
+  height: auto;
+  padding: 65.33px, 0 !important;
+}
 
 .iconContainer {
+  padding-top: 0.7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 10px;
+  gap: 0.1rem;
+  min-width: 6.5rem;
+  border-radius: 5px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.iconContainer:hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  background-color: #9eb384;
+  color: white;
+  padding: 0.5rem 0 0 0;
+}
+
+.iconContainer:hover .icon {
+  color: white;
+}
+
+.iconContainer:hover .iconText {
+  color: white;
 }
 
 .icon {
+<<<<<<< HEAD
   width: 40px;
   height: 40px;
 }
@@ -79,12 +143,25 @@
 
 .categoriesText {
   margin-top: 5px;
+=======
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #435334;
 }
 
-.dropdown {
-  margin-top: 5px;
+.iconText {
+  color: #435334;
+  padding: 0.7rem;
+  transition: none;
+>>>>>>> origin/main
 }
 
+.todoDrop {
+  margin-top: 4rem;
+  color: #435334;
+}
+
+<<<<<<< HEAD
 .searchbar {
   margin-bottom: 5px;
 }
@@ -130,10 +207,39 @@
   .advanceButton,
   .logo {
     display: none;
+=======
+.searchBar {
+  width: 35vw;
+}
+
+@media (max-width: 834px) {
+  .searches {
+    display: none;
+  }
+
+  .iconContainer {
+    min-width: 5rem;
+  }
+
+  div.homeIcon,
+  div.searchIcon {
+    display: flex;
+  }
+
+  .navElements {
+    gap: 13vw;
+  }
+}
+
+@media (max-width: 680px) {
+  .navElements {
+    gap: 5%;
+>>>>>>> origin/main
   }
 }
 
 @media (max-width: 575px) {
+<<<<<<< HEAD
   
     /* Media query for small screens (up to LG breakpoint) */
     .right {
@@ -149,3 +255,28 @@
     }
   
 }
+=======
+  .searchIcon,
+  div.iconContainer,
+  .todo {
+    display: none;
+  }
+  div.homeIcon,
+  div.menu {
+    display: flex;
+  }
+
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .navElements {
+    gap: 10%;
+  }
+
+  .iconContainer {
+    min-width: 4rem;
+  }
+}
+>>>>>>> origin/main

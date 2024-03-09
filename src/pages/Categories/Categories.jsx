@@ -1,28 +1,19 @@
 import { Button } from 'react-bootstrap';
-import styles from './Categories.module.css';
-import { getAuth, getProjects } from 'src/services/todoist';
-import axios from 'axios';
+import { useState } from 'react';
+import TodoListsModal from 'src/components/TodoListsModal/TodoListsModal';
 
-const Categories = () => {
-	const handleGetProjectsButtonClick = async () => {
-		if (localStorage.getItem('todoistToken')) {
-			try {
-				const projects = await getProjects();
-				console.log(projects); // TODO: Delete
-			} catch (err) {
-				console.error(err); // TODO: Delete
-			}
-			alert("check the Developer Tool"); // TODO: Replace
-		} else {
-			getAuth();
-		}
-	};
-	
+const Categories = () => {	
+  const [modalShow, setModalShow] = useState(false);
+
 	return (
-		<div className={styles.container}>categories page content
-			<div>
-				<Button onClick={handleGetProjectsButtonClick}>Get projects</Button>
-			</div>
+		<div>
+			<Button variant="primary" onClick={() => setModalShow(true)}>
+				Open To-do List
+			</Button>
+			<TodoListsModal
+				show={modalShow}
+				onHide={() => setModalShow(false)}
+			/>
 		</div>
 	);
 };

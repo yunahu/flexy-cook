@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button, Carousel, Image } from 'react-bootstrap';
 
 import CookingInfo from 'src/components/Cards/CookingInfo/CookingInfo';
@@ -33,7 +34,7 @@ const SingleCarousel = ({props}) => {
     */
    return (
       <>
-         <Image src={props.imgURL} className={styles.img} height={props.height} rounded/>
+         <Image src={props.imgURL} className={styles.img} rounded/>
 
          <Carousel.Caption className={styles.caption}>
       
