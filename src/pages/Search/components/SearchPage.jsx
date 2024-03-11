@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 
 import SearchBar from "src/components/Searchbar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
-import Card from "src/pages/Search/components/cards/card.jsx";
+import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
@@ -154,7 +154,7 @@ const SearchTest = () => {
           ];
 
           return (
-            <Card
+            <SearchCard
               key={recipeDetail[0].id}
               imgURL={recipeDetail[0].image}
               width="30rem"
