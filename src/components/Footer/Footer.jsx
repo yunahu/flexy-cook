@@ -1,79 +1,45 @@
 import styles from './Footer.module.css';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import { Row, Col, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
-import { CardText } from 'react-bootstrap-icons';
-import { Tools } from 'react-bootstrap-icons';
-import { Envelope } from 'react-bootstrap-icons';
-import { QuestionCircle } from 'react-bootstrap-icons';
-import { EggFried } from 'react-bootstrap-icons';
-
-
-const getResponsiveFontSize = () => {
-   /* To calculate for a font size based on current screen size */
-   let screenWidth = window.innerWidth * 0.01;
-   let screenHeight = window.innerHeight * 0.01;
-   return (screenWidth + screenHeight) * 1.1;
-}
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileLines, faEnvelope, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
+import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import { faHive } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
    
    return (
-      <>
-         <style type="text/css"> {`
-            .btn-footer {
-               width: 100%;
-               height: 8vh;
-               max-height: 60px;
-               background-color: var(--dark-primary);
-               font: bold 1.2em 'Noto Sans', sans-serif;
-               color: var(--white);
-            }
+      <Row className={styles.container} >
+         <Col xxl>
+            <Stack className={styles.footerItems} gap={2}>
+               <Button variant='footer'><FontAwesomeIcon icon={faFileLines} />&ensp;User Policy</Button>
+               <Button variant='footer'><FontAwesomeIcon icon={faScrewdriverWrench} />&ensp;APIs</Button>
+               
+               <div className={styles.logo}>
+                  <FontAwesomeIcon icon={faHive} />&ensp;FlexyCook
+               </div>
+               
+               <Button variant='footer'><FontAwesomeIcon icon={faEnvelope} />&ensp;Contact</Button>
+               <Button variant='footer'><FontAwesomeIcon icon={faCircleQuestion} />&ensp;Help</Button>
+            </Stack>
+         </Col>
 
-            .btn-footer:hover {
-               background-color: var(--light);
-               color: var(--dark-primary);
-            }
+         <Col xxl className={styles.logo}>
+            <div>
+               <hr></hr>
+               <FontAwesomeIcon icon={faHive} />&ensp;FlexyCook
+            </div>
+         </Col>
 
-            #logo {
-               font: 1.3em 'Comic Sans MS', sans-serif;
-            }
-
-            @media screen and (max-width: 540px) {
-               #logo { display: none; }
-            }
-
-         `} </style>
-
-		<Container fluid className={styles.container}>
-         <Row>    {/* 4 links + LOGO */}
-            <Col sm>
-               <Button variant='footer'><CardText /> User Policy</Button>
-            </Col>
-            <Col sm>
-               <Button variant='footer'><Tools /> APIs</Button>
-            </Col>
-            <Col sm>
-               <div id='logo'><EggFried /> FlexyCook</div>
-            </Col>
-            <Col sm>
-               <Button variant='footer'><Envelope /> Contact</Button>
-            </Col>
-            <Col sm>
-               <Button variant='footer'><QuestionCircle /> Help</Button>
-            </Col>
-         </Row>
-         <Row>    {/* Copyright */}
-            <Col xs>
-               <span>&copy; CPSC 2350 - Group 4</span>
-            </Col>
-         </Row>
-      </Container>
-   </>
+         <Col lg>
+            <div className={styles.copyright}>
+               <hr></hr>
+               &copy; CPSC 2350 - Group 4
+            </div>
+         </Col>
+      </Row>
    );
 };
 
