@@ -9,28 +9,6 @@ import { useEffect, useState } from "react";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
-// const dummyData = () => {
-//   return {
-//     /** A dummy object with present data */
-//     // width: '30rem',
-//     // height: '40vh',  /** must be px/rem value */
-//     imgURL: "src/assets/images/sample-pic-horizontal.jpg",
-//     // imgURL: 'src/assets/images/sample_pic.jpg',
-//     title: "Some Random Recipe",
-//     description: "This is recipe description blablabla ... ",
-//     info: {
-//       equip: "Oven",
-//       time: "40 minutes",
-//       size: "2 servings",
-//     },
-//     tags: [
-//       { text: "Tag 1", type: "danger" },
-//       { text: "Tag 2", type: "success" },
-//       { text: "Tag 3", type: "warning" },
-//     ],
-//   };
-// };
-
 const createTags = (recipe) => {
   const tags = [
     {

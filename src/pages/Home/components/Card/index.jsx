@@ -1,9 +1,9 @@
-import Button from 'react-bootstrap/Button';
-import CardBootstrap from 'react-bootstrap/Card';
+import Button from "react-bootstrap/Button";
+import CardBootstrap from "react-bootstrap/Card";
 
 const Card = () => {
   return (
-    <CardBootstrap style={{ width: '18rem' }}>
+    <CardBootstrap style={{ width: "18rem" }}>
       <CardBootstrap.Img variant="top" src="holder.js/100px180" />
       <CardBootstrap.Body>
         <CardBootstrap.Title>Card Title</CardBootstrap.Title>
