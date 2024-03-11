@@ -1,6 +1,8 @@
 # FlexyCook - Recipe Web Application Project
 By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 
+### Link to FlexyCook Web Application: [https://production.d3ajroqntq3q3i.amplifyapp.com/](https://production.d3ajroqntq3q3i.amplifyapp.com/)
+
 ## Project Overview:
    This recipe web application is to provide an easy-to-use tool for people who would like to cook and would like to explore the cuisine world.
 
