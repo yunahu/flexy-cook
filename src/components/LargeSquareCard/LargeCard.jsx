@@ -15,7 +15,6 @@ const LargeSquareCard = ({
   time,
   size,
   calories,
-  //key
 }) => {
   /**
    * info: object with equip, time, size as keys
