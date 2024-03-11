@@ -5,7 +5,7 @@ import SingleCarousel from "./SingleCarousel/SingleCarousel";
 
 import styles from "./CarouselBanner.module.css";
 
-const ControlledCarousel = (prop1, prop2, prop3) => {
+const ControlledCarousel = ({ prop1, prop2, prop3 }) => {
   /**
    * three_props {
    *    item1: { object for carousel 1 },
@@ -18,9 +18,6 @@ const ControlledCarousel = (prop1, prop2, prop3) => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-  const first = prop1.prop1;
-  const second = prop1.prop2;
-  const third = prop1.prop3;
 
   return (
     <>
@@ -31,32 +28,32 @@ const ControlledCarousel = (prop1, prop2, prop3) => {
       >
         <Carousel.Item>
           <SingleCarousel
-            imgURL={first.imgURL}
-            title={first.title}
-            servings={first.size}
-            time={first.time}
-            calories={first.calories}
-            tag={first.tags}
+            imgURL={prop1.imgURL}
+            title={prop1.title}
+            servings={prop1.size}
+            time={prop1.time}
+            calories={prop1.calories}
+            tag={prop1.tags}
           />
         </Carousel.Item>
         <Carousel.Item>
           <SingleCarousel
-            imgURL={second.imgURL}
-            title={second.title}
-            servings={second.size}
-            time={second.time}
-            calories={second.calories}
-            tag={second.tags}
+            imgURL={prop2.imgURL}
+            title={prop2.title}
+            servings={prop2.size}
+            time={prop2.time}
+            calories={prop2.calories}
+            tag={prop2.tags}
           />
         </Carousel.Item>
         <Carousel.Item>
           <SingleCarousel
-            imgURL={third.imgURL}
-            title={third.title}
-            servings={third.size}
-            time={third.time}
-            calories={third.calories}
-            tag={third.tags}
+            imgURL={prop3.imgURL}
+            title={prop3.title}
+            servings={prop3.size}
+            time={prop3.time}
+            calories={prop3.calories}
+            tag={prop3.tags}
           />
         </Carousel.Item>
       </Carousel>

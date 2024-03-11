@@ -18,10 +18,11 @@ const Tags = ({ tags = [] }) => {
          }
       ]
    */
+  console.log(tags);
   return (
     <Stack direction="horizontal" gap={2}>
-      {tags.map((tag) => (
-        <Tag key={tag.text} bg={tag.type} title={tag.text} />
+      {tags.map((tag, index) => (
+        <Tag key={tag.text + index} bg={tag.type} title={tag.text} />
       ))}
     </Stack>
   );
