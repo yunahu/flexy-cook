@@ -8,6 +8,7 @@
 
 .navElements {
   width: 90%;
+  max-width: 1200px;
   margin: auto;
   justify-content: space-between;
   font: 15px "Noto Sans", sans-serif;
