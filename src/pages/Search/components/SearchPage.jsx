@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import throttle from "lodash.throttle";
 
 import SearchBar from "src/components/Searchbar/SearchBar";
-import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import Card from "src/pages/Search/components/cards/card.jsx";
 import { capitalize } from "src/utils/common";
@@ -41,9 +41,9 @@ const SearchTest = () => {
         fetchRecipes();
       }
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const throttledScroll = throttle(handleScroll, 500);
+    window.addEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, [loading, recipeDetails]);
 
   const fetchRecipes = async () => {

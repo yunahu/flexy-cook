@@ -18,7 +18,6 @@ const Tags = ({ tags = [] }) => {
          }
       ]
    */
-  console.log(tags);
   return (
     <Stack direction="horizontal" gap={2}>
       {tags.map((tag, index) => (
