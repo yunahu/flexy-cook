@@ -1,6 +1,6 @@
 import styles from './Footer.module.css';
 
-import { Row, Col, Stack } from 'react-bootstrap';
+import { Col, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,7 @@ import { faHive } from '@fortawesome/free-brands-svg-icons';
 const Footer = () => {
    
    return (
-      <Row className={styles.container} >
+      <Stack className={styles.container} direction='vertical'>
          <Col xxl>
             <Stack className={styles.footerItems} gap={2}>
                <Button variant='footer'><FontAwesomeIcon icon={faFileLines} />&ensp;User Policy</Button>
@@ -39,7 +39,7 @@ const Footer = () => {
                &copy; CPSC 2350 - Group 4
             </div>
          </Col>
-      </Row>
+      </Stack>
    );
 };
 
