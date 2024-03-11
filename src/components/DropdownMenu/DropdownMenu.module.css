@@ -1,0 +1,47 @@
+.btn-primary {
+  /* transparent & text-color:while */
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: white;
+}
+
+.btn-success {
+  /* transparent & text-color:435334 */
+  padding: 0.7rem;
+  background-color: rgb(255, 112, 67, 0) !important;
+  border-color: rgb(255, 112, 67, 0) !important;
+  color: #435334;
+  font: 17px "Noto Sans", sans-serif;
+}
+
+:hover.btn-success,
+.show {
+  padding: 0.7rem;
+  background-color: #9eb384 !important;
+}
+
+:active.btn-success {
+  padding: 0.7rem;
+  background-color: #9eb384 !important;
+}
+
+.container button[aria-expanded="true"] {
+  padding: 0.7rem;
+  background-color: #9eb384 !important;
+}
+
+.container {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.4rem;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+}

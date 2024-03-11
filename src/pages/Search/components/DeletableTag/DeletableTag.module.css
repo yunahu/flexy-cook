@@ -1,0 +1,43 @@
+.bg-primary {
+  background-color: #f06292 !important;
+}
+
+.bg-secondary {
+  background-color: #ba68c8 !important;
+}
+
+.bg-info {
+  background-color: #81c784 !important;
+}
+
+.bg-success {
+  background-color: #4fc3f7 !important;
+}
+
+.bg-warning {
+  background-color: #a1887f !important;
+}
+
+.bg-danger {
+  background-color: #7986cb !important;
+}
+
+.bg-light {
+  background-color: #e57373 !important;
+}
+
+.bg-dark {
+  background-color: #ffb74d !important;
+}
+
+.budgeContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nutrientData {
+  font-size: 15px;
+  font-weight: 300;
+  margin-right: 4px;
+}

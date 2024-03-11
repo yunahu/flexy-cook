@@ -1,3 +1,26 @@
+:root {
+  --dark-text: #323539;
+  --dark-primary: #435334;
+  --primary: #9eb384;
+  --light-primary: #cedebd;
+  --light: #faf1e4;
+  --white: #fff;
+}
+
 body {
-	margin: 123px;
+	width: 100%;
+   margin: 0;
+   padding: 0;
+}
+
+@media screen and (max-width: 990px) {
+   body {
+      font-size: 80%;
+   }
+}
+
+@media screen and (max-width: 576px) {
+   body {
+      font-size: 60%;
+   }
 }

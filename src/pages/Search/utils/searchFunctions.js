@@ -14,3 +14,33 @@ export const findStrongestTaste = (tastes) => {
     }
 };
 
+export const defineScale = (nutrient) => {
+    switch (nutrient) {
+        case "Carbs":
+        case "Protein":
+        case "Fat":
+        case "Fiber":
+        case "Sugar":
+        case "Alcohol":
+            return 'g';
+
+        case "Iron":
+        case "Sodium":
+        case "Caffeine":
+        case "Magnesium":
+        case "Zinc":
+        case "Calcium":
+        case "Cholesterol":
+        case "VitaminC":
+        case "VitaminE":
+            return 'mg';
+
+        case "Folate":
+        case "FolicAcid":
+        case "VitaminB12":
+            return 'μg';
+
+        case "Calories":
+            return 'kcal';
+    }
+}

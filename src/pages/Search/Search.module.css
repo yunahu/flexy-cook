@@ -1,0 +1,39 @@
+.container {
+	width: 90%;
+	margin: auto;
+	 padding: 1em;
+  
+	   display: flex;
+	   flex-wrap: wrap;
+	   justify-content: space-between; 
+ 
+	 
+ }
+ 
+ .banner {
+	margin: 0;
+	padding: 0;
+ } 
+ .cardAlign{
+	margin:5%;
+	display: inline;
+ }
+ 
+ @media screen and (max-width: 840px) {
+ 
+	.container {
+	   width: 100%;
+	   margin: 10px;
+	   padding: 0;
+	}
+ 
+ }
+ @media screen and (max-width: 575px){
+	.container {
+	   width: 100%;
+	   margin: 10px;
+	   padding: 0;
+	   display: block;
+	}
+ 
+ }

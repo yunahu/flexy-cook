@@ -1,0 +1,58 @@
+.img {
+   width: 100%;
+   height: 100%;
+   display: inline-block;
+   object-fit: cover;
+}
+
+.caption {
+   width: 100%;
+   height: 40%;
+   margin: 0;
+   padding: 1rem 2.2rem;
+
+   position: absolute;
+   left: 0;
+   bottom: 0;
+
+   background-color: rgba(255, 255, 255, 0.85);
+   color: var(--dark-text);
+   text-align: start;
+
+   font-size: 1.1rem;
+}
+
+.goBtn {
+   margin: 10px auto;
+   padding: 10px 20px;
+
+   background-color: var(--primary);
+   color: var(--white);
+   font-weight: bold;
+   border-color: var(--primary);
+
+   display: block;
+   float: right;
+
+   width: 30%;
+   min-width: 140px
+}
+
+.goBtn:hover {
+   background-color: var(--dark-primary);
+}
+
+.goBtn:active {
+   background-color: var(--dark-text);
+}
+
+/** special width adjustment for small screen sizes */
+@media screen and (max-width: 576px) {
+   .img {
+      width: auto;
+   }
+
+   .goBtn {
+      display: none;
+   }
+}

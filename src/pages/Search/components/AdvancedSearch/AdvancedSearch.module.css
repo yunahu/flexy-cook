@@ -1,0 +1,41 @@
+.searchBy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.amountInput {
+  max-width: 7.5rem;
+}
+
+.searchByText {
+  margin-left: 0.35em;
+}
+
+.tags {
+  margin-top: 3.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-direction: row;
+  position: absolute;
+  translate: 0 -2.5rem;
+}
+
+.buttonContainer {
+  padding: 0;
+}
+
+.addTagButton {
+  width: 2rem;
+  height: 2rem;
+}
+
+.menuContainer {
+  border: 2.5px solid #9eb384;
+  max-width: 45vw;
+  min-height: 35vh;
+  padding: 1rem 0.7rem;
+}

@@ -1,7 +1,7 @@
 import Tag from "src/components/Tag/Tag";
 import Stack from "react-bootstrap/Stack";
 
-const Tags = ({ tags }) => {
+const Tags = ({ tags = [] }) => {
   /**
       tags [
          index 0: {
@@ -20,8 +20,8 @@ const Tags = ({ tags }) => {
    */
   return (
     <Stack direction="horizontal" gap={2}>
-      {tags.map((tag, index) => (
-        <Tag key={`${index}_${tag.text}`} bg={tag.type} title={tag.text} />
+      {tags.map((tag) => (
+        <Tag key={tag.text} bg={tag.type} title={tag.text} />
       ))}
     </Stack>
   );

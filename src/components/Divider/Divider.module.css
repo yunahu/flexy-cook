@@ -1,0 +1,19 @@
+.container {
+   margin: 15px auto;
+   text-align: center;
+}
+
+.container svg {
+   color: grey;
+}
+
+.label {
+   padding: 0 15px;
+   font-size: 0.8rem;
+   font-style: normal;
+   color: gray;
+}
+
+.container hr {
+   flex-grow: 1;
+}
