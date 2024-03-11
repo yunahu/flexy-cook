@@ -39,7 +39,11 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
 
   const handleAmountChange = (e) => {
     // if the input is not a number or the number is greater than 100000, alert & delete input
-    if (isNaN(e.target.value) || e.target.value > 100000) {
+    if (
+      isNaN(e.target.value) ||
+      e.target.value > 100000 ||
+      e.target.value < 0
+    ) {
       alert("Please enter a valid amount");
       setAmount("");
     } else {

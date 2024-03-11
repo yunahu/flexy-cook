@@ -7,14 +7,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 
-import {
-  CardList,
-  CartPlusFill,
-  BrightnessHighFill,
-} from "react-bootstrap-icons";
+import { CartPlusFill, BrightnessHighFill } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
-
 import logo from "./img/logo.png";
 
 const Navbar = () => {
@@ -75,6 +70,7 @@ const Navbar = () => {
             </Nav.Link>
           </div>
         </div>
+
         <NavbarBootstrap.Brand as={Link} to="/">
           <img src={logo} alt="Logo" className={styles.logo} />
         </NavbarBootstrap.Brand>
@@ -116,6 +112,7 @@ const Navbar = () => {
       </div>
     </nav>
   );
+  handleSearch();
 };
 
 export default Navbar;

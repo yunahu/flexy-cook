@@ -55,17 +55,17 @@ div.menu {
   flex-direction: column;
   align-items: center;
   gap: 0.1rem;
-  background-color: #9eb384;
-  color: white;
+  background-color: var(--primary);
+  color: var(--white);
   padding: 0.5rem 0 0 0;
 }
 
 .iconContainer:hover .icon {
-  color: white;
+  color: var(--white);
 }
 
 .iconContainer:hover .iconText {
-  color: white;
+  color: var(--white);
 }
 
 .icon {

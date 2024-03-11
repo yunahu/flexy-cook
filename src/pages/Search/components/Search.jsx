@@ -6,7 +6,7 @@ import SearchBar from "src/components/Searchbar/SearchBar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
-import { findStrongestTaste } from "../utils/searchFunctions";
+import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 const Search = () => {
   const [search, setSearch] = useState("");
