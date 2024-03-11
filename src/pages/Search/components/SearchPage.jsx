@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import throttle from "lodash.throttle";
 
-import SearchBar from "src/components/Searchbar/SearchBar";
+import SearchBar from "src/components/Searchbar/Searchbar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import Card from "src/pages/Search/components/cards/card.jsx";
 import { capitalize } from "src/utils/common";

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-import SearchBar from "src/components/Searchbar/SearchBar";
+import SearchBar from "src/components/Searchbar/Searchbar";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import { capitalize } from "src/utils/common";
