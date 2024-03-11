@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
          </Col>
 
-         <Col lg>
+         <Col xxl>
             <div className={styles.copyright}>
                <hr></hr>
                &copy; CPSC 2350 - Group 4
