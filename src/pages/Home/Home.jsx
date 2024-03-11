@@ -14,11 +14,10 @@ const dummyData = () => {
     // imgURL: 'src/assets/images/sample_pic.jpg',
     title: "Some Random Recipe",
     description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
+    calories: "200",
+    time: "40",
+    size: "2",
+
     tags: [
       { text: "Tag 1", type: "danger" },
       { text: "Tag 2", type: "success" },
@@ -43,7 +42,9 @@ const Home = () => {
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             description={recipeInfo.description}
-            info={recipeInfo.info}
+            time={recipeInfo.info}
+            calories={recipeInfo.calories}
+            size={recipeInfo.size}
             tags={recipeInfo.tags}
           />
         </Col>
@@ -59,7 +60,9 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              info={recipeInfo.info}
+              time={recipeInfo.info}
+              calories={recipeInfo.calories}
+              size={recipeInfo.size}
               tags={recipeInfo.tags}
             />
             <HorizontalCard
@@ -69,7 +72,9 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              info={recipeInfo.info}
+              time={recipeInfo.info}
+              calories={recipeInfo.calories}
+              size={recipeInfo.size}
               tags={recipeInfo.tags}
             />
             <HorizontalCard
@@ -79,7 +84,9 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              info={recipeInfo.info}
+              time={recipeInfo.info}
+              calories={recipeInfo.calories}
+              size={recipeInfo.size}
               tags={recipeInfo.tags}
             />
           </Stack>
@@ -89,18 +96,9 @@ const Home = () => {
       <Row className={styles.recommendation_lg}>
         <Col xs={12}>
           <CarouselBanner
-            imgURL1={recipeInfo.imgURL}
-            info1={recipeInfo.info}
-            title1={recipeInfo.title}
-            tags1={recipeInfo.tags}
-            imgURL2={recipeInfo.imgURL}
-            info2={recipeInfo.info}
-            title2={recipeInfo.title}
-            tags2={recipeInfo.tags}
-            imgURL3={recipeInfo.imgURL}
-            info3={recipeInfo.info}
-            title3={recipeInfo.title}
-            tags3={recipeInfo.tags}
+            prop1={recipeInfo}
+            prop2={recipeInfo}
+            prop3={recipeInfo}
           />
         </Col>
       </Row>
@@ -120,7 +118,9 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          info={recipeInfo.info}
+          time={recipeInfo.info}
+          calories={recipeInfo.calories}
+          size={recipeInfo.size}
           tags={recipeInfo.tags}
         />
         <HorizontalCard
@@ -130,7 +130,9 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          info={recipeInfo.info}
+          time={recipeInfo.info}
+          calories={recipeInfo.calories}
+          size={recipeInfo.size}
           tags={recipeInfo.tags}
         />
         <HorizontalCard
@@ -140,7 +142,9 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          info={recipeInfo.info}
+          time={recipeInfo.info}
+          calories={recipeInfo.calories}
+          size={recipeInfo.size}
           tags={recipeInfo.tags}
         />
       </Stack>
