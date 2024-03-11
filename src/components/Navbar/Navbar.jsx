@@ -8,14 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
 
-import {
-  CardList,
-  CartPlusFill,
-  BrightnessHighFill,
-} from "react-bootstrap-icons";
+import { CartPlusFill, BrightnessHighFill } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
-
 import logo from "./img/logo.png";
 
 const Navbar = () => {
@@ -73,7 +68,6 @@ const Navbar = () => {
                   <span>Home</span>
                </Stack>
             </Nav.Link>
-            
 
             <Nav.Link as={Link} to="/search" className={`${styles.iconContainer} ${styles.searchIcon}`}>
                <Stack direction='vertical'>
@@ -138,6 +132,7 @@ const Navbar = () => {
       </Stack> {/** END nav items */}
     </nav>
   );
+  handleSearch();
 };
 
 export default Navbar;
