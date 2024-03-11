@@ -1,63 +1,78 @@
-div.homeIcon,
-div.searchIcon,
-div.menu {
-  display: none;
-}
-
+/** Large screen size */
 .container {
-  background-color: #cedebd;
-  padding: 0.5rem 1rem;
+   width: 100%;
+  background-color: var(--light-primary);
+  padding: 1rem;
   position: relative;
 }
 
 .navElements {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 7vw;
-  font: 17px "Noto Sans", sans-serif;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  justify-content: space-between;
+  font: 15px "Noto Sans", sans-serif;
 }
 
-.searches {
-  margin-top: 1.3rem;
+.leftCol,
+.middleCol,
+.rightCol {
+   align-items: top;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
-.navDropdowns {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
+.middleCol {
+   flex-grow: 2.5;
+}
+
+.homeIcon,
+.searchIcon,
+.menuIcon,
+.middleCol .logo {
+   display: none;
 }
 
 .logo {
-  width: 8rem;
-  height: auto;
-  padding: 65.33px, 0 !important;
+   width: 90%;
+}
+
+.logo img {
+   width: 100%;
+   display: inline-block;
+   object-fit: cover;
+}
+
+.searchBar {
+   align-items: top;
+   width: 100%;
+   padding-top: 0.7rem;
 }
 
 .iconContainer {
-  padding-top: 0.7rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  min-width: 6.5rem;
-  border-radius: 5px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+   height: 100%;
+   padding: 0;
+   justify-content: center;
+   text-align: center;
+
+   gap: 0.1rem;
+   width: 4rem;
+   border-radius: 5px;
+   transition: all 0.15s ease-in-out;
+}
+
+.iconContainer div {
+   align-self: center;
+}
+
+.iconContainer svg {
+   margin: 0 auto 0.7rem auto;
 }
 
 .iconContainer:hover {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
   background-color: var(--primary);
   color: var(--white);
-  padding: 0.5rem 0 0 0;
 }
 
 .iconContainer:hover .icon {
@@ -71,70 +86,51 @@ div.menu {
 .icon {
   width: 2.5rem;
   height: 2.5rem;
-  color: #435334;
-}
-
-.iconText {
-  color: #435334;
-  padding: 0.7rem;
-  transition: none;
+  color: var(--dark-primary);
 }
 
 .todoDrop {
   margin-top: 4rem;
-  color: #435334;
+  color: var(--dark-primary);
 }
 
-.searchBar {
-  width: 35vw;
-}
-
-@media (max-width: 834px) {
-  .searches {
+/** Medium screen size */
+@media (max-width: 990px) {
+  .searchBar,
+  .leftCol .logo {
     display: none;
   }
 
-  .iconContainer {
-    min-width: 5rem;
-  }
-
-  div.homeIcon,
-  div.searchIcon {
-    display: flex;
-  }
-
-  .navElements {
-    gap: 13vw;
-  }
-}
-
-@media (max-width: 680px) {
-  .navElements {
-    gap: 5%;
-  }
-}
-
-@media (max-width: 575px) {
+  .homeIcon,
   .searchIcon,
-  div.iconContainer,
-  .todo {
-    display: none;
-  }
-  div.homeIcon,
-  div.menu {
+  .middleCol .logo {
     display: flex;
   }
 
-  .icon {
-    width: 2rem;
-    height: 2rem;
+  .middleCol .logo {
+      width: 130px;  /** Absolute value to prevent from being too small */
+      margin: auto;
   }
 
-  .navElements {
-    gap: 10%;
-  }
+   .iconContainer {
+      width: 5rem;
+   }
+}
 
-  .iconContainer {
-    min-width: 4rem;
-  }
+/** Small screen size */
+@media (max-width: 576px) {
+
+   .searchIcon,
+   .themeIcon,
+   .todoIcon {
+      display: none;
+   }
+
+   .menuIcon {
+      display: flex;
+   }
+
+   .iconContainer {
+      width: 100%;
+   }
 }
