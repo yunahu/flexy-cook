@@ -7,8 +7,6 @@ import Tags from "src/components/Cards/Tags/Tags";
 import styles from "./SingleCarousel.module.css";
 
 const SingleCarousel = ({ imgURL, title, servings, time, calories, tags }) => {
-  console.log("Props in SingleCarousel:", title);
-
   /**
    * props {
    *    img: 'url',
