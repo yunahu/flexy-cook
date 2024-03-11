@@ -6,6 +6,7 @@ import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 
 import {
   CardList,
@@ -60,60 +61,81 @@ const Navbar = () => {
 
   return (
     <nav className={styles.container}>
-      <div className={styles.navElements}>
-        <div className={styles.navDropdowns}>
-          <div className={`${styles.iconContainer} ${styles.homeIcon}`}>
-            <FontAwesomeIcon icon={faHouse} className={styles.icon} />
-            <Nav.Link as={Link} to="/" className={styles.iconText}>
-              Home
+      <Stack className={styles.navElements} direction='horizontal' gap={3}>
+         {/* Collection of nav items */}
+
+         <Stack className={styles.leftCol} direction='horizontal' gap={2}>
+            {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
+
+            <Nav.Link as={Link} to="/" className={`${styles.iconContainer} ${styles.homeIcon}`}>
+               <Stack direction='vertical'>
+                  <FontAwesomeIcon icon={faHouse} className={styles.icon} />
+                  <span>Home</span>
+               </Stack>
             </Nav.Link>
-          </div>
-          <div className={`${styles.iconContainer} ${styles.searchIcon}`}>
-            <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-            <Nav.Link as={Link} to="/search" className={styles.iconText}>
-              Search
+            
+
+            <Nav.Link as={Link} to="/search" className={`${styles.iconContainer} ${styles.searchIcon}`}>
+               <Stack direction='vertical'>
+                  <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+                  <span>Search</span>
+               </Stack>
             </Nav.Link>
-          </div>
-        </div>
-        <NavbarBootstrap.Brand as={Link} to="/">
-          <img src={logo} alt="Logo" className={styles.logo} />
-        </NavbarBootstrap.Brand>
-        <div className={styles.searches}>
-          <SearchBar
-            text="onion, canned tomato"
-            btnText={"Search"}
-            className={styles.searchBar}
-            value={ingredients}
-            onChange={handleOnChange}
-            btnClick={() =>
-              navigate("/search", { state: { ingredients, tags } })
-            }
-          />
-          <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-        </div>
-        <div className={styles.navDropdowns}>
-          <div className={styles.iconContainer}>
-            <BrightnessHighFill className={styles.icon} />
-            <Nav.Link as={Link} to="/categories" className={styles.iconText}>
-              Theme
-            </Nav.Link>
-          </div>
-          <div className={styles.todo}>
-            <NavDropdownMenu
-              drop="down-centered"
-              buttonTitle="TODO"
-              items={items}
-            />
-          </div>
-          <div className={styles.menu}>
-            <NavDropdownMenu
-              drop="down-centered"
-              buttonTitle="Menu"
-              items={items}
-            />
-          </div>
-        </div>
-      </div>
+
+            <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo}>
+               {/** LOGO */}
+               <img src={logo} alt="Logo" />
+            </NavbarBootstrap.Brand>
+         </Stack> {/** END left Col */}
+
+         <Stack className={`${styles.middleCol} ms-auto`}>
+            <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo} id={'middle-logo'}>
+               {/** LOGO */}
+               <img src={logo} alt="Logo" />
+            </NavbarBootstrap.Brand>
+      
+            <Stack className={styles.searchBar} direction="vertical">
+               {/** Search input & Advanced Search dropdown */}
+               <SearchBar
+                  text="onion, canned tomato"
+                  btnText={"Search"}
+                  className={styles.searchBar}
+                  value={ingredients}
+                  onChange={handleOnChange}
+                  btnClick={() =>
+                     navigate("/search", { state: { ingredients, tags } }
+                  )}
+               />
+               <AdvancedSearchMenu onTagsChange={handleTagsChange}/>
+            </Stack>
+         </Stack> {/** END middle Search Bar/LOGO */}
+
+         <Stack className={styles.rightCol} direction='horizontal' gap={4}>
+            {/** Theme & Todo OR Hamburger (switch between lg/md display) */}
+
+            <Stack className={`${styles.iconContainer} ${styles.themeIcon}`} direction="vertical">
+               <BrightnessHighFill className={styles.icon} />
+               <span>Theme</span>
+            </Stack>
+
+            <Stack className={`${styles.iconContainer} ${styles.todoIcon}`} direction='vertical'>
+               <NavDropdownMenu
+                  drop="down-centered"
+                  buttonTitle="TODO"
+                  items={items}
+               />
+            </Stack>
+
+            <Stack className={`${styles.iconContainer} ${styles.menuIcon}`} direction="vertical">
+               <NavDropdownMenu
+                  drop="down-centered"
+                  buttonTitle="Menu"
+                  items={items}
+               />
+            </Stack>
+        </Stack> {/** END right col */}
+
+      </Stack> {/** END nav items */}
     </nav>
   );
 };
