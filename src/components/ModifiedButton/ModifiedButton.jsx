@@ -18,7 +18,7 @@ const ModifiedButton = ({
   onClick,
   className,
   size,
-  variant = "primary",
+  variant,
 }) => {
   return (
     <Button
