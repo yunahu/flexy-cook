@@ -1,7 +1,7 @@
 .form {
   border: 1px solid #9eb384;
-  color: rgba(170, 170, 170, 0.8);
-  font-weight: 100;
+  color: rgba(170, 170, 170);
+  font-weight: 500;
   font-size: 16px;
   padding-left: 0.5rem;
 }

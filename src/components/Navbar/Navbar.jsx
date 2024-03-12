@@ -3,7 +3,7 @@ import SearchBar from "../Searchbar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import styles from "./Navbar.module.css";
 import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
@@ -18,6 +18,10 @@ const Navbar = () => {
 
   const [ingredients, setSearch] = useState("");
   const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    setSearch("");
+  }, []);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -109,7 +113,7 @@ const Navbar = () => {
               value={ingredients}
               onChange={handleOnChange}
               btnClick={() =>
-                navigate("/search", { state: { ingredients, tags } })
+                navigate("/testSearch", { state: { ingredients, tags } })
               }
             />
             <AdvancedSearchMenu onTagsChange={handleTagsChange} />
@@ -154,7 +158,6 @@ const Navbar = () => {
       {/** END nav items */}
     </nav>
   );
-  handleSearch();
 };
 
 export default Navbar;

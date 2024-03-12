@@ -23,11 +23,6 @@ const SearchTest = () => {
   const location = useLocation();
   const { ingredients, tags } = location.state || {};
 
-  useEffect(() => {
-    console.log("Ingredients:", ingredients);
-    console.log("Tags:", tags);
-  }, [ingredients, tags]);
-
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
@@ -57,21 +52,31 @@ const SearchTest = () => {
 
   const fetchRecipes = async () => {
     setLoading(true);
+    let nutrientParams = {};
 
     // get nutrient data from tags to create parameters
-    const nutrientParams = nutrientsTags.reduce((params, tag) => {
-      const nutrientName =
-        tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
-      params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
-      return params;
-    }, {});
+    if (tags) {
+      nutrientParams = tags.reduce((params, tag) => {
+        const nutrientName =
+          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+        return params;
+      }, {});
+    } else {
+      nutrientParams = nutrientsTags.reduce((params, tag) => {
+        const nutrientName =
+          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+        return params;
+      }, {});
+    }
 
     try {
       axios
         .get("http://localhost:3000/spoonacular/searchRecipe", {
           params: {
             offset: recipeDetails.length,
-            includeIngredients: search,
+            includeIngredients: ingredients ? ingredients : search,
             number: 6,
             ...nutrientParams,
           },
@@ -79,7 +84,6 @@ const SearchTest = () => {
         .then(async (res) => {
           const recipeId = res.data.results.map((recipe) => recipe.id);
           console.log(recipeId);
-          console.log(res);
 
           const recipeDetail = await Promise.all(
             recipeId.map((id) =>
@@ -102,13 +106,20 @@ const SearchTest = () => {
             ...recipeDetail,
           ]);
           console.log(recipeDetail);
+          setLoading(false);
         });
     } catch (error) {
       console.error("Error fetching recipes:", error);
-    } finally {
-      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log("Ingredients:", ingredients);
+    console.log("Tags:", tags);
+    if (ingredients || tags) {
+      fetchRecipes();
+    }
+  }, [ingredients, tags]);
 
   const handleBtnClick = () => {
     fetchRecipes();
@@ -189,6 +200,7 @@ const SearchTest = () => {
           );
         })}
         {loading && <div>Loading...</div>}
+        {!loading && recipeDetails.length == 0 && <div>Recipe Not Found</div>}
       </div>
     </div>
   );
