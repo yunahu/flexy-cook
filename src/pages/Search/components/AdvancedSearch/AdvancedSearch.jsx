@@ -51,6 +51,7 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
     }
   };
 
+  // handle delete tags
   const deleteTag = (index) => {
     setTags((previousTags) => {
       const newTags = [...previousTags];
@@ -59,6 +60,7 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
     });
   };
 
+  // handle add tags
   const addTag = (e) => {
     const tag = {
       minOrMax: selectedMinOrMax,
@@ -66,14 +68,29 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
       amount: amount,
       scale: defineScale(selectedNutrient),
     };
+
+    // handle duplicate tags
+    const duplicateTag = tags.find(
+      (existingTag) =>
+        existingTag.minOrMax === tag.minOrMax &&
+        existingTag.nutrient === tag.nutrient
+    );
+    if (duplicateTag) {
+      alert("The same combination of nutrients and range tag exists.");
+      return;
+    }
+
     setTags([...tags, tag]);
-    setSelectedNutrient("None");
-    setSelectedMinOrMax("None");
+    setSelectedNutrient("");
+    setSelectedMinOrMax("");
     setAmount("");
     onTagsChange([...tags, tag]);
   };
 
   // if the input is empty, disable the button
+  console.log(amount);
+  console.log(selectedNutrient);
+  console.log(selectedMinOrMax);
   const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
 
   return (
@@ -98,7 +115,7 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
                 value={selectedMinOrMax}
                 onChange={handleSelectChangeMinOrMax}
               >
-                <option selected>Select Min/Max</option>
+                <option selected>Select Range</option>
                 <option value="Min">Min</option>
                 <option value="Max">Max</option>
               </Form.Select>

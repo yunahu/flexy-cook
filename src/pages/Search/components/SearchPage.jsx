@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 
 import SearchBar from "src/components/Searchbar/Searchbar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
-import Card from "src/pages/Search/components/cards/card.jsx";
+import Card from "src/pages/Search/components/SearchCard/SearchCard.jsx";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
@@ -16,8 +16,8 @@ const MAX_RECIPE_NUM = 12;
 const SearchTest = () => {
   const [search, setSearch] = useState("");
   const [recipeDetails, setRecipeDetails] = useState([]);
-  // const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [nutrientsTags, setNutrientsTags] = useState([]);
 
   const location = useLocation();
   const { ingredients, tags } = location.state || {};
@@ -30,13 +30,18 @@ const SearchTest = () => {
     setSearch(e.target.value);
   };
 
+  const handleTagsChange = (nutrientsTags) => {
+    setNutrientsTags(nutrientsTags);
+    console.log("Tags:", nutrientsTags);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-        recipeDetails.length < MAX_RECIPE_NUM
+ECIPE_NUM
       ) {
         fetchRecipes();
       }
@@ -48,6 +53,14 @@ const SearchTest = () => {
 
   const fetchRecipes = async () => {
     setLoading(true);
+
+    const nutrientParams = nutrientsTags.reduce((params, tag) => {
+      const nutrientName =
+        tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+      params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+      return params;
+    }, {});
+
     try {
       axios
         .get("http://localhost:3000/spoonacular/searchRecipe", {
@@ -55,6 +68,7 @@ const SearchTest = () => {
             offset: recipeDetails.length,
             includeIngredients: search,
             number: 6,
+            ...nutrientParams,
           },
         })
         .then(async (res) => {
@@ -97,7 +111,7 @@ const SearchTest = () => {
 
   return (
     <div>
-      <AdvancedSearchMenu />
+      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
       <SearchBar
         text="onion, canned tomato, pasta"
         value={search}
