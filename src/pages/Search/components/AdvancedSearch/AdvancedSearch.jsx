@@ -88,9 +88,6 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   };
 
   // if the input is empty, disable the button
-  console.log(amount);
-  console.log(selectedNutrient);
-  console.log(selectedMinOrMax);
   const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
 
   return (
