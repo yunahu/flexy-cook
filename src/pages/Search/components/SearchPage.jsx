@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import throttle from "lodash.throttle";
 
@@ -21,10 +22,13 @@ const SearchTest = () => {
 
   const location = useLocation();
   const { ingredients, tags } = location.state || {};
+
   useEffect(() => {
     console.log("Ingredients:", ingredients);
     console.log("Tags:", tags);
   }, [ingredients, tags]);
+
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -32,9 +36,9 @@ const SearchTest = () => {
 
   const handleTagsChange = (nutrientsTags) => {
     setNutrientsTags(nutrientsTags);
-    console.log("Tags:", nutrientsTags);
   };
 
+  // scroll handling
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -54,6 +58,7 @@ const SearchTest = () => {
   const fetchRecipes = async () => {
     setLoading(true);
 
+    // get nutrient data from tags to create parameters
     const nutrientParams = nutrientsTags.reduce((params, tag) => {
       const nutrientName =
         tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
@@ -121,13 +126,15 @@ const SearchTest = () => {
       />
       <div className={styles.container}>
         {recipeDetails?.map((recipeDetail) => {
-          //recipeDetails.tags?.map
-
           const tags = [
-            // {
-            //   text: recipeDetail[0].dishTypes.length > 0  && capitalize(recipeDetail[0].dishTypes[0]),
-            //   type: "primary"
-            // },
+            {
+              text: recipeDetail[0].veryPopular ? "Popular" : null,
+              type: "primary",
+            },
+            {
+              text: recipeDetail[0].cheap ? "Cheap" : null,
+              type: "info",
+            },
             {
               text:
                 recipeDetail[0].cuisines.length > 0
@@ -148,14 +155,6 @@ const SearchTest = () => {
                   ? capitalize(recipeDetail[0].dishTypes[0])
                   : null,
               type: "dark",
-            },
-            {
-              text: recipeDetail[0].veryPopular ? "Popular" : null,
-              type: "info",
-            },
-            {
-              text: recipeDetail[0].cheap ? "Cheap" : null,
-              type: "info",
             },
             {
               text: recipeDetail[0].veryHealthy ? "Healthy" : null,
@@ -183,6 +182,9 @@ const SearchTest = () => {
               calories={Math.floor(
                 recipeDetail[0].nutrition.nutrients[0].amount
               )}
+              onClick={() =>
+                navigate("/testRecipe", { state: { recipe: recipeDetail[0] } })
+              }
             />
           );
         })}

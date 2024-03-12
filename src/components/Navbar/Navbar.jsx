@@ -14,7 +14,7 @@ import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
 import logo from "./img/logo.png";
 
 const Navbar = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [ingredients, setSearch] = useState("");
   const [tags, setTags] = useState([]);
@@ -56,80 +56,102 @@ const Navbar = () => {
 
   return (
     <nav className={styles.container}>
-      <Stack className={styles.navElements} direction='horizontal' gap={3}>
-         {/* Collection of nav items */}
+      <Stack className={styles.navElements} direction="horizontal" gap={3}>
+        {/* Collection of nav items */}
+        <Stack className={styles.leftCol} direction="horizontal" gap={2}>
+          {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
 
-         <Stack className={styles.leftCol} direction='horizontal' gap={2}>
-            {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
-
-            <Nav.Link as={Link} to="/" className={`${styles.iconContainer} ${styles.homeIcon}`}>
-               <Stack direction='vertical'>
-                  <FontAwesomeIcon icon={faHouse} className={styles.icon} />
-                  <span>Home</span>
-               </Stack>
-            </Nav.Link>
-
-            <Nav.Link as={Link} to="/search" className={`${styles.iconContainer} ${styles.searchIcon}`}>
-               <Stack direction='vertical'>
-                  <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-                  <span>Search</span>
-               </Stack>
-            </Nav.Link>
-
-            <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo}>
-               {/** LOGO */}
-               <img src={logo} alt="Logo" />
-            </NavbarBootstrap.Brand>
-         </Stack> {/** END left Col */}
-
-         <Stack className={`${styles.middleCol} ms-auto`}>
-            <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo} id={'middle-logo'}>
-               {/** LOGO */}
-               <img src={logo} alt="Logo" />
-            </NavbarBootstrap.Brand>
-      
-            <Stack className={styles.searchBar} direction="vertical">
-               {/** Search input & Advanced Search dropdown */}
-               <SearchBar
-                  text="onion, canned tomato"
-                  btnText={"Search"}
-                  className={styles.searchBar}
-                  value={ingredients}
-                  onChange={handleOnChange}
-                  btnClick={() =>
-                     navigate("/search", { state: { ingredients, tags } }
-                  )}
-               />
-               <AdvancedSearchMenu onTagsChange={handleTagsChange}/>
+          <Nav.Link
+            as={Link}
+            to="/"
+            className={`${styles.iconContainer} ${styles.homeIcon}`}
+          >
+            <Stack direction="vertical">
+              <FontAwesomeIcon icon={faHouse} className={styles.icon} />
+              <span>Home</span>
             </Stack>
-         </Stack> {/** END middle Search Bar/LOGO */}
+          </Nav.Link>
 
-         <Stack className={styles.rightCol} direction='horizontal' gap={4}>
-            {/** Theme & Todo OR Hamburger (switch between lg/md display) */}
-
-            <Stack className={`${styles.iconContainer} ${styles.themeIcon}`} direction="vertical">
-               <BrightnessHighFill className={styles.icon} />
-               <span>Theme</span>
+          <Nav.Link
+            as={Link}
+            to="/search"
+            className={`${styles.iconContainer} ${styles.searchIcon}`}
+          >
+            <Stack direction="vertical">
+              <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+              <span>Search</span>
             </Stack>
+          </Nav.Link>
 
-            <Stack className={`${styles.iconContainer} ${styles.todoIcon}`} direction='vertical'>
-               <NavDropdownMenu
-                  drop="down-centered"
-                  buttonTitle="TODO"
-                  items={items}
-               />
-            </Stack>
+          <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo}>
+            {/** LOGO */}
+            <img src={logo} alt="Logo" />
+          </NavbarBootstrap.Brand>
+        </Stack>{" "}
+        {/** END left Col */}
+        <Stack className={`${styles.middleCol} ms-auto`}>
+          <NavbarBootstrap.Brand
+            as={Link}
+            to="/"
+            className={styles.logo}
+            id={"middle-logo"}
+          >
+            {/** LOGO */}
+            <img src={logo} alt="Logo" />
+          </NavbarBootstrap.Brand>
 
-            <Stack className={`${styles.iconContainer} ${styles.menuIcon}`} direction="vertical">
-               <NavDropdownMenu
-                  drop="down-centered"
-                  buttonTitle="Menu"
-                  items={items}
-               />
-            </Stack>
-        </Stack> {/** END right col */}
+          <Stack className={styles.searchBar} direction="vertical">
+            {/** Search input & Advanced Search dropdown */}
+            <SearchBar
+              text="onion, canned tomato"
+              btnText={"Search"}
+              className={styles.searchBar}
+              value={ingredients}
+              onChange={handleOnChange}
+              btnClick={() =>
+                navigate("/search", { state: { ingredients, tags } })
+              }
+            />
+            <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+          </Stack>
+        </Stack>{" "}
+        {/** END middle Search Bar/LOGO */}
+        <Stack className={styles.rightCol} direction="horizontal" gap={4}>
+          {/** Theme & Todo OR Hamburger (switch between lg/md display) */}
 
-      </Stack> {/** END nav items */}
+          <Stack
+            className={`${styles.iconContainer} ${styles.themeIcon}`}
+            direction="vertical"
+          >
+            <BrightnessHighFill className={styles.icon} />
+            <span>Theme</span>
+          </Stack>
+
+          <Stack
+            className={`${styles.iconContainer} ${styles.todoIcon}`}
+            direction="vertical"
+          >
+            <NavDropdownMenu
+              drop="down-centered"
+              buttonTitle="TODO"
+              items={items}
+            />
+          </Stack>
+
+          <Stack
+            className={`${styles.iconContainer} ${styles.menuIcon}`}
+            direction="vertical"
+          >
+            <NavDropdownMenu
+              drop="down-centered"
+              buttonTitle="Menu"
+              items={items}
+            />
+          </Stack>
+        </Stack>{" "}
+        {/** END right col */}
+      </Stack>{" "}
+      {/** END nav items */}
     </nav>
   );
   handleSearch();
