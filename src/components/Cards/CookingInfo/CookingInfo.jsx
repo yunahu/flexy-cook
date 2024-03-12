@@ -18,7 +18,7 @@ const CookingInfo = ({ size, time, calories }) => {
    */
   return (
 
-   <Stack direction="horizontal" gap={3} className={styles.wrapper}>
+   <Stack direction="horizontal" gap={1} className={styles.wrapper}>
       <div className={"p-2"}><FontAwesomeIcon icon={faKitchenSet} />&ensp;{calories} kcal</div>
       <div className={"vr"} />
       <div className={"p-2"}><FontAwesomeIcon icon={faClockRotateLeft} />&ensp;{time} minutes</div>
