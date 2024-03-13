@@ -1,9 +1,25 @@
 import styles from "./Search.module.css";
 
 import React, { useState, useEffect } from "react";
-
+import Tag from "src/components/Tag/Tag";
+import Tags from "src/components/Cards/Tags/Tags";
 import SearchCard from "./components/SearchCard/SearchCard";
 import StickyButton from "src/components/stickybutton/stickybutton";
+import SearchBar from "src/components/Searchbar/Searchbar";
+import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
+
+const tag={tags: [
+  { text: "Tag 1", color: "danger" },
+  { text: "Tag 2", color: "success" },
+  { text: "Tag 3", color: "warning" },
+  { text: "Tag 4", color: "primary" },
+  { text: "Tag 5", color: "secondary" },
+  { text: "Tag 6", color: "info" },
+  { text: "Tag 7", color: "dark" },
+  { text: "Tag 8", color: "light" },
+  { text: "Tag 9", color: "danger" },
+  { text: "Tag 10", color: "warning" },
+]}
 
 const dummyData = [
   {
@@ -214,22 +230,33 @@ const SearchPage = () => {
 
   return (
     <>
-    <div className={styles.container}>
-      {cards.map((val, index) => (
-        <SearchCard
-          key={index}
-          imgURL={val.imgURL}
-          width={val.width}
-          height={val.height}
-          title={val.title}
-          description={val.description}
-          info={val.info}
-          tags={val.tags}
-        />
-      ))}
-      {loading && <div>Loading...</div>}
-    </div>
-    <StickyButton />
+      <div className={styles.background}>
+        <SearchBar />
+        <AdvancedSearchMenu />
+        <p className={styles.backgroundText}>Recommended Tags</p>
+        <div className={styles.design}>
+          {/* Display up to three rows of tags */}
+          <Tags tags={tag.tags} />
+        </div>
+      </div>
+      <hr />
+      <p className={styles.text}>Search Results:</p>
+      <div className={styles.container}>
+        {cards.map((val, index) => (
+          <SearchCard
+            key={index}
+            imgURL={val.imgURL}
+            width={val.width}
+            height={val.height}
+            title={val.title}
+            description={val.description}
+            info={val.info}
+            tags={val.tags}
+          />
+        ))}
+        {loading && <div>Loading...</div>}
+      </div>
+      <StickyButton />
     </>
   );
 };

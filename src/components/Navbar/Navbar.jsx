@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
 
-import { CartPlusFill, BrightnessHighFill } from "react-bootstrap-icons";
+import { CartPlusFill, BrightnessHighFill, CardList } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
 import logo from "./img/logo.png";
@@ -26,6 +26,7 @@ const Navbar = () => {
   const handleTagsChange = (tags) => {
     setTags(tags);
   };
+  
 
   const items = [
     {
@@ -53,6 +54,74 @@ const Navbar = () => {
       key: "link",
     },
   ];
+  const dropdowmSmall = [
+    {
+      icon: (
+        <Nav.Link
+            as={Link}
+            to="/"
+            className={styles.dropdownSmall}
+          >
+        <Stack direction="horizontal">
+          <FontAwesomeIcon icon={faHouse} className={styles.iconSmall} size={25} />
+          <span className={styles.textSmall}>Home</span>
+        </Stack></Nav.Link>
+      ),
+      
+    },
+    {
+      icon: (
+        <Nav.Link
+            as={Link}
+            to="/search"
+            className={styles.dropdownSmall} 
+          >
+        <Stack direction="horizontal">
+          <FontAwesomeIcon icon={faSearch} className={styles.iconSmall} size={25} />
+          <span className={styles.textSmall}>Search</span>
+        </Stack></Nav.Link>
+      )
+    },
+    {
+      icon: (
+        <Stack direction="horizontal" className={styles.dropdownSmall}>
+          <BrightnessHighFill className={styles.iconSmall} size={25} />
+          <span className={styles.textSmall}>Theme</span>
+        </Stack>
+      )
+    },
+    {
+      icon: (
+        <Stack
+        className={styles.dropdownSmall}
+        direction="horizontal"
+      >
+        <NavDropdownMenu
+          drop="down-centered"
+          buttonTitle="TODO"
+          items={items}
+        />
+      </Stack>
+      )
+    }
+  ];
+  
+  const isHomePage = location.pathname === '/';
+  const searchBarAndAdvancedSearch = isHomePage && (
+    <Stack className={styles.searchBar} direction="vertical">
+      <SearchBar
+        text="onion, canned tomato"
+        btnText={"Search"}
+        className={styles.searchBar}
+        value={ingredients}
+        onChange={handleOnChange}
+        btnClick={() =>
+          navigate("/search", { state: { ingredients, tags } })
+        }
+      />
+      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+    </Stack>
+  );
 
   return (
     <nav className={styles.container}>
@@ -64,12 +133,16 @@ const Navbar = () => {
           <Nav.Link
             as={Link}
             to="/"
+            
             className={`${styles.iconContainer} ${styles.homeIcon}`}
           >
+            
             <Stack direction="vertical">
               <FontAwesomeIcon icon={faHouse} className={styles.icon} />
               <span>Home</span>
+              
             </Stack>
+           
           </Nav.Link>
 
           <Nav.Link
@@ -102,17 +175,7 @@ const Navbar = () => {
 
           <Stack className={styles.searchBar} direction="vertical">
             {/** Search input & Advanced Search dropdown */}
-            <SearchBar
-              text="onion, canned tomato"
-              btnText={"Search"}
-              className={styles.searchBar}
-              value={ingredients}
-              onChange={handleOnChange}
-              btnClick={() =>
-                navigate("/search", { state: { ingredients, tags } })
-              }
-            />
-            <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+            {searchBarAndAdvancedSearch}
           </Stack>
         </Stack>{" "}
         {/** END middle Search Bar/LOGO */}
@@ -142,10 +205,13 @@ const Navbar = () => {
             className={`${styles.iconContainer} ${styles.menuIcon}`}
             direction="vertical"
           >
-            <NavDropdownMenu
-              drop="down-centered"
+            <NavDropdownMenu 
+            
+              drop="drop-center"
               buttonTitle="Menu"
-              items={items}
+              items={dropdowmSmall}
+              className={styles.dropdownSmall}
+              
             />
           </Stack>
         </Stack>{" "}

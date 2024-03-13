@@ -88,11 +88,25 @@
   height: 2.5rem;
   color: var(--dark-primary);
 }
+.textSmall{
+  margin: 0px;
+  
+  font-size: 20px;
+
+}
+.iconSmall{
+text-align: left;
+width: 2.5rem;
+height: 2.5rem;
+color: var(--dark-primary); 
+
+}
 
 .todoDrop {
   margin-top: 4rem;
   color: var(--dark-primary);
 }
+
 
 /** Medium screen size */
 @media (max-width: 990px) {
@@ -127,9 +141,17 @@
 
   .menuIcon {
     display: flex;
+    width:100%; 
   }
+
 
   .iconContainer {
     width: 100%;
   }
+  .dropdownSmall{
+    width:90vw;
+    margin:0;
+    
+  }
+
 }

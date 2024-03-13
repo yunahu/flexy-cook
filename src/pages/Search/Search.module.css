@@ -18,7 +18,36 @@
 	margin:5%;
 	display: inline;
  }
- 
+ .background{
+	background-image: url('src/assets/images/sample_pic.jpg');
+	padding:20vh;
+	width:100%;
+ }
+ hr{
+	color: var(--dark-primary);
+	margin:30px;
+	
+ }
+ .text{
+	margin-left: 5%;
+	font-size: 24px;
+	font-weight: bold;
+ }
+ .backgroundText{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 10%;
+ }
+ .design {
+	align-items: center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: auto; /* Adjusted margin property */
+  }
  @media screen and (max-width: 840px) {
  
 	.container {
@@ -35,5 +64,6 @@
 	   padding: 0;
 	   display: block;
 	}
+	
  
  }
