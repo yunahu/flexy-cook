@@ -4,6 +4,7 @@ import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
 import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
+import StickyButton from "src/components/stickybutton/stickybutton";
 
 
 const dummyData = () => {
@@ -152,6 +153,7 @@ const Home = () => {
       </Stack>
       
     </div>
+    <StickyButton />
 
     </>
   );
