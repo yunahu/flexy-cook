@@ -204,10 +204,6 @@ const SearchTest = () => {
         {!loading && recipeDetails && recipeDetails?.length == 0 && (
           <div>Recipe Not Found</div>
         )}
-
-        {/* {!loading &&
-          recipeDetails.length == 0 &&
-          (search || nutrientsTags.length > 0) && <div>Recipe Not Found</div>} */}
       </div>
     </div>
   );
