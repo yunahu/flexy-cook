@@ -55,7 +55,7 @@
     }
     
  }
- @media screen and (max-width: 576px){
+ @media screen and (max-width: 575px){
    .card {
       width: 100%;
       margin-bottom: 1rem; 
