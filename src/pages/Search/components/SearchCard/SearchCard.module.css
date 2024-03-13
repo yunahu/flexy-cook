@@ -65,11 +65,8 @@
       display:block;
     }
  }
-=======
-  margin: 20px 0 10px;
-  padding: 12px 20px;
-  font-weight: bold;
-}
+
+ 
 .cardImg {
   display: inline-block;
   object-fit: cover;
