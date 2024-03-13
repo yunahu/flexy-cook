@@ -4,7 +4,7 @@ import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/Advan
 import styles from "./Navbar.module.css";
 import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
 
@@ -15,13 +15,14 @@ import logo from "./img/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [ingredients, setSearch] = useState("");
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
     setSearch("");
-  }, []);
+  }, [location.pathname]);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);

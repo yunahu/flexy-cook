@@ -16,7 +16,7 @@ const MAX_RECIPE_NUM = 12;
 
 const SearchTest = () => {
   const [search, setSearch] = useState("");
-  const [recipeDetails, setRecipeDetails] = useState([]);
+  const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [nutrientsTags, setNutrientsTags] = useState([]);
 
@@ -40,7 +40,7 @@ const SearchTest = () => {
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-        recipeDetails.length < MAX_RECIPE_NUM
+        recipeDetails?.length < MAX_RECIPE_NUM
       ) {
         fetchRecipes();
       }
@@ -55,7 +55,7 @@ const SearchTest = () => {
     let nutrientParams = {};
 
     // get nutrient data from tags to create parameters
-    if (tags) {
+    if (tags.length > 0) {
       nutrientParams = tags.reduce((params, tag) => {
         const nutrientName =
           tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
@@ -75,7 +75,7 @@ const SearchTest = () => {
       axios
         .get("http://localhost:3000/spoonacular/searchRecipe", {
           params: {
-            offset: recipeDetails.length,
+            offset: recipeDetails?.length || 0,
             includeIngredients: ingredients ? ingredients : search,
             number: 6,
             ...nutrientParams,
@@ -102,7 +102,7 @@ const SearchTest = () => {
             )
           );
           setRecipeDetails((prevRecipeDetail) => [
-            ...prevRecipeDetail,
+            ...(prevRecipeDetail || []),
             ...recipeDetail,
           ]);
           console.log(recipeDetail);
@@ -116,7 +116,7 @@ const SearchTest = () => {
   useEffect(() => {
     console.log("Ingredients:", ingredients);
     console.log("Tags:", tags);
-    if (ingredients || tags) {
+    if (ingredients || tags.length > 0) {
       fetchRecipes();
     }
   }, [ingredients, tags]);
@@ -200,7 +200,14 @@ const SearchTest = () => {
           );
         })}
         {loading && <div>Loading...</div>}
-        {!loading && recipeDetails.length == 0 && <div>Recipe Not Found</div>}
+
+        {!loading && recipeDetails && recipeDetails?.length == 0 && (
+          <div>Recipe Not Found</div>
+        )}
+
+        {/* {!loading &&
+          recipeDetails.length == 0 &&
+          (search || nutrientsTags.length > 0) && <div>Recipe Not Found</div>} */}
       </div>
     </div>
   );
