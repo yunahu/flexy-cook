@@ -45,7 +45,7 @@ const Home = () => {
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             description={recipeInfo.description}
-            time={recipeInfo.info}
+            time={recipeInfo.time}
             calories={recipeInfo.calories}
             size={recipeInfo.size}
             tags={recipeInfo.tags}
@@ -63,7 +63,7 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              time={recipeInfo.info}
+              time={recipeInfo.time}
               calories={recipeInfo.calories}
               size={recipeInfo.size}
               tags={recipeInfo.tags}
@@ -75,7 +75,7 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              time={recipeInfo.info}
+              time={recipeInfo.time}
               calories={recipeInfo.calories}
               size={recipeInfo.size}
               tags={recipeInfo.tags}
@@ -87,7 +87,7 @@ const Home = () => {
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
               description={recipeInfo.description}
-              time={recipeInfo.info}
+              time={recipeInfo.time}
               calories={recipeInfo.calories}
               size={recipeInfo.size}
               tags={recipeInfo.tags}
@@ -121,7 +121,7 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          time={recipeInfo.info}
+          time={recipeInfo.time}
           calories={recipeInfo.calories}
           size={recipeInfo.size}
           tags={recipeInfo.tags}
@@ -133,7 +133,7 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          time={recipeInfo.info}
+          time={recipeInfo.time}
           calories={recipeInfo.calories}
           size={recipeInfo.size}
           tags={recipeInfo.tags}
@@ -145,7 +145,7 @@ const Home = () => {
           imgURL={recipeInfo.imgURL}
           title={recipeInfo.title}
           description={recipeInfo.description}
-          time={recipeInfo.info}
+          time={recipeInfo.time}
           calories={recipeInfo.calories}
           size={recipeInfo.size}
           tags={recipeInfo.tags}

@@ -39,7 +39,7 @@ const NavDropdownMenu = ({
         {items.map((item, index) => (
           <>
             <Dropdown.Item
-              key={item.key}
+              key={item.key + index}
               href={item.ref}
               className={styles.itemContainer}
             >
