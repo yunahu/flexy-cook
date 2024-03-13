@@ -12,6 +12,7 @@ import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 import styles from "src/pages/Search/Search.module.css";
 
 
+
 const MAX_RECIPE_NUM = 12;
 
 const SearchTest = () => {
@@ -156,6 +157,8 @@ const SearchTest = () => {
           ];
 
           return (
+            
+            
             <SearchCard
               key={recipeDetail[0].id}
               imgURL={recipeDetail[0].image}
@@ -177,7 +180,9 @@ const SearchTest = () => {
         {loading && <div>Loading...</div>}
       </div>
       
+      
     </div>
+  
 
     </>
   );

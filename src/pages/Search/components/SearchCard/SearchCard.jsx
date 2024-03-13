@@ -19,7 +19,7 @@ const SearchCard = (props) => {
         <CardBootstrap.Body>
           <CardBootstrap.Title>{props.title}</CardBootstrap.Title>
 
-          <CardBootstrap.Text>{props.description}</CardBootstrap.Text>
+          <CardBootstrap.Text className={styles.description}>{props.description}</CardBootstrap.Text>
 
           <CookingInfo
             size={props.size}
@@ -32,6 +32,9 @@ const SearchCard = (props) => {
             Check It Out
           </Button>
         </CardBootstrap.Body>
+        <CardBootstrap.Footer className={styles.footer}><Button className={styles.btnFooter} bg={styles.btnFooter}>
+            Check It Out
+          </Button></CardBootstrap.Footer>
       </CardBootstrap>
     </>
   );
