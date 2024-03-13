@@ -6,7 +6,7 @@ import throttle from "lodash.throttle";
 
 import SearchBar from "src/components/Searchbar/Searchbar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
-import Card from "src/pages/Search/components/SearchCard/SearchCard.jsx";
+import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
@@ -116,7 +116,7 @@ const SearchTest = () => {
   useEffect(() => {
     console.log("Ingredients:", ingredients);
     console.log("Tags:", tags);
-    if (ingredients || tags.length > 0) {
+    if (ingredients || tags?.length > 0) {
       fetchRecipes();
     }
   }, [ingredients, tags]);
@@ -126,86 +126,90 @@ const SearchTest = () => {
   };
 
   return (
-    <div>
-      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-      <SearchBar
-        text="onion, canned tomato, pasta"
-        value={search}
-        onChange={handleOnChange}
-        btnClick={handleBtnClick}
-        btnText="search"
-      />
-      <div className={styles.container}>
-        {recipeDetails?.map((recipeDetail) => {
-          const tags = [
-            {
-              text: recipeDetail[0].veryPopular ? "Popular" : null,
-              type: "primary",
-            },
-            {
-              text: recipeDetail[0].cheap ? "Cheap" : null,
-              type: "info",
-            },
-            {
-              text:
-                recipeDetail[0].cuisines.length > 0
-                  ? capitalize(recipeDetail[0].cuisines[0])
-                  : null,
-              type: "success",
-            },
-            {
-              text:
-                recipeDetail[0].diets.length > 0
-                  ? capitalize(recipeDetail[0].diets[0])
-                  : null,
-              type: "warning",
-            },
-            {
-              text:
-                recipeDetail[0].dishTypes.length > 0
-                  ? capitalize(recipeDetail[0].dishTypes[0])
-                  : null,
-              type: "dark",
-            },
-            {
-              text: recipeDetail[0].veryHealthy ? "Healthy" : null,
-              type: "info",
-            },
-            {
-              text: findStrongestTaste(recipeDetail[1]),
-              type: "light",
-            },
-          ];
+    <>
+      <div>
+        <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+        <SearchBar
+          text="onion, canned tomato, pasta"
+          value={search}
+          onChange={handleOnChange}
+          btnClick={handleBtnClick}
+          btnText="search"
+        />
+        <div className={styles.container}>
+          {recipeDetails?.map((recipeDetail) => {
+            const tags = [
+              {
+                text: recipeDetail[0].veryPopular ? "Popular" : null,
+                type: "primary",
+              },
+              {
+                text: recipeDetail[0].cheap ? "Cheap" : null,
+                type: "info",
+              },
+              {
+                text:
+                  recipeDetail[0].cuisines.length > 0
+                    ? capitalize(recipeDetail[0].cuisines[0])
+                    : null,
+                type: "success",
+              },
+              {
+                text:
+                  recipeDetail[0].diets.length > 0
+                    ? capitalize(recipeDetail[0].diets[0])
+                    : null,
+                type: "warning",
+              },
+              {
+                text:
+                  recipeDetail[0].dishTypes.length > 0
+                    ? capitalize(recipeDetail[0].dishTypes[0])
+                    : null,
+                type: "dark",
+              },
+              {
+                text: recipeDetail[0].veryHealthy ? "Healthy" : null,
+                type: "info",
+              },
+              {
+                text: findStrongestTaste(recipeDetail[1]),
+                type: "light",
+              },
+            ];
 
-          return (
-            <Card
-              key={recipeDetail[0].id}
-              imgURL={recipeDetail[0].image}
-              width="30rem"
-              height="400rem"
-              title={recipeDetail[0].title}
-              ingredients={recipeDetail[0].extendedIngredients
-                .map((ingredient) => ingredient.name)
-                .join(", ")}
-              tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
-              time={recipeDetail[0].readyInMinutes}
-              size={recipeDetail[0].servings}
-              calories={Math.floor(
-                recipeDetail[0].nutrition.nutrients[0].amount
-              )}
-              onClick={() =>
-                navigate("/testRecipe", { state: { recipe: recipeDetail[0] } })
-              }
-            />
-          );
-        })}
-        {loading && <div>Loading...</div>}
+            return (
+              <SearchCard
+                key={recipeDetail[0].id}
+                imgURL={recipeDetail[0].image}
+                width="30rem"
+                height="400rem"
+                title={recipeDetail[0].title}
+                ingredients={recipeDetail[0].extendedIngredients
+                  .map((ingredient) => ingredient.name)
+                  .join(", ")}
+                tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
+                time={recipeDetail[0].readyInMinutes}
+                size={recipeDetail[0].servings}
+                calories={Math.floor(
+                  recipeDetail[0].nutrition.nutrients[0].amount
+                )}
+                onClick={() =>
+                  navigate("/testRecipe", {
+                    state: { recipe: recipeDetail[0] },
+                  })
+                }
+              />
+            );
+          })}
+          {loading && <div>Loading...</div>}
 
-        {!loading && recipeDetails && recipeDetails?.length == 0 && (
-          <div>Recipe Not Found</div>
-        )}
+          {!loading && recipeDetails && recipeDetails?.length == 0 && (
+            <div>Recipe Not Found</div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

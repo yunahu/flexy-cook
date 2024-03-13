@@ -8,11 +8,13 @@ import Footer from 'src/components/Footer/Footer';
 
 
 
+
 const App = () => {
   return (
 		<div>
 			<Navbar />
 			<Router />
+			
 			<Footer />
 		</div>
   );
