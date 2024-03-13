@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import React, { useState, useEffect } from "react";
 
 import SearchCard from "./components/SearchCard/SearchCard";
-import StickyButton from "src/components/stickybutton/stickybutton";
+import StickyButton from "src/components/Stickybutton/Stickybutton";
 
 const dummyData = [
   {
@@ -214,22 +214,22 @@ const SearchPage = () => {
 
   return (
     <>
-    <div className={styles.container}>
-      {cards.map((val, index) => (
-        <SearchCard
-          key={index}
-          imgURL={val.imgURL}
-          width={val.width}
-          height={val.height}
-          title={val.title}
-          description={val.description}
-          info={val.info}
-          tags={val.tags}
-        />
-      ))}
-      {loading && <div>Loading...</div>}
-    </div>
-    <StickyButton />
+      <div className={styles.container}>
+        {cards.map((val, index) => (
+          <SearchCard
+            key={index}
+            imgURL={val.imgURL}
+            width={val.width}
+            height={val.height}
+            title={val.title}
+            description={val.description}
+            info={val.info}
+            tags={val.tags}
+          />
+        ))}
+        {loading && <div>Loading...</div>}
+      </div>
+      <StickyButton />
     </>
   );
 };

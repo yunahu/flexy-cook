@@ -6,29 +6,22 @@ import throttle from "lodash.throttle";
 
 import SearchBar from "src/components/Searchbar/Searchbar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
-import Card from "src/pages/Search/components/SearchCard/SearchCard.jsx";
+import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 import styles from "src/pages/Search/Search.module.css";
 
-
-
 const MAX_RECIPE_NUM = 12;
 
 const SearchTest = () => {
   const [search, setSearch] = useState("");
-  const [recipeDetails, setRecipeDetails] = useState([]);
+  const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [nutrientsTags, setNutrientsTags] = useState([]);
 
   const location = useLocation();
   const { ingredients, tags } = location.state || {};
-
-  useEffect(() => {
-    console.log("Ingredients:", ingredients);
-    console.log("Tags:", tags);
-  }, [ingredients, tags]);
 
   const navigate = useNavigate();
 
@@ -47,7 +40,7 @@ const SearchTest = () => {
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-ECIPE_NUM
+        recipeDetails?.length < MAX_RECIPE_NUM
       ) {
         fetchRecipes();
       }
@@ -59,21 +52,31 @@ ECIPE_NUM
 
   const fetchRecipes = async () => {
     setLoading(true);
+    let nutrientParams = {};
 
     // get nutrient data from tags to create parameters
-    const nutrientParams = nutrientsTags.reduce((params, tag) => {
-      const nutrientName =
-        tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
-      params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
-      return params;
-    }, {});
+    if (tags) {
+      nutrientParams = tags.reduce((params, tag) => {
+        const nutrientName =
+          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+        return params;
+      }, {});
+    } else {
+      nutrientParams = nutrientsTags.reduce((params, tag) => {
+        const nutrientName =
+          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+        return params;
+      }, {});
+    }
 
     try {
       axios
         .get("http://localhost:3000/spoonacular/searchRecipe", {
           params: {
-            offset: recipeDetails.length,
-            includeIngredients: search,
+            offset: recipeDetails?.length || 0,
+            includeIngredients: ingredients ? ingredients : search,
             number: 6,
             ...nutrientParams,
           },
@@ -81,7 +84,6 @@ ECIPE_NUM
         .then(async (res) => {
           const recipeId = res.data.results.map((recipe) => recipe.id);
           console.log(recipeId);
-          console.log(res);
 
           const recipeDetail = await Promise.all(
             recipeId.map((id) =>
@@ -100,17 +102,24 @@ ECIPE_NUM
             )
           );
           setRecipeDetails((prevRecipeDetail) => [
-            ...prevRecipeDetail,
+            ...(prevRecipeDetail || []),
             ...recipeDetail,
           ]);
           console.log(recipeDetail);
+          setLoading(false);
         });
     } catch (error) {
       console.error("Error fetching recipes:", error);
-    } finally {
-      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log("Ingredients:", ingredients);
+    console.log("Tags:", tags);
+    if (ingredients || tags?.length > 0) {
+      fetchRecipes();
+    }
+  }, [ingredients, tags]);
 
   const handleBtnClick = () => {
     fetchRecipes();
@@ -118,92 +127,87 @@ ECIPE_NUM
 
   return (
     <>
-    <div>
-      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-      <SearchBar
-        text="onion, canned tomato, pasta"
-        value={search}
-        onChange={handleOnChange}
-        btnClick={handleBtnClick}
-        btnText="search"
-      />
-      <div className={styles.container}>
-        {recipeDetails?.map((recipeDetail) => {
-          const tags = [
-            {
-              text: recipeDetail[0].veryPopular ? "Popular" : null,
-              type: "primary",
-            },
-            {
-              text: recipeDetail[0].cheap ? "Cheap" : null,
-              type: "info",
-            },
-            {
-              text:
-                recipeDetail[0].cuisines.length > 0
-                  ? capitalize(recipeDetail[0].cuisines[0])
-                  : null,
-              type: "success",
-            },
-            {
-              text:
-                recipeDetail[0].diets.length > 0
-                  ? capitalize(recipeDetail[0].diets[0])
-                  : null,
-              type: "warning",
-            },
-            {
-              text:
-                recipeDetail[0].dishTypes.length > 0
-                  ? capitalize(recipeDetail[0].dishTypes[0])
-                  : null,
-              type: "dark",
-            },
-            {
-              text: recipeDetail[0].veryHealthy ? "Healthy" : null,
-              type: "info",
-            },
-            {
-              text: findStrongestTaste(recipeDetail[1]),
-              type: "light",
-            },
-          ];
+      <div>
+        <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+        <SearchBar
+          text="onion, canned tomato, pasta"
+          value={search}
+          onChange={handleOnChange}
+          btnClick={handleBtnClick}
+          btnText="search"
+        />
+        <div className={styles.container}>
+          {recipeDetails?.map((recipeDetail) => {
+            const tags = [
+              {
+                text: recipeDetail[0].veryPopular ? "Popular" : null,
+                type: "primary",
+              },
+              {
+                text: recipeDetail[0].cheap ? "Cheap" : null,
+                type: "info",
+              },
+              {
+                text:
+                  recipeDetail[0].cuisines.length > 0
+                    ? capitalize(recipeDetail[0].cuisines[0])
+                    : null,
+                type: "success",
+              },
+              {
+                text:
+                  recipeDetail[0].diets.length > 0
+                    ? capitalize(recipeDetail[0].diets[0])
+                    : null,
+                type: "warning",
+              },
+              {
+                text:
+                  recipeDetail[0].dishTypes.length > 0
+                    ? capitalize(recipeDetail[0].dishTypes[0])
+                    : null,
+                type: "dark",
+              },
+              {
+                text: recipeDetail[0].veryHealthy ? "Healthy" : null,
+                type: "info",
+              },
+              {
+                text: findStrongestTaste(recipeDetail[1]),
+                type: "light",
+              },
+            ];
 
-          return (
-
-            
-            
-            <SearchCard
-
-          
-
-              key={recipeDetail[0].id}
-              imgURL={recipeDetail[0].image}
-              width="30rem"
-              height="400rem"
-              title={recipeDetail[0].title}
-              ingredients={recipeDetail[0].extendedIngredients
-                .map((ingredient) => ingredient.name)
-                .join(", ")}
-              tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
-              time={recipeDetail[0].readyInMinutes}
-              size={recipeDetail[0].servings}
-              calories={Math.floor(
-                recipeDetail[0].nutrition.nutrients[0].amount
-              )}
-              onClick={() =>
-                navigate("/testRecipe", { state: { recipe: recipeDetail[0] } })
-              }
-            />
-          );
-        })}
-        {loading && <div>Loading...</div>}
+            return (
+              <SearchCard
+                key={recipeDetail[0].id}
+                imgURL={recipeDetail[0].image}
+                width="30rem"
+                height="400rem"
+                title={recipeDetail[0].title}
+                ingredients={recipeDetail[0].extendedIngredients
+                  .map((ingredient) => ingredient.name)
+                  .join(", ")}
+                tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
+                time={recipeDetail[0].readyInMinutes}
+                size={recipeDetail[0].servings}
+                calories={Math.floor(
+                  recipeDetail[0].nutrition.nutrients[0].amount
+                )}
+                onClick={() =>
+                  navigate("/testRecipe", {
+                    state: { recipe: recipeDetail[0] },
+                  })
+                }
+              />
+            );
+          })}
+          {loading && <div>Loading...</div>}
+          {!loading && recipeDetails && recipeDetails?.length == 0 && (
+            <div>Recipe Not Found</div>
+          )}
+        </div>
       </div>
-      
-      
-    </div>
-  
-
     </>
   );
 };
