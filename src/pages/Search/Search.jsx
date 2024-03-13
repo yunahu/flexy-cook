@@ -3,6 +3,7 @@ import styles from "./Search.module.css";
 import React, { useState, useEffect } from "react";
 
 import SearchCard from "./components/SearchCard/SearchCard";
+import StickyButton from "src/components/stickybutton/stickybutton";
 
 const dummyData = [
   {
@@ -212,6 +213,7 @@ const SearchPage = () => {
   }, [loading, cards]);
 
   return (
+    <>
     <div className={styles.container}>
       {cards.map((val, index) => (
         <SearchCard
@@ -227,6 +229,8 @@ const SearchPage = () => {
       ))}
       {loading && <div>Loading...</div>}
     </div>
+    <StickyButton />
+    </>
   );
 };
 

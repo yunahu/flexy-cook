@@ -12,6 +12,8 @@ import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 import styles from "src/pages/Search/Search.module.css";
 
+
+
 const MAX_RECIPE_NUM = 12;
 
 const SearchTest = () => {
@@ -115,6 +117,7 @@ ECIPE_NUM
   };
 
   return (
+    <>
     <div>
       <AdvancedSearchMenu onTagsChange={handleTagsChange} />
       <SearchBar
@@ -167,7 +170,13 @@ ECIPE_NUM
           ];
 
           return (
-            <Card
+
+            
+            
+            <SearchCard
+
+          
+
               key={recipeDetail[0].id}
               imgURL={recipeDetail[0].image}
               width="30rem"
@@ -190,7 +199,12 @@ ECIPE_NUM
         })}
         {loading && <div>Loading...</div>}
       </div>
+      
+      
     </div>
+  
+
+    </>
   );
 };
 

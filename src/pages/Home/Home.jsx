@@ -4,6 +4,8 @@ import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
 import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
+import StickyButton from "src/components/stickybutton/stickybutton";
+
 
 const dummyData = () => {
   return {
@@ -30,6 +32,7 @@ const Home = () => {
   const recipeInfo = dummyData();
 
   return (
+    <>
     <div className={styles.container}>
       <Row className={styles.recommendation_xl}>
         <Col lg={6} style={{ paddingLeft: 0 }}>
@@ -148,7 +151,11 @@ const Home = () => {
           tags={recipeInfo.tags}
         />
       </Stack>
+      
     </div>
+    <StickyButton />
+
+    </>
   );
 };
 
