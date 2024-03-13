@@ -1,5 +1,5 @@
 // import React from 'react';
-import SearchBar from "../Searchbar/SearchBar";
+import SearchBar from "../Searchbar/Searchbar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import styles from "./Navbar.module.css";
 import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
