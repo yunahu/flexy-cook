@@ -4,8 +4,7 @@ import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
 import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
-import StickyButton from "src/components/stickybutton/stickybutton";
-
+import StickyButton from "src/components/Stickybutton/Stickybutton";
 
 const dummyData = () => {
   return {
@@ -33,15 +32,91 @@ const Home = () => {
 
   return (
     <>
-    <div className={styles.container}>
-      <Row className={styles.recommendation_xl}>
-        <Col lg={6} style={{ paddingLeft: 0 }}>
+      <div className={styles.container}>
+        <Row className={styles.recommendation_xl}>
+          <Col lg={6} style={{ paddingLeft: 0 }}>
+            {" "}
+            {/** Large square recommendation card */}
+            <Large_Square_Card
+              className={styles.lg_sq_card}
+              width={"100%"}
+              // height={recipeInfo.height}
+              imgURL={recipeInfo.imgURL}
+              title={recipeInfo.title}
+              description={recipeInfo.description}
+              time={recipeInfo.time}
+              calories={recipeInfo.calories}
+              size={recipeInfo.size}
+              tags={recipeInfo.tags}
+            />
+          </Col>
+
+          <Col lg={6} style={{ paddingRight: 0 }}>
+            {" "}
+            {/** Small horizontal recommendation cards x3 */}
+            <Stack direction="vertical" gap={3} className={styles.sm_3_cards}>
+              <HorizontalCard
+                className={styles.lg_hori_card}
+                width={"100%"}
+                height={"100%"}
+                imgURL={recipeInfo.imgURL}
+                title={recipeInfo.title}
+                description={recipeInfo.description}
+                time={recipeInfo.time}
+                calories={recipeInfo.calories}
+                size={recipeInfo.size}
+                tags={recipeInfo.tags}
+              />
+              <HorizontalCard
+                className={styles.lg_hori_card}
+                width={"100%"}
+                height={"100%"}
+                imgURL={recipeInfo.imgURL}
+                title={recipeInfo.title}
+                description={recipeInfo.description}
+                time={recipeInfo.time}
+                calories={recipeInfo.calories}
+                size={recipeInfo.size}
+                tags={recipeInfo.tags}
+              />
+              <HorizontalCard
+                className={styles.lg_hori_card}
+                width={"100%"}
+                height={"100%"}
+                imgURL={recipeInfo.imgURL}
+                title={recipeInfo.title}
+                description={recipeInfo.description}
+                time={recipeInfo.time}
+                calories={recipeInfo.calories}
+                size={recipeInfo.size}
+                tags={recipeInfo.tags}
+              />
+            </Stack>
+          </Col>
+        </Row>
+
+        <Row className={styles.recommendation_lg}>
+          <Col xs={12}>
+            <CarouselBanner
+              prop1={recipeInfo}
+              prop2={recipeInfo}
+              prop3={recipeInfo}
+            />
+          </Col>
+        </Row>
+
+        {/** set label={''} for a not-labeled divider */}
+        <Row>
+          <Divider width={"100%"} label={"Scroll Down"} labelWidth={"10vw"} />
+        </Row>
+
+        <Stack gap={3}>
           {" "}
-          {/** Large square recommendation card */}
-          <Large_Square_Card
-            className={styles.lg_sq_card}
+          {/** horizontal recommendation cards */}
+          <HorizontalCard
+            className={styles.lg_hori_card}
             width={"100%"}
-            // height={recipeInfo.height}
+            height={"30vh"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             description={recipeInfo.description}
@@ -50,111 +125,33 @@ const Home = () => {
             size={recipeInfo.size}
             tags={recipeInfo.tags}
           />
-        </Col>
-
-        <Col lg={6} style={{ paddingRight: 0 }}>
-          {" "}
-          {/** Small horizontal recommendation cards x3 */}
-          <Stack direction="vertical" gap={3} className={styles.sm_3_cards}>
-            <HorizontalCard
-              className={styles.lg_hori_card}
-              width={"100%"}
-              height={"100%"}
-              imgURL={recipeInfo.imgURL}
-              title={recipeInfo.title}
-              description={recipeInfo.description}
-              time={recipeInfo.time}
-              calories={recipeInfo.calories}
-              size={recipeInfo.size}
-              tags={recipeInfo.tags}
-            />
-            <HorizontalCard
-              className={styles.lg_hori_card}
-              width={"100%"}
-              height={"100%"}
-              imgURL={recipeInfo.imgURL}
-              title={recipeInfo.title}
-              description={recipeInfo.description}
-              time={recipeInfo.time}
-              calories={recipeInfo.calories}
-              size={recipeInfo.size}
-              tags={recipeInfo.tags}
-            />
-            <HorizontalCard
-              className={styles.lg_hori_card}
-              width={"100%"}
-              height={"100%"}
-              imgURL={recipeInfo.imgURL}
-              title={recipeInfo.title}
-              description={recipeInfo.description}
-              time={recipeInfo.time}
-              calories={recipeInfo.calories}
-              size={recipeInfo.size}
-              tags={recipeInfo.tags}
-            />
-          </Stack>
-        </Col>
-      </Row>
-
-      <Row className={styles.recommendation_lg}>
-        <Col xs={12}>
-          <CarouselBanner
-            prop1={recipeInfo}
-            prop2={recipeInfo}
-            prop3={recipeInfo}
+          <HorizontalCard
+            className={styles.lg_hori_card}
+            width={"100%"}
+            height={"30vh"}
+            imgURL={recipeInfo.imgURL}
+            title={recipeInfo.title}
+            description={recipeInfo.description}
+            time={recipeInfo.time}
+            calories={recipeInfo.calories}
+            size={recipeInfo.size}
+            tags={recipeInfo.tags}
           />
-        </Col>
-      </Row>
-
-      {/** set label={''} for a not-labeled divider */}
-      <Row>
-        <Divider width={"100%"} label={"Scroll Down"} labelWidth={"10vw"} />
-      </Row>
-
-      <Stack gap={3}>
-        {" "}
-        {/** horizontal recommendation cards */}
-        <HorizontalCard
-          className={styles.lg_hori_card}
-          width={"100%"}
-          height={"30vh"}
-          imgURL={recipeInfo.imgURL}
-          title={recipeInfo.title}
-          description={recipeInfo.description}
-          time={recipeInfo.time}
-          calories={recipeInfo.calories}
-          size={recipeInfo.size}
-          tags={recipeInfo.tags}
-        />
-        <HorizontalCard
-          className={styles.lg_hori_card}
-          width={"100%"}
-          height={"30vh"}
-          imgURL={recipeInfo.imgURL}
-          title={recipeInfo.title}
-          description={recipeInfo.description}
-          time={recipeInfo.time}
-          calories={recipeInfo.calories}
-          size={recipeInfo.size}
-          tags={recipeInfo.tags}
-        />
-        <HorizontalCard
-          className={styles.lg_hori_card}
-          width={"100%"}
-          height={"30vh"}
-          imgURL={recipeInfo.imgURL}
-          title={recipeInfo.title}
-          description={recipeInfo.description}
-          time={recipeInfo.time}
-          calories={recipeInfo.calories}
-          size={recipeInfo.size}
-          tags={recipeInfo.tags}
-        />
-      </Stack>
-      
-    </div>
-    <StickyButton />
-
+          <HorizontalCard
+            className={styles.lg_hori_card}
+            width={"100%"}
+            height={"30vh"}
+            imgURL={recipeInfo.imgURL}
+            title={recipeInfo.title}
+            description={recipeInfo.description}
+            time={recipeInfo.time}
+            calories={recipeInfo.calories}
+            size={recipeInfo.size}
+            tags={recipeInfo.tags}
+          />
+        </Stack>
+      </div>
+      <StickyButton />
     </>
   );
 };

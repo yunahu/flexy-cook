@@ -6,6 +6,7 @@ import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
@@ -54,6 +55,7 @@ const HomeTest = () => {
   const [recipeDetails, setRecipeDetails] = useState([]);
   // const [three_props, setThreeProps] = useState({});
 
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -159,6 +161,11 @@ const HomeTest = () => {
                 recipeDetails[0][0].nutrition.nutrients[0].amount
               )}
               tags={createTags(recipeDetails[0])}
+              onClick={() =>
+                navigate("/testRecipe", {
+                  state: { recipe: recipeDetails[0][0] },
+                })
+              }
             />
           </Col>
 
