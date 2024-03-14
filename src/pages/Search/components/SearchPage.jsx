@@ -55,7 +55,7 @@ const SearchTest = () => {
     let nutrientParams = {};
 
     // get nutrient data from tags to create parameters
-    if (tags.length > 0) {
+    if (tags) {
       nutrientParams = tags.reduce((params, tag) => {
         const nutrientName =
           tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
