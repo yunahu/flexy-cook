@@ -106,11 +106,28 @@ color: var(--dark-primary);
   margin-top: 4rem;
   color: var(--dark-primary);
 }
+.searchHome{
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--dark-primary);
+  display: flex;
+  height: 100%;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+
+  gap: 0.1rem;
+  margin-left: 20px;
+  border-radius: 5px;
+  transition: all 0.15s ease-in-out;
+ 
+
+}
 
 
 /** Medium screen size */
 @media (max-width: 990px) {
-  .searchBar,
+  .searchBar, .searchHome,
   .leftCol .logo {
     display: none;
   }

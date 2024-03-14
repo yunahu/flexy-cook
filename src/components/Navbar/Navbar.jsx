@@ -105,6 +105,16 @@ const Navbar = () => {
       )
     }
   ];
+  const isSearchPage = location.pathname === '/search'; 
+
+  const homeIconAndText = isSearchPage && (
+    <Nav.Link as={Link} to="/" >
+      <Stack direction="vertical">
+        <FontAwesomeIcon icon={faHouse} className={styles.searchHome} />
+        <span className={styles.searchHome}>Home</span>
+      </Stack>
+    </Nav.Link>
+  );
   
   const isHomePage = location.pathname === '/';
   const searchBarAndAdvancedSearch = isHomePage && (
@@ -126,8 +136,10 @@ const Navbar = () => {
   return (
     <nav className={styles.container}>
       <Stack className={styles.navElements} direction="horizontal" gap={3}>
+      
         {/* Collection of nav items */}
         <Stack className={styles.leftCol} direction="horizontal" gap={2}>
+       
           {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
 
           <Nav.Link
@@ -136,6 +148,7 @@ const Navbar = () => {
             
             className={`${styles.iconContainer} ${styles.homeIcon}`}
           >
+            
             
             <Stack direction="vertical">
               <FontAwesomeIcon icon={faHouse} className={styles.icon} />
@@ -160,6 +173,7 @@ const Navbar = () => {
             {/** LOGO */}
             <img src={logo} alt="Logo" />
           </NavbarBootstrap.Brand>
+          {homeIconAndText}
         </Stack>{" "}
         {/** END left Col */}
         <Stack className={`${styles.middleCol} ms-auto`}>

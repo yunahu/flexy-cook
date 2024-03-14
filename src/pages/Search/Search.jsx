@@ -17,8 +17,8 @@ const tag={tags: [
   { text: "Tag 6", color: "info" },
   { text: "Tag 7", color: "dark" },
   { text: "Tag 8", color: "light" },
-  { text: "Tag 9", color: "danger" },
-  { text: "Tag 10", color: "warning" },
+  
+
 ]}
 
 const dummyData = [
@@ -235,8 +235,12 @@ const SearchPage = () => {
         <AdvancedSearchMenu />
         <p className={styles.backgroundText}>Recommended Tags</p>
         <div className={styles.design}>
-          {/* Display up to three rows of tags */}
-          <Tags tags={tag.tags} />
+ 
+          <Tags tags={tag.tags} className={styles.tag} />
+        </div>
+        <div className={styles.designSmall}>
+ 
+        <Tags tags={tag.tags.slice(0, 5)} />
         </div>
       </div>
       <hr />

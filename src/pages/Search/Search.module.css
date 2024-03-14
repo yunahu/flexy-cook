@@ -46,7 +46,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: auto; /* Adjusted margin property */
+	margin: auto;
+  }
+  .designSmall{
+	align-items: center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: auto;
   }
  @media screen and (max-width: 840px) {
  
@@ -55,6 +64,7 @@
 	   margin: 10px;
 	   padding: 0;
 	}
+	
  
  }
  @media screen and (max-width: 575px){
@@ -63,6 +73,9 @@
 	   margin: 10px;
 	   padding: 0;
 	   display: block;
+	}
+	.design{
+		display:none;
 	}
 	
  
