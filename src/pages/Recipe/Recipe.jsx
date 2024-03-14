@@ -2,6 +2,7 @@
 import RecipeBanner from './components/RecipeBanner/RecipeBanner';
 import CookingStep from './components/CookingStep/CookingStep';
 import Divider from 'src/components/Divider/Divider';
+import ToolBar from './components/ToolBar/ToolBar';
 import { Stack } from 'react-bootstrap';
 
 import styles from './Recipe.module.css';
@@ -89,11 +90,10 @@ const Recipe = () => {
                <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
             </Stack>
 
-         </Stack>
+         </Stack> {/** End Content Wrapper */}
+
+         <ToolBar className={styles.toolBar}/>
          
-
-
-
       </>
 	);
 };
