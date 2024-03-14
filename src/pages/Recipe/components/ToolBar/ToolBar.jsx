@@ -7,42 +7,61 @@ import styles from './ToolBar.module.css';
 const ToolBar = () => {
 
    return (
-      <Stack direction='vertical' className={styles.toolBar}>
+      <Stack direction='vertical' className={styles.toolBar} gap={0}>
 
-         <OverlayTrigger className={styles.tool}
+         <OverlayTrigger
             placement='left'
             delay={{ show: 50, hide: 50 }}
             overlay={
-               <Tooltip className={styles.tooltip}>Back To Top</Tooltip>
+               <Tooltip>Back To Top</Tooltip>
             }>
-            <Button><FontAwesomeIcon icon={faAnglesUp} /></Button>
+               
+               <Button className={styles.tool}>
+                  <FontAwesomeIcon icon={faAnglesUp} />
+               </Button>
+
          </OverlayTrigger>
 
-         <OverlayTrigger className={styles.tool}
+         {/** ------------------------------------------------------------------ */}
+
+         <OverlayTrigger
             placement='left'
             delay={{ show: 50, hide: 50 }}
             overlay={
-               <Tooltip className={styles.tooltip}>Convert To Cooking Steps</Tooltip>
+               <Tooltip>Convert To Cooking Steps</Tooltip>
             }>
-            <Button><FontAwesomeIcon icon={faFileCirclePlus} /></Button>
+
+               <Button className={styles.tool}>
+                  <FontAwesomeIcon icon={faFileCirclePlus} />
+               </Button>
+
          </OverlayTrigger>
 
-         <OverlayTrigger className={styles.tool}
+         {/** ------------------------------------------------------------------ */}
+
+
+         <OverlayTrigger
             placement='left'
             delay={{ show: 50, hide: 50 }}
             overlay={
-               <Tooltip className={styles.tooltip}>Add To Shopping List</Tooltip>
+               <Tooltip>Add To Shopping List</Tooltip>
             }>
-            <Button><FontAwesomeIcon icon={faCartPlus}/></Button>
+
+               <Button className={styles.tool}>
+                  <FontAwesomeIcon icon={faCartPlus}/>
+               </Button>
          </OverlayTrigger>
 
-         <OverlayTrigger className={styles.tool}
+         {/** ------------------------------------------------------------------ */}
+
+
+         <OverlayTrigger
             placement='left'
             delay={{ show: 50, hide: 50 }}
             overlay={
-               <Tooltip className={styles.tooltip}>Switch Units</Tooltip>
+               <Tooltip>Switch Units</Tooltip>
             }>
-            <Stack direction='vertical'>
+            <Stack direction='vertical' className={styles.tool} id={styles.unitSwitch} gap={2}>
                <Form.Check type='switch' />
                <span> Imperial Unit</span>
             </Stack>

@@ -1,6 +1,57 @@
 .toolBar {
-   width: 10%;
+   width: 65px;
+
    position: fixed;
    right: 0;
-   bottom: 10vh;
+   top: 15vh;
+
+   text-align: center;
+
+   background-color: var(--light-primary);
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+   border: 1.5px solid var(--dark-primary);
+}
+
+.toolBar:first-child {
+   border-top-left-radius: 10px;
+}
+
+.toolBar:last-child {
+   border-bottom-left-radius: 10px;
+}
+
+.tool {
+   padding: 12px 5px;
+   height: 100%;
+   font-size: 26px;
+
+   border-radius: 0;
+   border: none;
+   background-color: transparent;
+   color: var(--dark-primary);
+}
+
+.tool:hover {
+   background-color: var(--dark-primary);
+   color: var(--white);
+}
+
+.tool:not(:disabled):not(:disabled):active {
+   background-color: var(--active-primary);
+}
+
+#unitSwitch {
+   font-size: 80%;
+}
+
+#unitSwitch input {
+   padding: 0;
+   height: 20px;
+   width: 37px;
+   border: 2px solid var(--primary);
+}
+
+#unitSwitch input:checked {
+   background-color: var(--dark-primary) !important;
 }
