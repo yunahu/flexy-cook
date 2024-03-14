@@ -8,6 +8,7 @@ import StickyButton from "src/components/stickybutton/stickybutton";
 import SearchBar from "src/components/Searchbar/Searchbar";
 import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
 
+
 const tag={tags: [
   { text: "Tag 1", color: "danger" },
   { text: "Tag 2", color: "success" },
@@ -195,9 +196,22 @@ const dummyData = [
   },
 ];
 
+
+
+
 const SearchPage = () => {
+  const [ingredients, setSearch] = useState("");
+  const [tags, setTags] = useState([]);
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleTagsChange = (tags) => {
+    setTags(tags);
+  };
 
   const fetchMoreData = () => {
     setLoading(true);
@@ -231,8 +245,17 @@ const SearchPage = () => {
   return (
     <>
       <div className={styles.background}>
-        <SearchBar />
-        <AdvancedSearchMenu />
+        <SearchBar  
+        text="onion, canned tomato"
+        btnText={"Search"}
+        className={styles.searchBar}
+        value={ingredients}
+        onChange={handleOnChange}
+        btnClick={() =>
+          navigate("/search", { state: { ingredients, tags } })
+        }
+        />
+        <AdvancedSearchMenu styles={{color:'white'}} onTagsChange={handleTagsChange} />
         <p className={styles.backgroundText}>Recommended Tags</p>
         <div className={styles.design}>
  

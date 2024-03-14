@@ -84,10 +84,15 @@ const Navbar = () => {
     },
     {
       icon: (
-        <Stack direction="horizontal" className={styles.dropdownSmall}>
+        <Nav.Link
+        as={Link}
+        to=""
+        className={styles.dropdownSmall} 
+      >
+        <Stack direction="horizontal">
           <BrightnessHighFill className={styles.iconSmall} size={25} />
           <span className={styles.textSmall}>Theme</span>
-        </Stack>
+        </Stack></Nav.Link>
       )
     },
     {
@@ -116,23 +121,22 @@ const Navbar = () => {
     </Nav.Link>
   );
   
-  const isHomePage = location.pathname === '/';
-  const searchBarAndAdvancedSearch = isHomePage && (
-    <Stack className={styles.searchBar} direction="vertical">
-      <SearchBar
-        text="onion, canned tomato"
-        btnText={"Search"}
-        className={styles.searchBar}
-        value={ingredients}
-        onChange={handleOnChange}
-        btnClick={() =>
-          navigate("/search", { state: { ingredients, tags } })
-        }
-      />
-      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-    </Stack>
-  );
-
+  const isHomePage = location.pathname === '/' || location.pathname === '/test';
+const searchBarAndAdvancedSearch = isHomePage && (
+  <Stack className={styles.searchBar} direction="vertical">
+    <SearchBar
+      text="onion, canned tomato"
+      btnText={"Search"}
+      className={styles.searchBar}
+      value={ingredients}
+      onChange={handleOnChange}
+      btnClick={() =>
+        navigate("/search", { state: { ingredients, tags } })
+      }
+    />
+    <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+  </Stack>
+);
   return (
     <nav className={styles.container}>
       <Stack className={styles.navElements} direction="horizontal" gap={3}>

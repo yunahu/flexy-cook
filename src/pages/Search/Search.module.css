@@ -19,9 +19,18 @@
 	display: inline;
  }
  .background{
-	background-image: url('src/assets/images/sample_pic.jpg');
-	padding:20vh;
+	background-image: url('src/assets/images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding:45vh;
+	padding-bottom: 5vh;
 	width:100%;
+	height:fit-content;
+	color:white;
+ }
+ .advancebutton{
+	color:white;
+	background-color: aliceblue;
  }
  hr{
 	color: var(--dark-primary);
@@ -33,20 +42,23 @@
 	font-size: 24px;
 	font-weight: bold;
  }
+ 
  .backgroundText{
 	text-align: center;
 	font-size: 24px;
 	font-weight: bold;
 	margin-top: 10%;
+	
+	margin-bottom: 0%;
  }
  .design {
-	align-items: center;
+	align-items:center;
 	padding: 10px;
 	font-size: 24px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	margin: auto;
+	justify-content:center;
+	
   }
   .designSmall{
 	align-items: center;
@@ -57,6 +69,18 @@
 	justify-content: center;
 	margin: auto;
   }
+  .searchBar{
+
+	align-self: center;
+	text-align: center;
+	justify-content: center;
+  	width: 70%;
+  	padding-top: 0.9rem;
+	margin-left: auto;
+	margin-right: auto;
+
+  }
+  
  @media screen and (max-width: 840px) {
  
 	.container {
