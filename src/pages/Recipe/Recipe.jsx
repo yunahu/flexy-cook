@@ -69,7 +69,7 @@ const Recipe = () => {
 	return (
       <>
          <Stack className={styles.wrapper} direction='vertical' gap={2}>
-            <hr></hr>
+            <hr id='top'></hr>
 
             <RecipeBanner
                imgURL={bannerInfo.imgURL}
