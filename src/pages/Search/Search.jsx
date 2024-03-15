@@ -1,9 +1,28 @@
 import styles from "./Search.module.css";
 
 import React, { useState, useEffect } from "react";
-
+import Tag from "src/components/Tag/Tag";
+import Tags from "src/components/Cards/Tags/Tags";
 import SearchCard from "./components/SearchCard/SearchCard";
-import StickyButton from "src/components/Stickybutton/Stickybutton";
+
+import StickyButton from "src/components/stickybutton/stickybutton";
+import SearchBar from "src/components/Searchbar/Searchbar";
+import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
+
+
+const tag={tags: [
+  { text: "Tag 1", color: "danger" },
+  { text: "Tag 2", color: "success" },
+  { text: "Tag 3", color: "warning" },
+  { text: "Tag 4", color: "primary" },
+  { text: "Tag 5", color: "secondary" },
+  { text: "Tag 6", color: "info" },
+  { text: "Tag 7", color: "dark" },
+  { text: "Tag 8", color: "light" },
+  
+
+]}
+
 
 const dummyData = [
   {
@@ -179,9 +198,22 @@ const dummyData = [
   },
 ];
 
+
+
+
 const SearchPage = () => {
+  const [ingredients, setSearch] = useState("");
+  const [tags, setTags] = useState([]);
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleTagsChange = (tags) => {
+    setTags(tags);
+  };
 
   const fetchMoreData = () => {
     setLoading(true);
@@ -214,6 +246,30 @@ const SearchPage = () => {
 
   return (
     <>
+      <div className={styles.background}>
+        <SearchBar  
+        text="onion, canned tomato"
+        btnText={"Search"}
+        className={styles.searchBar}
+        value={ingredients}
+        onChange={handleOnChange}
+        btnClick={() =>
+          navigate("/search", { state: { ingredients, tags } })
+        }
+        />
+        <AdvancedSearchMenu styles={{color:'white'}} onTagsChange={handleTagsChange} />
+        <p className={styles.backgroundText}>Recommended Tags</p>
+        <div className={styles.design}>
+ 
+          <Tags tags={tag.tags} className={styles.tag} />
+        </div>
+        <div className={styles.designSmall}>
+ 
+        <Tags tags={tag.tags.slice(0, 5)} />
+        </div>
+      </div>
+      <hr />
+      <p className={styles.text}>Search Results:</p>
       <div className={styles.container}>
         {cards.map((val, index) => (
           <SearchCard
