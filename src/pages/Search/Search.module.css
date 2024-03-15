@@ -18,7 +18,69 @@
 	margin:5%;
 	display: inline;
  }
+ .background{
+	background-image: url('src/assets/images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding:40vh;
+	padding-bottom: 5vh;
+	width:100%;
+
+	color:white;
+ }
+ .advancebutton{
+	color:white;
+	background-color: aliceblue;
+ }
+ hr{
+	color: var(--dark-primary);
+	margin:30px;
+	
+ }
+ .text{
+	margin-left: 5%;
+	font-size: 24px;
+	font-weight: bold;
+ }
  
+ .backgroundText{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 10%;
+	
+	margin-bottom: 0%;
+ }
+ .design {
+	align-items:center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:center;
+	
+  }
+  .designSmall{
+	align-items: center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: auto;
+  }
+  .searchBar{
+
+	align-self: center;
+	text-align: center;
+	justify-content: center;
+  	width: 70%;
+  	padding-top: 0.9rem;
+	margin-left: auto;
+	margin-right: auto;
+
+  }
+  
  @media screen and (max-width: 840px) {
  
 	.container {
@@ -26,6 +88,7 @@
 	   margin: 10px;
 	   padding: 0;
 	}
+	
  
  }
  @media screen and (max-width: 575px){
@@ -35,5 +98,13 @@
 	   padding: 0;
 	   display: block;
 	}
+	.design{
+		display:none;
+	}
+	.background {
+		padding: 20vh 0 5vh 0;
+     
+    }
+	
  
  }
