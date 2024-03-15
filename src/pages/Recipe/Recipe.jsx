@@ -13,7 +13,7 @@ const dummyData = () => {
       width: '30rem',
       height: '300px',  /** must be px/rem value */
       // imgURL: '/src/assets/images/sample_pic.jpg',
-      imgURL: '/src/assets/images/sample-pic-horizontal.jpg',
+      imgURL: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       number: 3,
       step: 'blablabla',
       ingredients: [
@@ -34,7 +34,7 @@ const dummyData = () => {
          {
             id: 404645,
             name: "frying pan",
-            image: '/src/assets/images/sample-pic-horizontal.jpg'
+            image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
          }
       ],
       tagbg: 'primary'
@@ -46,7 +46,7 @@ const dummyDataBanner = () => {
     /** A dummy object with present data */
     // width: '30rem',
     // height: '40vh',  /** must be px/rem value */
-    imgURL: "/src/assets/images/sample-pic-horizontal.jpg",
+    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     // imgURL: '/src/assets/images/sample_pic.jpg',
     title: "Some Random Recipe",
     description: "This is recipe description blablabla ... ",
