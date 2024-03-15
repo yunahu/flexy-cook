@@ -5,10 +5,6 @@ import Router from 'src/Router/Router';
 import Navbar from 'src/components/Navbar/Navbar';
 import Footer from 'src/components/Footer/Footer';
 
-
-#breaking build to test ci
-
-
 const App = () => {
   return (
 		<div>
