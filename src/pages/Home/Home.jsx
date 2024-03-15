@@ -4,7 +4,7 @@ import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
 import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
-import StickyButton from "src/components/Stickybutton/Stickybutton";
+import StickyButton from "src/components/StickyButton/StickyButton";
 
 const dummyData = () => {
   return {
@@ -14,7 +14,7 @@ const dummyData = () => {
     imgURL: "src/assets/images/sample-pic-horizontal.jpg",
     // imgURL: 'src/assets/images/sample_pic.jpg',
     title: "Some Random Recipe",
-    description: "This is recipe description blablabla ... ",
+    ingredients: "onion",
     calories: "200",
     time: "40",
     size: "2",
@@ -43,7 +43,6 @@ const Home = () => {
               // height={recipeInfo.height}
               imgURL={recipeInfo.imgURL}
               title={recipeInfo.title}
-              description={recipeInfo.description}
               time={recipeInfo.time}
               calories={recipeInfo.calories}
               size={recipeInfo.size}
@@ -61,7 +60,6 @@ const Home = () => {
                 height={"100%"}
                 imgURL={recipeInfo.imgURL}
                 title={recipeInfo.title}
-                description={recipeInfo.description}
                 time={recipeInfo.time}
                 calories={recipeInfo.calories}
                 size={recipeInfo.size}
@@ -73,7 +71,6 @@ const Home = () => {
                 height={"100%"}
                 imgURL={recipeInfo.imgURL}
                 title={recipeInfo.title}
-                description={recipeInfo.description}
                 time={recipeInfo.time}
                 calories={recipeInfo.calories}
                 size={recipeInfo.size}
@@ -85,7 +82,6 @@ const Home = () => {
                 height={"100%"}
                 imgURL={recipeInfo.imgURL}
                 title={recipeInfo.title}
-                description={recipeInfo.description}
                 time={recipeInfo.time}
                 calories={recipeInfo.calories}
                 size={recipeInfo.size}
@@ -119,7 +115,6 @@ const Home = () => {
             height={"30vh"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
-            description={recipeInfo.description}
             time={recipeInfo.time}
             calories={recipeInfo.calories}
             size={recipeInfo.size}
@@ -131,7 +126,6 @@ const Home = () => {
             height={"30vh"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
-            description={recipeInfo.description}
             time={recipeInfo.time}
             calories={recipeInfo.calories}
             size={recipeInfo.size}
@@ -143,7 +137,6 @@ const Home = () => {
             height={"30vh"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
-            description={recipeInfo.description}
             time={recipeInfo.time}
             calories={recipeInfo.calories}
             size={recipeInfo.size}
