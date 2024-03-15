@@ -1,7 +1,8 @@
-import Button from "react-bootstrap/Button";
+import ModifiedButton from "src/components/ModifiedButton/ModifiedButton.jsx";
 import CardBootstrap from "react-bootstrap/Card";
 import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
+import { Button } from "react-bootstrap";
 
 import styles from "./SearchCard.module.css";
 
@@ -19,7 +20,7 @@ const SearchCard = (props) => {
         <CardBootstrap.Body>
           <CardBootstrap.Title>{props.title}</CardBootstrap.Title>
 
-          <CardBootstrap.Text>{props.description}</CardBootstrap.Text>
+          <CardBootstrap.Text className={styles.description}>{props.description}</CardBootstrap.Text>
 
           <CookingInfo
             size={props.size}
@@ -28,10 +29,16 @@ const SearchCard = (props) => {
           />
           <Tags tags={props.tags} />
 
-          <Button className={styles.goBtn} bg={styles.goBtn}>
-            Check It Out
-          </Button>
+          <ModifiedButton
+            className={styles.goBtn}
+            title={"Check It Out"}
+            variant="light"
+            onClick={props.onClick}
+          />
         </CardBootstrap.Body>
+        <CardBootstrap.Footer className={styles.footer}><Button className={styles.btnFooter} bg={styles.btnFooter}>
+            Check It Out
+          </Button></CardBootstrap.Footer>
       </CardBootstrap>
     </>
   );

@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import CardBootstrap from "react-bootstrap/Card";
 import CookingInfo from "../Cards/CookingInfo/CookingInfo";
 import Tags from "../Cards/Tags/Tags";
+import ModifiedButton from "src/components/ModifiedButton/ModifiedButton";
 
 import styles from "./LargeCard.module.css";
 
@@ -15,6 +16,7 @@ const LargeSquareCard = ({
   time,
   size,
   calories,
+  onClick,
 }) => {
   /**
    * info: object with equip, time, size as keys
@@ -26,7 +28,6 @@ const LargeSquareCard = ({
         variant="top"
         src={imgURL}
         className={styles.cardImg}
-        height={height}
       />
 
       <CardBootstrap.Body>
@@ -37,9 +38,12 @@ const LargeSquareCard = ({
         <CookingInfo size={size} time={time} calories={calories} />
         <Tags tags={tags} />
 
-        <Button className={styles.goBtn} bg={styles.goBtn}>
-          Check It Out
-        </Button>
+        <ModifiedButton
+          className={styles.goBtn}
+          title={"Check It Out"}
+          variant="light"
+          onClick={onClick}
+        />
       </CardBootstrap.Body>
     </CardBootstrap>
   );

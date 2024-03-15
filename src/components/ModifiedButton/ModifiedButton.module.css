@@ -23,39 +23,39 @@
   border: 0;
 }
 
-.variant-light {
-  background-color: #9ccc65 !important;
-  border: 0;
+/* for the go button*/
+
+.variant-light,
+.variant-light:visited,
+.variant-light:hover,
+.variant-light:focus {
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.variant-light:active {
+  background-color: var(--dark-primary) !important;
+  color: var(--white) !important;
 }
 
 /* for the advanced search button */
-:disabled.variant-dark {
-  background-color: white !important;
-  border: 2px solid #9eb384 !important;
-  color: #9eb384 !important;
+.variant-dark:disabled {
+  background-color: var(--white) !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
   font-weight: 600 !important;
 }
 
-:visited.variant-dark {
-  background-color: white !important;
-  border: 2px solid #9eb384 !important;
-  color: #9eb384 !important;
-}
-
-:active.variant-dark {
-  background-color: white !important;
+.variant-dark:active {
+  background-color: var(--white) !important;
   border: 3px solid rgba(158, 179, 132, 0.3) !important;
   color: rgba(158, 179, 132, 0.5) !important;
 }
 
-:hover.variant-dark {
-  background-color: white !important;
-  border: 2px solid #9eb384 !important;
-  color: #9eb384 !important;
-}
-
-.variant-dark {
-  background-color: white !important;
-  border: 2px solid #9eb384;
-  color: #9eb384;
+.variant-dark,
+.variant-dark:hover,
+.variant-dark:visited {
+  background-color: var(--white) !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
 }
