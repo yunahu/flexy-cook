@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import React, { useState, useEffect } from "react";
 
 import SearchCard from "./components/SearchCard/SearchCard";
-import StickyButton from "src/components/StickyButton/StickyButton";
+import StickyButton from "src/components/stickybutton/Stickybutton";
 
 const dummyData = [
   {
