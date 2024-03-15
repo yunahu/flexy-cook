@@ -1,0 +1,43 @@
+.form {
+  border: 1px solid #9eb384;
+  color: rgba(170, 170, 170);
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 0.5rem;
+}
+.form::placeholder {
+  color: rgba(170, 170, 170);
+  font-size: 16px;
+}
+
+.outline-secondary,
+.outline-secondary:active,
+.outline-secondary:visited {
+  border: 1px solid #9eb384;
+  background-color: #9eb384;
+  color: white;
+  font-weight: 200;
+}
+
+.outline-secondary:hover {
+  border: 1px solid rgba(67, 83, 52, 0.7);
+  background-color: rgba(67, 83, 52, 0.7);
+  color: white;
+}
+
+:not(.btn-check) + .outline-secondary:active {
+  border: 1px solid #435334;
+  background-color: #435334;
+  color: white;
+}
+
+.container {
+  margin-bottom: 0.2rem;
+  min-width: 10rem;
+  min-height: 3rem;
+}
+
+.icon {
+  margin-right: 0.3rem;
+  font-size: 14px;
+}
