@@ -50,7 +50,7 @@
   padding-top: 0.7rem;
 }
 
-.iconContainer {
+.iconContainer, .searchHome {
   height: 100%;
   padding: 0;
   justify-content: center;
@@ -83,10 +83,24 @@
   color: var(--white);
 }
 
-.icon {
+.icon, .iconHome {
   width: 2.5rem;
   height: 2.5rem;
   color: var(--dark-primary);
+}
+
+.textSmall {
+  margin-left: 20%;
+  font-size: 20px;
+
+}
+
+.iconSmall {
+
+  width: 2.3rem;
+  height: 2.3rem;
+  color: var(--dark-primary);
+
 }
 
 .todoDrop {
@@ -94,9 +108,33 @@
   color: var(--dark-primary);
 }
 
+.searchHome div{
+  align-self: center;
+
+}
+.searchHome{
+  margin-left:20%;
+}
+.searchHome svg{
+  margin: 0.7rem auto 0.7rem auto;
+}
+
+.searchHome:hover{
+  background-color: var(--primary);
+  color: var(--white);
+}
+.searchHome:hover .iconHome{
+  color: var(--white);
+
+}
+
+
+
 /** Medium screen size */
 @media (max-width: 990px) {
+
   .searchBar,
+  .searchHome,
   .leftCol .logo {
     display: none;
   }
@@ -108,7 +146,7 @@
   }
 
   .middleCol .logo {
-    width: 130px; /** Absolute value to prevent from being too small */
+    width: 130px;
     margin: auto;
   }
 
@@ -119,6 +157,7 @@
 
 /** Small screen size */
 @media (max-width: 576px) {
+
   .searchIcon,
   .themeIcon,
   .todoIcon {
@@ -127,9 +166,31 @@
 
   .menuIcon {
     display: flex;
+    width: 100%;
   }
+
 
   .iconContainer {
     width: 100%;
   }
+
+  .dropdownSmall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90vw;
+    margin: 0;
+    
+
+  }
+  .dropdownSmall:hover{
+    background-color: var(--primary);
+    color: var(--white);
+  }
+  .todoIconSmall
+ {display: flex;
+  flex-direction: row;  
+  align-items: center; }
+
 }
