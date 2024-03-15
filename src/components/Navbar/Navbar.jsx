@@ -6,7 +6,7 @@ import NavDropdownMenu from "./NavDropdownMenu/NavDropdownMenu";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
-import { Stack } from "react-bootstrap";
+import { Stack, Dropdown } from "react-bootstrap";
 
 import { CartPlusFill, BrightnessHighFill, CardList } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,20 +55,7 @@ const Navbar = () => {
     },
   ];
   const dropdowmSmall = [
-    {
-      icon: (
-        <Nav.Link
-            as={Link}
-            to="/"
-            className={styles.dropdownSmall}
-          >
-        <Stack direction="horizontal">
-          <FontAwesomeIcon icon={faHouse} className={styles.iconSmall} size={25} />
-          <span className={styles.textSmall}>Home</span>
-        </Stack></Nav.Link>
-      ),
-      
-    },
+    
     {
       icon: (
         <Nav.Link
@@ -86,7 +73,7 @@ const Navbar = () => {
       icon: (
         <Nav.Link
         as={Link}
-        to=""
+        to="/"
         className={styles.dropdownSmall} 
       >
         <Stack direction="horizontal">
@@ -101,11 +88,18 @@ const Navbar = () => {
         className={styles.dropdownSmall}
         direction="horizontal"
       >
-        <NavDropdownMenu
-          drop="down-centered"
-          buttonTitle="TODO"
-          items={items}
-        />
+        <Dropdown>
+      <Dropdown.Toggle variant="none">
+        <CardList className={styles.iconSmall} size={25} />
+        <span className={styles.textSmall}>Todo</span>
+        </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Shopping list</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Memos</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
       </Stack>
       )
     }
@@ -113,10 +107,10 @@ const Navbar = () => {
   const isSearchPage = location.pathname === '/search'; 
 
   const homeIconAndText = isSearchPage && (
-    <Nav.Link as={Link} to="/" >
+    <Nav.Link as={Link} to="/"className={styles.searchHome} >
       <Stack direction="vertical">
-        <FontAwesomeIcon icon={faHouse} className={styles.searchHome} />
-        <span className={styles.searchHome}>Home</span>
+        <FontAwesomeIcon icon={faHouse} className={styles.iconHome} />
+        <span className={styles.searchHomeText}>Home</span>
       </Stack>
     </Nav.Link>
   );

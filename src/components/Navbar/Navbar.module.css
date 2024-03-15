@@ -50,7 +50,7 @@
   padding-top: 0.7rem;
 }
 
-.iconContainer {
+.iconContainer, .searchHome {
   height: 100%;
   padding: 0;
   justify-content: center;
@@ -83,7 +83,7 @@
   color: var(--white);
 }
 
-.icon {
+.icon, .iconHome {
   width: 2.5rem;
   height: 2.5rem;
   color: var(--dark-primary);
@@ -108,23 +108,26 @@
   color: var(--dark-primary);
 }
 
-.searchHome {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--dark-primary);
-  display: flex;
-  height: 100%;
-  padding: 0;
-  justify-content: center;
-  text-align: center;
-
-  gap: 0.1rem;
-  margin-left: 20px;
-  border-radius: 5px;
-  transition: all 0.15s ease-in-out;
-
+.searchHome div{
+  align-self: center;
 
 }
+.searchHome{
+  margin-left:20%;
+}
+.searchHome svg{
+  margin: 0.7rem auto 0.7rem auto;
+}
+
+.searchHome:hover{
+  background-color: var(--primary);
+  color: var(--white);
+}
+.searchHome:hover .iconHome{
+  color: var(--white);
+
+}
+
 
 
 /** Medium screen size */
@@ -176,13 +179,18 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 100vw;
+    width: 90vw;
     margin: 0;
+    
 
   }
   .dropdownSmall:hover{
     background-color: var(--primary);
     color: var(--white);
   }
+  .todoIconSmall
+ {display: flex;
+  flex-direction: row;  
+  align-items: center; }
 
 }

@@ -22,10 +22,10 @@
 	background-image: url('src/assets/images/background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	padding:45vh;
+	padding:40vh;
 	padding-bottom: 5vh;
 	width:100%;
-	height:fit-content;
+
 	color:white;
  }
  .advancebutton{
@@ -101,6 +101,10 @@
 	.design{
 		display:none;
 	}
+	.background {
+		padding: 20vh 0 5vh 0;
+     
+    }
 	
  
  }
