@@ -9,14 +9,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 function SearchBar({ text, value, onChange, btnClick, btnText, className }) {
   return (
     <InputGroup className={`${styles.container} ${className}`}>
-      {/* <Form.Control
+      <Form.Control
         placeholder={text}
         aria-label="Search"
         value={value}
         type="text"
         onChange={onChange}
         className={styles.form}
-      /> */}
+      />
       <Button
         variant="outline-secondary"
         className={styles["outline-secondary"]}
