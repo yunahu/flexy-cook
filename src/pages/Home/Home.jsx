@@ -11,7 +11,7 @@ const dummyData = () => {
     /** A dummy object with present data */
     // width: '30rem',
     // height: '40vh',  /** must be px/rem value */
-    imgURL: "src/assets/images/sample-pic-horizontal.jpg",
+    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     // imgURL: 'src/assets/images/sample_pic.jpg',
     title: "Some Random Recipe",
     ingredients: "onion",

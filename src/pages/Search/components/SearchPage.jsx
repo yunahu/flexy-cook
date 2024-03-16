@@ -5,7 +5,7 @@ import axios from "axios";
 import throttle from "lodash.throttle";
 import env from "src/utils/env";
 
-import SearchBar from "src/components/Searchbar/Searchbar";
+import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
 import { capitalize } from "src/utils/common";
@@ -95,12 +95,9 @@ const SearchTest = () => {
                   })
                   .then((res) => res.data),
                 axios
-                  .get(
-                    `${env.API_URL}http://localhost:3000/spoonacular/getRecipeTaste`,
-                    {
-                      params: { id, normalize: true },
-                    }
-                  )
+                  .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
+                    params: { id, normalize: true },
+                  })
                   .then((res) => res.data),
               ])
             )
