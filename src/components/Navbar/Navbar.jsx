@@ -8,7 +8,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack, Dropdown } from "react-bootstrap";
 
-import { CartPlusFill, BrightnessHighFill, CardList } from "react-bootstrap-icons";
+import { CartPlusFill, BrightnessHighFill, CardList,GearWideConnected, PersonCircle } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
 import logo from "./img/logo.png";
@@ -42,19 +42,19 @@ const Navbar = () => {
       key: "shoppingList",
     },
     {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
+      icon: <CardList size={25}></CardList>,
       title: "Memos",
       ref: "",
       key: "memo",
     },
     {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
+      icon: <GearWideConnected size={25}></GearWideConnected>,
       title: "Something",
       ref: "",
       key: "something",
     },
     {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
+      icon: <PersonCircle size={25}></PersonCircle>,
       title: "Separated link",
       ref: "",
       key: "link",
@@ -70,7 +70,7 @@ const Navbar = () => {
             className={styles.dropdownSmall} 
           >
         <Stack direction="horizontal">
-          <FontAwesomeIcon icon={faSearch} className={styles.iconSmall} size={25} />
+          <FontAwesomeIcon icon={faSearch} className={styles.iconSmall} />
           <span className={styles.textSmall}>Search</span>
         </Stack></Nav.Link>
       )
@@ -79,13 +79,14 @@ const Navbar = () => {
       icon: (
         <Nav.Link
         as={Link}
-        to="/"
+        to="/search"
         className={styles.dropdownSmall} 
       >
-        <Stack direction="horizontal">
-          <BrightnessHighFill className={styles.iconSmall} size={25} />
-          <span className={styles.textSmall}>Theme</span>
-        </Stack></Nav.Link>
+    <Stack direction="horizontal">
+      <BrightnessHighFill className={styles.iconSmallTheme} />
+      <span className={styles.textSmall}>Theme</span>
+    </Stack></Nav.Link>
+       
       )
     },
     {
@@ -95,8 +96,8 @@ const Navbar = () => {
         direction="horizontal"
       >
         <Dropdown>
-      <Dropdown.Toggle variant="none">
-        <CardList className={styles.iconSmall} size={25} />
+      <Dropdown.Toggle variant="none" >
+        <CardList className={styles.iconSmall} />
         <span className={styles.textSmall}>Todo</span>
         </Dropdown.Toggle>
 
