@@ -36,9 +36,12 @@ const SearchCard = (props) => {
             onClick={props.onClick}
           />
         </CardBootstrap.Body>
-        <CardBootstrap.Footer className={styles.footer}><Button className={styles.btnFooter} bg={styles.btnFooter}>
-            Check It Out
-          </Button></CardBootstrap.Footer>
+        <CardBootstrap.Footer className={styles.footer}>
+       
+        <a href="" className={styles.footerLink}>
+          Check It Out
+        </a>
+      </CardBootstrap.Footer>
       </CardBootstrap>
     </>
   );
