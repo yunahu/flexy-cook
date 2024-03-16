@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import HomeTest from "src/pages/Home/HomeTest";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
+import env from "src/utils/env";
 
 vi.mock("axios");
 
@@ -76,7 +77,7 @@ describe("Home Page", () => {
     // api called to fetch random recipe?
     expect(axios.get).toHaveBeenNthCalledWith(
       1,
-      `${env.API_URL}//spoonacular/randomRecipe`,
+      `${env.API_URL}/spoonacular/randomRecipe`,
       { params: { number: 7 } }
     );
   });
