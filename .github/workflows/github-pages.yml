@@ -39,6 +39,10 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          VITE_TODOIST_CLIENT_ID: ${{ vars.VITE_TODOIST_CLIENT_ID }}
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_USE_HASH_ROUTER: ${{ vars.VITE_USE_HASH_ROUTER }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
