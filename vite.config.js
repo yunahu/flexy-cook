@@ -14,5 +14,5 @@ export default defineConfig({
     globals: true,
     setupFiles: './tests/setup.js',
   },
-	base: '/FlexyCook/'
+	base: process.env.BASE_URL ?? '/'
 })
