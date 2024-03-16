@@ -76,7 +76,7 @@ describe("Home Page", () => {
     // api called to fetch random recipe?
     expect(axios.get).toHaveBeenNthCalledWith(
       1,
-      "http://localhost:3000/spoonacular/randomRecipe",
+      `${env.API_URL}//spoonacular/randomRecipe`,
       { params: { number: 7 } }
     );
   });
@@ -134,7 +134,7 @@ describe("Home Page", () => {
   //     await waitFor(() => {
   //       console.log("Random Recipe Axios call:", axios.get.mock.calls[0]);
   //       expect(axios.get).toHaveBeenCalledWith(
-  //         "http://localhost:3000/spoonacular/randomRecipe",
+  //         `${env.API_URL}//spoonacular/randomRecipe`,
   //         { params: { number: 7 } }
   //       );
   //     });
@@ -142,7 +142,7 @@ describe("Home Page", () => {
   //     await waitFor(() => {
   //       console.log("Random Recipe Axios call:", axios.get.mock.calls[1]);
   //       expect(axios.get).toHaveBeenCalledWith(
-  //         "http://localhost:3000/spoonacular/getRecipe",
+  //         `${env.API_URL}//spoonacular/getRecipe`,
   //         { params: { id: 654614, includeNutrition: true } }
   //       );
   //     });
@@ -150,13 +150,13 @@ describe("Home Page", () => {
 
   // expect(axios.get).toHaveBeenNthCalledWith(
   //   1,
-  //   "http://localhost:3000/spoonacular/randomRecipe",
+  //   `${env.API_URL}//spoonacular/randomRecipe`,
   //   { params: { number: 7 } }
   // );
   // await waitFor(() =>
   //   expect(axios.get).toHaveBeenNthCalledWith(
   //     2,
-  //     "http://localhost:3000/spoonacular/getRecipe",
+  //     `${env.API_URL}//spoonacular/getRecipe`,
   //     { params: { id: 654614, includeNutrition: true } }
   //   )
   // );
@@ -164,7 +164,7 @@ describe("Home Page", () => {
   // await waitFor(() =>
   //   expect(axios.get).toHaveBeenNthCalledWith(
   //     3,
-  //     "http://localhost:3000/spoonacular/getRecipeTaste",
+  //     `${env.API_URL}//spoonacular/getRecipeTaste,
   //     { params: { id: 654614, normalize: true } }
   //   )
   // );
