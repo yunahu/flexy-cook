@@ -13,5 +13,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './tests/setup.js',
-  }
+  },
+	base: process.env.BASE_URL ?? '/'
 })
