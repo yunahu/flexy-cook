@@ -18,7 +18,73 @@
 	margin:5%;
 	display: inline;
  }
+ .background{
+	position: relative;
+	background-image: url('https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg');
+
+	background-size: cover;
+	
+	background-repeat: no-repeat;
+	justify-content: center;
+	align-items: center;
+	padding:30vh 40vh 0vh 40vh;
+	width:100%;
+	min-height: 100vh;
+	color:white;
+	transform: rotate(180deg);
+	overflow: hidden;
+	
+ }
+ .backgroundSearchText{
+
+	
+	transform: rotate(-180deg);
+
+ }
+ .advancebutton{
+	color:white;
+	background-color: aliceblue;
+ }
+ hr{
+	color: var(--dark-primary);
+	margin:30px;
+	
+ }
+ .text{
+	margin-left: 5%;
+	font-size: 24px;
+	font-weight: bold;
+ }
  
+ .backgroundText{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 10%;
+	margin-bottom: 0%;
+	padding-bottom: 0%;
+ }
+ .design {
+	align-items:center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:center;
+	padding-bottom: 0%;
+	
+  }
+  .designSmall{
+	align-items: center;
+	padding: 10px;
+	font-size: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 0%;
+  }
+  
+  
  @media screen and (max-width: 840px) {
  
 	.container {
@@ -26,6 +92,18 @@
 	   margin: 10px;
 	   padding: 0;
 	}
+	
+	.backgroundSearchText{
+		margin: auto;
+		padding-top: 60%;
+		align-items: center;
+		
+	}
+	.background{
+		padding: 10vh;
+	}
+	
+	
  
  }
  @media screen and (max-width: 575px){
@@ -34,6 +112,16 @@
 	   margin: 10px;
 	   padding: 0;
 	   display: block;
+	}
+	.design{
+		display:none;
+	}
+	.background {
+		padding: 20vh 0 5vh 0;
+     
+    }
+	.backgroundSearchText{
+		width:70%;
 	}
  
  }

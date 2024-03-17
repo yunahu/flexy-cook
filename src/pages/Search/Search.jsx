@@ -1,12 +1,21 @@
 import styles from "./Search.module.css";
 
 import React, { useState, useEffect } from "react";
-
+import Tag from "src/components/Tag/Tag";
+import Tags from "src/components/Cards/Tags/Tags";
 import SearchCard from "./components/SearchCard/SearchCard";
+<<<<<<< HEAD
 import StickyButton from "src/components/stickybutton/stickybutton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
 
+=======
+import StickyButton from "src/components/StickyButton/StickyButton";
+import SearchBar from "src/components/SearchBar/SearchBar";
+import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
+
+
+>>>>>>> development
 const tag = {
   tags: [
     { text: "Tag 1", color: "danger" },
@@ -17,8 +26,18 @@ const tag = {
     { text: "Tag 6", color: "info" },
     { text: "Tag 7", color: "dark" },
     { text: "Tag 8", color: "light" },
+<<<<<<< HEAD
   ],
 };
+=======
+
+
+  ]
+}
+
+
+
+>>>>>>> development
 
 const dummyData = [
   {
@@ -203,9 +222,22 @@ const dummyData = [
   },
 ];
 
+
+
+
 const SearchPage = () => {
+  const [ingredients, setSearch] = useState("");
+  const [tags, setTags] = useState([]);
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleTagsChange = (tags) => {
+    setTags(tags);
+  };
 
   const fetchMoreData = () => {
     setLoading(true);
@@ -224,7 +256,7 @@ const SearchPage = () => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-          document.body.scrollHeight - 100 &&
+        document.body.scrollHeight - 100 &&
         !loading &&
         cards.length < dummyData.length
       ) {
@@ -238,6 +270,33 @@ const SearchPage = () => {
 
   return (
     <>
+      <div className={styles.background}>
+        <div className={styles.backgroundSearchText}>
+          <SearchBar
+            text="onion, canned tomato"
+            btnText={"Search"}
+            
+            value={ingredients}
+            onChange={handleOnChange}
+            btnClick={() =>
+              navigate("/search", { state: { ingredients, tags } })
+            }
+          />
+          <AdvancedSearchMenu styles={{ color: 'white' }} onTagsChange={handleTagsChange} />
+        
+        <p className={styles.backgroundText}>Recommended Tags</p>
+        <div className={styles.design}>
+
+          <Tags tags={tag.tags} className={styles.tag} />
+        </div>
+        <div className={styles.designSmall}>
+
+          <Tags tags={tag.tags.slice(0, 5)} />
+        </div>
+        </div>
+      </div>
+      <hr />
+      <p className={styles.text}>Search Results:</p>
       <div className={styles.container}>
         {cards.map((val, index) => (
           <SearchCard
