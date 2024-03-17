@@ -7,10 +7,11 @@ import { colorByNum } from "src/utils/common";
 import dropdownStyles from "src/components/DropdownMenu/DropdownMenu.module.css";
 import styles from "../AdvancedSearch/AdvancedSearch.module.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Container from "react-bootstrap/Container";
+import { useLocation } from "react-router-dom";
 
 const map = {
   info: dropdownStyles["btn-info"],
@@ -28,6 +29,12 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState(null);
   const [tags, setTags] = useState([]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setTags([]);
+  }, [location.pathname]);
 
   const handleSelectChangeNutrient = (e) => {
     if (e.target.value != "") {
