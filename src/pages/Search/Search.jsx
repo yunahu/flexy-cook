@@ -3,7 +3,22 @@ import styles from "./Search.module.css";
 import React, { useState, useEffect } from "react";
 
 import SearchCard from "./components/SearchCard/SearchCard";
-import StickyButton from "src/components/StickyButton/StickyButton.jsx";
+import StickyButton from "src/components/stickybutton/stickybutton";
+import SearchBar from "src/components/SearchBar/SearchBar";
+import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
+
+const tag = {
+  tags: [
+    { text: "Tag 1", color: "danger" },
+    { text: "Tag 2", color: "success" },
+    { text: "Tag 3", color: "warning" },
+    { text: "Tag 4", color: "primary" },
+    { text: "Tag 5", color: "secondary" },
+    { text: "Tag 6", color: "info" },
+    { text: "Tag 7", color: "dark" },
+    { text: "Tag 8", color: "light" },
+  ],
+};
 
 const dummyData = [
   {
@@ -11,7 +26,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -30,7 +46,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 2",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -49,7 +66,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 3",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -68,7 +86,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 4",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -87,7 +106,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 5",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -106,7 +126,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 6",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -125,7 +146,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 7",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -144,7 +166,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 8",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -163,7 +186,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 9",
     description: "This is recipe description blablabla ... ",
     info: {
