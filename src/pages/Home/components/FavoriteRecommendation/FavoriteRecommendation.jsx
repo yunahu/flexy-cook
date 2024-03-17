@@ -15,7 +15,7 @@ const FavoriteRecommendation = () => {
     const dislikes = getDislikes();
 
     try {
-      const res = await axios.get(`${env.API_URL}//spoonacular/randomRecipe`, {
+      const res = await axios.get(`${env.API_URL}/spoonacular/randomRecipe`, {
         params: { number: 20 },
       });
 
@@ -27,12 +27,12 @@ const FavoriteRecommendation = () => {
         recipes.map((recipe) =>
           Promise.all([
             axios
-              .get(`${env.API_URL}//spoonacular/getRecipe`, {
+              .get(`${env.API_URL}/spoonacular/getRecipe`, {
                 params: { id: recipe.id, includeNutrition: true },
               })
               .then((res) => res.data),
             axios
-              .get(`${env.API_URL}//spoonacular/getRecipeTaste`, {
+              .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
                 params: { id: recipe.id, normalize: true },
               })
               .then((res) => res.data),
