@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Tag from "src/components/Tag/Tag";
 import Tags from "src/components/Cards/Tags/Tags";
 import SearchCard from "./components/SearchCard/SearchCard";
-import StickyButton from "src/components/StickyButton/Stickybutton";
+import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
 
