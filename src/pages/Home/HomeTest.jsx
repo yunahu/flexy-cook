@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { capitalize } from "src/utils/common";
+import env from "src/utils/env";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 const createTags = (recipe) => {
@@ -60,7 +61,7 @@ const HomeTest = () => {
     const fetchRecipes = async () => {
       try {
         axios
-          .get("http://localhost:3000/spoonacular/randomRecipe", {
+          .get(`${env.API_URL}/spoonacular/randomRecipe`, {
             params: { number: 7 },
           })
           .then(async (res) => {
@@ -72,12 +73,12 @@ const HomeTest = () => {
               recipeId.map((id) =>
                 Promise.all([
                   axios
-                    .get("http://localhost:3000/spoonacular/getRecipe", {
+                    .get(`${env.API_URL}/spoonacular/getRecipe`, {
                       params: { id, includeNutrition: true },
                     })
                     .then((res) => res.data),
                   axios
-                    .get("http://localhost:3000/spoonacular/getRecipeTaste", {
+                    .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
                       params: { id, normalize: true },
                     })
                     .then((res) => res.data),

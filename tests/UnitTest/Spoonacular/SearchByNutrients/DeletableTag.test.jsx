@@ -6,12 +6,7 @@ import DeletableTag from "src/pages/Search/components/DeletableTag/DeletableTag"
 describe("ModifiedButton", () => {
   test("range, nutrient, amount, and scale should be shown when render", () => {
     render(
-      <DeletableTag
-        minOrMax="Min"
-        nutrient="Fat"
-        amount="30"
-        scale="g"
-      ></DeletableTag>
+      <DeletableTag minOrMax="Min" nutrient="Fat" amount="30" scale="g" />
     );
     expect(screen.getByText(/Min/)).toBeInTheDocument();
     expect(screen.getByText(/Fat/)).toBeInTheDocument();
@@ -29,7 +24,7 @@ describe("ModifiedButton", () => {
         nutrient="Fat"
         amount="30"
         scale="g"
-      ></DeletableTag>
+      />
     );
 
     expect(onClickMock).toHaveBeenCalledTimes(0);
