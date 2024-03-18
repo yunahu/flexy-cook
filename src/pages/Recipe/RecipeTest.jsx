@@ -8,7 +8,8 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 import { Stack } from 'react-bootstrap';
-import styles from './Recipe.module.css'
+import styles from './Recipe.module.css';
+
 
 const RecipeTest = () => {
   const location = useLocation();
@@ -69,10 +70,14 @@ const RecipeTest = () => {
          <RecipeBanner
             imgURL={recipe.image}
             title={recipe.title}
-            description={recipe.description}
-            time={recipe.info}
-            calories={recipe.calories}
-            size={recipe.size}
+            description={recipe.extendedIngredients
+               .map((ingredient) => ingredient.name)
+               .join(", ")}
+            time={recipe.readyInMinutes}
+            calories={Math.floor(
+               recipe.nutrition.nutrients[0].amount
+            )}
+            size={recipe.servings}
             tags={recipe.tags}
          />
             
