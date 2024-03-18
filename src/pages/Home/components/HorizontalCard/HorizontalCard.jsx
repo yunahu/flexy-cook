@@ -26,11 +26,11 @@ const HorizontalCard = ({
     <>
       <CardBootstrap className={styles.hori_Card} style={{ width: width }} onClick={onClick}>
          <Row style={{ height: '100%' }}>
-            <Col xs={4} className={styles.imgBlock}>
+            <Col xs={5} className={styles.imgBlock}>
                <CardBootstrap.Img src={imgURL} className={styles.cardImg} />
             </Col>
 
-            <Col xs={8} className={styles.cardBody}>
+            <Col xs={7} className={styles.cardBody}>
                <CardBootstrap.Body>
                   <Stack direction='vertical'>
                      <CardBootstrap.Title>{title}</CardBootstrap.Title>

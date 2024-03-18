@@ -263,7 +263,7 @@ const HomeTest = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"30vh"}
+            height={"200px"}
             imgURL={recipeDetails[4][0].image}
             title={recipeDetails[4][0].title}
             description={recipeDetails[4][0].extendedIngredients
