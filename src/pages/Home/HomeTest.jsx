@@ -140,7 +140,7 @@ const HomeTest = () => {
 
   if (fetchLoading) {
    // Added animated spinner as visual aid
-    return <div><FontAwesomeIcon icon={faSpinner} spinPulse />Loading recipes...</div>;
+    return <div className={styles.msg}><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading recipes...</div>;
   }
 
   return (

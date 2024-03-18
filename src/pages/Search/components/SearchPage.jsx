@@ -204,9 +204,9 @@ const SearchTest = () => {
               />
             );
           })}
-          {loading && <div><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading...</div>}
+          {loading && <div className={styles.msg}><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading...</div>}
           {!loading && recipeDetails && recipeDetails?.length == 0 && (
-            <div><FontAwesomeIcon icon={faCircleExclamation} />&ensp;Recipe Not Found</div>
+            <div className={styles.msg}><FontAwesomeIcon icon={faCircleExclamation} />&ensp;Recipe Not Found</div>
           )}
         </div>
       </div>

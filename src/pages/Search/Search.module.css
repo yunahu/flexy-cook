@@ -83,6 +83,12 @@
 	justify-content: center;
 	padding-bottom: 0%;
   }
+
+  .msg {
+     font-size: 30px;
+     text-align: center;
+     margin: 10vh 0 100vh 0;     /** 100vh for footer to not shown while loading */
+  }
   
   
  @media screen and (max-width: 840px) {
@@ -103,7 +109,9 @@
 		padding: 10vh;
 	}
 	
-	
+	.msg {
+      font-size: 26px;
+   }
  
  }
  @media screen and (max-width: 575px){
@@ -123,5 +131,9 @@
 	.backgroundSearchText{
 		width:70%;
 	}
+
+   .msg {
+      font-size: 22px;
+   }
  
  }
