@@ -11,6 +11,8 @@ import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 import styles from "src/pages/Search/Search.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const MAX_RECIPE_NUM = 12;
 
@@ -202,9 +204,9 @@ const SearchTest = () => {
               />
             );
           })}
-          {loading && <div>Loading...</div>}
+          {loading && <div><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading...</div>}
           {!loading && recipeDetails && recipeDetails?.length == 0 && (
-            <div>Recipe Not Found</div>
+            <div><FontAwesomeIcon icon={faCircleExclamation} />&ensp;Recipe Not Found</div>
           )}
         </div>
       </div>
