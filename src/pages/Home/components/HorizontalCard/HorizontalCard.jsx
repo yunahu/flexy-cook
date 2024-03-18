@@ -14,7 +14,8 @@ const HorizontalCard = ({
   tags,
   time,
   size,
-  calories
+  calories,
+  onClick
 }
 ) => {
   /**
@@ -23,7 +24,7 @@ const HorizontalCard = ({
    */
   return (
     <>
-      <CardBootstrap className={styles.hori_Card} style={{ width: width }}>
+      <CardBootstrap className={styles.hori_Card} style={{ width: width }} onClick={onClick}>
          <Row style={{ height: '100%' }}>
             <Col xs={4} className={styles.imgBlock}>
                <CardBootstrap.Img src={imgURL} className={styles.cardImg} />

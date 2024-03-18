@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import Button from "react-bootstrap/Button";
 import CardBootstrap from "react-bootstrap/Card";
 import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
