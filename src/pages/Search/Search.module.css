@@ -85,9 +85,29 @@
   }
 
   .msg {
-     font-size: 30px;
-     text-align: center;
-     margin: 10vh 0 100vh 0;     /** 100vh for footer to not shown while loading */
+      width: 75vw;
+      margin: 10vh auto 100vh auto;    /** 100vh for footer to not shown while loading */
+      font-size: 30px;
+      text-align: center;
+  }
+
+  .secondaryMsg {
+      text-align: left;
+      color: grey;
+
+      display: inline-block;
+      margin-top: 20vh Im !important;
+
+      max-width: 375px;
+      align-self: center;
+  }
+
+  .secondaryMsg h5 {
+   text-align: center;
+  }
+
+  .secondaryMsg ul {
+   list-style-type: disc;
   }
   
   

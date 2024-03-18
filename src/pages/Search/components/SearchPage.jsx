@@ -13,6 +13,7 @@ import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 import styles from "src/pages/Search/Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { Stack } from "react-bootstrap";
 
 const MAX_RECIPE_NUM = 12;
 
@@ -206,7 +207,21 @@ const SearchTest = () => {
           })}
           {loading && <div className={styles.msg}><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading...</div>}
           {!loading && recipeDetails && recipeDetails?.length == 0 && (
-            <div className={styles.msg}><FontAwesomeIcon icon={faCircleExclamation} />&ensp;Recipe Not Found</div>
+            <Stack className={styles.msg} direction='vertical' gap={5}>
+               <span>
+                  <FontAwesomeIcon icon={faCircleExclamation} className="text-danger"/>
+                  &ensp;Recipe Not Found
+               </span>
+
+               <span className={styles.secondaryMsg}>
+                  <h5>What You Can Do:</h5>
+                  <ul className="h6">
+                     <li>Check your spelling</li>
+                     <li>Use ingredients as searching keywords</li>
+                     <li>Double check the filter setting in Advanced Search panel</li>
+                  </ul>
+               </span>
+            </Stack>
           )}
         </div>
       </div>
