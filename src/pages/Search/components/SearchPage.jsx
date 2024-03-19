@@ -13,7 +13,10 @@ import { findStrongestTaste } from "src/utils/spoonacularFunctions";
 
 import styles from "src/pages/Search/Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSpinner,
+  faCircleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { Stack } from "react-bootstrap";
 
 const MAX_RECIPE_NUM = 12;
@@ -131,8 +134,12 @@ const SearchTest = () => {
 
   return (
     <div>
-      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+      <AdvancedSearchMenu
+        onTagsChange={handleTagsChange}
+        testid="advanced_search"
+      />
       <SearchBar
+        testid="searchbar"
         text="onion, canned tomato, pasta"
         value={search}
         onChange={handleOnChange}
@@ -181,50 +188,61 @@ const SearchTest = () => {
             },
           ];
 
-            return (
-              <SearchCard
-                key={recipeDetail[0].id}
-                imgURL={recipeDetail[0].image}
-                width="30rem"
-                height="400rem"
-                title={recipeDetail[0].title}
-                ingredients={recipeDetail[0].extendedIngredients
-                  .map((ingredient) => ingredient.name)
-                  .join(", ")}
-                tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
-                time={recipeDetail[0].readyInMinutes}
-                size={recipeDetail[0].servings}
-                calories={Math.floor(
-                  recipeDetail[0].nutrition.nutrients[0].amount
-                )}
-                onClick={() =>
-                  navigate("/testRecipe", {
-                    state: { recipe: recipeDetail[0] },
-                  })
-                }
+          return (
+            <SearchCard
+              testid="1"
+              key={recipeDetail[0].id}
+              imgURL={recipeDetail[0].image}
+              width="30rem"
+              height="400rem"
+              title={recipeDetail[0].title}
+              ingredients={recipeDetail[0].extendedIngredients
+                .map((ingredient) => ingredient.name)
+                .join(", ")}
+              tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
+              time={recipeDetail[0].readyInMinutes}
+              size={recipeDetail[0].servings}
+              calories={Math.floor(
+                recipeDetail[0].nutrition.nutrients[0].amount
+              )}
+              onClick={() =>
+                navigate("/testRecipe", {
+                  state: { recipe: recipeDetail[0] },
+                })
+              }
+            />
+          );
+        })}
+        {loading && (
+          <div className={styles.msg}>
+            <FontAwesomeIcon icon={faSpinner} spinPulse />
+            &ensp;Loading...
+          </div>
+        )}
+        {!loading && recipeDetails && recipeDetails?.length == 0 && (
+          <Stack className={styles.msg} direction="vertical" gap={5}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className="text-danger"
               />
-            );
-          })}
-          {loading && <div className={styles.msg}><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading...</div>}
-          {!loading && recipeDetails && recipeDetails?.length == 0 && (
-            <Stack className={styles.msg} direction='vertical' gap={5}>
-               <span>
-                  <FontAwesomeIcon icon={faCircleExclamation} className="text-danger"/>
-                  &ensp;Recipe Not Found
-               </span>
+              &ensp;Recipe Not Found
+            </span>
 
-               <span className={styles.secondaryMsg}>
-                  <h5>What You Can Do:</h5>
-                  <ul className="h6">
-                     <li>Check your spelling</li>
-                     <li>Use ingredients as searching keywords</li>
-                     <li>Double check the filter setting in Advanced Search panel</li>
-                  </ul>
-               </span>
-            </Stack>
-          )}
-        </div>
+            <span className={styles.secondaryMsg}>
+              <h5>What You Can Do:</h5>
+              <ul className="h6">
+                <li>Check your spelling</li>
+                <li>Use ingredients as searching keywords</li>
+                <li>
+                  Double check the filter setting in Advanced Search panel
+                </li>
+              </ul>
+            </span>
+          </Stack>
+        )}
       </div>
+    </div>
   );
 };
 

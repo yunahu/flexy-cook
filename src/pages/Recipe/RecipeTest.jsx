@@ -19,6 +19,10 @@ const RecipeTest = () => {
     console.log("Recipe:", recipe);
   }, [recipe]);
 
+  if (recipe.analyzedInstructions.length === 0) {
+    return <h1>No instructions</h1>;
+  }
+
   const CookingSteps = recipe?.analyzedInstructions[0]?.steps.map(
     (step, index) =>
       index === recipe.analyzedInstructions[0].steps.length - 1 ? (
@@ -35,7 +39,7 @@ const RecipeTest = () => {
         <CookingStep
           key={index}
           height="300px"
-          image={getImage(step)}
+          image={getImage(recipe, index)}
           number={index + 1}
           step={step.step}
           equipment={step.equipment ? step.equipment : ""}
@@ -55,7 +59,7 @@ const RecipeTest = () => {
          <RecipeBanner
             imgURL={recipe.image}
             title={recipe.title}
-            description={recipe.extendedIngredients
+            ingredients={recipe.extendedIngredients
                .map((ingredient) => ingredient.name)
                .join(", ")}
             time={recipe.readyInMinutes}

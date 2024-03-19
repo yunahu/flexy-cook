@@ -7,10 +7,11 @@ import { colorByNum } from "src/utils/common";
 import dropdownStyles from "src/components/DropdownMenu/DropdownMenu.module.css";
 import styles from "../AdvancedSearch/AdvancedSearch.module.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Container from "react-bootstrap/Container";
+import { useLocation } from "react-router-dom";
 
 const map = {
   info: dropdownStyles["btn-info"],
@@ -23,11 +24,23 @@ const map = {
 //   key: "goSearch"
 // }
 
-const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
+const AdvancedSearchMenu = ({
+  background = "success",
+  onTagsChange,
+  testid,
+}) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState(null);
   const [tags, setTags] = useState([]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname != "/testSearch") {
+      setTags([]);
+    }
+  }, [location.pathname]);
 
   const handleSelectChangeNutrient = (e) => {
     if (e.target.value != "") {
@@ -99,7 +112,11 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
     selectedMinOrMax === "";
 
   return (
-    <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
+    <Dropdown
+      className={dropdownStyles.container}
+      drop={"down-centered"}
+      data-testid={testid}
+    >
       <Dropdown.Toggle
         variant={background}
         className={`${map[background]} ${dropdownStyles.toggle}`}

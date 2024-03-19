@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "id": 645849,
+      "title": "Grilled Salmon Salad With Blood Orange Cilantro Vinaigrette",
+      "image": "https://spoonacular.com/recipeImages/645849-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 251.955, "unit": "kcal" }]
+      }
+    },
+    {
+      "id": 637335,
+      "title": "Cedar-Planked Salmon With Mustard Dill Sauce",
+      "image": "https://spoonacular.com/recipeImages/637335-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 283.69, "unit": "kcal" }]
+      }
+    },
+    {
+      "id": 633779,
+      "title": "Baked Salmon With Lime",
+      "image": "https://spoonacular.com/recipeImages/633779-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 296.106, "unit": "kcal" }]
+      }
+    },
+    {
+      "id": 658483,
+      "title": "Roasted Alaskan Salmon with Cherries",
+      "image": "https://spoonacular.com/recipeImages/658483-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 253.451, "unit": "kcal" }]
+      }
+    },
+    {
+      "id": 659670,
+      "title": "Seared Salmon With Garlic Dill Sour Cream",
+      "image": "https://spoonacular.com/recipeImages/659670-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 170.825, "unit": "kcal" }]
+      }
+    },
+    {
+      "id": 665348,
+      "title": "Wild Salmon Cakes",
+      "image": "https://spoonacular.com/recipeImages/665348-312x231.jpg",
+      "imageType": "jpg",
+      "nutrition": {
+        "nutrients": [{ "name": "Calories", "amount": 209.245, "unit": "kcal" }]
+      }
+    }
+  ],
+  "offset": 0,
+  "number": 6,
+  "totalResults": 17
+}

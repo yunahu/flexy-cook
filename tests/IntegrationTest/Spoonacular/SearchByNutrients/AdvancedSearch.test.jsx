@@ -1,12 +1,24 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 
-describe("Advanced Search", () => {
-  test("render with dropdown button & area is not expanded", async () => {
-    render(<AdvancedSearchMenu />);
+vi.mock("react-router-dom", () => ({
+  useLocation: () => ({ pathname: "" }),
+}));
 
+describe("Advanced Search", () => {
+  const onTagsChangeMock = vi.fn(() => {});
+
+  beforeEach(() => {
+    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  test("render with dropdown button & area is not expanded", async () => {
     // button is rendered?
     expect(screen.getByRole("button")).toBeTruthy();
 
@@ -16,8 +28,6 @@ describe("Advanced Search", () => {
   });
 
   test("dropdown menu is expanded when the user user clicks the dropdown button", async () => {
-    render(<AdvancedSearchMenu />);
-
     const button = screen.getByRole("button");
     // menu is not expanded?
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -32,8 +42,6 @@ describe("Advanced Search", () => {
   });
 
   test("when the dropdown menu is expanded, render all required components", async () => {
-    render(<AdvancedSearchMenu />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -52,8 +60,6 @@ describe("Advanced Search", () => {
   });
 
   test("until all values filled, disable add tag button", async () => {
-    render(<AdvancedSearchMenu />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -81,9 +87,6 @@ describe("Advanced Search", () => {
   });
 
   test("the scale of tht nutrient amount will be changed based on the nutrient", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -115,8 +118,6 @@ describe("Advanced Search", () => {
     window.alert = vi.fn(() => {});
     // alert is not called?
     expect(window.alert).toHaveBeenCalledTimes(0);
-    const onTagsChangeMock = vi.fn(() => {});
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
 
     // menu is not expanded?
     const button = screen.getByRole("button");
@@ -176,9 +177,6 @@ describe("Advanced Search", () => {
   });
 
   test("when the tag is added, then information that the user typed is shown as a tag", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -204,9 +202,6 @@ describe("Advanced Search", () => {
   });
 
   test("when the user click the close button on the tag, the tag will be deleted", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -239,9 +234,6 @@ describe("Advanced Search", () => {
   });
 
   test("the can add as many tags as they want, and all of them will be shown", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
-
     // menu is not expanded?
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -285,12 +277,9 @@ describe("Advanced Search", () => {
   });
 
   test("when the user try to make tags that have the same nutrient & range, then alert to user that is not possible & let the users not make the duplicate tag", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
     window.alert = vi.fn(() => {});
     // alert is not called?
     expect(window.alert).toHaveBeenCalledTimes(0);
-
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
 
     // menu is not expanded?
     const button = screen.getByRole("button");
@@ -343,9 +332,6 @@ describe("Advanced Search", () => {
   });
 
   test("when add tag, onTagsChange will be called", async () => {
-    const onTagsChangeMock = vi.fn(() => {});
-
-    render(<AdvancedSearchMenu onTagsChange={onTagsChangeMock} />);
     // onTagsChange is not called?
     expect(onTagsChangeMock).toHaveBeenCalledTimes(0);
 

@@ -6,7 +6,15 @@ import Tags from "src/components/Cards/Tags/Tags";
 
 import styles from "./SingleCarousel.module.css";
 
-const SingleCarousel = ({ imgURL, title, servings, time, calories, tags }) => {
+const SingleCarousel = ({
+  testid,
+  imgURL,
+  title,
+  servings,
+  time,
+  calories,
+  tags,
+}) => {
   /**
    * props {
    *    img: 'url',
@@ -36,7 +44,10 @@ const SingleCarousel = ({ imgURL, title, servings, time, calories, tags }) => {
     <>
       <Image src={imgURL} className={styles.img} rounded />
 
-      <Carousel.Caption className={styles.caption}>
+      <Carousel.Caption
+        className={styles.caption}
+        data-testid={`carousel_banner_${testid || 0}`}
+      >
         <h3>{title}</h3>
         <CookingInfo size={servings} time={time} calories={calories} />
         <Tags tags={tags} />

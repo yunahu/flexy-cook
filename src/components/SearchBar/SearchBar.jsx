@@ -6,10 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
-function SearchBar({ text, value, onChange, btnClick, btnText, className }) {
+function SearchBar({
+  text,
+  value,
+  onChange,
+  btnClick,
+  btnText,
+  className,
+  testid,
+}) {
   return (
     <InputGroup className={`${styles.container} ${className}`}>
       <Form.Control
+        data-testid={`${testid}_form`}
         placeholder={text}
         aria-label="Search"
         value={value}
@@ -18,6 +27,7 @@ function SearchBar({ text, value, onChange, btnClick, btnText, className }) {
         className={styles.form}
       />
       <Button
+        data-testid={`${testid}_button`}
         variant="outline-secondary"
         className={styles["outline-secondary"]}
         onClick={btnClick}

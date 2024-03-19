@@ -8,6 +8,7 @@ import styles from "./LargeSquareCard.module.css";
 import { Stack } from "react-bootstrap";
 
 const LargeSquareCard = ({
+  testid,
   imgURL,
   title,
   ingredients,
@@ -22,7 +23,10 @@ const LargeSquareCard = ({
    * tags: array of objects, each has color, text as keys
    */
   return (
-    <CardBootstrap className={styles.lg_sq_card}>
+    <CardBootstrap
+      className={styles.lg_sq_card}
+      data-testid={`lg_sq_card_${testid || 0}`}
+    >
       <Stack direction="vertical">
         <CardBootstrap.Img
           variant="top"
