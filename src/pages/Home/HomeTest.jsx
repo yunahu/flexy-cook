@@ -210,6 +210,7 @@ const HomeTest = () => {
       <Stack gap={3}>
         {/** horizontal recommendation cards */}
         <HorizontalCard
+          testid="4"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}
@@ -226,6 +227,7 @@ const HomeTest = () => {
           tags={createTags(recipeDetails[4])}
         />
         <HorizontalCard
+          testid="5"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}
@@ -242,6 +244,7 @@ const HomeTest = () => {
           tags={createTags(recipeDetails[5])}
         />
         <HorizontalCard
+          testid="6"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}
