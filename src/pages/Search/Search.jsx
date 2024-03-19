@@ -8,7 +8,6 @@ import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
 
-
 const tag = {
   tags: [
     { text: "Tag 1", color: "danger" },
@@ -19,13 +18,8 @@ const tag = {
     { text: "Tag 6", color: "info" },
     { text: "Tag 7", color: "dark" },
     { text: "Tag 8", color: "light" },
-
-
-  ]
-}
-
-
-
+  ],
+};
 
 const dummyData = [
   {
@@ -33,7 +27,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -52,7 +47,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 2",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -71,7 +67,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 3",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -90,7 +87,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 4",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -109,7 +107,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 5",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -128,7 +127,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 6",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -147,7 +147,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 7",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -166,7 +167,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 8",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -185,7 +187,8 @@ const dummyData = [
     width: "30rem",
     height: "400rem" /** must be px/rem value */,
     // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imgURL:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Some Random Recipe 9",
     description: "This is recipe description blablabla ... ",
     info: {
@@ -200,9 +203,6 @@ const dummyData = [
     ],
   },
 ];
-
-
-
 
 const SearchPage = () => {
   const [ingredients, setSearch] = useState("");
@@ -235,7 +235,7 @@ const SearchPage = () => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-        document.body.scrollHeight - 100 &&
+          document.body.scrollHeight - 100 &&
         !loading &&
         cards.length < dummyData.length
       ) {
@@ -254,24 +254,24 @@ const SearchPage = () => {
           <SearchBar
             text="onion, canned tomato"
             btnText={"Search"}
-            
             value={ingredients}
             onChange={handleOnChange}
             btnClick={() =>
               navigate("/search", { state: { ingredients, tags } })
             }
           />
-          <AdvancedSearchMenu styles={{ color: 'white' }} onTagsChange={handleTagsChange} />
-        
-        <p className={styles.backgroundText}>Recommended Tags</p>
-        <div className={styles.design}>
+          <AdvancedSearchMenu
+            styles={{ color: "white" }}
+            onTagsChange={handleTagsChange}
+          />
 
-          <Tags tags={tag.tags} className={styles.tag} />
-        </div>
-        <div className={styles.designSmall}>
-
-          <Tags tags={tag.tags.slice(0, 5)} />
-        </div>
+          <p className={styles.backgroundText}>Recommended Tags</p>
+          <div className={styles.design}>
+            <Tags tags={tag.tags} className={styles.tag} />
+          </div>
+          <div className={styles.designSmall}>
+            <Tags tags={tag.tags.slice(0, 5)} />
+          </div>
         </div>
       </div>
       <hr />

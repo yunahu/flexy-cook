@@ -4,6 +4,7 @@ import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
 
 import styles from "./HorizontalCard.module.css";
+import { trimIngredients } from "src/utils/spoonacularFunctions";
 import { Row, Col, Stack } from "react-bootstrap";
 
 const HorizontalCard = ({
@@ -23,6 +24,7 @@ const HorizontalCard = ({
    * tags: array of objects, each has color, text as keys
    */
   return (
+
     <>
       <CardBootstrap className={styles.hori_Card} style={{ width: width }} onClick={onClick}>
          <Row style={{ height: '100%' }}>
@@ -35,18 +37,18 @@ const HorizontalCard = ({
                   <Stack direction='vertical'>
                      <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
-                     <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
-                     <CardBootstrap.Text>{ingredients}</CardBootstrap.Text>
+              <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
+              <CardBootstrap.Text>
+                {ingredients ? trimIngredients(ingredients, 8) : ""}
+              </CardBootstrap.Text>
 
-                     <CookingInfo size={size} time={time} calories={calories} />
-                     <Tags tags={tags} />
-                  </Stack>
-               </CardBootstrap.Body>
-
-            </Col>
-         </Row>
-      </CardBootstrap>
-    </>
+              <CookingInfo size={size} time={time} calories={calories} />
+              <Tags tags={tags} />
+            </Stack>
+          </CardBootstrap.Body>
+        </Col>
+      </Row>
+    </CardBootstrap>
   );
 };
 

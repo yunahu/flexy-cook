@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import throttle from "lodash.throttle";
+import env from "src/utils/env";
 
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
@@ -76,7 +77,7 @@ const SearchTest = () => {
 
     try {
       axios
-        .get("http://localhost:3000/spoonacular/searchRecipe", {
+        .get(`${env.API_URL}/spoonacular/searchRecipe`, {
           params: {
             offset: recipeDetails?.length || 0,
             includeIngredients: ingredients ? ingredients : search,
@@ -92,12 +93,12 @@ const SearchTest = () => {
             recipeId.map((id) =>
               Promise.all([
                 axios
-                  .get("http://localhost:3000/spoonacular/getRecipe", {
+                  .get(`${env.API_URL}/spoonacular/getRecipe`, {
                     params: { id, includeNutrition: true },
                   })
                   .then((res) => res.data),
                 axios
-                  .get("http://localhost:3000/spoonacular/getRecipeTaste", {
+                  .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
                     params: { id, normalize: true },
                   })
                   .then((res) => res.data),
@@ -129,57 +130,56 @@ const SearchTest = () => {
   };
 
   return (
-    <>
-      <div>
-        <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-        <SearchBar
-          text="onion, canned tomato, pasta"
-          value={search}
-          onChange={handleOnChange}
-          btnClick={handleBtnClick}
-          btnText="search"
-        />
-        <div className={styles.container}>
-          {recipeDetails?.map((recipeDetail) => {
-            const tags = [
-              {
-                text: recipeDetail[0].veryPopular ? "Popular" : null,
-                type: "primary",
-              },
-              {
-                text: recipeDetail[0].cheap ? "Cheap" : null,
-                type: "info",
-              },
-              {
-                text:
-                  recipeDetail[0].cuisines.length > 0
-                    ? capitalize(recipeDetail[0].cuisines[0])
-                    : null,
-                type: "success",
-              },
-              {
-                text:
-                  recipeDetail[0].diets.length > 0
-                    ? capitalize(recipeDetail[0].diets[0])
-                    : null,
-                type: "warning",
-              },
-              {
-                text:
-                  recipeDetail[0].dishTypes.length > 0
-                    ? capitalize(recipeDetail[0].dishTypes[0])
-                    : null,
-                type: "dark",
-              },
-              {
-                text: recipeDetail[0].veryHealthy ? "Healthy" : null,
-                type: "info",
-              },
-              {
-                text: findStrongestTaste(recipeDetail[1]),
-                type: "light",
-              },
-            ];
+    <div>
+      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+      <SearchBar
+        text="onion, canned tomato, pasta"
+        value={search}
+        onChange={handleOnChange}
+        btnClick={handleBtnClick}
+        btnText="search"
+      />
+      <div className={styles.container}>
+        {recipeDetails?.map((recipeDetail) => {
+          const tags = [
+            {
+              text: recipeDetail[0].veryPopular ? "Popular" : null,
+              type: "primary",
+            },
+            {
+              text: recipeDetail[0].cheap ? "Cheap" : null,
+              type: "info",
+            },
+            {
+              text:
+                recipeDetail[0].cuisines.length > 0
+                  ? capitalize(recipeDetail[0].cuisines[0])
+                  : null,
+              type: "success",
+            },
+            {
+              text:
+                recipeDetail[0].diets.length > 0
+                  ? capitalize(recipeDetail[0].diets[0])
+                  : null,
+              type: "warning",
+            },
+            {
+              text:
+                recipeDetail[0].dishTypes.length > 0
+                  ? capitalize(recipeDetail[0].dishTypes[0])
+                  : null,
+              type: "dark",
+            },
+            {
+              text: recipeDetail[0].veryHealthy ? "Healthy" : null,
+              type: "info",
+            },
+            {
+              text: findStrongestTaste(recipeDetail[1]),
+              type: "light",
+            },
+          ];
 
             return (
               <SearchCard
@@ -225,7 +225,7 @@ const SearchTest = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

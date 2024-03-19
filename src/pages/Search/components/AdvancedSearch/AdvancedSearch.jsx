@@ -26,15 +26,19 @@ const map = {
 const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(null);
   const [tags, setTags] = useState([]);
 
   const handleSelectChangeNutrient = (e) => {
-    setSelectedNutrient(e.target.value);
+    if (e.target.value != "") {
+      setSelectedNutrient(e.target.value);
+    }
   };
 
   const handleSelectChangeMinOrMax = (e) => {
-    setSelectedMinOrMax(e.target.value);
+    if (e.target.value != "") {
+      setSelectedMinOrMax(e.target.value);
+    }
   };
 
   const handleAmountChange = (e) => {
@@ -88,7 +92,11 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   };
 
   // if the input is empty, disable the button
-  const disabled = !selectedNutrient || !amount || !selectedMinOrMax;
+  const disabled =
+    selectedNutrient === "" ||
+    amount === "" ||
+    amount === null ||
+    selectedMinOrMax === "";
 
   return (
     <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
@@ -112,7 +120,9 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
                 value={selectedMinOrMax}
                 onChange={handleSelectChangeMinOrMax}
               >
-                <option selected>Select Range</option>
+                <option selected value="">
+                  Select Range
+                </option>
                 <option value="Min">Min</option>
                 <option value="Max">Max</option>
               </Form.Select>
@@ -122,7 +132,9 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
                 onChange={handleSelectChangeNutrient}
                 value={selectedNutrient}
               >
-                <option selected>Select Nutrient</option>
+                <option selected value="">
+                  Select Nutrient
+                </option>
                 <option value="Carbs">Carbs</option>
                 <option value="Protein">Protein</option>
                 <option value="Fat">Fat</option>
