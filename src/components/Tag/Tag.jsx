@@ -13,9 +13,9 @@ const map = {
 };
 
 // eslint-disable-next-line react/prop-types
-const Tag = ({ title, bg = "primary"}) => {
+const Tag = ({ onClick, title, bg = "primary" }) => {
   return (
-    <Badge pill bg={bg} className={map[bg]}>
+    <Badge pill bg={bg} className={map[bg]} as="button" onClick={onClick}>
       {title}
     </Badge>
   );

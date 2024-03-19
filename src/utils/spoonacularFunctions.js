@@ -29,6 +29,7 @@ export const createLocationData = (instruction, tag) => {
 export const createTags = (recipe) => {
     const tags = [
         {
+            key: "cuisine",
             text:
                 recipe[0]?.cuisines.length > 0
                     ? capitalize(recipe[0].cuisines[0])
@@ -36,10 +37,12 @@ export const createTags = (recipe) => {
             type: "success",
         },
         {
+            key: "diet",
             text: recipe[0]?.diets.length > 0 ? capitalize(recipe[0].diets[0]) : null,
             type: "warning",
         },
         {
+            key: "type",
             text:
                 recipe[0]?.dishTypes.length > 0
                     ? capitalize(recipe[0].dishTypes[0])
@@ -47,6 +50,15 @@ export const createTags = (recipe) => {
             type: "dark",
         },
         {
+            key: "maxReadyTime",
+            text:
+                recipe[0]?.maxReadyTime < 30
+                    ? "Fast"
+                    : null,
+            type: "info",
+        },
+        {
+            key: "maxCalories",
             text: recipe[0]?.veryPopular ? "Popular" : null,
             type: "info",
         },
@@ -67,13 +79,55 @@ export const createTags = (recipe) => {
 };
 
 export const trimIngredients = (ingredients, length) => {
+
     if (ingredients?.length <= length) {
         ingredients = ingredients.map((ingredient) => ingredient.name).join(", ");
         return ingredients;
     }
 
-    ingredients = ingredients.slice(0, length).map((ingredient) => ingredient.name)
+    let trimmedIngredients = ingredients?.splice(0, length).map((ingredient) => ingredient.name)
         .join(", ");
-    ingredients += "...";
-    return ingredients;
+    trimmedIngredients += "...";
+    return trimmedIngredients;
 };
+
+export const getTagInfo = (tag) => {
+    if (tag.key === undefined || tag.text === null) {
+        alert("This tag is not clickable")
+        return null;
+    }
+
+    let tagInfo = [];
+    if (tag?.key == "maxReadyTime") {
+        tagInfo = [
+            {
+                key: tag.key,
+                amount: 30,
+            }
+        ]
+    } else if (tag?.key == "maxCalories") {
+        tagInfo = [
+            {
+                key: tag.key,
+                amount: 300,
+            },
+            {
+                key: "maxSodium",
+                amount: 70,
+            },
+            {
+                key: "maxSugar",
+                amount: 8,
+            }
+        ]
+    } else if (tag.key && tag.text != null) {
+        tagInfo = [
+            {
+                key: tag.key,
+                amount: (tag.text).toLowerCase(),
+            }
+        ]
+    }
+    return tagInfo;
+}
+

@@ -14,7 +14,7 @@ import Container from "react-bootstrap/Container";
 import { useLocation } from "react-router-dom";
 
 const map = {
-  info: dropdownStyles["btn-info"],
+  primary: dropdownStyles["btn-primary"],
   success: dropdownStyles["btn-success"],
 };
 

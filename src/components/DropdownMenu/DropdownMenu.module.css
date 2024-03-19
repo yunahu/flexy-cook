@@ -1,8 +1,10 @@
 .btn-primary {
   /* transparent & text-color:while */
+  padding: 0.7rem;
   background-color: rgb(255, 112, 67, 0) !important;
   border-color: rgb(255, 112, 67, 0) !important;
   color: white;
+  font: 17px "Noto Sans", sans-serif;
 }
 
 .btn-success {
@@ -14,13 +16,15 @@
   font: 17px "Noto Sans", sans-serif;
 }
 
-:hover.btn-success,
+btn-success:hover,
+btn-primary:hover,
 .show {
   padding: 0.7rem;
   background-color: #9eb384 !important;
 }
 
-:active.btn-success {
+btn-success:active,
+btn-primary:active {
   padding: 0.7rem;
   background-color: #9eb384 !important;
 }
