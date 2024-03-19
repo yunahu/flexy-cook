@@ -49,6 +49,7 @@ const HorizontalCard = ({
         </Col>
       </Row>
     </CardBootstrap>
+   </>
   );
 };
 

@@ -225,7 +225,6 @@ const SearchTest = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 
