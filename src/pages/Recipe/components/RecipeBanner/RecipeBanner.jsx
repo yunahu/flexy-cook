@@ -10,7 +10,7 @@ const RecipeBanner = ({
    imgURL,
    title,
    ingredients,
-   servings,
+   size,
    time,
    calories,
    tags
@@ -27,7 +27,7 @@ const RecipeBanner = ({
                {ingredients}
             </Card.Text>
             <Card.Text>
-               <CookingInfo size={servings} time={time} calories={calories} />
+               <CookingInfo size={size} time={time} calories={calories} />
                <Tags tags={tags} />
             </Card.Text>
          </Card.ImgOverlay>
