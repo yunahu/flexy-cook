@@ -138,6 +138,7 @@ const HomeTest = () => {
           {/* Small horizontal recommendation cards x3 */}
           <Stack direction="vertical" gap={3} className={styles.sm_3_cards}>
             <HorizontalCard
+              testid="1"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
@@ -154,6 +155,7 @@ const HomeTest = () => {
               tags={createTags(recipeDetails[1])}
             />
             <HorizontalCard
+              testid="2"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
@@ -170,6 +172,7 @@ const HomeTest = () => {
               tags={createTags(recipeDetails[2])}
             />
             <HorizontalCard
+              testid="3"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
