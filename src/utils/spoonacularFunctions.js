@@ -16,36 +16,46 @@ export const findStrongestTaste = (tastes) => {
     }
 };
 
+export const createLocationData = (instruction, tag) => {
+    const data = [
+        {
+            recipe: instruction,
+            tags: tag,
+        }
+    ]
+    return data;
+};
+
 export const createTags = (recipe) => {
     const tags = [
         {
             text:
-                recipe[0].cuisines.length > 0
+                recipe[0]?.cuisines.length > 0
                     ? capitalize(recipe[0].cuisines[0])
                     : null,
             type: "success",
         },
         {
-            text: recipe[0].diets.length > 0 ? capitalize(recipe[0].diets[0]) : null,
+            text: recipe[0]?.diets.length > 0 ? capitalize(recipe[0].diets[0]) : null,
             type: "warning",
         },
         {
             text:
-                recipe[0].dishTypes.length > 0
+                recipe[0]?.dishTypes.length > 0
                     ? capitalize(recipe[0].dishTypes[0])
                     : null,
             type: "dark",
         },
         {
-            text: recipe[0].veryPopular ? "Popular" : null,
+            text: recipe[0]?.veryPopular ? "Popular" : null,
             type: "info",
         },
         {
-            text: recipe[0].cheap ? "Cheap" : null,
+            text: recipe[0]?.cheap ? "Cheap" : null,
             type: "info",
         },
         {
-            text: recipe[0].veryHealthy ? "Healthy" : null,
+            text: recipe[0]?.veryHealthy ? "Healthy" : null,
             type: "info",
         },
         {

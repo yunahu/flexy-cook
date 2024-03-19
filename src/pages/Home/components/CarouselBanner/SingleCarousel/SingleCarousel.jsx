@@ -3,6 +3,7 @@ import { Button, Carousel, Image } from "react-bootstrap";
 
 import CookingInfo from "src/components/Cards/CookingInfo/CookingInfo";
 import Tags from "src/components/Cards/Tags/Tags";
+import ModifiedButton from "src/components/ModifiedButton/ModifiedButton";
 
 import styles from "./SingleCarousel.module.css";
 
@@ -14,6 +15,7 @@ const SingleCarousel = ({
   time,
   calories,
   tags,
+  onClick,
 }) => {
   /**
    * props {
@@ -52,9 +54,12 @@ const SingleCarousel = ({
         <CookingInfo size={servings} time={time} calories={calories} />
         <Tags tags={tags} />
 
-        <Button className={styles.goBtn} bg={styles.goBtn}>
-          Check It Out
-        </Button>
+        <ModifiedButton
+          className={styles.goBtn}
+          title={"Check It Out"}
+          variant="light"
+          onClick={onClick}
+        />
       </Carousel.Caption>
     </>
   );

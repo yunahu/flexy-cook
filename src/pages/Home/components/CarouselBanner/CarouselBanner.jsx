@@ -5,7 +5,14 @@ import SingleCarousel from "./SingleCarousel/SingleCarousel";
 
 import styles from "./CarouselBanner.module.css";
 
-const ControlledCarousel = ({ prop1, prop2, prop3 }) => {
+const ControlledCarousel = ({
+  prop1,
+  prop2,
+  prop3,
+  onClick1,
+  onClick2,
+  onClick3,
+}) => {
   /**
    * three_props {
    *    item1: { object for carousel 1 },
@@ -34,6 +41,7 @@ const ControlledCarousel = ({ prop1, prop2, prop3 }) => {
           time={prop1.time}
           calories={prop1.calories}
           tag={prop1.tags}
+          onClick={onClick1}
         />
       </Carousel.Item>
       <Carousel.Item>
@@ -45,6 +53,7 @@ const ControlledCarousel = ({ prop1, prop2, prop3 }) => {
           time={prop2.time}
           calories={prop2.calories}
           tag={prop2.tags}
+          onClick={onClick2}
         />
       </Carousel.Item>
       <Carousel.Item>
@@ -56,6 +65,7 @@ const ControlledCarousel = ({ prop1, prop2, prop3 }) => {
           time={prop3.time}
           calories={prop3.calories}
           tag={prop3.tags}
+          onClick={onClick3}
         />
       </Carousel.Item>
     </Carousel>

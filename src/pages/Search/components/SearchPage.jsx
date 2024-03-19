@@ -8,8 +8,7 @@ import env from "src/utils/env";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
-import { capitalize } from "src/utils/common";
-import { findStrongestTaste } from "src/utils/spoonacularFunctions";
+import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
 
 import styles from "src/pages/Search/Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -148,46 +147,6 @@ const SearchTest = () => {
       />
       <div className={styles.container}>
         {recipeDetails?.map((recipeDetail) => {
-          const tags = [
-            {
-              text: recipeDetail[0].veryPopular ? "Popular" : null,
-              type: "primary",
-            },
-            {
-              text: recipeDetail[0].cheap ? "Cheap" : null,
-              type: "info",
-            },
-            {
-              text:
-                recipeDetail[0].cuisines.length > 0
-                  ? capitalize(recipeDetail[0].cuisines[0])
-                  : null,
-              type: "success",
-            },
-            {
-              text:
-                recipeDetail[0].diets.length > 0
-                  ? capitalize(recipeDetail[0].diets[0])
-                  : null,
-              type: "warning",
-            },
-            {
-              text:
-                recipeDetail[0].dishTypes.length > 0
-                  ? capitalize(recipeDetail[0].dishTypes[0])
-                  : null,
-              type: "dark",
-            },
-            {
-              text: recipeDetail[0].veryHealthy ? "Healthy" : null,
-              type: "info",
-            },
-            {
-              text: findStrongestTaste(recipeDetail[1]),
-              type: "light",
-            },
-          ];
-
           return (
             <SearchCard
               testid="1"
@@ -199,7 +158,9 @@ const SearchTest = () => {
               ingredients={recipeDetail[0].extendedIngredients
                 .map((ingredient) => ingredient.name)
                 .join(", ")}
-              tags={tags.filter((tag) => tag.text !== null).slice(0, 3)}
+              tags={createTags(recipeDetail)
+                .filter((tag) => tag.text !== null)
+                .slice(0, 3)}
               time={recipeDetail[0].readyInMinutes}
               size={recipeDetail[0].servings}
               calories={Math.floor(
@@ -207,7 +168,12 @@ const SearchTest = () => {
               )}
               onClick={() =>
                 navigate("/testRecipe", {
-                  state: { recipe: recipeDetail[0] },
+                  state: {
+                    recipeDetail: createLocationData(
+                      recipeDetail[0],
+                      createTags(recipeDetail)
+                    ),
+                  },
                 })
               }
             />
