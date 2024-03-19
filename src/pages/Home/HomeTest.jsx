@@ -8,6 +8,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTags } from "src/utils/spoonacularFunctions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import env from "src/utils/env";
 
 const HomeTest = () => {
