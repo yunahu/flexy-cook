@@ -6,10 +6,10 @@ import { Button } from "react-bootstrap";
 
 import styles from "./SearchCard.module.css";
 
-const SearchCard = (props) => {
+const SearchCard = (props, testid) => {
   return (
     <>
-      <CardBootstrap className={styles.card}>
+      <CardBootstrap className={styles.card} data-testid={`card_${testid}`}>
         <CardBootstrap.Img
           variant="top"
           src={props.imgURL}
@@ -20,7 +20,9 @@ const SearchCard = (props) => {
         <CardBootstrap.Body>
           <CardBootstrap.Title>{props.title}</CardBootstrap.Title>
 
-          <CardBootstrap.Text className={styles.description}>{props.description}</CardBootstrap.Text>
+          <CardBootstrap.Text className={styles.description}>
+            {props.description}
+          </CardBootstrap.Text>
 
           <CookingInfo
             size={props.size}
@@ -37,11 +39,10 @@ const SearchCard = (props) => {
           />
         </CardBootstrap.Body>
         <CardBootstrap.Footer className={styles.footer}>
-       
-        <a href="" className={styles.footerLink}>
-          Check It Out
-        </a>
-      </CardBootstrap.Footer>
+          <a href="" className={styles.footerLink}>
+            Check It Out
+          </a>
+        </CardBootstrap.Footer>
       </CardBootstrap>
     </>
   );

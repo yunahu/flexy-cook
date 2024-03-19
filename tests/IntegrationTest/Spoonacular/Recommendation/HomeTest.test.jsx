@@ -2,14 +2,19 @@ import { describe, test, expect, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import HomeTest from "src/pages/Home/HomeTest";
-import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import env from "src/utils/env";
 import RecipeDetailMock from "./RecipeDetailMock";
 import RandomRecipeMock from "./RandomRecipeMock";
 import RecipeTasteMock from "./RecipeTasteMock";
+import { useNavigate } from "react-router-dom";
+
+const mockUseNavigate = vi.fn();
 
 vi.mock("axios");
+vi.mock("react-router-dom", () => ({
+  useNavigate: () => mockUseNavigate,
+}));
 
 describe("Home Page", () => {
   beforeEach(() => {
@@ -20,7 +25,7 @@ describe("Home Page", () => {
 
     for (let i = 0; i < 7; i++) {
       axios.get.mockResolvedValueOnce({
-        data: RecipeDetailMock,
+        data: { ...RecipeDetailMock, title: `Test title ${i}`, id: i },
       });
 
       axios.get.mockResolvedValueOnce({
@@ -28,15 +33,11 @@ describe("Home Page", () => {
       });
     }
 
-    render(
-      <BrowserRouter>
-        <HomeTest />
-      </BrowserRouter>
-    );
+    render(<HomeTest />);
   });
 
   test("fetch random recipe successfully", async () => {
-    // api called to fetch random recipe?
+    // api is called to fetch random recipe?
     expect(axios.get).toHaveBeenNthCalledWith(
       1,
       `${env.API_URL}/spoonacular/randomRecipe`,
@@ -44,17 +45,17 @@ describe("Home Page", () => {
     );
   });
 
-  test("fetch recipe details successfully", async () => {
+  test("fetch recipe details & taste successfully", async () => {
+    // api is called to fetch recipe detail?
     await waitFor(() => {
-      console.log("Random Recipe Axios call:", axios.get.mock.calls[0]);
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/randomRecipe`,
         { params: { number: 7 } }
       );
     });
 
+    // api is called to fetch recipe taste?
     await waitFor(() => {
-      console.log("Random Recipe Axios call:", axios.get.mock.calls[1]);
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/getRecipe`,
         {
@@ -67,40 +68,113 @@ describe("Home Page", () => {
     });
 
     await waitFor(() => {
-      console.log("Random Recipe Axios call:", axios.get.mock.calls[1]);
       expect(axios.get).toHaveBeenCalledWith(
-        `${env.API_URL}/spoonacular/getRecipe`,
+        `${env.API_URL}/spoonacular/getRecipeTaste`,
         {
           params: {
             id: 663883,
-            includeNutrition: true,
+            normalize: true,
           },
         }
       );
     });
   });
 
-  // expect(axios.get).toHaveBeenNthCalledWith(
-  //   1,
-  //   `${env.API_URL}/spoonacular/randomRecipe`,
-  //   { params: { number: 7 } }
-  // );
+  test("render recipe details", async () => {
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/randomRecipe`,
+        { params: { number: 7 } }
+      );
+    });
 
-  // waitFor(() =>
-  //   expect(axios.get).toHaveBeenNthCalledWith(
-  //     2,
-  //     `${env.API_URL}/spoonacular/getRecipe`,
-  //     { params: { id: 654614, includeNutrition: true } }
-  //   )
-  // );
+    // api is called to fetch recipe taste?
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/getRecipe`,
+        {
+          params: {
+            id: 663883,
+            includeNutrition: true,
+          },
+        }
+      );
+    });
 
-  // waitFor(() =>
-  //   expect(axios.get).toHaveBeenNthCalledWith(
-  //     3,
-  //     `${env.API_URL}/spoonacular/getRecipeTaste`,
-  //     { params: { id: 654614, normalize: true } }
-  //   )
-  // );
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/getRecipeTaste`,
+        {
+          params: {
+            id: 663883,
+            normalize: true,
+          },
+        }
+      );
+    });
+
+    // all recipe cards are rendered?
+    expect(screen.getByTestId("lg_sq_card_1")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_1")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_2")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_3")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_4")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_5")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_6")).toBeInTheDocument();
+    expect(screen.getByTestId("lg_hori_card_6")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_1")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_2")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_3")).toBeInTheDocument();
+  });
+
+  test("button 'Check It Out' is clickable", async () => {
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/randomRecipe`,
+        { params: { number: 7 } }
+      );
+    });
+
+    // api is called to fetch recipe taste?
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/getRecipe`,
+        {
+          params: {
+            id: 663883,
+            includeNutrition: true,
+          },
+        }
+      );
+    });
+
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        `${env.API_URL}/spoonacular/getRecipeTaste`,
+        {
+          params: {
+            id: 663883,
+            normalize: true,
+          },
+        }
+      );
+    });
+
+    // recipe cards are rendered?
+    expect(screen.getByTestId("lg_sq_card_1")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_1")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_2")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel_banner_3")).toBeInTheDocument();
+
+    const lgCard = screen.getByTestId("lg_sq_card_1");
+    const button = lgCard.querySelector("button");
+    // button is shown in the lg card?
+    expect(lgCard.querySelector("button")).toBeTruthy();
+
+    // userEvent.click(button);
+
+    // expect(mockUseNavigate).toHaveBeenCalled();
+  });
 });
 
 //https://runthatline.com/how-to-mock-axios-with-vitest/

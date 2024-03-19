@@ -22,7 +22,9 @@ const Navbar = () => {
 
   // clear search bar when navigating to a different page
   useEffect(() => {
-    setSearch("");
+    if (location.pathname != "/testSearch") {
+      setSearch("");
+    }
   }, [location.pathname]);
 
   const handleOnChange = (e) => {

@@ -24,7 +24,11 @@ const map = {
 //   key: "goSearch"
 // }
 
-const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
+const AdvancedSearchMenu = ({
+  background = "success",
+  onTagsChange,
+  testid,
+}) => {
   const [selectedNutrient, setSelectedNutrient] = useState("");
   const [selectedMinOrMax, setSelectedMinOrMax] = useState("");
   const [amount, setAmount] = useState(null);
@@ -33,7 +37,9 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
   const location = useLocation();
 
   useEffect(() => {
-    setTags([]);
+    if (location.pathname != "/testSearch") {
+      setTags([]);
+    }
   }, [location.pathname]);
 
   const handleSelectChangeNutrient = (e) => {
@@ -106,7 +112,11 @@ const AdvancedSearchMenu = ({ background = "success", onTagsChange }) => {
     selectedMinOrMax === "";
 
   return (
-    <Dropdown className={dropdownStyles.container} drop={"down-centered"}>
+    <Dropdown
+      className={dropdownStyles.container}
+      drop={"down-centered"}
+      data-testid={testid}
+    >
       <Dropdown.Toggle
         variant={background}
         className={`${map[background]} ${dropdownStyles.toggle}`}

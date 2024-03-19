@@ -8,6 +8,7 @@ import { trimIngredients } from "src/utils/spoonacularFunctions";
 import { Row, Col, Stack } from "react-bootstrap";
 
 const HorizontalCard = ({
+  testid,
   imgURL,
   width,
   title,
@@ -22,7 +23,11 @@ const HorizontalCard = ({
    * tags: array of objects, each has color, text as keys
    */
   return (
-    <CardBootstrap className={styles.hori_Card} style={{ width: width }}>
+    <CardBootstrap
+      data-testid={`lg_hori_card_${testid || 0}`}
+      className={styles.hori_Card}
+      style={{ width: width }}
+    >
       <Row style={{ height: "100%" }}>
         <Col xs={4} className={styles.imgBlock}>
           <CardBootstrap.Img src={imgURL} className={styles.cardImg} />

@@ -128,8 +128,12 @@ const SearchTest = () => {
 
   return (
     <div>
-      <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+      <AdvancedSearchMenu
+        onTagsChange={handleTagsChange}
+        testid="advanced_search"
+      />
       <SearchBar
+        testid="searchbar"
         text="onion, canned tomato, pasta"
         value={search}
         onChange={handleOnChange}
@@ -180,6 +184,7 @@ const SearchTest = () => {
 
           return (
             <SearchCard
+              testid="1"
               key={recipeDetail[0].id}
               imgURL={recipeDetail[0].image}
               width="30rem"
