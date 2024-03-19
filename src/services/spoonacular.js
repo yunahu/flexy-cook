@@ -1,5 +1,4 @@
 export const getImage = (recipe, index) => {
-    console.log("DAKWJDKJN", recipe)
     const { analyzedInstructions } = recipe;
     const steps = (analyzedInstructions[0].steps[index]);
     if (steps.equipment[0] && steps.equipment[0].image) {
