@@ -7,7 +7,7 @@ import Divider from "src/components/Divider/Divider";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTags } from "src/utils/spoonacularFunctions";
+import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import env from "src/utils/env";
@@ -127,7 +127,12 @@ const HomeTest = () => {
             tags={createTags(recipeDetails[0])}
             onClick={() =>
               navigate("/testRecipe", {
-                state: { recipe: recipeDetails[0][0] },
+                state: {
+                  recipeDetail: createLocationData(
+                    recipeDetails[0][0],
+                    createTags(recipeDetails[0])
+                  ),
+                },
               })
             }
           />
@@ -153,6 +158,16 @@ const HomeTest = () => {
                 recipeDetails[1][0].nutrition.nutrients[0].amount
               )}
               tags={createTags(recipeDetails[1])}
+              onClick={() =>
+                navigate("/testRecipe", {
+                  state: {
+                    recipeDetail: createLocationData(
+                      recipeDetails[1][0],
+                      createTags(recipeDetails[1])
+                    ),
+                  },
+                })
+              }
             />
             <HorizontalCard
               testid="2"
@@ -170,6 +185,16 @@ const HomeTest = () => {
                 recipeDetails[2][0].nutrition.nutrients[0].amount
               )}
               tags={createTags(recipeDetails[2])}
+              onClick={() =>
+                navigate("/testRecipe", {
+                  state: {
+                    recipeDetail: createLocationData(
+                      recipeDetails[2][0],
+                      createTags(recipeDetails[2])
+                    ),
+                  },
+                })
+              }
             />
             <HorizontalCard
               testid="3"
@@ -187,6 +212,16 @@ const HomeTest = () => {
                 recipeDetails[3][0].nutrition.nutrients[0].amount
               )}
               tags={createTags(recipeDetails[3])}
+              onClick={() =>
+                navigate("/testRecipe", {
+                  state: {
+                    recipeDetail: createLocationData(
+                      recipeDetails[3][0],
+                      createTags(recipeDetails[3])
+                    ),
+                  },
+                })
+              }
             />
           </Stack>
         </Col>
@@ -196,8 +231,38 @@ const HomeTest = () => {
         <Col xs={12}>
           <CarouselBanner
             prop1={three_props[0]}
+            onClick1={() =>
+              navigate("/testRecipe", {
+                state: {
+                  recipeDetail: createLocationData(
+                    recipeDetails[0][0],
+                    createTags(recipeDetails[0])
+                  ),
+                },
+              })
+            }
             prop2={three_props[1]}
+            onClick2={() =>
+              navigate("/testRecipe", {
+                state: {
+                  recipeDetail: createLocationData(
+                    recipeDetails[1][0],
+                    createTags(recipeDetails[1])
+                  ),
+                },
+              })
+            }
             prop3={three_props[2]}
+            onClick3={() =>
+              navigate("/testRecipe", {
+                state: {
+                  recipeDetail: createLocationData(
+                    recipeDetails[2][0],
+                    createTags(recipeDetails[2])
+                  ),
+                },
+              })
+            }
           />
         </Col>
       </Row>
@@ -225,6 +290,16 @@ const HomeTest = () => {
             recipeDetails[4][0].nutrition.nutrients[0].amount
           )}
           tags={createTags(recipeDetails[4])}
+          onClick={() =>
+            navigate("/testRecipe", {
+              state: {
+                recipeDetail: createLocationData(
+                  recipeDetails[4][0],
+                  createTags(recipeDetails[4])
+                ),
+              },
+            })
+          }
         />
         <HorizontalCard
           testid="5"
@@ -242,6 +317,16 @@ const HomeTest = () => {
             recipeDetails[5][0].nutrition.nutrients[0].amount
           )}
           tags={createTags(recipeDetails[5])}
+          onClick={() =>
+            navigate("/testRecipe", {
+              state: {
+                recipeDetail: createLocationData(
+                  recipeDetails[5][0],
+                  createTags(recipeDetails[5])
+                ),
+              },
+            })
+          }
         />
         <HorizontalCard
           testid="6"
@@ -259,6 +344,16 @@ const HomeTest = () => {
             recipeDetails[6][0].nutrition.nutrients[0].amount
           )}
           tags={createTags(recipeDetails[6])}
+          onClick={() =>
+            navigate("/testRecipe", {
+              state: {
+                recipeDetail: createLocationData(
+                  recipeDetails[6][0],
+                  createTags(recipeDetails[6])
+                ),
+              },
+            })
+          }
         />
       </Stack>
     </div>
