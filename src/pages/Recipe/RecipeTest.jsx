@@ -59,7 +59,7 @@ const RecipeTest = () => {
          <RecipeBanner
             imgURL={recipe.image}
             title={recipe.title}
-            description={recipe.extendedIngredients
+            ingredients={recipe.extendedIngredients
                .map((ingredient) => ingredient.name)
                .join(", ")}
             time={recipe.readyInMinutes}
