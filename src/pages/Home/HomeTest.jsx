@@ -93,7 +93,13 @@ const HomeTest = () => {
   const [three_props, setThreeProps] = useState({});
 
   if (fetchLoading) {
-    return <div>Loading recipes...</div>;
+    // Added animated spinner as visual aid
+    return (
+      <div className={styles.msg}>
+        <FontAwesomeIcon icon={faSpinner} spinPulse />
+        &ensp;Loading recipes...
+      </div>
+    );
   }
 
   return (
@@ -130,7 +136,6 @@ const HomeTest = () => {
           {/* Small horizontal recommendation cards x3 */}
           <Stack direction="vertical" gap={3} className={styles.sm_3_cards}>
             <HorizontalCard
-              testid="1"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
@@ -147,7 +152,6 @@ const HomeTest = () => {
               tags={createTags(recipeDetails[1])}
             />
             <HorizontalCard
-              testid="2"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
@@ -164,7 +168,6 @@ const HomeTest = () => {
               tags={createTags(recipeDetails[2])}
             />
             <HorizontalCard
-              testid="3"
               className={styles.lg_hori_card}
               width={"100%"}
               height={"100%"}
@@ -202,7 +205,6 @@ const HomeTest = () => {
       <Stack gap={3}>
         {/** horizontal recommendation cards */}
         <HorizontalCard
-          testid="4"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}
@@ -219,7 +221,6 @@ const HomeTest = () => {
           tags={createTags(recipeDetails[4])}
         />
         <HorizontalCard
-          testid="5"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}
@@ -236,7 +237,6 @@ const HomeTest = () => {
           tags={createTags(recipeDetails[5])}
         />
         <HorizontalCard
-          testid="6"
           className={styles.lg_hori_card}
           width={"100%"}
           height={"30vh"}

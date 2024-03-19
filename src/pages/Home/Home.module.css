@@ -28,6 +28,12 @@
    font-size: smaller;
 }
 
+.msg {
+   font-size: 30px;
+   text-align: center;
+   margin: 10vh 0 100vh 0;    /** 100vh for footer to not shown while loading */
+}
+
 /** Large & medium screen size break point */
 @media screen and (max-width: 990px) {
    .recommendation_xl {
@@ -38,12 +44,20 @@
       display: flex;
    }
 
+   .msg {
+      font-size: 26px;
+   }
+
 }
 
 /** Medium screen size break point */
 @media screen and (max-width: 576px) {
    .recommendation_lg > div > div {
       height: 100%;
+   }
+
+   .msg {
+      font-size: 22px;
    }
 
 }

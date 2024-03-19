@@ -41,7 +41,9 @@ const ToolBar = () => {
                   <Tooltip>Back To Top</Tooltip>
                }>
                   
-                  <Button className={styles.tool}>
+                  <Button className={styles.tool} onClick={() => {
+                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}>
                      <FontAwesomeIcon icon={faAnglesUp} />
                   </Button>
 
