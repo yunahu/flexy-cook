@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { capitalize } from "src/utils/common";
 import env from "src/utils/env";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const createTags = (recipe) => {
   const tags = [
@@ -138,7 +140,8 @@ const HomeTest = () => {
   const [three_props, setThreeProps] = useState({});
 
   if (fetchLoading) {
-    return <div>Loading recipes...</div>;
+   // Added animated spinner as visual aid
+    return <div className={styles.msg}><FontAwesomeIcon icon={faSpinner} spinPulse />&ensp;Loading recipes...</div>;
   }
 
   return (
@@ -189,6 +192,11 @@ const HomeTest = () => {
                   recipeDetails[1][0].nutrition.nutrients[0].amount
                 )}
                 tags={createTags(recipeDetails[1])}
+                onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[1][0] },
+                  })
+               }
               />
               <HorizontalCard
                 className={styles.lg_hori_card}
@@ -205,6 +213,11 @@ const HomeTest = () => {
                   recipeDetails[2][0].nutrition.nutrients[0].amount
                 )}
                 tags={createTags(recipeDetails[2])}
+                onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[2][0] },
+                  })
+               }
               />
               <HorizontalCard
                 className={styles.lg_hori_card}
@@ -221,6 +234,11 @@ const HomeTest = () => {
                   recipeDetails[3][0].nutrition.nutrients[0].amount
                 )}
                 tags={createTags(recipeDetails[3])}
+                onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[3][0] },
+                  })
+               }
               />
             </Stack>
           </Col>
@@ -246,7 +264,7 @@ const HomeTest = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"30vh"}
+            height={"200px"}
             imgURL={recipeDetails[4][0].image}
             title={recipeDetails[4][0].title}
             description={recipeDetails[4][0].extendedIngredients
@@ -258,6 +276,11 @@ const HomeTest = () => {
               recipeDetails[4][0].nutrition.nutrients[0].amount
             )}
             tags={createTags(recipeDetails[4])}
+            onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[4][0] },
+                  })
+               }
           />
           <HorizontalCard
             className={styles.lg_hori_card}
@@ -274,6 +297,11 @@ const HomeTest = () => {
               recipeDetails[5][0].nutrition.nutrients[0].amount
             )}
             tags={createTags(recipeDetails[5])}
+            onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[5][0] },
+                  })
+               }
           />
           <HorizontalCard
             className={styles.lg_hori_card}
@@ -290,6 +318,11 @@ const HomeTest = () => {
               recipeDetails[6][0].nutrition.nutrients[0].amount
             )}
             tags={createTags(recipeDetails[6])}
+            onClick={() =>
+                  navigate("/testRecipe", {
+                     state: { recipe: recipeDetails[6][0] },
+                  })
+               }
           />
         </Stack>
       </div>

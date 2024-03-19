@@ -83,6 +83,32 @@
 	justify-content: center;
 	padding-bottom: 0%;
   }
+
+  .msg {
+      width: 75vw;
+      margin: 10vh auto 100vh auto;    /** 100vh for footer to not shown while loading */
+      font-size: 30px;
+      text-align: center;
+  }
+
+  .secondaryMsg {
+      text-align: left;
+      color: grey;
+
+      display: inline-block;
+      margin-top: 20vh Im !important;
+
+      max-width: 375px;
+      align-self: center;
+  }
+
+  .secondaryMsg h5 {
+   text-align: center;
+  }
+
+  .secondaryMsg ul {
+   list-style-type: disc;
+  }
   
   
  @media screen and (max-width: 840px) {
@@ -103,7 +129,9 @@
 		padding: 10vh;
 	}
 	
-	
+	.msg {
+      font-size: 26px;
+   }
  
  }
  @media screen and (max-width: 575px){
@@ -123,5 +151,9 @@
 	.backgroundSearchText{
 		width:70%;
 	}
+
+   .msg {
+      font-size: 22px;
+   }
  
  }
