@@ -5,6 +5,9 @@ import axios from "axios";
 import throttle from "lodash.throttle";
 import env from "src/utils/env";
 
+import Tag from "src/components/Tag/Tag";
+import Tags from "src/components/Cards/Tags/Tags";
+import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
@@ -20,6 +23,19 @@ import { Stack } from "react-bootstrap";
 
 const MAX_RECIPE_NUM = 12;
 
+const tag = {
+  tags: [
+    { text: "Tag 1", color: "danger" },
+    { text: "Tag 2", color: "success" },
+    { text: "Tag 3", color: "warning" },
+    { text: "Tag 4", color: "primary" },
+    { text: "Tag 5", color: "secondary" },
+    { text: "Tag 6", color: "info" },
+    { text: "Tag 7", color: "dark" },
+    { text: "Tag 8", color: "light" },
+  ],
+};
+
 const SearchTest = () => {
   const [search, setSearch] = useState("");
   const [recipeDetails, setRecipeDetails] = useState(null);
@@ -27,7 +43,7 @@ const SearchTest = () => {
   const [nutrientsTags, setNutrientsTags] = useState([]);
 
   const location = useLocation();
-  const { ingredients, tags } = location.state || {};
+  const { ingredients, tags, tagInfo } = location.state || {};
 
   const navigate = useNavigate();
 
@@ -59,6 +75,7 @@ const SearchTest = () => {
   const fetchRecipes = async () => {
     setLoading(true);
     let nutrientParams = {};
+    let tagParams = {};
 
     // get nutrient data from tags to create parameters
     if (tags) {
@@ -77,6 +94,14 @@ const SearchTest = () => {
       }, {});
     }
 
+    // get tag info to search
+    if (tagInfo) {
+      tagParams = tagInfo.reduce((params, tag) => {
+        params[`${tag.key}`] = tag.amount;
+        return params;
+      }, {});
+    }
+
     try {
       axios
         .get(`${env.API_URL}/spoonacular/searchRecipe`, {
@@ -85,6 +110,7 @@ const SearchTest = () => {
             includeIngredients: ingredients ? ingredients : search,
             number: 6,
             ...nutrientParams,
+            ...tagParams,
           },
         })
         .then(async (res) => {
@@ -122,10 +148,10 @@ const SearchTest = () => {
   useEffect(() => {
     console.log("Ingredients:", ingredients);
     console.log("Tags:", tags);
-    if (ingredients || tags?.length > 0) {
+    if (tagInfo || ingredients || tags?.length > 0) {
       fetchRecipes();
     }
-  }, [ingredients, tags]);
+  }, [tagInfo, ingredients, tags]);
 
   const handleBtnClick = () => {
     fetchRecipes();
@@ -133,18 +159,33 @@ const SearchTest = () => {
 
   return (
     <div>
-      <AdvancedSearchMenu
-        onTagsChange={handleTagsChange}
-        testid="advanced_search"
-      />
-      <SearchBar
-        testid="searchbar"
-        text="onion, canned tomato, pasta"
-        value={search}
-        onChange={handleOnChange}
-        btnClick={handleBtnClick}
-        btnText="search"
-      />
+      <div className={styles.background}>
+        <div className={styles.backgroundSearchText}>
+          <SearchBar
+            testid="searchbar"
+            text="onion, canned tomato, pasta"
+            value={search}
+            onChange={handleOnChange}
+            btnClick={handleBtnClick}
+            btnText="search"
+          />
+          <AdvancedSearchMenu
+            onTagsChange={handleTagsChange}
+            testid="advanced_search"
+            background="primary"
+          />
+          <p className={styles.backgroundText}>Recommended Tags</p>
+          <div className={styles.design}>
+            <Tags tags={tag.tags} className={styles.tag} />
+          </div>
+          <div className={styles.designSmall}>
+            <Tags tags={tag.tags.slice(0, 5)} />
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      {recipeDetails && <p className={styles.text}>Search Results:</p>}
       <div className={styles.container}>
         {recipeDetails?.map((recipeDetail) => {
           return (
@@ -179,6 +220,7 @@ const SearchTest = () => {
             />
           );
         })}
+        <StickyButton />
         {loading && (
           <div className={styles.msg}>
             <FontAwesomeIcon icon={faSpinner} spinPulse />

@@ -1,5 +1,7 @@
 import Tag from "src/components/Tag/Tag";
 import Stack from "react-bootstrap/Stack";
+import { getTagInfo } from "src/utils/spoonacularFunctions";
+import { useNavigate } from "react-router-dom";
 
 const Tags = ({ tags = [] }) => {
   /**
@@ -18,10 +20,22 @@ const Tags = ({ tags = [] }) => {
          }
       ]
    */
+  const navigate = useNavigate();
+  const handleOnClick = (tag) => {
+    if (getTagInfo(tag) != null) {
+      navigate("/testSearch", { state: { tagInfo: getTagInfo(tag) } });
+    }
+  };
+
   return (
     <Stack direction="horizontal" gap={2}>
       {tags.map((tag, index) => (
-        <Tag key={tag.text + index} bg={tag.type} title={tag.text} />
+        <Tag
+          key={tag.text + index}
+          bg={tag.type}
+          title={tag.text}
+          onClick={() => handleOnClick(tag)}
+        />
       ))}
     </Stack>
   );

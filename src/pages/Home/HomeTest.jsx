@@ -7,7 +7,11 @@ import Divider from "src/components/Divider/Divider";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
+import {
+  createTags,
+  createLocationData,
+  trimIngredients,
+} from "src/utils/spoonacularFunctions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import env from "src/utils/env";
@@ -82,6 +86,7 @@ const HomeTest = () => {
 
             setFetchLoading(false);
             setThreeProps(three_prop);
+            console.log(recipeDetail[0][0].extendedIngredients);
           });
       } catch (error) {
         console.error("Error fetching recipes:", error);
@@ -116,7 +121,7 @@ const HomeTest = () => {
             // height={recipeInfo.height}
             imgURL={recipeDetails[0][0].image}
             title={recipeDetails[0][0].title}
-            description={recipeDetails[0][0].extendedIngredients
+            ingredients={recipeDetails[0][0].extendedIngredients
               .map((ingredient) => ingredient.name)
               .join(", ")}
             time={recipeDetails[0][0].readyInMinutes}
@@ -149,9 +154,7 @@ const HomeTest = () => {
               height={"100%"}
               imgURL={recipeDetails[1][0].image}
               title={recipeDetails[1][0].title}
-              description={recipeDetails[1][0].extendedIngredients
-                .map((ingredient) => ingredient.name)
-                .join(", ")}
+              ingredients={recipeDetails[1][0].extendedIngredients}
               time={recipeDetails[1][0].readyInMinutes}
               size={recipeDetails[1][0].servings}
               calories={Math.floor(
@@ -176,9 +179,7 @@ const HomeTest = () => {
               height={"100%"}
               imgURL={recipeDetails[2][0].image}
               title={recipeDetails[2][0].title}
-              description={recipeDetails[2][0].extendedIngredients
-                .map((ingredient) => ingredient.name)
-                .join(", ")}
+              ingredients={recipeDetails[2][0].extendedIngredients}
               time={recipeDetails[2][0].readyInMinutes}
               size={recipeDetails[2][0].servings}
               calories={Math.floor(
@@ -203,9 +204,7 @@ const HomeTest = () => {
               height={"100%"}
               imgURL={recipeDetails[3][0].image}
               title={recipeDetails[3][0].title}
-              description={recipeDetails[3][0].extendedIngredients
-                .map((ingredient) => ingredient.name)
-                .join(", ")}
+              ingredients={recipeDetails[3][0].extendedIngredients}
               time={recipeDetails[3][0].readyInMinutes}
               size={recipeDetails[3][0].servings}
               calories={Math.floor(
@@ -281,9 +280,7 @@ const HomeTest = () => {
           height={"30vh"}
           imgURL={recipeDetails[4][0].image}
           title={recipeDetails[4][0].title}
-          description={recipeDetails[4][0].extendedIngredients
-            .map((ingredient) => ingredient.name)
-            .join(", ")}
+          ingredients={recipeDetails[4][0].extendedIngredients}
           time={recipeDetails[4][0].readyInMinutes}
           size={recipeDetails[4][0].servings}
           calories={Math.floor(
@@ -308,9 +305,7 @@ const HomeTest = () => {
           height={"30vh"}
           imgURL={recipeDetails[5][0].image}
           title={recipeDetails[5][0].title}
-          description={recipeDetails[5][0].extendedIngredients
-            .map((ingredient) => ingredient.name)
-            .join(", ")}
+          ingredients={recipeDetails[5][0].extendedIngredients}
           time={recipeDetails[5][0].readyInMinutes}
           size={recipeDetails[5][0].servings}
           calories={Math.floor(
@@ -335,9 +330,7 @@ const HomeTest = () => {
           height={"30vh"}
           imgURL={recipeDetails[6][0].image}
           title={recipeDetails[6][0].title}
-          description={recipeDetails[6][0].extendedIngredients
-            .map((ingredient) => ingredient.name)
-            .join(", ")}
+          ingredients={recipeDetails[6][0].extendedIngredients}
           time={recipeDetails[6][0].readyInMinutes}
           size={recipeDetails[6][0].servings}
           calories={Math.floor(
