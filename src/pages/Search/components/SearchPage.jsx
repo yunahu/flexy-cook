@@ -5,13 +5,13 @@ import axios from "axios";
 import throttle from "lodash.throttle";
 import env from "src/utils/env";
 
-import Tag from "src/components/Tag/Tag";
 import Tags from "src/components/Cards/Tags/Tags";
 import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
-import SearchCard from "src/pages/Search/components/SearchCard/SearchCard.jsx";
+import SearchCard from "src/pages/Search/components/SearchCard/SearchCard";
 import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
+import { createRecommendationTags } from "src/utils/recommendationTags";
 
 import styles from "src/pages/Search/Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,19 +22,7 @@ import {
 import { Stack } from "react-bootstrap";
 
 const MAX_RECIPE_NUM = 12;
-
-const tag = {
-  tags: [
-    { text: "Tag 1", color: "danger" },
-    { text: "Tag 2", color: "success" },
-    { text: "Tag 3", color: "warning" },
-    { text: "Tag 4", color: "primary" },
-    { text: "Tag 5", color: "secondary" },
-    { text: "Tag 6", color: "info" },
-    { text: "Tag 7", color: "dark" },
-    { text: "Tag 8", color: "light" },
-  ],
-};
+const recommendationTags = createRecommendationTags(13);
 
 const SearchTest = () => {
   const [search, setSearch] = useState("");
@@ -160,7 +148,7 @@ const SearchTest = () => {
   return (
     <div>
       <div className={styles.background}>
-        <div className={styles.backgroundSearchText}>
+        <div className={styles.searchBar}>
           <SearchBar
             testid="searchbar"
             text="onion, canned tomato, pasta"
@@ -174,12 +162,11 @@ const SearchTest = () => {
             testid="advanced_search"
             background="primary"
           />
-          <p className={styles.backgroundText}>Recommended Tags</p>
-          <div className={styles.design}>
-            <Tags tags={tag.tags} className={styles.tag} />
-          </div>
-          <div className={styles.designSmall}>
-            <Tags tags={tag.tags.slice(0, 5)} />
+        </div>
+        <div className={styles.recommendedTags}>
+          <h3>Recommended Tags</h3>
+          <div className={styles.tags}>
+            <Tags tags={recommendationTags} className={styles.tag} />
           </div>
         </div>
       </div>
@@ -201,7 +188,7 @@ const SearchTest = () => {
                 .join(", ")}
               tags={createTags(recipeDetail)
                 .filter((tag) => tag.text !== null)
-                .slice(0, 3)}
+                .slice(0, 4)}
               time={recipeDetail[0].readyInMinutes}
               size={recipeDetail[0].servings}
               calories={Math.floor(
