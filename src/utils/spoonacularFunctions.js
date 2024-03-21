@@ -58,7 +58,6 @@ export const createTags = (recipe) => {
             type: "info",
         },
         {
-            key: "maxCalories",
             text: recipe[0]?.veryPopular ? "Popular" : null,
             type: "info",
         },
@@ -67,6 +66,7 @@ export const createTags = (recipe) => {
             type: "info",
         },
         {
+            key: "maxCalories",
             text: recipe[0]?.veryHealthy ? "Healthy" : null,
             type: "info",
         },
@@ -103,6 +103,13 @@ export const getTagInfo = (tag) => {
             {
                 key: tag.key,
                 amount: 30,
+            }
+        ]
+    } else if (tag?.key == "intolerance") {
+        tagInfo = [
+            {
+                key: tag.key,
+                amount: (tag.text).substring(3).toLowerCase(),
             }
         ]
     } else if (tag?.key == "maxCalories") {
