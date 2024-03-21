@@ -1,5 +1,5 @@
 import { random, rangeRight } from "lodash";
-import { capitalize } from "./common";
+import { capitalize, colorByNum } from "./common";
 
 const tags = [
     {
@@ -32,7 +32,7 @@ export const createRecommendationTags = (number) => {
             {
                 key: tag.key,
                 text: tag.text(),
-                type: tag.type
+                type: colorByNum(i + 1)
             }
         )
     }
@@ -41,7 +41,7 @@ export const createRecommendationTags = (number) => {
         {
             key: "maxReadyTime",
             text: "Fast",
-            type: "info",
+            type: colorByNum(0),
         }
     )
 
