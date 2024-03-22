@@ -11,31 +11,47 @@ vi.mock("react-router-dom", () => ({
 }));
 
 describe("Tags", () => {
-  beforeEach(() => {});
-  test("render successfully", async () => {
-    render(<Tags />);
+  beforeEach(() => {
+    const tags = [
+      {
+        key: "diet",
+        text: "Vegan",
+        type: "warning",
+      },
+      {
+        key: "type",
+        text: "Soup",
+        type: "dark",
+      },
+      {
+        key: "cuisine",
+        text: "Japanese",
+        type: "info",
+      },
+    ];
+    render(<Tags tags={tags} />);
+  });
+  test("render successfully", async () => {});
+
+  test("tags have button role", async () => {
+    expect(screen.getByRole("button").textContent).toBe("Japanese");
+    expect(screen.getByRole("button").textContent).toBe("Soup");
+    expect(screen.getByRole("button").textContent).toBe("Vegan");
   });
 
-  test("tag has button role", async () => {
-    render(<ModifiedButton title="Test Button" />);
-
-    expect(screen.getByRole("button").textContent).toBe("Test Button");
+  test("texts are shown", async () => {
+    expect(screen.getByRole("button").textContent).toBe("Japanese");
+    expect(screen.getByRole("button").textContent).toBe("Soup");
+    expect(screen.getByRole("button").textContent).toBe("Vegan");
   });
 
-  test("when click the ModifiedButton, onClick() should be run", async () => {
-    const onClickMock = vi.fn(() => {});
-
-    render(<ModifiedButton onClick={onClickMock} title="Test Button" />);
-
+  test("if disabled is true, then the Modified Button can't be clicked", async () => {
     expect(onClickMock).toHaveBeenCalledTimes(0);
     const button = screen.getByRole("button");
     await userEvent.click(button);
     expect(onClickMock).toHaveBeenCalledTimes(1);
     await userEvent.click(button);
     expect(onClickMock).toHaveBeenCalledTimes(2);
-  });
-
-  test("if disabled is true, then the Modified Button can't be clicked", async () => {
     const onClickMock = vi.fn(() => {});
 
     render(
