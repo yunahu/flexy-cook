@@ -11,7 +11,9 @@ import { Stack } from "react-bootstrap";
 import { CartPlusFill, BrightnessHighFill } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
-import logo from "./img/logo.png";
+import logo from "src/assets/images/logo.png";
+import TodoListsModal from 'src/components/TodoListsModal/TodoListsModal';
+import { getAuth } from "src/services/todoist";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ const Navbar = () => {
 
   const [ingredients, setSearch] = useState("");
   const [tags, setTags] = useState([]);
+	const [modalShow, setModalShow] = useState(false);
 
   // clear search bar when navigating to a different page
   useEffect(() => {
@@ -36,29 +39,39 @@ const Navbar = () => {
   };
 
   const items = [
+    // {
+    //   icon: <CartPlusFill size={25}></CartPlusFill>,
+    //   title: "Shopping List",
+    //   ref: "",
+    //   key: "shoppingList",
+		// 	onClick: () => setModalShow(true),
+    // },
+    // {
+    //   icon: <CartPlusFill size={25}></CartPlusFill>,
+    //   title: "Memos",
+    //   ref: "",
+    //   key: "memo",
+		// 	onClick: () => setModalShow(true),
+    // },
     {
       icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Shopping List",
+      title: "Manage My Tasks",
       ref: "",
-      key: "shoppingList",
+      key: "manageMyTasks",
+			onClick: () => {
+				if (!localStorage.getItem('todoistToken')) alert('Please log in with Todoist first.'); // TODO: Replace
+				else setModalShow(true); // TODO: Replace
+			},
     },
     {
       icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Memos",
+      title: "Login with Todoist",
       ref: "",
-      key: "memo",
-    },
-    {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Something",
-      ref: "",
-      key: "something",
-    },
-    {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Separated link",
-      ref: "",
-      key: "link",
+      key: "loginWithTodoist",
+			onClick: () => {
+				if (!localStorage.getItem('todoistToken')) getAuth();
+				else alert("You're already logged in."); // TODO: Replace
+			},
     },
   ];
 
@@ -108,7 +121,7 @@ const Navbar = () => {
             <img src={logo} alt="Logo" />
           </NavbarBootstrap.Brand>
 
-          <Stack className={styles.searchBar} direction="vertical">
+          {location.pathname !== '/search' && <Stack className={styles.searchBar} direction="vertical">
             {/** Search input & Advanced Search dropdown */}
             <SearchBar
               text="onion, canned tomato"
@@ -121,7 +134,7 @@ const Navbar = () => {
               }
             />
             <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-          </Stack>
+          </Stack>}
         </Stack>{" "}
         {/** END middle Search Bar/LOGO */}
         <Stack className={styles.rightCol} direction="horizontal" gap={4}>
@@ -156,6 +169,10 @@ const Navbar = () => {
               items={items}
             />
           </Stack>
+					<TodoListsModal
+						show={modalShow}
+						onHide={() => setModalShow(false)}
+					/>
         </Stack>{" "}
         {/** END right col */}
       </Stack>{" "}

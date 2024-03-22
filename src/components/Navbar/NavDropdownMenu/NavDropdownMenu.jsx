@@ -42,6 +42,7 @@ const NavDropdownMenu = ({
               key={item.key + index}
               href={item.ref}
               className={styles.itemContainer}
+							onClick={item.onClick}
             >
               <span className={styles.icon}>
                 {item.icon ? item.icon : null}
