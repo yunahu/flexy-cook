@@ -1,0 +1,7 @@
+.stack {
+  flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
+}

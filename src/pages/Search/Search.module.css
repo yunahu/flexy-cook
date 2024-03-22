@@ -1,159 +1,180 @@
 .container {
-	width: 90%;
-	margin: auto;
-	 padding: 1em;
-  
-	   display: flex;
-	   flex-wrap: wrap;
-	   justify-content: space-between; 
- 
-	 
- }
- 
- .banner {
-	margin: 0;
-	padding: 0;
- } 
- .cardAlign{
-	margin:5%;
-	display: inline;
- }
- .background{
-	position: relative;
-	background-image: url('https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg');
+  width: 90%;
+  margin: auto;
+  padding: 1em;
 
-	background-size: cover;
-	
-	background-repeat: no-repeat;
-	justify-content: center;
-	align-items: center;
-	padding:30vh 40vh 0vh 40vh;
-	width:100%;
-	min-height: 100vh;
-	color:white;
-	transform: rotate(180deg);
-	overflow: hidden;
-	
- }
- .backgroundSearchText{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-	
-	transform: rotate(-180deg);
+.banner {
+  margin: 0;
+  padding: 0;
+}
 
- }
- .advancebutton{
-	color:white;
-	background-color: aliceblue;
- }
- hr{
-	color: var(--dark-primary);
-	margin:30px;
-	
- }
- .text{
-	margin-left: 5%;
-	font-size: 24px;
-	font-weight: bold;
- }
- 
- .backgroundText{
-	text-align: center;
-	font-size: 24px;
-	font-weight: bold;
-	margin-top: 10%;
-	margin-bottom: 0%;
-	padding-bottom: 0%;
- }
- .design {
-	align-items:center;
-	padding: 10px;
-	font-size: 24px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content:center;
-	padding-bottom: 0%;
-	
+.cardAlign {
+  margin: 5%;
+  display: inline;
+}
+
+.background {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  height: 600px;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg");
+  background-size: cover;
+  background-position-y: 65%;
+  transform: rotate(180deg);
+}
+
+.searchBar {
+  width: 450px;
+}
+
+.recommendedTags {
+  position: absolute;
+  bottom: 3rem;
+}
+
+.recommendedTags h3 {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.tags {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  font-size: 24px;
+  margin-inline: auto;
+  align-items: center;
+  width: 40%;
+  justify-content: center;
+  padding-bottom: 0%;
+}
+
+.tag {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  margin: auto;
+  flex-direction: row;
+}
+
+hr {
+  color: var(--dark-primary);
+  margin: 30px;
+}
+
+.text {
+  margin-left: 5%;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.design {
+  align-items: center;
+  padding: 10px;
+  font-size: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 0%;
+}
+.designSmall {
+  align-items: center;
+  padding: 10px;
+  font-size: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 0%;
+}
+
+.msg {
+  width: 75vw;
+  margin: 10vh auto 100vh auto; /** 100vh for footer to not shown while loading */
+  font-size: 30px;
+  text-align: center;
+}
+
+.secondaryMsg {
+  text-align: left;
+  color: grey;
+
+  display: inline-block;
+  margin-top: 20vh Im !important;
+
+  max-width: 375px;
+  align-self: center;
+}
+
+.secondaryMsg h5 {
+  text-align: center;
+}
+
+.secondaryMsg ul {
+  list-style-type: disc;
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    width: 100%;
+    margin: 10px;
+    padding: 0;
   }
-  .designSmall{
-	align-items: center;
-	padding: 10px;
-	font-size: 24px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 0%;
+
+  .backgroundSearchText {
+    margin: auto;
+    padding-top: 60%;
+    align-items: center;
+  }
+  .background {
+    padding: 10vh;
   }
 
   .msg {
-      width: 75vw;
-      margin: 10vh auto 100vh auto;    /** 100vh for footer to not shown while loading */
-      font-size: 30px;
-      text-align: center;
+    font-size: 26px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .container {
+    width: 100%;
+    margin: 10px;
+    padding: 0;
+    display: block;
+  }
+  .design {
+    display: none;
+  }
+  .background {
+    padding: 20vh 0 5vh 0;
+  }
+  .backgroundSearchText {
+    width: 70%;
   }
 
-  .secondaryMsg {
-      text-align: left;
-      color: grey;
-
-      display: inline-block;
-      margin-top: 20vh Im !important;
-
-      max-width: 375px;
-      align-self: center;
+  .msg {
+    font-size: 22px;
   }
-
-  .secondaryMsg h5 {
-   text-align: center;
-  }
-
-  .secondaryMsg ul {
-   list-style-type: disc;
-  }
-  
-  
- @media screen and (max-width: 840px) {
- 
-	.container {
-	   width: 100%;
-	   margin: 10px;
-	   padding: 0;
-	}
-	
-	.backgroundSearchText{
-		margin: auto;
-		padding-top: 60%;
-		align-items: center;
-		
-	}
-	.background{
-		padding: 10vh;
-	}
-	
-	.msg {
-      font-size: 26px;
-   }
- 
- }
- @media screen and (max-width: 575px){
-	.container {
-	   width: 100%;
-	   margin: 10px;
-	   padding: 0;
-	   display: block;
-	}
-	.design{
-		display:none;
-	}
-	.background {
-		padding: 20vh 0 5vh 0;
-     
-    }
-	.backgroundSearchText{
-		width:70%;
-	}
-
-   .msg {
-      font-size: 22px;
-   }
- 
- }
+}
