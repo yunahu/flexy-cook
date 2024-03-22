@@ -43,7 +43,7 @@ const HorizontalCard = ({
 
                 <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
                 <CardBootstrap.Text>
-                  {ingredients ? trimIngredients(ingredients, 8) : ""}
+                  {ingredients ? trimIngredients(ingredients, 6) : ""}
                 </CardBootstrap.Text>
 
                 <CookingInfo size={size} time={time} calories={calories} />
