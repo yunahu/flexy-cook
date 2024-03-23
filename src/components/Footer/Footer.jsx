@@ -47,8 +47,8 @@ const Footer = () => {
 
       <Col xxl>
         <div className={styles.footerItems}>
-          <hr></hr>
-          &copy; CPSC 2350 - Group 4
+          <hr className={styles.footerHr}></hr>
+          <span className={styles.copyright}>&copy; CPSC 2350 - Group 4</span>
         </div>
       </Col>
 
