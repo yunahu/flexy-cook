@@ -75,117 +75,122 @@ const Navbar = () => {
     },
   ];
 
-  // Check if the user is on search page
-  if (window.location.href.indexOf("search") > -1 || window.location.href.indexOf("Search") > -1) {
-   console.log("you are on search page");
-  } else {
-   console.log("you are not on search page");
-  }
+   return (
+      <nav className={styles.container}>
+         <Stack className={styles.navElements} direction="horizontal" gap={3}>
+         {/* Collection of nav items */}
+            <Stack className={styles.leftCol} direction="horizontal" gap={2}>
+               {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
 
-  return (
-    <nav className={styles.container}>
-      <Stack className={styles.navElements} direction="horizontal" gap={3}>
-        {/* Collection of nav items */}
-        <Stack className={styles.leftCol} direction="horizontal" gap={2}>
-          {/* Home & Search Icon OR LOGO (switch display between md/lg screen size )*/}
+               <Nav.Link
+                  as={Link}
+                  to="/"
+                  className={`${styles.iconContainer} ${styles.homeIcon}`}
+               >
+                  <Stack direction="vertical">
+                  <FontAwesomeIcon icon={faHouse} className={styles.icon} />
+                  <span>Home</span>
+                  </Stack>
+               </Nav.Link>
 
-          <Nav.Link
-            as={Link}
-            to="/"
-            className={`${styles.iconContainer} ${styles.homeIcon}`}
-          >
-            <Stack direction="vertical">
-              <FontAwesomeIcon icon={faHouse} className={styles.icon} />
-              <span>Home</span>
-            </Stack>
-          </Nav.Link>
+               <Nav.Link
+                  as={Link}
+                  to="/search"
+                  className={`${styles.iconContainer} ${styles.searchIcon}`}
+               >
+                  <Stack direction="vertical">
+                  <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+                  <span>Search</span>
+                  </Stack>
+               </Nav.Link>
 
-          <Nav.Link
-            as={Link}
-            to="/search"
-            className={`${styles.iconContainer} ${styles.searchIcon}`}
-          >
-            <Stack direction="vertical">
-              <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-              <span>Search</span>
-            </Stack>
-          </Nav.Link>
+               <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo}>
+                  {/** LOGO */}
+                  <img src={logo} alt="Logo" />
+               </NavbarBootstrap.Brand>
+            </Stack>{" "}
+            {/** END left Col */}
+            <Stack className={`${styles.middleCol} ms-auto`}>
+               <NavbarBootstrap.Brand
+                  as={Link}
+                  to="/"
+                  className={styles.logo}
+                  id={"middle-logo"}
+               >
+                  {/** LOGO */}
+                  <img src={logo} alt="Logo" />
+               </NavbarBootstrap.Brand>
 
-          <NavbarBootstrap.Brand as={Link} to="/" className={styles.logo}>
-            {/** LOGO */}
-            <img src={logo} alt="Logo" />
-          </NavbarBootstrap.Brand>
-        </Stack>{" "}
-        {/** END left Col */}
-        <Stack className={`${styles.middleCol} ms-auto`}>
-          <NavbarBootstrap.Brand
-            as={Link}
-            to="/"
-            className={styles.logo}
-            id={"middle-logo"}
-          >
-            {/** LOGO */}
-            <img src={logo} alt="Logo" />
-          </NavbarBootstrap.Brand>
+               {/** If not on search page */}
+               {(location.pathname !== '/search/' && location.pathname !== '/testSearch/') &&
+               <Stack className={styles.searchBar} direction="vertical">
+                  {/** Search input & Advanced Search dropdown */}
+                  <SearchBar
+                  text="onion, canned tomato"
+                  btnText={"Search"}
+                  className={styles.searchBar}
+                  value={ingredients}
+                  onChange={handleOnChange}
+                  btnClick={() =>
+                     navigate("/testSearch", { state: { ingredients, tags } })
+                  }
+                  />
+                  <AdvancedSearchMenu onTagsChange={handleTagsChange} />
+               </Stack>}
 
-          {location.pathname !== '/search' && <Stack className={styles.searchBar} direction="vertical">
-            {/** Search input & Advanced Search dropdown */}
-            <SearchBar
-              text="onion, canned tomato"
-              btnText={"Search"}
-              className={styles.searchBar}
-              value={ingredients}
-              onChange={handleOnChange}
-              btnClick={() =>
-                navigate("/testSearch", { state: { ingredients, tags } })
-              }
-            />
-            <AdvancedSearchMenu onTagsChange={handleTagsChange} />
-          </Stack>}
-        </Stack>{" "}
-        {/** END middle Search Bar/LOGO */}
-        <Stack className={styles.rightCol} direction="horizontal" gap={4}>
-          {/** Theme & Todo OR Hamburger (switch between lg/md display) */}
+               {/** If on search page */}
+               {(location.pathname == '/search/' || location.pathname == '/testSearch/') &&
+                  <Nav.Link as={Link} to="/" className={`${styles.iconContainer} ${styles.searchBar}`}>
+                     <Stack direction="vertical">
+                        <FontAwesomeIcon icon={faHouse} className={`${styles.icon} ${styles.searchBar}`} />
+                        <span>Home</span>
+                     </Stack>
+                  </Nav.Link>}
+            </Stack>{" "}
+            {/** END middle Search Bar/LOGO */}
 
-          <Stack
-            className={`${styles.iconContainer} ${styles.themeIcon}`}
-            direction="vertical"
-          >
-            <BrightnessHighFill className={styles.icon} />
-            <span>Theme</span>
-          </Stack>
+            <Stack className={styles.rightCol} direction="horizontal" gap={4}>
+               {/** Theme & Todo OR Hamburger (switch between lg/md display) */}
 
-          <Stack
-            className={`${styles.iconContainer} ${styles.todoIcon}`}
-            direction="vertical"
-          >
-            <NavDropdownMenu
-              drop="down-centered"
-              buttonTitle="TODO"
-              items={items}
-            />
-          </Stack>
+               <Stack
+                  className={`${styles.iconContainer} ${styles.themeIcon}`}
+                  direction="vertical"
+               >
+                  <BrightnessHighFill className={styles.icon} />
+                  <span>Theme</span>
+               </Stack>
 
-          <Stack
-            className={`${styles.iconContainer} ${styles.menuIcon}`}
-            direction="vertical"
-          >
-            <NavDropdownMenu
-              drop="down-centered"
-              buttonTitle="Menu"
-              items={items}
-            />
-          </Stack>
-					<TodoListsModal
-						show={modalShow}
-						onHide={() => setModalShow(false)}
-					/>
-        </Stack>{" "}
-        {/** END right col */}
-      </Stack>{" "}
-      {/** END nav items */}
-    </nav>
-  );
-};
+               <Stack
+                  className={`${styles.iconContainer} ${styles.todoIcon}`}
+                  direction="vertical"
+               >
+                  <NavDropdownMenu
+                  drop="down-centered"
+                  buttonTitle="TODO"
+                  items={items}
+                  />
+               </Stack>
+
+               <Stack
+                  className={`${styles.iconContainer} ${styles.menuIcon}`}
+                  direction="vertical"
+               >
+                  <NavDropdownMenu
+                  drop="down-centered"
+                  buttonTitle="Menu"
+                  items={items}
+                  />
+               </Stack>
+                     <TodoListsModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                     />
+            </Stack>{" "}
+            {/** END right col */}
+            </Stack>{" "}
+            {/** END nav items */}
+         </nav>
+   );
+}
 
 export default Navbar;
