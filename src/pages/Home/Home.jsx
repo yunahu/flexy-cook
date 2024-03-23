@@ -12,7 +12,7 @@ const dummyData = () => {
     // width: '30rem',
     // height: '40vh',  /** must be px/rem value */
     imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=250&h=250&dpr=2",
     // imgURL: 'src/assets/images/sample_pic.jpg',
     title: "Some Random Recipe",
     ingredients: "onion",
@@ -113,8 +113,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"22vh"}
-            minHeight={"200px"}
+            // height={"22vh"}
+            // minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
@@ -125,8 +125,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"22vh"}
-            minHeight={"200px"}
+            // height={"22vh"}
+            // minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
@@ -137,8 +137,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"22vh"}
-            minHeight={"200px"}
+            // height={"22vh"}
+            // minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
