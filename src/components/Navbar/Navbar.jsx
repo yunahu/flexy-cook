@@ -75,6 +75,13 @@ const Navbar = () => {
     },
   ];
 
+  // Check if the user is on search page
+  if (window.location.href.indexOf("search") > -1 || window.location.href.indexOf("Search") > -1) {
+   console.log("you are on search page");
+  } else {
+   console.log("you are not on search page");
+  }
+
   return (
     <nav className={styles.container}>
       <Stack className={styles.navElements} direction="horizontal" gap={3}>
