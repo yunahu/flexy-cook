@@ -40,7 +40,7 @@ const HorizontalCard = ({
 
           <Col xs={7} className={styles.cardBody}>
             <CardBootstrap.Body>
-              <Stack direction="vertical" gap={1}>
+              <Stack direction="vertical" gap={2}>
                 <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
                 <CardBootstrap.Text className={styles.cardText}>
