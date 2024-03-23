@@ -49,7 +49,7 @@ const HorizontalCard = ({
                 </CardBootstrap.Text>
 
                 <CookingInfo size={size} time={time} calories={calories} />
-                <Tags tags={tags} style={{ flexWrap: 'wrap' }}/>
+                <Tags tags={tags} className={styles.tags}/>
               </Stack>
             </CardBootstrap.Body>
           </Col>

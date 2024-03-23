@@ -11,7 +11,7 @@
 }
 
 .imgBlock {
-   height: 100%;
+   height: auto;
    margin: 0;
    padding-right: 0;
 }
@@ -28,10 +28,6 @@
    margin: 0;
 }
 
-.cardText {
-   margin-bottom: 0;
-}
-
 .cardImg {
    width: 100%;
    height: 100%;
@@ -43,7 +39,11 @@
 
 .cardText {
    padding-left: 0;
-   margin: 0;
+   margin-bottom: 0;
+}
+
+.tags {
+   flex-wrap: wrap;
 }
 
 @media screen and (max-width: 860px) {
