@@ -19,7 +19,17 @@
 .cardBody {
    box-sizing: border-box;
    padding: 0;
-   align-self: center;
+   align-items: stretch;
+   justify-content: center;
+}
+
+.cardBody > div {
+   height: 100%;
+}
+
+.cardContent {
+   height: 100%;
+   justify-content: space-evenly;
 }
 
 .subtitle {
