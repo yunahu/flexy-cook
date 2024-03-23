@@ -43,8 +43,7 @@ const HorizontalCard = ({
               <Stack direction="vertical" gap={1}>
                 <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
-                {/* <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle> */}
-                <CardBootstrap.Text>
+                <CardBootstrap.Text className={styles.cardText}>
                   <span className={styles.subtitle}>Ingredients:<br></br></span>
                   {ingredients ? trimIngredients(ingredients, 8) : ""}
                 </CardBootstrap.Text>

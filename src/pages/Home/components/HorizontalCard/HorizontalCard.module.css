@@ -28,6 +28,10 @@
    margin: 0;
 }
 
+.cardText {
+   margin-bottom: 0;
+}
+
 .cardImg {
    object-fit: cover;
    width: 100%;
