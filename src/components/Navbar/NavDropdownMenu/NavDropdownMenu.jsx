@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./NavDropdownMenu.module.css";
 import { CardList } from "react-bootstrap-icons";
@@ -19,13 +20,12 @@ const NavDropdownMenu = ({
   drop,
   buttonTitle,
   items,
-  className,
   background = "success",
 }) => {
+
   return (
     // if you want to add more props, you can add
-    <Dropdown className={`${styles.container} ${className}`} drop={drop}>
-      <div className={styles.iconContainer}>
+    <Dropdown className={`${styles.container}`} drop={drop}>
         <Dropdown.Toggle
           variant={background}
           className={`${map[background]}`}
@@ -34,8 +34,8 @@ const NavDropdownMenu = ({
           <CardList className={` ${styles.cardIcon}`} />
           <span className={styles.iconText}>{buttonTitle}</span>
         </Dropdown.Toggle>
-      </div>
       <Dropdown.Menu>
+         
         {items.map((item, index) => (
           <>
             <Dropdown.Item

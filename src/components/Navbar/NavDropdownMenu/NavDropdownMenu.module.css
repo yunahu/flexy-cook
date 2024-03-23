@@ -14,9 +14,8 @@
   padding: 0.7rem;
 }
 
-.btn-success:hover,
 .show {
-  background-color: #9eb384 !important;
+  /* background-color: #9eb384 !important; */
   padding: 0.7rem;
 }
 
@@ -26,15 +25,20 @@
 }
 
 .container button[aria-expanded="true"] {
+   width: 100%;
   background-color: #9eb384 !important;
   padding: 0.7rem;
 }
 
 .container {
-  width: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container > button {
+   width: 100%;
 }
 
 .icon {

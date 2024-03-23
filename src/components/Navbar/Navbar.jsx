@@ -165,9 +165,9 @@ const Navbar = () => {
                   direction="vertical"
                >
                   <NavDropdownMenu
-                  drop="down-centered"
-                  buttonTitle="TODO"
-                  items={items}
+                     drop="down-centered"
+                     buttonTitle="TODO"
+                     items={items}
                   />
                </Stack>
 
