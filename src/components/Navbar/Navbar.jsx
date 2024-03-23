@@ -140,9 +140,9 @@ const Navbar = () => {
 
                {/** If on search page */}
                {(location.pathname == '/search/' || location.pathname == '/testSearch/') &&
-                  <Nav.Link as={Link} to="/" className={`${styles.iconContainer} ${styles.searchBar}`}>
+                  <Nav.Link as={Link} to="/" className={`${styles.iconContainer} ${styles.homeIcon}`}>
                      <Stack direction="vertical">
-                        <FontAwesomeIcon icon={faHouse} className={`${styles.icon} ${styles.searchBar}`} />
+                        <FontAwesomeIcon icon={faHouse} className={`${styles.icon}`} />
                         <span>Home</span>
                      </Stack>
                   </Nav.Link>}
@@ -176,9 +176,9 @@ const Navbar = () => {
                   direction="vertical"
                >
                   <NavDropdownMenu
-                  drop="down-centered"
-                  buttonTitle="Menu"
-                  items={items}
+                     drop="down-centered"
+                     buttonTitle="Menu"
+                     items={items}
                   />
                </Stack>
                      <TodoListsModal

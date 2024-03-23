@@ -34,6 +34,11 @@
   display: none;
 }
 
+.middleCol .homeIcon {
+   display: flex;
+   width: 6.5rem;    /** about same width with icons on the right */
+}
+
 .logo {
   width: 90%;
 }
@@ -70,6 +75,11 @@
   margin: 0 auto 0.7rem auto;
 }
 
+.iconContainer > span {
+   color: var(--dark-primary);
+   font-size: 17px;  /** fixed value for not changing easily */
+}
+
 .iconContainer:hover {
   background-color: var(--primary);
   color: var(--white);
@@ -79,7 +89,7 @@
   color: var(--white);
 }
 
-.iconContainer:hover .iconText {
+.iconContainer:hover > span {
   color: var(--white);
 }
 
@@ -105,6 +115,10 @@
   .searchIcon,
   .middleCol .logo {
     display: flex;
+  }
+
+  .middleCol .homeIcon {
+   display: none;
   }
 
   .middleCol .logo {
