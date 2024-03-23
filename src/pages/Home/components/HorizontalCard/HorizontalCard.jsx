@@ -11,6 +11,8 @@ const HorizontalCard = ({
   testid,
   imgURL,
   width,
+  height,
+  minHeight,
   title,
   ingredients,
   tags,
@@ -28,7 +30,7 @@ const HorizontalCard = ({
       <CardBootstrap
         data-testid={`lg_hori_card_${testid || 0}`}
         className={styles.hori_Card}
-        style={{ width: width }}
+        style={{ width: width, height: height, minHeight: minHeight }}
         onClick={onClick}
       >
         <Row style={{ height: "100%" }}>

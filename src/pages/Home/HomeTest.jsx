@@ -277,7 +277,8 @@ const HomeTest = () => {
           testid="4"
           className={styles.lg_hori_card}
           width={"100%"}
-          height={"30vh"}
+          height={"22vh"}
+          minHeight={"200px"}
           imgURL={recipeDetails[4][0].image}
           title={recipeDetails[4][0].title}
           ingredients={recipeDetails[4][0].extendedIngredients}
@@ -302,7 +303,8 @@ const HomeTest = () => {
           testid="5"
           className={styles.lg_hori_card}
           width={"100%"}
-          height={"30vh"}
+          height={"22vh"}
+          minHeight={"200px"}
           imgURL={recipeDetails[5][0].image}
           title={recipeDetails[5][0].title}
           ingredients={recipeDetails[5][0].extendedIngredients}
@@ -327,7 +329,8 @@ const HomeTest = () => {
           testid="6"
           className={styles.lg_hori_card}
           width={"100%"}
-          height={"30vh"}
+          height={"22vh"}
+          minHeight={"200px"}
           imgURL={recipeDetails[6][0].image}
           title={recipeDetails[6][0].title}
           ingredients={recipeDetails[6][0].extendedIngredients}

@@ -113,7 +113,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"30vh"}
+            height={"22vh"}
+            minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
@@ -124,7 +125,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"30vh"}
+            height={"22vh"}
+            minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
@@ -135,7 +137,8 @@ const Home = () => {
           <HorizontalCard
             className={styles.lg_hori_card}
             width={"100%"}
-            height={"30vh"}
+            height={"22vh"}
+            minHeight={"200px"}
             imgURL={recipeInfo.imgURL}
             title={recipeInfo.title}
             time={recipeInfo.time}
