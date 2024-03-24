@@ -51,7 +51,7 @@
   gap: 20px;
 
   padding: 0.7rem 2rem;
-  right: 0;
+  right: 0;    /** to prevent it from going out the screen */
 }
 
 .itemContainer span {

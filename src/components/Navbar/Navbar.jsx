@@ -10,7 +10,7 @@ import { Stack } from "react-bootstrap";
 
 import { BrightnessHighFill } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faHouse, faListCheck, faSquarePlus, faBasketShopping, faGear, faRightToBracket, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faHouse, faSquarePlus, faBasketShopping, faGear, faRightToBracket, faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "src/assets/images/logo.png";
 import TodoListsModal from 'src/components/TodoListsModal/TodoListsModal';
 import { getAuth } from "src/services/todoist";
@@ -190,7 +190,14 @@ const Navbar = () => {
                   direction="vertical"
                   onClick={ () => { /* toggle the display of menu */
                      let menu = document.querySelector('#menu');
-                     menu.style.display == 'none'? menu.style.display = 'flex' : menu.style.display = 'none';
+                     let page = document.querySelector('nav + div');
+                     if (menu.style.display == 'none') {
+                        menu.style.display = 'flex';
+                        page.style.filter = 'blur(3px)';
+                     } else {
+                        menu.style.display = 'none';
+                        page.style.filter = 'blur(0px)';
+                     }
                   }}
                >
                   
