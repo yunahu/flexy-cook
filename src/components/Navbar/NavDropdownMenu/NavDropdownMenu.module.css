@@ -1,17 +1,22 @@
-.btn-primary {
-  /* transparent & text-color:while */
-  background-color: rgb(255, 112, 67, 0) !important;
-  border-color: rgb(255, 112, 67, 0) !important;
-  color: white;
+.btn-success {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--dark-primary);
+  padding: 0.7rem;
+
+   transition: all 0.15s ease-in-out;
 }
 
-.btn-success {
-  /* transparent & text-color:435334 */
-  background-color: rgb(255, 112, 67, 0) !important;
-  border-color: rgb(255, 112, 67, 0) !important;
-  color: #435334;
-  font: 17px "Noto Sans", sans-serif;
-  padding: 0.7rem;
+/** To overwrite the original .btn-success setting */
+.btn-success:hover {
+   background-color: transparent;
+   border-color: transparent;
+   color: var(--white);
+}
+
+.btn-success:active {
+   background-color: var(--primary) !important;
+   border-color: transparent !important;
 }
 
 .show {
@@ -19,15 +24,14 @@
   padding: 0.7rem;
 }
 
-.btn-success:active {
-  background-color: #9eb384 !important;
-  padding: 0.7rem;
+.show:hover, .btn-success {
+   border-color: transparent !important;
 }
 
 .container button[aria-expanded="true"] {
    width: 100%;
-  background-color: #9eb384 !important;
-  padding: 0.7rem;
+   background-color: var(--primary);
+   padding: 0.7rem;
 }
 
 .container {
@@ -50,14 +54,16 @@
   align-items: center;
 }
 
+.itemContainer span {
+   color: var(--dark-primary);
+}
+
 .cardIcon {
   width: auto;
   height: 2.5rem;
-  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.7rem;
 }
 
 .iconContainer {
@@ -69,7 +75,18 @@
 }
 
 @media (max-width: 575px) {
-  .cardIcon {
-    height: 2rem;
-  }
+   .container > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   /** Used instead of gap to prevent dropdown arrow being too far away */
+   .container > button > svg {
+      margin-right: 25px;
+   }
+
+   .cardIcon {
+      width: 17px;
+   }
 }

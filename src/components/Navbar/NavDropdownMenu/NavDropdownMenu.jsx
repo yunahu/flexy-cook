@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./NavDropdownMenu.module.css";
-import { CardList } from "react-bootstrap-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faListCheck } from "@fortawesome/free-solid-svg-icons";
 
 const map = {
   info: styles["btn-info"],
@@ -31,7 +33,7 @@ const NavDropdownMenu = ({
           className={`${map[background]}`}
           id="dropdown-basic"
         >
-          <CardList className={` ${styles.cardIcon}`} />
+          <FontAwesomeIcon className={` ${styles.cardIcon}`} icon={faListCheck}/>
           <span className={styles.iconText}>{buttonTitle}</span>
         </Dropdown.Toggle>
       <Dropdown.Menu>

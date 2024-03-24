@@ -8,9 +8,9 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Nav, Navbar as NavbarBootstrap } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
 
-import { CartPlusFill, BrightnessHighFill } from "react-bootstrap-icons";
+import { BrightnessHighFill } from "react-bootstrap-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faHouse, faListCheck, faSquarePlus, faBasketShopping, faGear, faRightToBracket, faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "src/assets/images/logo.png";
 import TodoListsModal from 'src/components/TodoListsModal/TodoListsModal';
 import { getAuth } from "src/services/todoist";
@@ -38,42 +38,56 @@ const Navbar = () => {
     setTags(tags);
   };
 
-  const items = [
-    // {
-    //   icon: <CartPlusFill size={25}></CartPlusFill>,
-    //   title: "Shopping List",
-    //   ref: "",
-    //   key: "shoppingList",
-		// 	onClick: () => setModalShow(true),
-    // },
-    // {
-    //   icon: <CartPlusFill size={25}></CartPlusFill>,
-    //   title: "Memos",
-    //   ref: "",
-    //   key: "memo",
-		// 	onClick: () => setModalShow(true),
-    // },
-    {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Manage My Tasks",
-      ref: "",
-      key: "manageMyTasks",
-			onClick: () => {
-				if (!localStorage.getItem('todoistToken')) alert('Please log in with Todoist first.'); // TODO: Replace
-				else setModalShow(true); // TODO: Replace
-			},
-    },
-    {
-      icon: <CartPlusFill size={25}></CartPlusFill>,
-      title: "Login with Todoist",
-      ref: "",
-      key: "loginWithTodoist",
+   // Dropdown items
+   const todoistItems = [
+      {
+         icon: <FontAwesomeIcon icon={faSquarePlus} />,
+         title: "Add New Memo",
+         ref: "",
+         key: "addNewMemo",
+
+         onClick: () => {
+            // Toggle the todoist modal & switch to memo tab
+            alert("Toggle the todoist modal & switch to memo tab");
+         },
+      },
+
+      {
+         icon: <FontAwesomeIcon icon={faBasketShopping} />,
+         title: "My Shopping List",
+         ref: "",
+         key: "shoppingList",
+
+         onClick: () => {
+            // Toggle the todoist modal & switch to shopping list tab
+            alert("Toggle the todoist modal & switch to shopping list tab");
+         },
+      },
+
+      {
+         icon: <FontAwesomeIcon icon={faGear} />,
+         title: "Manage My Tasks",
+         ref: "",
+         key: "manageMyTasks",
+
+         onClick: () => {
+            if (!localStorage.getItem('todoistToken')) alert('Please log in with Todoist first.'); // TODO: Replace
+            else setModalShow(true); // TODO: Replace
+         },
+      },
+
+      {
+         icon: <FontAwesomeIcon icon={faRightToBracket} />,
+         title: "Login with Todoist",
+         ref: "",
+         key: "loginWithTodoist",
+
 			onClick: () => {
 				if (!localStorage.getItem('todoistToken')) getAuth();
 				else alert("You're already logged in."); // TODO: Replace
 			},
-    },
-  ];
+      },
+   ];
 
    return (
       <nav className={styles.container}>
@@ -167,28 +181,66 @@ const Navbar = () => {
                   <NavDropdownMenu
                      drop="down-centered"
                      buttonTitle="TODO"
-                     items={items}
+                     items={todoistItems}
                   />
                </Stack>
 
                <Stack
                   className={`${styles.iconContainer} ${styles.menuIcon}`}
                   direction="vertical"
+                  onClick={ () => { /* toggle the display of menu */
+                     let menu = document.querySelector('#menu');
+                     menu.style.display == 'none'? menu.style.display = 'flex' : menu.style.display = 'none';
+                  }}
                >
-                  <NavDropdownMenu
-                     drop="down-centered"
-                     buttonTitle="Menu"
-                     items={items}
-                  />
+                  
+                  <FontAwesomeIcon icon={faBars} className={styles.icon} />
+                  <span>Menu</span>
+
                </Stack>
-                     <TodoListsModal
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                     />
             </Stack>{" "}
             {/** END right col */}
             </Stack>{" "}
             {/** END nav items */}
+
+            {/** A new row with menu items */}
+            <Stack id='menu' className={styles.menu} direction="vertical">
+               <Nav.Link
+                  as={Link}
+                  to="/search"
+                  className={`${styles.menuItem} ${styles.menuSearch}`}
+               >
+                  <Stack direction="horizontal">
+                  <FontAwesomeIcon icon={faSearch} className={styles.menuIcon} />
+                  <span>Search</span>
+                  </Stack>
+               </Nav.Link>
+
+               <Stack
+                  className={`${styles.menuItem} ${styles.menuTheme}`}
+                  direction="horizontal"
+               >
+                  <BrightnessHighFill className={styles.menuIcon} />
+                  <span>Theme</span>
+               </Stack>
+
+               <Stack
+                  className={`${styles.menuItem} ${styles.menuTodo}`}
+                  direction="horizontal"
+               >
+                  <NavDropdownMenu
+                     drop="down-centered"
+                     buttonTitle="TODO"
+                     items={todoistItems}
+                  />
+               </Stack>
+
+            </Stack> {/** End menu dropdown */}
+
+            <TodoListsModal
+               show={modalShow}
+               onHide={() => setModalShow(false)}
+            />
          </nav>
    );
 }
