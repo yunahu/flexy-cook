@@ -19,13 +19,8 @@
    border-color: transparent !important;
 }
 
-.show {
-  /* background-color: #9eb384 !important; */
-  padding: 0.7rem;
-}
-
-.show:hover, .btn-success {
-   border-color: transparent !important;
+.dropMenu {
+   border: 1.5px solid var(--primary);
 }
 
 .container button[aria-expanded="true"] {
@@ -51,11 +46,25 @@
 
 .itemContainer {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 20px;
+
+  padding: 0.7rem 2rem;
+  right: 0;
 }
 
 .itemContainer span {
    color: var(--dark-primary);
+   justify-content: center;
+}
+
+.itemContainer:hover {
+   background-color: var(--primary);
+}
+
+.itemContainer:hover span {
+   color: var(--white);
 }
 
 .cardIcon {
@@ -66,12 +75,15 @@
   align-items: center;
 }
 
-.iconContainer {
-  display: flex;
-  align-items: center;
+.icon {
+   margin: 0;
+  align-self: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 0.5rem;
+}
+
+.icon svg {
+   margin: 0;
+   font-size: 25px;
 }
 
 @media (max-width: 575px) {

@@ -8,7 +8,6 @@ import { faListCheck } from "@fortawesome/free-solid-svg-icons";
 const map = {
   info: styles["btn-info"],
   success: styles["btn-success"],
-  //if you want to add more colors, you can add more
 };
 
 // exampleItems{
@@ -36,27 +35,27 @@ const NavDropdownMenu = ({
           <FontAwesomeIcon className={` ${styles.cardIcon}`} icon={faListCheck}/>
           <span className={styles.iconText}>{buttonTitle}</span>
         </Dropdown.Toggle>
-      <Dropdown.Menu>
-         
-        {items.map((item, index) => (
-          <>
-            <Dropdown.Item
-              key={item.key + index}
-              href={item.ref}
-              className={styles.itemContainer}
+
+         <Dropdown.Menu className={styles.dropMenu}>
+            {items.map((item, index) => (
+               <>
+                  <Dropdown.Item
+                     key={item.key + index}
+                     href={item.ref}
+                     className={styles.itemContainer}
 							onClick={item.onClick}
-            >
-              <span className={styles.icon}>
-                {item.icon ? item.icon : null}
-              </span>
-              <span className={styles.text}>{item.title}</span>
-            </Dropdown.Item>
-            {index !== items.length - 1 && <Dropdown.Divider />}
-          </>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
-  );
+                  >
+                     <span className={styles.icon}>
+                        {item.icon ? item.icon : null}
+                     </span>
+                     <span className={styles.text}>{item.title}</span>
+                  </Dropdown.Item>
+                  {index !== items.length - 1 && <Dropdown.Divider />}
+               </>
+            ))}
+         </Dropdown.Menu>
+      </Dropdown>
+   );
 };
 
 export default NavDropdownMenu;
