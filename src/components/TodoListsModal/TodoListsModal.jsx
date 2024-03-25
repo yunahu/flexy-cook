@@ -61,19 +61,6 @@ const TodoListsModal = props => {
 		run();
 	}, []);
 
-	const onTabSelect = async key => {
-		if (key === 'addList') {
-			try { 
-				const addedSection = await addSection('New list', todoLists[0].project_id);
-				const todoListsClone = structuredClone(todoLists);
-				todoListsClone.push(addedSection);
-				setTodoLists(todoListsClone);
-			} catch (err) {
-				console.error(err);
-			};
-		};
-	};
-
 	return (
 		<Modal
 			{...props}
@@ -88,7 +75,6 @@ const TodoListsModal = props => {
 						defaultActiveKey={todoLists[0]?.id}
 						id="todolistTab"
 						mountOnEnter
-						onSelect={key => onTabSelect(key)}
 						className={`${styles.tabs} mb-3`}
 					>
 						{todoLists.map((todoList) => (
@@ -100,8 +86,6 @@ const TodoListsModal = props => {
 								<TodoList list={todoList} />
 							</Tab>
 						))}
-							<Tab eventKey={`addList`} title='+' key='addList1'>
-						</Tab>
 					</Tabs>  
 				</div>
 		</Modal>
