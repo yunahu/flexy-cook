@@ -38,6 +38,13 @@ const ToolBar = ({ onChange, recipe }) => {
 
   const switchRef = useRef(null);
 
+	const handleGenerateStepsList = async () => {
+		const addedSection = await generateStepsList(recipe);
+		const todoListsClone = structuredClone(todoLists);
+		todoListsClone.push(addedSection);
+		setTodoLists(todoListsClone);
+	};
+
   return (
     <Stack className={styles.toolBar} direction="horizontal">
       {/** control button */}
