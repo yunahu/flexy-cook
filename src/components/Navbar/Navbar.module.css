@@ -155,6 +155,9 @@
    font-size: 17px;
    color: var(--dark-primary);
    border: 2px solid var(--primary);
+
+   position: absolute;
+   z-index: 3;
 }
 
 .menuItem {
