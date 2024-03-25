@@ -1,39 +1,58 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './TodoListsModal.module.css';
 import TodoList from './components/TodoList/TodoList';
-import { addProject, addSection, getAuth, getProjects, getSections } from 'src/services/todoist';
-
-const getFlexyCookProject = async () => {
-	try {
-		const projects = await getProjects();
-		
-		for (let i = 0; i < projects.length; i++) {
-			if (projects[i].name === 'Flexy Cook') {
-				return projects[i];
-			};
-		};
-		
-		const flexyCookProject = await addProject('Flexy Cook');
-		return flexyCookProject;
-	} catch (err) {
-		console.error(err);
-	};
-};
+import { addSection, getFlexyCookProject, getSections, handleNotLoggedIn } from 'src/services/todoist';
+import { TodoListsContext } from 'src/App';
 
 const TodoListsModal = props => {
-	const [todoLists, setTodoLists] = useState([]);
+	const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
-	if (!localStorage.getItem('todoistToken')) getAuth();	
+	if (!localStorage.getItem('todoistToken')) handleNotLoggedIn();
 
 	useEffect(() => {
 		const run = async () => {
+			const orderSections = async (sections, flexyCookProject) => {
+				const orderedSections = [];
+				let existsShoppingList = false;
+				let existsMemos = false;
+				
+				for (const section of sections) {
+					if (section.name === 'Shopping List') {
+						existsShoppingList = true;
+						orderedSections.splice(0, 0, section);
+					} else if (section.name === 'Memos') {
+						existsMemos = true;
+						if (orderedSections[0]?.name === 'Shopping List') {
+							orderedSections.splice(1, 0, section);
+						} else {
+							orderedSections.splice(0, 0, section);
+						};
+					} else {
+						orderedSections.push(section);
+					};
+				};
+				
+				if (!existsShoppingList) {
+					const shoppingList = await addSection('Shopping List', flexyCookProject.id);
+					orderedSections.splice(0, 0, shoppingList);
+				};
+
+				if (!existsMemos) {
+					const memos =  await addSection('Memos', flexyCookProject.id);
+					orderedSections.splice(1, 0, memos);
+				};
+
+				return orderedSections;
+			};
+			
 			try {
 				const flexyCookProject = await getFlexyCookProject();		
 				const flexyCookSections = await getSections(flexyCookProject.id);
-				setTodoLists(flexyCookSections);
+				const orderedSections = await orderSections(flexyCookSections, flexyCookProject);
+				setTodoLists(orderedSections);
 			} catch (err) {
 				console.error(err);
 			}
@@ -46,12 +65,9 @@ const TodoListsModal = props => {
 		if (key === 'addList') {
 			try { 
 				const addedSection = await addSection('New list', todoLists[0].project_id);
-	
-				let todoListsClone = structuredClone(todoLists);
+				const todoListsClone = structuredClone(todoLists);
 				todoListsClone.push(addedSection);
-				console.log(addedSection);
 				setTodoLists(todoListsClone);
-	
 			} catch (err) {
 				console.error(err);
 			};

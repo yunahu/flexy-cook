@@ -15,7 +15,7 @@ const Router = () => (
     <Route path="/testRecipe" element={<RecipeTest />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/recipe" element={<Recipe />} />
+    <Route path="/recipe/:id" element={<Recipe />} />
     <Route path="*" element={<div>Not Found</div>} />
   </Routes>
 );

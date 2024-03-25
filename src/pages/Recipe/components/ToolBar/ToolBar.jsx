@@ -8,8 +8,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ToolBar.module.css";
 import { useRef } from "react";
+import { addToShoppingList, generateStepsList } from 'src/services/todoist';
+import { useContext } from 'react';
+import { TodoListsContext } from 'src/App';
 
-const ToolBar = ({ onChange }) => {
+
+const ToolBar = ({ onChange, recipe }) => {
+	const { todoLists, setTodoLists } = useContext(TodoListsContext);
+
   const toolbarToggle = () => {
     const toolbar = document.getElementById("toolbar");
     toolbar.style.display == "none"
@@ -31,6 +37,13 @@ const ToolBar = ({ onChange }) => {
   };
 
   const switchRef = useRef(null);
+
+	const handleGenerateStepsList = async () => {
+		const addedSection = await generateStepsList(recipe);
+		const todoListsClone = structuredClone(todoLists);
+		todoListsClone.push(addedSection);
+		setTodoLists(todoListsClone);
+	};
 
   return (
     <Stack className={styles.toolBar} direction="horizontal">
@@ -58,15 +71,16 @@ const ToolBar = ({ onChange }) => {
 
         {/** ------------------------------------------------------------------ */}
 
-        <OverlayTrigger
-          placement="left"
-          delay={{ show: 50, hide: 50 }}
-          overlay={<Tooltip>Convert To Cooking Steps</Tooltip>}
-        >
-          <Button className={styles.tool}>
-            <FontAwesomeIcon icon={faFileCirclePlus} />
-          </Button>
-        </OverlayTrigger>
+            <OverlayTrigger
+               placement='left'
+               delay={{ show: 50, hide: 50 }}
+               overlay={<Tooltip>Convert To Cooking Steps</Tooltip>}>
+
+                  <Button className={styles.tool} onClick={handleGenerateStepsList}>
+                     <FontAwesomeIcon icon={faFileCirclePlus} />
+                  </Button>
+
+            </OverlayTrigger>
 
         {/** ------------------------------------------------------------------ */}
 
@@ -75,7 +89,7 @@ const ToolBar = ({ onChange }) => {
           delay={{ show: 50, hide: 50 }}
           overlay={<Tooltip>Add To Shopping List</Tooltip>}
         >
-          <Button className={styles.tool}>
+          <Button className={styles.tool} onClick={() => addToShoppingList(recipe)}>
             <FontAwesomeIcon icon={faCartPlus} />
           </Button>
         </OverlayTrigger>

@@ -50,7 +50,7 @@ const TodoList = props => {
 				setTasks(tasksClone);
 
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 			};
 		};
 	};
@@ -74,7 +74,7 @@ const TodoList = props => {
 		} catch (err) {
 			console.error(err);
 		};
-	}
+	};
 
 	const handleAddTask = async () => {
 		try { 
@@ -87,7 +87,7 @@ const TodoList = props => {
 		} catch (err) {
 			console.error(err);
 		};
-	}
+	};
 
 	const handleCloseTask = async task => {
 		try { 
