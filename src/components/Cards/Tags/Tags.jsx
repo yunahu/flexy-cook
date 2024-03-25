@@ -1,7 +1,7 @@
 import Tag from "src/components/Tag/Tag";
 import Stack from "react-bootstrap/Stack";
 import { getTagInfo } from "src/utils/spoonacularFunctions";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Tags = ({ className, tags = [] }) => {
   /**

@@ -5,13 +5,15 @@ import CookingStep from "./components/CookingStep/CookingStep";
 import ToolBar from "./components/ToolBar/ToolBar";
 
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useState } from "react";
 import { getImage } from "src/services/spoonacular";
+import { capitalize } from "src/utils/common";
 
 import { Stack } from "react-bootstrap";
 import styles from "./Recipe.module.css";
 
 const RecipeTest = () => {
+  const [scale, setScale] = useState(false);
   const location = useLocation();
   console.log(location.state.recipeDetail[0].recipe);
   console.log(location.state.recipeDetail[0].tags);
@@ -26,6 +28,27 @@ const RecipeTest = () => {
   if (recipe?.analyzedInstructions.length === 0) {
     return <h1>No instructions</h1>;
   }
+
+  const onChange = () => {
+    if (!scale) {
+      setScale(true);
+    } else {
+      setScale(false);
+    }
+  };
+
+  const unitChange = (ingredient, scale) => {
+    let amount;
+    let unit;
+    if (scale) {
+      amount = ingredient.measures.metric.amount;
+      unit = ingredient.measures.metric.unitShort;
+    } else {
+      amount = ingredient.measures.us.amount;
+      unit = ingredient.measures.us.unitShort;
+    }
+    return `${capitalize(ingredient.name)}: ${amount} ${unit ? unit : ""}`;
+  };
 
   const CookingSteps = recipe?.analyzedInstructions[0]?.steps.map(
     (step, index) =>
@@ -62,9 +85,13 @@ const RecipeTest = () => {
         <RecipeBanner
           imgURL={recipe.image}
           title={recipe.title}
-          ingredients={recipe.extendedIngredients
-            .map((ingredient) => ingredient.name)
-            .join(", ")}
+          ingredients={recipe.extendedIngredients.map((ingredient) => {
+            return (
+              <li className={styles.ingredients}>
+                {unitChange(ingredient, scale)}
+              </li>
+            );
+          })}
           time={recipe.readyInMinutes}
           calories={Math.floor(recipe.nutrition.nutrients[0].amount)}
           size={recipe.servings}
@@ -81,7 +108,7 @@ const RecipeTest = () => {
         </Stack>
       </Stack>{" "}
       {/** End Content Wrapper */}
-      <ToolBar className={styles.toolBar} />
+      <ToolBar className={styles.toolBar} onChange={onChange} />
     </>
   );
 };

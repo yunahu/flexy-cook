@@ -45,7 +45,8 @@ const HorizontalCard = ({
 
                 <CardBootstrap.Text className={styles.cardText}>
                   <span className={styles.subtitle}>Ingredients:<br></br></span>
-                  {ingredients ? trimIngredients(ingredients, 8) : ""}
+                  {ingredients ? trimIngredients(ingredients, 6) : ""}
+
                 </CardBootstrap.Text>
 
                 <CookingInfo size={size} time={time} calories={calories} />
