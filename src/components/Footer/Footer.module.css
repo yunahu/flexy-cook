@@ -39,8 +39,13 @@
    display: none;
 }
 
+.footerHr {
+   color: var(--white);
+   margin: 20px 0;
+}
+
 .copyright {
-   font: italic .8em underline;
+   font: italic .8em underline !important;
 }
 
 .footerItems button {
@@ -55,16 +60,19 @@
    color: var(--dark-primary) !important;
    cursor: pointer;
 }
+
 .responsiveModal {
    width: 60%;
    max-width: 600px;
    margin: auto;
- }
+}
+
 @media screen and (max-width: 576px) {
    .responsiveModal {
       width: 40%;
       margin:0;
-    }
+   }
+
    .footerItems {
       flex-direction: column;
    }

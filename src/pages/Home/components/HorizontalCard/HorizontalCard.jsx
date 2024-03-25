@@ -11,6 +11,8 @@ const HorizontalCard = ({
   testid,
   imgURL,
   width,
+  height,
+  minHeight,
   title,
   ingredients,
   tags,
@@ -28,7 +30,7 @@ const HorizontalCard = ({
       <CardBootstrap
         data-testid={`lg_hori_card_${testid || 0}`}
         className={styles.hori_Card}
-        style={{ width: width }}
+        style={{ width: width, height: height, minHeight: minHeight }}
         onClick={onClick}
       >
         <Row style={{ height: "100%" }}>
@@ -38,16 +40,17 @@ const HorizontalCard = ({
 
           <Col xs={7} className={styles.cardBody}>
             <CardBootstrap.Body>
-              <Stack direction="vertical">
+              <Stack direction="vertical" gap={2} className={styles.cardContent}>
                 <CardBootstrap.Title>{title}</CardBootstrap.Title>
 
-                <CardBootstrap.Subtitle>Ingredients</CardBootstrap.Subtitle>
-                <CardBootstrap.Text>
-                  {ingredients ? trimIngredients(ingredients, 8) : ""}
+                <CardBootstrap.Text className={styles.cardText}>
+                  <span className={styles.subtitle}>Ingredients:<br></br></span>
+                  {ingredients ? trimIngredients(ingredients, 6) : ""}
+
                 </CardBootstrap.Text>
 
                 <CookingInfo size={size} time={time} calories={calories} />
-                <Tags tags={tags} />
+                <Tags tags={tags} className={styles.tags}/>
               </Stack>
             </CardBootstrap.Body>
           </Col>

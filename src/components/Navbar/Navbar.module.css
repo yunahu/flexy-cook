@@ -2,12 +2,13 @@
 .container {
   width: 100%;
   background-color: var(--light-primary);
-  padding: 1rem;
+  /* padding: 1rem; */
   position: relative;
 }
 
 .navElements {
   width: 90%;
+  padding: 1rem;
   max-width: 1200px;
   margin: auto;
   justify-content: space-between;
@@ -34,6 +35,11 @@
   display: none;
 }
 
+.middleCol .homeIcon {
+   display: flex;
+   width: 6.5rem;    /** about same width with icons on the right */
+}
+
 .logo {
   width: 90%;
 }
@@ -51,18 +57,19 @@
 }
 
 .iconContainer {
+   width: 100%;
   height: 100%;
-  padding: 0;
+  padding: 0.7rem;
   justify-content: center;
+  align-items: stretch;
   text-align: center;
 
   gap: 0.1rem;
-  width: 4rem;
   border-radius: 5px;
   transition: all 0.15s ease-in-out;
 }
 
-.iconContainer div {
+.iconContainer > div {
   align-self: center;
 }
 
@@ -70,17 +77,36 @@
   margin: 0 auto 0.7rem auto;
 }
 
+.iconContainer > span {
+   color: var(--dark-primary);
+   font-size: 17px;  /** fixed value for not changing easily */
+}
+
 .iconContainer:hover {
   background-color: var(--primary);
   color: var(--white);
+  cursor: pointer;
 }
 
 .iconContainer:hover .icon {
   color: var(--white);
 }
 
-.iconContainer:hover .iconText {
+/** do not use .iconContainer:hover span since it will affect dropdown menu items too */
+.iconContainer:hover > span {
+   color: var(--white);
+}
+
+.iconContainer:hover > div > span {
   color: var(--white);
+}
+
+.iconContainer:hover button {
+   color: var(--white);
+}
+
+.todoIcon {
+   padding: 0;
 }
 
 .icon {
@@ -89,10 +115,10 @@
   color: var(--dark-primary);
 }
 
-.todoDrop {
-  margin-top: 4rem;
-  color: var(--dark-primary);
+.icon + span {
+   color: var(--dark-primary);
 }
+
 
 /** Medium screen size */
 @media (max-width: 990px) {
@@ -107,14 +133,57 @@
     display: flex;
   }
 
+  .middleCol .homeIcon {
+   display: none;
+  }
+
   .middleCol .logo {
     width: 130px; /** Absolute value to prevent from being too small */
     margin: auto;
   }
 
+  /** min-width to prevent dropdown arrow overflow display */
   .iconContainer {
     width: 5rem;
+    min-width: 90px;
   }
+}
+
+.menu {
+   display: none;
+   width: 100%;
+   font-size: 17px;
+   color: var(--dark-primary);
+   border: 2px solid var(--primary);
+
+   position: absolute;
+   z-index: 3;
+}
+
+.menuItem {
+   padding: 0.7rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 25px;
+
+   background-color: var(--light);
+   border-top: 1px solid var(--primary);
+}
+
+.menuItem:hover {
+   background-color: var(--primary);
+   color: var(--white);
+   cursor: pointer;
+}
+
+.menuTodo {
+   padding: 0;
+}
+
+/** Selector for navlink container */
+.menuSearch > div {
+   gap: 25px;
 }
 
 /** Small screen size */
