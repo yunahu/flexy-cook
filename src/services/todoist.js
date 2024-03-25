@@ -72,3 +72,82 @@ export const addTask = (taskName, projectId, sectionId) => todoistAPI.post('/tas
 export const addSubtask = (subtaskName, projectId, sectionId, parentId) => todoistAPI.post('/tasks', { content: subtaskName, project_id: projectId, section_id: sectionId, parent_id: parentId });
 
 export const deleteTask = taskId => todoistAPI.delete(`/tasks/${taskId}`);
+
+
+// Others
+
+export const handleNotLoggedIn = () => {
+	alert('Please log in with Todoist first.'); // TODO: Replace it
+};
+
+export const getFlexyCookProject = async () => {
+	try {
+		const projects = await getProjects();
+		
+		for (let i = 0; i < projects.length; i++) {
+			if (projects[i].name === 'FlexyCook') {
+				return projects[i];
+			};
+		};
+		
+		const flexyCookProject = await addProject('FlexyCook');
+		return flexyCookProject;
+	} catch (err) {
+		console.error(err);
+	};
+};
+
+export const getShoppingList = async () => {
+	const flexyCookProject = await getFlexyCookProject();		
+	const flexyCookSections = await getSections(flexyCookProject.id);
+	for (const section of flexyCookSections) {
+		if (section.name === 'Shopping List') return section;
+	}
+	return addSection('Shopping List', flexyCookProject.id);
+};
+
+export const addToShoppingList = async recipe => {
+	if (!localStorage.getItem('todoistToken')) {
+		handleNotLoggedIn();
+		return;	
+	};
+
+	const shoppingList = await getShoppingList();
+
+	try {
+		await Promise.all(recipe.extendedIngredients.map(ingredient => addTask(`${ingredient.name} - ${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitLong}`, null, shoppingList.id)));
+		alert('Success');
+	} catch (err) {
+		console.error(err);
+	};
+};
+
+export const generateStepsList = async recipe => {
+	if (!localStorage.getItem('todoistToken')) {
+		handleNotLoggedIn();
+		return;	
+	};
+
+	try{
+		const length = recipe.analyzedInstructions.length;
+
+		if (length) {
+			for (let i = 0; i < length; i++) {
+				const title = recipe.analyzedInstructions[i].name || recipe.title;
+				const flexyCookProject = await getFlexyCookProject();
+				const stepsList = await addSection(title, flexyCookProject.id);
+				const steps = recipe.analyzedInstructions[i].steps;
+				for (const step of steps) {
+					await addTask(`${step.number}. ${step.step}`, flexyCookProject.id, stepsList.id);
+				};
+			
+				alert('Success');
+				return stepsList;
+			};
+		} else {
+			alert('This recipe cannot be used to generate a cooking list. Try another recipe.'); // TODO: Replace it
+		};
+	} catch (err) {
+		console.error(err);
+	};
+};

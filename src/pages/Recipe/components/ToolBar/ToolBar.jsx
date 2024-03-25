@@ -2,9 +2,13 @@ import { Stack, Form, OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesUp, faCartPlus, faChevronLeft, faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import styles from './ToolBar.module.css';
+import { addToShoppingList, generateStepsList } from 'src/services/todoist';
+import { useContext } from 'react';
+import { TodoListsContext } from 'src/App';
 
 
-const ToolBar = () => {
+const ToolBar = ({ recipe }) => {
+	const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
    const toolbarToggle = () => {
       const toolbar = document.getElementById('toolbar');
@@ -22,6 +26,13 @@ const ToolBar = () => {
          control.style.cssText = 'transform: rotate(0deg); background-color: var(--light-primary); color: var(--dark-primary)';
       }
    }
+
+	const handleGenerateStepsList = async () => {
+		const addedSection = await generateStepsList(recipe);
+		const todoListsClone = structuredClone(todoLists);
+		todoListsClone.push(addedSection);
+		setTodoLists(todoListsClone);
+	};
 
    return (
       <Stack className={styles.toolBar} direction='horizontal'>
@@ -58,7 +69,7 @@ const ToolBar = () => {
                   <Tooltip>Convert To Cooking Steps</Tooltip>
                }>
 
-                  <Button className={styles.tool}>
+                  <Button className={styles.tool} onClick={handleGenerateStepsList}>
                      <FontAwesomeIcon icon={faFileCirclePlus} />
                   </Button>
 
@@ -74,7 +85,7 @@ const ToolBar = () => {
                   <Tooltip>Add To Shopping List</Tooltip>
                }>
 
-                  <Button className={styles.tool}>
+                  <Button className={styles.tool} onClick={() => addToShoppingList(recipe)}>
                      <FontAwesomeIcon icon={faCartPlus}/>
                   </Button>
             </OverlayTrigger>

@@ -6,6 +6,10 @@ import ToolBar from './components/ToolBar/ToolBar';
 import { Stack } from 'react-bootstrap';
 
 import styles from './Recipe.module.css';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import env from 'src/utils/env';
+import { useEffect, useState } from 'react';
 
 
 const dummyData = () => {
@@ -63,8 +67,23 @@ const dummyDataBanner = () => {
 };
 
 const Recipe = () => {
+	const [ recipe, setRecipe ] = useState();
+	const recipeId = useParams().id;
+
    const recipeInfo = dummyData();
    const bannerInfo = dummyDataBanner();
+	
+	useEffect(() => {
+		const run = async () => {
+			const response = await axios.get(`${env.API_URL}/spoonacular/getRecipe`, {
+				params: { id: recipeId, includeNutrition: true },
+			});
+			
+			setRecipe(response.data);
+		};
+	
+		run();
+	}, [recipeId]);
 
 	return (
       <>
@@ -92,7 +111,10 @@ const Recipe = () => {
 
          </Stack> {/** End Content Wrapper */}
 
-         <ToolBar className={styles.toolBar}/>
+        <ToolBar 
+					className={styles.toolBar}
+					recipe={recipe}
+				/>
          
       </>
 	);
