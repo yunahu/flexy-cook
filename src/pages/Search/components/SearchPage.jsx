@@ -22,7 +22,7 @@ import {
 import { Stack } from "react-bootstrap";
 
 const MAX_RECIPE_NUM = 12;
-const recommendationTags = createRecommendationTags(13);
+const recommendationTags = createRecommendationTags(10);
 
 const SearchTest = () => {
   const [search, setSearch] = useState("");
@@ -41,6 +41,18 @@ const SearchTest = () => {
 
   const handleTagsChange = (nutrientsTags) => {
     setNutrientsTags(nutrientsTags);
+  };
+
+  // change number of recommendation tags based on the width of the window
+  const getTagNum = (recommendationTags) => {
+    console.log(recommendationTags);
+    if (window.innerWidth < 575) {
+      return recommendationTags.slice(5);
+    } else if (window.innerWidth < 990) {
+      return recommendationTags.slice(6);
+    } else {
+      return recommendationTags;
+    }
   };
 
   // scroll handling
@@ -142,6 +154,9 @@ const SearchTest = () => {
   }, [tagInfo, ingredients, tags]);
 
   const handleBtnClick = () => {
+    setNutrientsTags(nutrientsTags);
+    setSearch(search);
+    setRecipeDetails(null);
     fetchRecipes();
   };
 
@@ -166,7 +181,7 @@ const SearchTest = () => {
         <div className={styles.recommendedTags}>
           <h3>Recommended Tags</h3>
           <div className={styles.tags}>
-            <Tags tags={recommendationTags} className={styles.tag} />
+            <Tags tags={getTagNum(recommendationTags)} className={styles.tag} />
           </div>
         </div>
       </div>
