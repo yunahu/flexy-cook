@@ -10,9 +10,16 @@ import GetRecipeTasteMock from "./GetRecipeTasteMock";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as router from "react-router";
 
-vi.mock("axios");
+const mockUseNavigate = vi.fn();
+
+vi.mock("react-router-dom", () => ({
+  useNavigate: () => mockUseNavigate,
+}));
 
 describe("Search Page with passed nutrients /& ingredients", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   vi.mock("react-router-dom", () => ({
     // useLocation: () =>
     //   vi.fn().mockReturnValue({
