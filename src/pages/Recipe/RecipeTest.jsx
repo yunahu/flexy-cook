@@ -79,7 +79,12 @@ const RecipeTest = () => {
     <>
       {/* <h1>Recipe Page Content Test</h1>
       {CookingSteps} */}
-      <Stack className={styles.wrapper} direction="vertical" gap={2}>
+      <Stack
+        className={styles.wrapper}
+        direction="vertical"
+        gap={2}
+        data-testid="recipe"
+      >
         <hr id="top"></hr>
 
         <RecipeBanner
@@ -100,7 +105,11 @@ const RecipeTest = () => {
 
         <Divider variant={"down"} label={"Scroll Down"} width={"100%"} />
 
-        <Stack className={styles.cookingStep} direction="vertical">
+        <Stack
+          className={styles.cookingStep}
+          direction="vertical"
+          data-testid="recipe_instruction"
+        >
           {/* <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
             <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/>
             <CookingStep height={recipeInfo.height} image={recipeInfo.equipment[0].image} number={recipeInfo.number} step={recipeInfo.step} equipment={recipeInfo.equipment} ingredients={recipeInfo.ingredients}/> */}

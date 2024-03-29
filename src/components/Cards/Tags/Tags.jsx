@@ -35,6 +35,7 @@ const Tags = ({ className, tags = [] }) => {
     <Stack direction="horizontal" gap={2} className={className}>
       {tags.map((tag, index) => (
         <Tag
+          testid={index}
           key={tag.text + index}
           bg={tag.type}
           title={tag.text}

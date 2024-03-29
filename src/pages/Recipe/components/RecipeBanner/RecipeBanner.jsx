@@ -15,9 +15,14 @@ const RecipeBanner = ({
   calories,
   tags,
 }) => {
+  console.log(tags);
   return (
-    <Card className={styles.banner}>
-      <Card.Img src={imgURL} className={styles.bgImg} />
+    <Card className={styles.banner} data-testid="recipe_banner">
+      <Card.Img
+        src={imgURL}
+        className={styles.bgImg}
+        data-testid="banner_img"
+      />
 
       <Card.ImgOverlay className={styles.caption}>
         <Card.Title>{title}</Card.Title>

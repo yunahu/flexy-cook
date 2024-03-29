@@ -8,13 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ToolBar.module.css";
 import { useRef } from "react";
-import { addToShoppingList, generateStepsList } from 'src/services/todoist';
-import { useContext } from 'react';
-import { TodoListsContext } from 'src/App';
-
+import { addToShoppingList, generateStepsList } from "src/services/todoist";
+import { useContext } from "react";
+import { TodoListsContext } from "src/App";
 
 const ToolBar = ({ onChange, recipe }) => {
-	const { todoLists, setTodoLists } = useContext(TodoListsContext);
+  const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
   const toolbarToggle = () => {
     const toolbar = document.getElementById("toolbar");
@@ -38,15 +37,19 @@ const ToolBar = ({ onChange, recipe }) => {
 
   const switchRef = useRef(null);
 
-	const handleGenerateStepsList = async () => {
-		const addedSection = await generateStepsList(recipe);
-		const todoListsClone = structuredClone(todoLists);
-		todoListsClone.push(addedSection);
-		setTodoLists(todoListsClone);
-	};
+  const handleGenerateStepsList = async () => {
+    const addedSection = await generateStepsList(recipe);
+    const todoListsClone = structuredClone(todoLists);
+    todoListsClone.push(addedSection);
+    setTodoLists(todoListsClone);
+  };
 
   return (
-    <Stack className={styles.toolBar} direction="horizontal">
+    <Stack
+      className={styles.toolBar}
+      direction="horizontal"
+      data-testid="toolbar"
+    >
       {/** control button */}
       <Button id={"control"} className={styles.tool} onClick={toolbarToggle}>
         <FontAwesomeIcon icon={faChevronLeft} />
@@ -71,16 +74,15 @@ const ToolBar = ({ onChange, recipe }) => {
 
         {/** ------------------------------------------------------------------ */}
 
-            <OverlayTrigger
-               placement='left'
-               delay={{ show: 50, hide: 50 }}
-               overlay={<Tooltip>Convert To Cooking Steps</Tooltip>}>
-
-                  <Button className={styles.tool} onClick={handleGenerateStepsList}>
-                     <FontAwesomeIcon icon={faFileCirclePlus} />
-                  </Button>
-
-            </OverlayTrigger>
+        <OverlayTrigger
+          placement="left"
+          delay={{ show: 50, hide: 50 }}
+          overlay={<Tooltip>Convert To Cooking Steps</Tooltip>}
+        >
+          <Button className={styles.tool} onClick={handleGenerateStepsList}>
+            <FontAwesomeIcon icon={faFileCirclePlus} />
+          </Button>
+        </OverlayTrigger>
 
         {/** ------------------------------------------------------------------ */}
 
@@ -89,7 +91,10 @@ const ToolBar = ({ onChange, recipe }) => {
           delay={{ show: 50, hide: 50 }}
           overlay={<Tooltip>Add To Shopping List</Tooltip>}
         >
-          <Button className={styles.tool} onClick={() => addToShoppingList(recipe)}>
+          <Button
+            className={styles.tool}
+            onClick={() => addToShoppingList(recipe)}
+          >
             <FontAwesomeIcon icon={faCartPlus} />
           </Button>
         </OverlayTrigger>

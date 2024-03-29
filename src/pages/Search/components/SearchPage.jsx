@@ -28,6 +28,7 @@ const SearchTest = () => {
   const [search, setSearch] = useState("");
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [maxReached, setMaxReached] = useState(false);
   const [nutrientsTags, setNutrientsTags] = useState([]);
 
   const location = useLocation();
@@ -62,7 +63,8 @@ const SearchTest = () => {
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-        recipeDetails?.length < MAX_RECIPE_NUM
+        recipeDetails?.length < MAX_RECIPE_NUM &&
+        !maxReached
       ) {
         fetchRecipes();
       }
@@ -116,6 +118,9 @@ const SearchTest = () => {
         .then(async (res) => {
           const recipeId = res.data.results.map((recipe) => recipe.id);
           console.log(recipeId);
+          if (recipeId < 6) {
+            setMaxReached(true);
+          }
 
           const recipeDetail = await Promise.all(
             recipeId.map((id) =>
@@ -148,6 +153,7 @@ const SearchTest = () => {
   useEffect(() => {
     console.log("Ingredients:", ingredients);
     console.log("Tags:", tags);
+    console.log("TagInfo:", tagInfo);
     if (tagInfo || ingredients || tags?.length > 0) {
       fetchRecipes();
     }
@@ -161,7 +167,7 @@ const SearchTest = () => {
   };
 
   return (
-    <div>
+    <div data-testid="container">
       <div className={styles.background}>
         <div className={styles.searchBar}>
           <SearchBar
@@ -224,13 +230,18 @@ const SearchTest = () => {
         })}
         <StickyButton />
         {loading && (
-          <div className={styles.msg}>
+          <div className={styles.msg} data-testid="loading">
             <FontAwesomeIcon icon={faSpinner} spinPulse />
             &ensp;Loading...
           </div>
         )}
         {!loading && recipeDetails && recipeDetails?.length == 0 && (
-          <Stack className={styles.msg} direction="vertical" gap={5}>
+          <Stack
+            data-testid="not_found"
+            className={styles.msg}
+            direction="vertical"
+            gap={5}
+          >
             <span>
               <FontAwesomeIcon
                 icon={faCircleExclamation}

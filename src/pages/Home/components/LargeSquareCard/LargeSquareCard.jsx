@@ -49,6 +49,7 @@ const LargeSquareCard = ({
 
           <ModifiedButton
             className={styles.goBtn}
+            testid="checkitout"
             title={"Check It Out"}
             variant="light"
             onClick={onClick}

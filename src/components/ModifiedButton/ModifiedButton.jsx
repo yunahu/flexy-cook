@@ -13,6 +13,7 @@ const map = {
 };
 
 const ModifiedButton = ({
+  testid,
   title,
   disabled,
   onClick,
@@ -22,6 +23,7 @@ const ModifiedButton = ({
 }) => {
   return (
     <Button
+      data-testid={testid}
       variant={variant}
       className={map[variant] + " " + className}
       disabled={disabled}
