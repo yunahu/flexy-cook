@@ -39,9 +39,11 @@ const ToolBar = ({ onChange, recipe }) => {
   const switchRef = useRef(null);
 
 	const handleGenerateStepsList = async () => {
-		const addedSection = await generateStepsList(recipe);
+		const addedSections = await generateStepsList(recipe);
 		const todoListsClone = structuredClone(todoLists);
-		todoListsClone.push(addedSection);
+		for (const section of addedSections) {
+			todoListsClone.push(section);
+		}
 		setTodoLists(todoListsClone);
 	};
 
@@ -76,7 +78,7 @@ const ToolBar = ({ onChange, recipe }) => {
                delay={{ show: 50, hide: 50 }}
                overlay={<Tooltip>Convert To Cooking Steps</Tooltip>}>
 
-                  <Button className={styles.tool} onClick={handleGenerateStepsList}>
+                  <Button className={styles.tool} onClick={handleGenerateStepsList} id="convert-to-cooking-steps-button">
                      <FontAwesomeIcon icon={faFileCirclePlus} />
                   </Button>
 

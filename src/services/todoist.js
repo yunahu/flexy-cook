@@ -132,20 +132,23 @@ export const generateStepsList = async recipe => {
 
 	try{
 		const length = recipe.analyzedInstructions.length;
-
+		console.log(length)
+		const stepsLists = [];
 		if (length) {
 			for (let i = 0; i < length; i++) {
 				const title = recipe.analyzedInstructions[i].name || recipe.title;
 				const flexyCookProject = await getFlexyCookProject();
-				const stepsList = await addSection(title, flexyCookProject.id);
+				const stepList = await addSection(title, flexyCookProject.id);
 				const steps = recipe.analyzedInstructions[i].steps;
 				for (const step of steps) {
-					await addTask(`${step.number}. ${step.step}`, flexyCookProject.id, stepsList.id);
+					await addTask(`${step.number}. ${step.step}`, flexyCookProject.id, stepList.id);
 				};
-			
-				alert('Success');
-				return stepsList;
+				stepsLists.push(stepList);
 			};
+		
+			alert('Success');
+			return stepsLists;
+
 		} else {
 			alert('This recipe cannot be used to generate a cooking list. Try another recipe.'); // TODO: Replace it
 		};
