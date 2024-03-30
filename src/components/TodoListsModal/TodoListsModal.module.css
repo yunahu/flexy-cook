@@ -19,19 +19,33 @@
 	border: none;
 }
 
+.tabs {
+   padding: 0 1em;
+}
+
 .tabs :global(.nav-link) {
 	background-color: var(--light);
    color: var(--dark-primary);
 
-   border: .7px solid var(--primary);
+   border: 1px solid var(--light-primary);
+   border-bottom-color: var(--primary);
+   transform: scaleX(1.02);
 }
-
 
 .tabs :global(.nav-link.active) {
    background-color: var(--primary);
    color: var(--white);
    font-weight: 500;
-   border-bottom-color: var(--primary);
+   border-color: var(--primary);
 
    transform: scaleX(1.05) scaleY(1.2) translateY(-0.2em);
+   z-index: 10;
+}
+
+.tabs :global(.nav-link:hover) {
+   border-color: var(--primary);
+}
+
+:global(.tab-pane) > div:first-child > div[class*='taskContainer']:first-of-type {
+   border-top: dashed 0.5px gray;
 }
