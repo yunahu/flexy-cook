@@ -5,9 +5,9 @@ import { setupServer } from 'msw/node';
 import ToolBar from "src/pages/Recipe/components/ToolBar/ToolBar";
 import { TodoListsContext } from "src/App";
 import { TODOIST_BASE_URL } from "src/services/todoist";
-import TodoistProjectsMock from "../../../mocks/TodoistProjectsMock.json";
-import TodoistSectionsMock from "../../../mocks/TodoistSectionsMock.json";
-import GetRecipeMock from "../../../mocks/GetRecipeMock.json";
+import TodoistProjectsMock from "../../../mocks/Todoist/TodoistProjectsMock.json";
+import TodoistSectionsMock from "../../../mocks/Todoist/TodoistSectionsMock.json";
+import GetRecipeMock from "../../../mocks/Todoist/GetRecipeMock.json";
 
 vi.stubGlobal("alert", () => {});
 const alertMock = vi.spyOn(window, 'alert').mockImplementation(); 
