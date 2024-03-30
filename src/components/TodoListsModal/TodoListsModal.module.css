@@ -1,6 +1,9 @@
 :global(.modal-content) {
 	width: 790px;
 	min-height: 676px;
+
+   border: 1px solid var(--primary);
+   overflow: scroll;
 }
 
 :global(.tab-content) {
@@ -8,10 +11,27 @@
 	max-height: 527px;
 }
 
+:global(.nav-tabs) {
+   border-bottom: 2px solid var(--primary);
+}
+
 .header {
 	border: none;
 }
 
 .tabs :global(.nav-link) {
-	color: black;
+	background-color: var(--light);
+   color: var(--dark-primary);
+
+   border: .7px solid var(--primary);
+}
+
+
+.tabs :global(.nav-link.active) {
+   background-color: var(--primary);
+   color: var(--white);
+   font-weight: 500;
+   border-bottom-color: var(--primary);
+
+   transform: scaleX(1.05) scaleY(1.2) translateY(-0.2em);
 }

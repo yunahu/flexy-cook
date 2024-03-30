@@ -67,6 +67,7 @@ const TodoListsModal = props => {
 			size="lg"
 			aria-labelledby="contained-modal-title-vcenter"
 			centered
+         className={styles.modalContainer}
 		>
 			<Modal.Header className={styles.header} closeButton>
 			</Modal.Header>

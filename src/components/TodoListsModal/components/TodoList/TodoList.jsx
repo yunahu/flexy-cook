@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faPlus, faCheck, faDiagramNext, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import styles from './TodoList.module.css';
 import { addSubtask, addTask, closeTask, deleteTask, getActiveTasks, updateTask } from 'src/services/todoist';
 
@@ -110,18 +110,25 @@ const TodoList = props => {
 	};
 
 	const renderTask = (task, level) => (
-		<div>
-			<div 
-				className={styles.taskContainer} 
+		<>
+			<div className={styles.taskContainer}
 				style={{paddingLeft: 15 + level * 35}}
 			>
-				<div className={styles.checkCircleContainer} onClick={() => handleCloseTask(task)}>
+				<div className={styles.checkCircleContainer}>
+
 					<div className={styles.checkCircle}>
-						<FontAwesomeIcon icon={faCheck} />
+						<FontAwesomeIcon icon={faCheck}
+                     onClick={(evt) => {
+                        setTimeout(handleCloseTask, 700, task);
+                           /** Delay for animation: consider async function delay time */
+                        let circleContainer = evt.target.parentNode.parentNode;
+                        let taskContainer = circleContainer.parentNode;
+                        circleContainer.style.cssText = 'border-color: transparent; transition: all 1s;';
+                        taskContainer.style.cssText = 'color: transparent; text-decoration: line-through; transition: all 1s;';
+                     }}/>
 					</div>
 				</div>
-				<div 
-					className={styles.taskTitle} 
+				<div className={styles.taskTitle} 
 					contentEditable 
 					spellCheck="false"
 					onKeyDown={event => handleKeyDown(event, task)}
@@ -131,17 +138,18 @@ const TodoList = props => {
 				<div className={styles.dropdownContainer}>
 					<Dropdown className={styles.taskDropdown}>
 						<Dropdown.Toggle 
-							variant="success"
 							id="dropdown-basic" 
 							className={styles.dropdownToggle}
 						>
 							<div className={styles.gearIcon}><FontAwesomeIcon icon={faGear} /></div>
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Dropdown.Item onClick={() => handleAddSubtask(task)}
-							>Add Subtask</Dropdown.Item>
-							<Dropdown.Item onClick={() => deleteFromTree(task)}
-							>Delete</Dropdown.Item>
+							<Dropdown.Item onClick={() => handleAddSubtask(task)}>
+                        <FontAwesomeIcon icon={faDiagramNext} />&emsp;Add Subtask
+                     </Dropdown.Item>
+							<Dropdown.Item onClick={() => deleteFromTree(task)}>
+                        <FontAwesomeIcon icon={faTrashCan} />&emsp;Delete Task
+                     </Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 				</div>
@@ -151,7 +159,7 @@ const TodoList = props => {
 					{task.children.map(child => <div key={child.id}>{renderTask(child, level+1)}</div>)}
 				</div>
 			)}
-		</div>
+		</>
 	);
 
 	useEffect(() => {
@@ -192,7 +200,7 @@ const TodoList = props => {
 	}, []);
 
 	return (
-		<div>
+		<>
 			{tasks.map(task => <div key={task.id}>{renderTask(task, 0)}</div>)}
 			<div className={styles.taskContainer} onClick={handleAddTask}>
 				<div className={styles.plusIcon}>
@@ -200,7 +208,7 @@ const TodoList = props => {
 				</div>
 				<div className={styles.taskTitle}>Add task</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
