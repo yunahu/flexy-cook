@@ -2,8 +2,10 @@ import axios from 'axios';
 import env from 'src/utils/env';
 import { generateRandomString } from 'src/utils/string';
 
-const todoistAPI = axios.create({
-	baseURL: 'https://api.todoist.com/rest/v2'
+export const TODOIST_BASE_URL = 'https://api.todoist.com/rest/v2';
+
+export const todoistAPI = axios.create({
+	baseURL: TODOIST_BASE_URL
 });
 
 todoistAPI.interceptors.request.use(config => {
@@ -116,7 +118,7 @@ export const addToShoppingList = async recipe => {
 
 	try {
 		await Promise.all(recipe.extendedIngredients.map(ingredient => addTask(`${ingredient.name} - ${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitLong}`, null, shoppingList.id)));
-		alert('Success');
+		alert('Success');	// Do not remove, or modify the test to not rely on this
 	} catch (err) {
 		console.error(err);
 	};

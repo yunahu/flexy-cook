@@ -89,7 +89,7 @@ const ToolBar = ({ onChange, recipe }) => {
           delay={{ show: 50, hide: 50 }}
           overlay={<Tooltip>Add To Shopping List</Tooltip>}
         >
-          <Button className={styles.tool} onClick={() => addToShoppingList(recipe)}>
+          <Button className={styles.tool} onClick={() => addToShoppingList(recipe)} id="add-to-shopping-list-button">
             <FontAwesomeIcon icon={faCartPlus} />
           </Button>
         </OverlayTrigger>
