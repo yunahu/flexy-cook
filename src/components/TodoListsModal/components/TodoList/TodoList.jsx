@@ -119,7 +119,7 @@ const TodoList = props => {
 					<div className={styles.checkCircle}>
 						<FontAwesomeIcon icon={faCheck}
                      onClick={(evt) => {
-                        setTimeout(handleCloseTask, 700, task);
+                        setTimeout(handleCloseTask, 300, task);
                            /** Delay for animation: consider async function delay time */
                         let circleContainer = evt.target.parentNode.parentNode;
                         let taskContainer = circleContainer.parentNode;
