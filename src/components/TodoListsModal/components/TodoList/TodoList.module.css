@@ -5,13 +5,22 @@
 	padding-right: 15px;
 	padding-top: 15px;
 	padding-bottom: 10px;
-	border-top: dashed 0.5px gray;
+   border-bottom: dashed 0.5px gray;
 	align-items: center;
 	justify-content: center;
 
-	:hover {
-		cursor: pointer;
-	}
+}
+
+.taskContainer:hover {
+   cursor: pointer;
+   background-color: var(--bs-light);
+   font-weight: 500;
+   border-color: transparent;
+   border-radius: 3px;
+   transform: translateY(-0.1em);
+   box-shadow: 1px 1px 3px lightgray;
+
+   transition: all .3s;
 }
 
 .checkCircleContainer {
@@ -51,7 +60,7 @@
 
 .taskDropdown {
 	visibility: hidden;
-	height: 38px;
+	height: 60%;
 }
 
 .taskContainer:hover .taskDropdown {
@@ -60,10 +69,24 @@
 
 .dropdownToggle {
 	padding: 0px;
+   background-color: var(--primary);
+   border: none;
 }
 
 .dropdownToggle:after {
 	display: none !important;
+}
+
+.dropdownToggle:hover {
+   background-color: var(--dark-primary);
+}
+
+.dropdownToggle:active {
+   background-color: var(--dark-primary) !important;
+}
+
+.dropdownToggle[aria-expanded="true"] {
+   background-color: var(--dark-primary);
 }
 
 .gearIcon {
@@ -81,4 +104,14 @@
 	align-items: center;
 	justify-content: center;
 	margin-left: 7px;
+}
+
+.taskDropdown :global(.dropdown-item) {
+   font-size: small;
+   color: var(--dark-primary);
+}
+
+.taskDropdown :global(.dropdown-item:hover) {
+   background-color: var(--light-primary) !important;
+   font-weight: 500;
 }

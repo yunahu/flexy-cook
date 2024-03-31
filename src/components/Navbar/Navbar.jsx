@@ -137,6 +137,7 @@ const Navbar = () => {
 
                {/** If not on search page */}
                {(location.pathname !== '/search/' && location.pathname !== '/testSearch/') &&
+                  location.pathname !== '/search' && location.pathname !== '/testSearch' &&
                <Stack className={styles.searchBar} direction="vertical">
                   {/** Search input & Advanced Search dropdown */}
                   <SearchBar

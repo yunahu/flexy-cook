@@ -51,9 +51,9 @@
 }
 
 .searchBar {
-  align-items: top;
+  align-items: center;
+  justify-content: end;
   width: 100%;
-  padding-top: 0.7rem;
 }
 
 .iconContainer {

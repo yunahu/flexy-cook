@@ -1,37 +1,37 @@
 .btn-primary {
   /* transparent & text-color:while */
-  padding: 0.7rem;
-  background-color: rgb(255, 112, 67, 0) !important;
-  border-color: rgb(255, 112, 67, 0) !important;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-color: transparent;
   color: white;
   font: 17px "Noto Sans", sans-serif;
 }
 
 .btn-success {
   /* transparent & text-color:435334 */
-  padding: 0.7rem;
-  background-color: rgb(255, 112, 67, 0) !important;
-  border-color: rgb(255, 112, 67, 0) !important;
-  color: #435334;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--dark-primary);
   font: 17px "Noto Sans", sans-serif;
 }
 
-btn-success:hover,
-btn-primary:hover,
+.btn-success:hover,
+.btn-primary:hover,
 .show {
-  padding: 0.7rem;
-  background-color: #9eb384 !important;
+  background-color: var(--primary) !important;
+  border-color: var(--primary);
 }
 
-btn-success:active,
-btn-primary:active {
-  padding: 0.7rem;
-  background-color: #9eb384 !important;
+.btn-success:active,
+.btn-primary:active {
+  background-color: var(--primary) !important;
+  border-color: var(--primary);
 }
 
 .container button[aria-expanded="true"] {
-  padding: 0.7rem;
-  background-color: #9eb384 !important;
+  background-color: var(--primary) !important;
+   border-color: var(--primary);
 }
 
 .container {
