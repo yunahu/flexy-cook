@@ -194,7 +194,7 @@ const TodoList = props => {
 	return (
 		<div>
 			{tasks.map(task => <div key={task.id}>{renderTask(task, 0)}</div>)}
-			<div className={styles.taskContainer} onClick={handleAddTask}>
+			<div className={styles.taskContainer} onClick={handleAddTask} id="add-task-button">
 				<div className={styles.plusIcon}>
 					<FontAwesomeIcon className='faplus' icon={faPlus} />	
 				</div>

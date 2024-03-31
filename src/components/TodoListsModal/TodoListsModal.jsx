@@ -53,6 +53,7 @@ const TodoListsModal = props => {
 				const flexyCookSections = await getSections(flexyCookProject.id);
 				const orderedSections = await orderSections(flexyCookSections, flexyCookProject);
 				setTodoLists(orderedSections);
+				console.log(orderedSections);
 			} catch (err) {
 				console.error(err);
 			}
