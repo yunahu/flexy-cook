@@ -131,7 +131,7 @@ const Home = () => {
             )}
             tags={createTags(recipeDetails[0])}
             onClick={() =>
-              navigate("/recipe", {
+              navigate(`/recipe`, {
                 state: {
                   recipeDetail: createLocationData(
                     recipeDetails[0][0],

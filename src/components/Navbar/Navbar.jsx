@@ -150,7 +150,7 @@ const Navbar = () => {
               <Stack className={styles.searchBar} direction="vertical">
                 {/** Search input & Advanced Search dropdown */}
                 <SearchBar
-                  text="onion, canned tomato"
+                  text="Enter ingredients with comma-separated list"
                   btnText={"Search"}
                   className={styles.searchBar}
                   value={ingredients}

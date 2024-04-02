@@ -14,6 +14,7 @@ function SearchBar({
   btnText,
   className,
   testid,
+  onKeyDown,
 }) {
   return (
     <InputGroup className={`${styles.container} ${className}`}>

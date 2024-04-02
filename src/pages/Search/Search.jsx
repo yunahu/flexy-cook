@@ -40,12 +40,12 @@ const Search = () => {
 
   const navigate = useNavigate();
 
-  const handleOnChange = (e) => {
-    setSearch(e.target.value);
-  };
-
   const handleTagsChange = (nutrientsTags) => {
     setNutrientsTags(nutrientsTags);
+  };
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
   };
 
   // change number of recommendation tags based on the width of the window
@@ -161,7 +161,7 @@ const Search = () => {
         <div className={styles.searchBar}>
           <SearchBar
             testid="searchbar"
-            text="onion, canned tomato, pasta"
+            text="Enter ingredients with comma-separated list"
             value={search}
             onChange={handleOnChange}
             btnClick={handleBtnClick}
