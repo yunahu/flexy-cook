@@ -37,6 +37,13 @@ const AdvancedSearchMenu = ({
 
   const location = useLocation();
 
+  // if the input is empty, disable the button
+  const disabled =
+    selectedNutrient === "" ||
+    amount === "" ||
+    amount === null ||
+    selectedMinOrMax === "";
+
   useEffect(() => {
     if (location.pathname != "/search") {
       setTags([]);
@@ -63,9 +70,14 @@ const AdvancedSearchMenu = ({
       e.target.value < 0
     ) {
       alert("Please enter a valid amount");
-      setAmount("");
     } else {
       setAmount(e.target.value);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !disabled) {
+      addTag();
     }
   };
 
@@ -74,6 +86,7 @@ const AdvancedSearchMenu = ({
     setTags((previousTags) => {
       const newTags = [...previousTags];
       newTags.splice(index, 1);
+      onTagsChange(newTags);
       return newTags;
     });
   };
@@ -104,20 +117,6 @@ const AdvancedSearchMenu = ({
     setAmount("");
     onTagsChange([...tags, tag]);
   };
-
-  // let element = document.getElementById("advancedSearch");
-  // element.addEventListener("keydown", (e) => {
-  //   if (e.key === "Enter") {
-  //     addTag();
-  //   }
-  // });
-
-  // if the input is empty, disable the button
-  const disabled =
-    selectedNutrient === "" ||
-    amount === "" ||
-    amount === null ||
-    selectedMinOrMax === "";
 
   return (
     <div className={className} id="advancedSearch">
@@ -188,6 +187,7 @@ const AdvancedSearchMenu = ({
                     value={amount}
                     type="text"
                     onChange={handleAmountChange}
+                    onKeyDown={handleKeyDown}
                   />
                   <InputGroup.Text>
                     {defineScale(selectedNutrient)}

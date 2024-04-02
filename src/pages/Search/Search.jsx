@@ -30,12 +30,15 @@ const MAX_RECIPE_NUM = 12;
 const recommendationTags = createRecommendationTags(10);
 
 const Search = () => {
-  const [search, setSearch] = useState("");
+  const location = useLocation();
+
+  const [search, setSearch] = useState(location.state?.search || "");
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [nutrientsTags, setNutrientsTags] = useState([]);
+  const [nutrientsTags, setNutrientsTags] = useState(
+    location.state?.nutrient || []
+  );
 
-  const location = useLocation();
   let { ingredients, tags, tagInfo } = location.state || {};
 
   const navigate = useNavigate();
@@ -47,6 +50,12 @@ const Search = () => {
   const handleOnChange = (e) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    if (search !== "" || nutrientsTags.length > 0) {
+      fetchRecipes();
+    }
+  }, [location.state]);
 
   // change number of recommendation tags based on the width of the window
   const getTagNum = (recommendationTags) => {
@@ -151,8 +160,13 @@ const Search = () => {
     setNutrientsTags(nutrientsTags);
     setSearch(search);
     setRecipeDetails(null);
-    navigate("/search", {});
-    fetchRecipes();
+    navigate("/search", {
+      replace: true,
+      state: {
+        search: search,
+        nutrient: nutrientsTags,
+      },
+    });
   };
 
   return (
@@ -187,10 +201,10 @@ const Search = () => {
         {recipeDetails && (
           <SearchBy
             className={styles.searchBy}
-            ingredients={search}
+            ingredients={location.state?.search}
             ingredientsFromNav={ingredients}
             tag={tagInfo}
-            nutrient={nutrientsTags}
+            nutrient={location.state?.nutrient}
             nutrientFromNav={tags}
           />
         )}
