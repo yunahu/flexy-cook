@@ -1,5 +1,5 @@
 import { describe, test, expect, afterEach } from "vitest";
-import { fireEvent, queryByText, render, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
+import { fireEvent, render, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { TODOIST_BASE_URL } from "src/services/todoist";

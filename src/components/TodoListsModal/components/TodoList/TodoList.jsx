@@ -144,7 +144,10 @@ const TodoList = props => {
 							<div className={styles.gearIcon}><FontAwesomeIcon icon={faGear} /></div>
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Dropdown.Item onClick={() => handleAddSubtask(task)}>
+							<Dropdown.Item 
+								onClick={() => handleAddSubtask(task)}
+								className="add-subtask-button"
+							>
 								<FontAwesomeIcon icon={faDiagramNext} />&emsp;Add Subtask
 							</Dropdown.Item>
 							<Dropdown.Item 
