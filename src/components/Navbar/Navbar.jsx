@@ -47,8 +47,8 @@ const Navbar = () => {
          key: "addNewMemo",
 
          onClick: () => {
-            // Toggle the todoist modal & switch to memo tab
-            alert("Toggle the todoist modal & switch to memo tab");
+					if (!localStorage.getItem('todoistToken')) alert('Please log in with Todoist first.'); // TODO: Replace
+					else setModalShow(true); // TODO: Replace
          },
       },
 
