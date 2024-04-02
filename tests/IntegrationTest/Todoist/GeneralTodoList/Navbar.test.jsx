@@ -8,7 +8,7 @@ vi.mock("react-router-dom", () => ({
   useNavigate: () => mockUseNavigate,
 }));
 
-describe("Advanced Search", () => {
+describe("NavBar", () => {
   test("render successfully", async () => {
     render(<Navbar />);
   });

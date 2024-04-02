@@ -36,7 +36,7 @@ const Search = () => {
   const [nutrientsTags, setNutrientsTags] = useState([]);
 
   const location = useLocation();
-  const { ingredients, tags, tagInfo } = location.state || {};
+  let { ingredients, tags, tagInfo } = location.state || {};
 
   const navigate = useNavigate();
 
@@ -50,7 +50,6 @@ const Search = () => {
 
   // change number of recommendation tags based on the width of the window
   const getTagNum = (recommendationTags) => {
-    console.log(recommendationTags);
     if (window.innerWidth < 575) {
       return recommendationTags.slice(5);
     } else if (window.innerWidth < 990) {
@@ -152,6 +151,7 @@ const Search = () => {
     setNutrientsTags(nutrientsTags);
     setSearch(search);
     setRecipeDetails(null);
+    navigate("/search", {});
     fetchRecipes();
   };
 

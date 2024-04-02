@@ -171,7 +171,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
   test("render search bar", async () => {
     // search form is rendered?
     expect(
-      screen.getByPlaceholderText("onion, canned tomato, pasta")
+      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
     ).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");

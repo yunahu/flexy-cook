@@ -27,7 +27,10 @@ const Tags = ({ className, tags = [] }) => {
       if (location.pathname == "/search") {
         location.reload();
       }
-      navigate("/search", { state: { tagInfo: getTagInfo(tag) } });
+      navigate("/search", {
+        replace: true,
+        state: { tagInfo: getTagInfo(tag) },
+      });
     }
   };
 
@@ -35,6 +38,7 @@ const Tags = ({ className, tags = [] }) => {
     <Stack direction="horizontal" gap={2} className={className}>
       {tags.map((tag, index) => (
         <Tag
+          testid={index}
           key={tag.text + index}
           bg={tag.type}
           title={tag.text}

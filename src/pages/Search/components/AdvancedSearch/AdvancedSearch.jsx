@@ -105,6 +105,13 @@ const AdvancedSearchMenu = ({
     onTagsChange([...tags, tag]);
   };
 
+  // let element = document.getElementById("advancedSearch");
+  // element.addEventListener("keydown", (e) => {
+  //   if (e.key === "Enter") {
+  //     addTag();
+  //   }
+  // });
+
   // if the input is empty, disable the button
   const disabled =
     selectedNutrient === "" ||
@@ -113,7 +120,7 @@ const AdvancedSearchMenu = ({
     selectedMinOrMax === "";
 
   return (
-    <div className={className}>
+    <div className={className} id="advancedSearch">
       <Dropdown
         className={dropdownStyles.container}
         drop={"down-centered"}

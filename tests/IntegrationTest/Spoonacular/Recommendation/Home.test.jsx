@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import Home from "src/pages/Home/Home";
 import axios from "axios";
 import env from "src/utils/env";
+import { MemoryRouter, useNavigate } from "react-router-dom";
 import RecipeDetailMock from "./RecipeDetailMock";
 import RandomRecipeMock from "./RandomRecipeMock";
 import RecipeTasteMock from "./RecipeTasteMock";
@@ -11,9 +12,12 @@ import RecipeTasteMock from "./RecipeTasteMock";
 const mockUseNavigate = vi.fn();
 
 vi.mock("axios");
-vi.mock("react-router-dom", () => ({
-  useNavigate: () => mockUseNavigate,
-}));
+vi.mock("react-router-dom", async (importOrig) => {
+  return {
+    ...(await importOrig()),
+    useNavigate: () => mockUseNavigate,
+  };
+});
 
 describe("Home Page", () => {
   beforeEach(() => {
@@ -32,7 +36,11 @@ describe("Home Page", () => {
       });
     }
 
-    render(<Home />);
+    render(
+      <MemoryRouter initialEntries={[{ pathname: "" }]}>
+        <Home />
+      </MemoryRouter>
+    );
   });
 
   test("fetch random recipe successfully", async () => {
@@ -166,13 +174,13 @@ describe("Home Page", () => {
     expect(screen.getByTestId("carousel_banner_3")).toBeInTheDocument();
 
     const lgCard = screen.getByTestId("lg_sq_card_1");
-    const button = lgCard.querySelector("button");
+    const button = screen.getByTestId("checkitout");
     // button is shown in the lg card?
     expect(lgCard.querySelector("button")).toBeTruthy();
 
-    // userEvent.click(button);
+    userEvent.click(button);
 
-    // expect(mockUseNavigate).toHaveBeenCalled();
+    // expect(window.location.pathname).toBe("/testRecipe");
   });
 });
 

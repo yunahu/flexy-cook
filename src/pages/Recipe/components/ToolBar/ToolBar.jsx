@@ -63,7 +63,11 @@ const ToolBar = ({ onChange, recipe }) => {
   };
 
   return (
-    <Stack className={styles.toolBar} direction="horizontal">
+    <Stack
+      className={styles.toolBar}
+      direction="horizontal"
+      data-testid="toolbar"
+    >
       {/** control button */}
       <Button id={"control"} className={styles.tool} onClick={toolbarToggle}>
         <FontAwesomeIcon icon={faChevronLeft} />

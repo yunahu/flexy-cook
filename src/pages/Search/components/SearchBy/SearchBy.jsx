@@ -47,7 +47,9 @@ const SearchBy = ({
           ))}
         </div>
       )}
-      {tag && <div>{`${capitalize(tag[0].key)}: ${tag[0].amount}`}</div>}
+      {tag && (
+        <div>{`${capitalize(tag[0].key)}: ${capitalize(tag[0].amount)}`}</div>
+      )}
     </ul>
   );
 };
