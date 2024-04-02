@@ -138,3 +138,14 @@ export const getTagInfo = (tag) => {
     return tagInfo;
 }
 
+
+export const createNutrientParam = (tags) => {
+    console.log("t", tags);
+    const param = tags.reduce((params, tag) => {
+        const nutrientName =
+            tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
+        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
+        return params;
+    }, {});
+    return param;
+}

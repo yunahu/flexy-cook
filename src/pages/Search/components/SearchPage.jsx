@@ -10,7 +10,12 @@ import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
 import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
 import SearchCard from "src/pages/Search/components/SearchCard/SearchCard";
-import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
+import SearchBy from "src/pages/Search/components/SearchBy/SearchBy";
+import {
+  createTags,
+  createLocationData,
+  createNutrientParam,
+} from "src/utils/spoonacularFunctions";
 import { createRecommendationTags } from "src/utils/recommendationTags";
 
 import styles from "src/pages/Search/Search.module.css";
@@ -79,19 +84,9 @@ const SearchTest = () => {
 
     // get nutrient data from tags to create parameters
     if (tags) {
-      nutrientParams = tags.reduce((params, tag) => {
-        const nutrientName =
-          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
-        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
-        return params;
-      }, {});
+      nutrientParams = createNutrientParam(tags);
     } else {
-      nutrientParams = nutrientsTags.reduce((params, tag) => {
-        const nutrientName =
-          tag.nutrient.charAt(0).toUpperCase() + tag.nutrient.slice(1);
-        params[`${tag.minOrMax.toLowerCase()}${nutrientName}`] = tag.amount;
-        return params;
-      }, {});
+      nutrientParams = createNutrientParam(nutrientsTags);
     }
 
     // get tag info to search
@@ -189,6 +184,14 @@ const SearchTest = () => {
 
       {recipeDetails && <p className={styles.text}>Search Results:</p>}
       <div className={styles.container}>
+        <SearchBy
+          className={styles.searchBy}
+          ingredients={search}
+          ingredientsFromNav={ingredients}
+          tag={tagInfo}
+          nutrient={nutrientsTags}
+          nutrientFromNav={tags}
+        />
         {recipeDetails?.map((recipeDetail) => {
           return (
             <SearchCard

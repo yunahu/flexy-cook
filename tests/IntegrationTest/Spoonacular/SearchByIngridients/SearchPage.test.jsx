@@ -7,14 +7,13 @@ import SearchTest from "src/pages/Search/components/SearchPage.jsx";
 import SearchRecipeMock from "./SearchRecipeMock";
 import GetRecipeMock from "./GetRecipeMock";
 import GetRecipeTasteMock from "./GetRecipeTasteMock";
-import { useNavigate, useLocation } from "react-router-dom";
-import * as router from "react-router";
 
 const mockUseNavigate = vi.fn();
 
 vi.mock("react-router-dom", () => ({
   useNavigate: () => mockUseNavigate,
 }));
+vi.mock("axios");
 
 describe("Search Page with passed nutrients /& ingredients", () => {
   beforeEach(() => {
