@@ -6,7 +6,7 @@ import axios from "axios";
 import env from "src/utils/env";
 import RecipeDetailMock from "./RecipeDetailMock";
 import RandomRecipeMock from "./RandomRecipeMock";
-import RecipeTasteMock from "tests/IntegrationTest/Spoonacular/Recommendation/RecipeTasteMock";
+import RecipeTasteMock from "./RecipeTasteMock";
 
 const mockUseNavigate = vi.fn();
 
