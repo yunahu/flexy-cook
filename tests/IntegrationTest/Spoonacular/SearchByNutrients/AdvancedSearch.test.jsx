@@ -226,7 +226,10 @@ describe("Advanced Search", () => {
     );
 
     const closeButton = screen.getByRole("button", { name: "Close" });
+    window.confirm = vi.fn().mockImplementation(() => true);
     userEvent.click(closeButton);
+    // confirmation has been shown?
+    await waitFor(() => expect(window.confirm).toHaveBeenCalled());
     await waitFor(() =>
       // tag information is not shown?
       expect(screen.queryByText("Min Fat 10(g)")).not.toBeInTheDocument()
