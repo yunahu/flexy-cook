@@ -4,28 +4,42 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './TodoListsModal.module.css';
 import TodoList from './components/TodoList/TodoList';
-import { addSection, getFlexyCookProject, getSections, handleNotLoggedIn } from 'src/services/todoist';
+import { addSection, deleteSection, getFlexyCookProject, getSections, handleNotLoggedIn } from 'src/services/todoist';
 import { TodoListsContext } from 'src/App';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TodoListsModal = props => {
 	const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
 	if (!localStorage.getItem('todoistToken')) handleNotLoggedIn();
 
+	const deleteTodoList = async sectionId => {
+		try {
+			let todoListsClone = structuredClone(todoLists);
+			await deleteSection(sectionId);
+			todoListsClone = todoListsClone.filter(todoList => todoList.id !== sectionId);
+			setTodoLists(todoListsClone);
+			console.log('done');
+		} catch (err) {
+			console.error(err);
+		};
+	};
+
 	useEffect(() => {
 		const run = async () => {
 			const orderSections = async (sections, flexyCookProject) => {
 				const orderedSections = [];
-				let existsShoppingList = false;
 				let existsMemos = false;
+				let existsShoppingList = false;
 				
 				for (const section of sections) {
-					if (section.name === 'Shopping List') {
-						existsShoppingList = true;
-						orderedSections.splice(0, 0, section);
-					} else if (section.name === 'Memos') {
+					if (section.name === 'Memos') {
 						existsMemos = true;
-						if (orderedSections[0]?.name === 'Shopping List') {
+						orderedSections.splice(0, 0, section);
+					} else if (section.name === 'Shopping List') {
+						existsShoppingList = true;
+						if (orderedSections[0]?.name === 'Memos') {
 							orderedSections.splice(1, 0, section);
 						} else {
 							orderedSections.splice(0, 0, section);
@@ -35,14 +49,15 @@ const TodoListsModal = props => {
 					};
 				};
 				
-				if (!existsShoppingList) {
-					const shoppingList = await addSection('Shopping List', flexyCookProject.id);
-					orderedSections.splice(0, 0, shoppingList);
-				};
-
+				
 				if (!existsMemos) {
 					const memos =  await addSection('Memos', flexyCookProject.id);
-					orderedSections.splice(1, 0, memos);
+					orderedSections.splice(0, 0, memos);
+				};
+
+				if (!existsShoppingList) {
+					const shoppingList = await addSection('Shopping List', flexyCookProject.id);
+					orderedSections.splice(1, 0, shoppingList);
 				};
 
 				return orderedSections;
@@ -83,7 +98,12 @@ const TodoListsModal = props => {
 							<Tab 
 								key={todoList.id}
 								eventKey={todoList.id} 
-								title={todoList.name} 
+								title={<div>
+									{todoList.name}
+										<span className={styles.iconX}>
+											<FontAwesomeIcon icon={faXmark} onClick={() => deleteTodoList(todoList.id)} />
+										</span> 
+									</div>}
 							>
 								<TodoList list={todoList} />
 							</Tab>

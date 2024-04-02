@@ -139,17 +139,23 @@ const TodoList = props => {
 					<Dropdown className={styles.taskDropdown}>
 						<Dropdown.Toggle 
 							id="dropdown-basic" 
-							className={styles.dropdownToggle}
+							className={`dropdown-toggle ${styles.dropdownToggle}`}
 						>
 							<div className={styles.gearIcon}><FontAwesomeIcon icon={faGear} /></div>
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Dropdown.Item onClick={() => handleAddSubtask(task)}>
-                        <FontAwesomeIcon icon={faDiagramNext} />&emsp;Add Subtask
-                     </Dropdown.Item>
-							<Dropdown.Item onClick={() => deleteFromTree(task)}>
-                        <FontAwesomeIcon icon={faTrashCan} />&emsp;Delete Task
-                     </Dropdown.Item>
+							<Dropdown.Item 
+								onClick={() => handleAddSubtask(task)}
+								className="add-subtask-button"
+							>
+								<FontAwesomeIcon icon={faDiagramNext} />&emsp;Add Subtask
+							</Dropdown.Item>
+							<Dropdown.Item 
+								onClick={() => deleteFromTree(task)}
+								className="delete-task-button"
+							>
+								<FontAwesomeIcon icon={faTrashCan} />&emsp;Delete Task
+							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 				</div>
