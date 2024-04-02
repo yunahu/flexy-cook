@@ -2,8 +2,10 @@ import axios from 'axios';
 import env from 'src/utils/env';
 import { generateRandomString } from 'src/utils/string';
 
-const todoistAPI = axios.create({
-	baseURL: 'https://api.todoist.com/rest/v2'
+export const TODOIST_BASE_URL = 'https://api.todoist.com/rest/v2';
+
+export const todoistAPI = axios.create({
+	baseURL: TODOIST_BASE_URL
 });
 
 todoistAPI.interceptors.request.use(config => {
@@ -116,7 +118,7 @@ export const addToShoppingList = async recipe => {
 
 	try {
 		await Promise.all(recipe.extendedIngredients.map(ingredient => addTask(`${ingredient.name} - ${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitLong}`, null, shoppingList.id)));
-		alert('Success');
+		alert('Success');	// Do not remove, or modify the test to not rely on this
 	} catch (err) {
 		console.error(err);
 	};
@@ -130,20 +132,23 @@ export const generateStepsList = async recipe => {
 
 	try{
 		const length = recipe.analyzedInstructions.length;
-
+		console.log(length)
+		const stepsLists = [];
 		if (length) {
 			for (let i = 0; i < length; i++) {
 				const title = recipe.analyzedInstructions[i].name || recipe.title;
 				const flexyCookProject = await getFlexyCookProject();
-				const stepsList = await addSection(title, flexyCookProject.id);
+				const stepList = await addSection(title, flexyCookProject.id);
 				const steps = recipe.analyzedInstructions[i].steps;
 				for (const step of steps) {
-					await addTask(`${step.number}. ${step.step}`, flexyCookProject.id, stepsList.id);
+					await addTask(`${step.number}. ${step.step}`, flexyCookProject.id, stepList.id);
 				};
-			
-				alert('Success');
-				return stepsList;
+				stepsLists.push(stepList);
 			};
+		
+			alert('Success');
+			return stepsLists;
+
 		} else {
 			alert('This recipe cannot be used to generate a cooking list. Try another recipe.'); // TODO: Replace it
 		};

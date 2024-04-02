@@ -53,6 +53,7 @@ const TodoListsModal = props => {
 				const flexyCookSections = await getSections(flexyCookProject.id);
 				const orderedSections = await orderSections(flexyCookSections, flexyCookProject);
 				setTodoLists(orderedSections);
+				console.log(orderedSections);
 			} catch (err) {
 				console.error(err);
 			}
@@ -67,6 +68,7 @@ const TodoListsModal = props => {
 			size="lg"
 			aria-labelledby="contained-modal-title-vcenter"
 			centered
+         className={styles.modalContainer}
 		>
 			<Modal.Header className={styles.header} closeButton>
 			</Modal.Header>
