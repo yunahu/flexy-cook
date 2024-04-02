@@ -4,13 +4,27 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import styles from './TodoListsModal.module.css';
 import TodoList from './components/TodoList/TodoList';
-import { addSection, getFlexyCookProject, getSections, handleNotLoggedIn } from 'src/services/todoist';
+import { addSection, deleteSection, getFlexyCookProject, getSections, handleNotLoggedIn } from 'src/services/todoist';
 import { TodoListsContext } from 'src/App';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TodoListsModal = props => {
 	const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
 	if (!localStorage.getItem('todoistToken')) handleNotLoggedIn();
+
+	const deleteTodoList = async sectionId => {
+		try {
+			let todoListsClone = structuredClone(todoLists);
+			await deleteSection(sectionId);
+			todoListsClone = todoListsClone.filter(todoList => todoList.id !== sectionId);
+			setTodoLists(todoListsClone);
+			console.log('done');
+		} catch (err) {
+			console.error(err);
+		};
+	};
 
 	useEffect(() => {
 		const run = async () => {
@@ -83,7 +97,12 @@ const TodoListsModal = props => {
 							<Tab 
 								key={todoList.id}
 								eventKey={todoList.id} 
-								title={todoList.name} 
+								title={<div>
+									{todoList.name}
+										<span className={styles.iconX}>
+											<FontAwesomeIcon icon={faXmark} onClick={() => deleteTodoList(todoList.id)} />
+										</span> 
+									</div>}
 							>
 								<TodoList list={todoList} />
 							</Tab>
