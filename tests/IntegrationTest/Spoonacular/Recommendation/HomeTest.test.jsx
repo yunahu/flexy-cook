@@ -1,13 +1,11 @@
 import { describe, test, expect, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import HomeTest from "src/pages/Home/HomeTest";
+import Home from "src/pages/Home/Home";
 import axios from "axios";
 import env from "src/utils/env";
 import RecipeDetailMock from "./RecipeDetailMock";
 import RandomRecipeMock from "./RandomRecipeMock";
-import RecipeTasteMock from "./RecipeTasteMock";
-import { useNavigate } from "react-router-dom";
 
 const mockUseNavigate = vi.fn();
 
@@ -33,7 +31,7 @@ describe("Home Page", () => {
       });
     }
 
-    render(<HomeTest />);
+    render(<Home />);
   });
 
   test("fetch random recipe successfully", async () => {

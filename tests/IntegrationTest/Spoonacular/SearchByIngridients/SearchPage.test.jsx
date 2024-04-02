@@ -2,8 +2,7 @@ import { describe, test, expect, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
-import env from "src/utils/env";
-import SearchTest from "src/pages/Search/components/SearchPage.jsx";
+import Search from "src/pages/Search/Search.jsx";
 import SearchRecipeMock from "./SearchRecipeMock";
 import GetRecipeMock from "./GetRecipeMock";
 import GetRecipeTasteMock from "./GetRecipeTasteMock";
@@ -71,7 +70,7 @@ describe("Search Page with passed nutrients /& ingredients", () => {
         data: GetRecipeTasteMock,
       });
     }
-    render(<SearchTest />);
+    render(<Search />);
   });
 
   afterEach(() => {
@@ -156,7 +155,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
   const onTagsChangeMock = vi.fn(() => {});
 
   beforeEach(() => {
-    render(<SearchTest />);
+    render(<Search />);
   });
 
   afterEach(() => {

@@ -1,299 +1,359 @@
-import styles from "./Search.module.css";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import React, { useState, useEffect } from "react";
-import Tag from "src/components/Tag/Tag";
+import axios from "axios";
+import throttle from "lodash.throttle";
+import env from "src/utils/env";
+
 import Tags from "src/components/Cards/Tags/Tags";
-import SearchCard from "./components/SearchCard/SearchCard";
 import StickyButton from "src/components/StickyButton/StickyButton";
 import SearchBar from "src/components/SearchBar/SearchBar";
-import AdvancedSearchMenu from "./components/AdvancedSearch/AdvancedSearch";
+import AdvancedSearchMenu from "src/pages/Search/components/AdvancedSearch/AdvancedSearch";
+import SearchCard from "src/pages/Search/components/SearchCard/SearchCard";
+import SearchBy from "src/pages/Search/components/SearchBy/SearchBy";
+import {
+  createTags,
+  createLocationData,
+  createNutrientParam,
+} from "src/utils/spoonacularFunctions";
+import { createRecommendationTags } from "src/utils/recommendationTags";
 
-const tag = {
-  tags: [
-    { text: "Tag 1", color: "danger" },
-    { text: "Tag 2", color: "success" },
-    { text: "Tag 3", color: "warning" },
-    { text: "Tag 4", color: "primary" },
-    { text: "Tag 5", color: "secondary" },
-    { text: "Tag 6", color: "info" },
-    { text: "Tag 7", color: "dark" },
-    { text: "Tag 8", color: "light" },
-  ],
-};
+import styles from "src/pages/Search/Search.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSpinner,
+  faCircleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
+import { Stack } from "react-bootstrap";
 
-const dummyData = [
-  {
-    id: "100",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "101",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 2",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "102",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 3",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "103",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 4",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "104",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 5",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "105",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 6",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "106",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 7",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "107",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 8",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-  {
-    id: "108",
-    width: "30rem",
-    height: "400rem" /** must be px/rem value */,
-    // imgURL: {'src/assets/images/sample-pic-horizontal.jpg'},
-    imgURL:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    title: "Some Random Recipe 9",
-    description: "This is recipe description blablabla ... ",
-    info: {
-      equip: "Oven",
-      time: "40 minutes",
-      size: "2 servings",
-    },
-    tags: [
-      { text: "Tag 1", color: "danger" },
-      { text: "Tag 2", color: "success" },
-      { text: "Tag 3", color: "warning" },
-    ],
-  },
-];
+const MAX_RECIPE_NUM = 12;
+const recommendationTags = createRecommendationTags(10);
 
-const SearchPage = () => {
-  const [ingredients, setSearch] = useState("");
-  const [tags, setTags] = useState([]);
-  const [cards, setCards] = useState([]);
+const Search = () => {
+  const [search, setSearch] = useState("");
+  const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [nutrientsTags, setNutrientsTags] = useState([]);
+
+  const location = useLocation();
+  const { ingredients, tags, tagInfo } = location.state || {};
+
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
   };
 
-  const handleTagsChange = (tags) => {
-    setTags(tags);
+  const handleTagsChange = (nutrientsTags) => {
+    setNutrientsTags(nutrientsTags);
   };
 
-  const fetchMoreData = () => {
-    setLoading(true);
-    setTimeout(() => {
-      const newData = dummyData.slice(cards.length, cards.length + 6);
-      setCards((prevCards) => [...prevCards, ...newData]);
-      setLoading(false);
-    }, 1000);
+  // change number of recommendation tags based on the width of the window
+  const getTagNum = (recommendationTags) => {
+    console.log(recommendationTags);
+    if (window.innerWidth < 575) {
+      return recommendationTags.slice(5);
+    } else if (window.innerWidth < 990) {
+      return recommendationTags.slice(6);
+    } else {
+      return recommendationTags;
+    }
   };
 
-  useEffect(() => {
-    fetchMoreData();
-  }, []);
-
+  // scroll handling
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-        cards.length < dummyData.length
+        recipeDetails?.length < MAX_RECIPE_NUM
       ) {
-        fetchMoreData();
+        fetchRecipes();
       }
     };
+    const throttledScroll = throttle(handleScroll, 500);
+    window.addEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
+  }, [loading, recipeDetails]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, cards]);
+  const fetchRecipes = async () => {
+    setLoading(true);
+    let nutrientParams = {};
+    let tagParams = {};
+
+    // get nutrient data from tags to create parameters
+    if (tags) {
+      nutrientParams = createNutrientParam(tags);
+    } else {
+      nutrientParams = createNutrientParam(nutrientsTags);
+    }
+
+    // get tag info to search
+    if (tagInfo) {
+      tagParams = tagInfo.reduce((params, tag) => {
+        params[`${tag.key}`] = tag.amount;
+        return params;
+      }, {});
+    }
+
+    try {
+      axios
+        .get(`${env.API_URL}/spoonacular/searchRecipe`, {
+          params: {
+            offset: recipeDetails?.length || 0,
+            includeIngredients: ingredients ? ingredients : search,
+            number: 6,
+            ...nutrientParams,
+            ...tagParams,
+          },
+        })
+        .then(async (res) => {
+          const recipeId = res.data.results.map((recipe) => recipe.id);
+          console.log(recipeId);
+
+          const recipeDetail = await Promise.all(
+            recipeId.map((id) =>
+              Promise.all([
+                axios
+                  .get(`${env.API_URL}/spoonacular/getRecipe`, {
+                    params: { id, includeNutrition: true },
+                  })
+                  .then((res) => res.data),
+                axios
+                  .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
+                    params: { id, normalize: true },
+                  })
+                  .then((res) => res.data),
+              ])
+            )
+          );
+          setRecipeDetails((prevRecipeDetail) => [
+            ...(prevRecipeDetail || []),
+            ...recipeDetail,
+          ]);
+          console.log(recipeDetail);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Ingredients:", ingredients);
+    console.log("Tags:", tags);
+    if (tagInfo || ingredients || tags?.length > 0) {
+      fetchRecipes();
+    }
+  }, [tagInfo, ingredients, tags]);
+
+  const handleBtnClick = () => {
+    setNutrientsTags(nutrientsTags);
+    setSearch(search);
+    setRecipeDetails(null);
+    fetchRecipes();
+  };
 
   return (
-    <>
+    <div>
       <div className={styles.background}>
-        <div className={styles.backgroundSearchText}>
+        <div className={styles.searchBar}>
           <SearchBar
-            text="onion, canned tomato"
-            btnText={"Search"}
-            value={ingredients}
+            testid="searchbar"
+            text="onion, canned tomato, pasta"
+            value={search}
             onChange={handleOnChange}
-            btnClick={() =>
-              navigate("/search", { state: { ingredients, tags } })
-            }
+            btnClick={handleBtnClick}
+            btnText="search"
           />
           <AdvancedSearchMenu
-            styles={{ color: "white" }}
             onTagsChange={handleTagsChange}
+            testid="advanced_search"
+            background="primary"
           />
-
-          <p className={styles.backgroundText}>Recommended Tags</p>
-          <div className={styles.design}>
-            <Tags tags={tag.tags} className={styles.tag} />
-          </div>
-          <div className={styles.designSmall}>
-            <Tags tags={tag.tags.slice(0, 5)} />
+        </div>
+        <div className={styles.recommendedTags}>
+          <h3>Recommended Tags</h3>
+          <div className={styles.tags}>
+            <Tags tags={getTagNum(recommendationTags)} className={styles.tag} />
           </div>
         </div>
       </div>
       <hr />
-      <p className={styles.text}>Search Results:</p>
+
+      {recipeDetails && <p className={styles.text}>Search Results:</p>}
       <div className={styles.container}>
-        {cards.map((val, index) => (
-          <SearchCard
-            key={index}
-            imgURL={val.imgURL}
-            width={val.width}
-            height={val.height}
-            title={val.title}
-            description={val.description}
-            info={val.info}
-            tags={val.tags}
+        {recipeDetails && (
+          <SearchBy
+            className={styles.searchBy}
+            ingredients={search}
+            ingredientsFromNav={ingredients}
+            tag={tagInfo}
+            nutrient={nutrientsTags}
+            nutrientFromNav={tags}
           />
-        ))}
-        {loading && <div>Loading...</div>}
+        )}
+        {recipeDetails?.map((recipeDetail) => {
+          return (
+            <SearchCard
+              testid="1"
+              key={recipeDetail[0].id}
+              imgURL={recipeDetail[0].image}
+              width="30rem"
+              height="400rem"
+              title={recipeDetail[0].title}
+              ingredients={recipeDetail[0].extendedIngredients
+                .map((ingredient) => ingredient.name)
+                .join(", ")}
+              tags={createTags(recipeDetail)
+                .filter((tag) => tag.text !== null)
+                .slice(0, 4)}
+              time={recipeDetail[0].readyInMinutes}
+              size={recipeDetail[0].servings}
+              calories={Math.floor(
+                recipeDetail[0].nutrition.nutrients[0].amount
+              )}
+              onClick={() =>
+                navigate("/recipe", {
+                  state: {
+                    recipeDetail: createLocationData(
+                      recipeDetail[0],
+                      createTags(recipeDetail)
+                    ),
+                  },
+                })
+              }
+            />
+          );
+        })}
+        <StickyButton />
+        {loading && (
+          <div className={styles.msg}>
+            <FontAwesomeIcon icon={faSpinner} spinPulse />
+            &ensp;Loading...
+          </div>
+        )}
+        {!loading && recipeDetails && recipeDetails?.length == 0 && (
+          <Stack className={styles.msg} direction="vertical" gap={5}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className="text-danger"
+              />
+              &ensp;Recipe Not Found
+            </span>
+
+            <span className={styles.secondaryMsg}>
+              <h5>What You Can Do:</h5>
+              <ul className="h6">
+                <li>Check your spelling</li>
+                <li>Use ingredients as searching keywords</li>
+                <li>
+                  Double check the filter setting in Advanced Search panel
+                </li>
+              </ul>
+            </span>
+          </Stack>
+        )}
       </div>
-      <StickyButton />
-    </>
+    </div>
   );
 };
 
-export default SearchPage;
+// {
+//     query = undefined,
+//     cuisine = undefined,
+//     excludeCuisine = undefined,
+//     diet = undefined,
+//     intolerances = undefined,
+//     equipment = undefined, // maybe not needed
+//     includeIngredients = undefined,
+//     excludeIngredients = undefined,
+//     type = undefined,
+//     instructionsRequired = undefined, //should be true
+//     fillIngredients = undefined,
+//     addRecipeInformation = undefined, // should be true
+//     addRecipeNutrition = undefined, // should be true for nutrients search
+//     recipeBoxId = undefined, // maybe not needed
+//     maxReadyTime = undefined,
+//     ignorePantry = undefined,
+//     sort = undefined,
+//     sortDirection = undefined,
+//     minCarbs = undefined,
+//     maxCarbs = undefined,
+//     minProtein = undefined,
+//     maxProtein = undefined,
+//     minCalories = undefined,
+//     maxCalories = undefined,
+//     mixFat = undefined,
+//     maxFat = undefined,
+//     minAlcohol = undefined,
+//     maxAlcohol = undefined,
+//     minCaffeine = undefined,
+//     maxCaffeine = undefined,
+//     minCopper = undefined,
+//     maxCopper = undefined,
+//     minCalcium = undefined,
+//     maxCalcium = undefined,
+//     minCholine = undefined,
+//     maxCholine = undefined,
+//     minCholesterol = undefined,
+//     maxCholesterol = undefined,
+//     minFluoride = undefined,
+//     maxFluoride = undefined,
+//     minSaturatedFat = undefined,
+//     maxSaturatedFat = undefined,
+//     minVitaminA = undefined,
+//     maxVitaminA = undefined,
+//     minVitaminC = undefined,
+//     maxVitaminC = undefined,
+//     minVitaminD = undefined,
+//     maxVitaminD = undefined,
+//     minVitaminE = undefined,
+//     maxVitaminE = undefined,
+//     minVitaminK = undefined,
+//     maxVitaminK = undefined,
+//     minVitaminB1 = undefined,
+//     maxVitaminB1 = undefined,
+//     minVitaminB2 = undefined,
+//     maxVitaminB2 = undefined,
+//     minVitaminB3 = undefined,
+//     maxVitaminB3 = undefined,
+//     minVitaminB5 = undefined,
+//     maxVitaminB5 = undefined,
+//     minVitaminB6 = undefined,
+//     maxVitaminB6 = undefined,
+//     minVitaminB12 = undefined,
+//     maxVitaminB12 = undefined,
+//     minFiber = undefined,
+//     maxFiber = undefined,
+//     minFolate = undefined,
+//     maxFolate = undefined,
+//     minFolicAcid = undefined,
+//     maxFolicAcid = undefined,
+//     minIodine = undefined,
+//     maxIodine = undefined,
+//     minIron = undefined,
+//     maxIron = undefined,
+//     minMagnesium = undefined,
+//     maxMagnesium = undefined,
+//     minManganese = undefined,
+//     maxManganese = undefined,
+//     minPhosphorus = undefined,
+//     maxPhosphorus = undefined,
+//     minPotassium = undefined,
+//     maxPotassium = undefined,
+//     minSelenium = undefined,
+//     maxSelenium = undefined,
+//     minSodium = undefined,
+//     maxSodium = undefined,
+//     minSugar = undefined,
+//     maxSugar = undefined,
+//     minZinc = undefined,
+//     maxZinc = undefined,
+//     offset = undefined, //??
+//     number = undefined,
+// }
+
+export default Search;

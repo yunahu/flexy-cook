@@ -37,7 +37,7 @@ const AdvancedSearchMenu = ({
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname != "/testSearch") {
+    if (location.pathname != "/search") {
       setTags([]);
     }
   }, [location.pathname]);
