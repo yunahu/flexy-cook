@@ -169,6 +169,13 @@ const Search = () => {
     });
   };
 
+  const handleKeyDown = (e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      handleBtnClick();
+    }
+  };
+
   return (
     <div>
       <div className={styles.background}>
@@ -180,6 +187,7 @@ const Search = () => {
             onChange={handleOnChange}
             btnClick={handleBtnClick}
             btnText="search"
+            onKeyDown={handleKeyDown}
           />
           <AdvancedSearchMenu
             onTagsChange={handleTagsChange}

@@ -26,6 +26,7 @@ function SearchBar({
         type="text"
         onChange={onChange}
         className={styles.form}
+        onKeyDown={onKeyDown}
       />
       <Button
         data-testid={`${testid}_button`}
