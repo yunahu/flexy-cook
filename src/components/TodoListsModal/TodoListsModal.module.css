@@ -49,3 +49,7 @@
 :global(.tab-pane) > div:first-child > div[class*='taskContainer']:first-of-type {
    border-top: dashed 0.5px gray;
 }
+
+.iconX  {
+	padding: 0px 10px;
+}
