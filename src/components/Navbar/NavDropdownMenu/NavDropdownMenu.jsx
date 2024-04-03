@@ -30,7 +30,7 @@ const NavDropdownMenu = ({
         <Dropdown.Toggle
           variant={background}
           className={`${map[background]}`}
-          id="dropdown-basic"
+          id="TODObutton"
         >
           <FontAwesomeIcon className={` ${styles.cardIcon}`} icon={faListCheck}/>
           <span className={styles.iconText}>{buttonTitle}</span>
@@ -38,12 +38,13 @@ const NavDropdownMenu = ({
 
          <Dropdown.Menu className={styles.dropMenu}>
             {items.map((item, index) => (
-               <>
+               <div key={item.key}>
                   <Dropdown.Item
                      key={item.key + index}
                      href={item.ref}
                      className={styles.itemContainer}
 							onClick={item.onClick}
+										id={item.key}
                   >
                      <span className={styles.icon}>
                         {item.icon ? item.icon : null}
@@ -51,7 +52,7 @@ const NavDropdownMenu = ({
                      <span className={styles.text}>{item.title}</span>
                   </Dropdown.Item>
                   {index !== items.length - 1 && <Dropdown.Divider />}
-               </>
+               </div>
             ))}
          </Dropdown.Menu>
       </Dropdown>

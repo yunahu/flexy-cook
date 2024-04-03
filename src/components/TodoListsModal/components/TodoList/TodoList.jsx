@@ -130,6 +130,7 @@ const TodoList = props => {
 				</div>
 				<div className={styles.taskTitle} 
 					contentEditable 
+					suppressContentEditableWarning
 					spellCheck="false"
 					onKeyDown={event => handleKeyDown(event, task)}
 				>

@@ -20,7 +20,6 @@ const TodoListsModal = props => {
 			await deleteSection(sectionId);
 			todoListsClone = todoListsClone.filter(todoList => todoList.id !== sectionId);
 			setTodoLists(todoListsClone);
-			console.log('done');
 		} catch (err) {
 			console.error(err);
 		};
@@ -68,7 +67,6 @@ const TodoListsModal = props => {
 				const flexyCookSections = await getSections(flexyCookProject.id);
 				const orderedSections = await orderSections(flexyCookSections, flexyCookProject);
 				setTodoLists(orderedSections);
-				console.log(orderedSections);
 			} catch (err) {
 				console.error(err);
 			}

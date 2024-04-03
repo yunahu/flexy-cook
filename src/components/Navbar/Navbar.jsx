@@ -33,7 +33,7 @@ const Navbar = () => {
 
   // clear search bar when navigating to a different page
   useEffect(() => {
-    if (location.pathname != "/search") {
+    if (location.pathname != "/testSearch") {
       setSearch("");
     }
   }, [location.pathname]);
@@ -55,8 +55,9 @@ const Navbar = () => {
       key: "addNewMemo",
 
       onClick: () => {
-        // Toggle the todoist modal & switch to memo tab
-        alert("Toggle the todoist modal & switch to memo tab");
+        if (!localStorage.getItem("todoistToken"))
+          alert("Please log in with Todoist first."); // TODO: Replace
+        else setModalShow(true); // TODO: Replace
       },
     },
 
@@ -146,17 +147,19 @@ const Navbar = () => {
 
           {/** If not on search page */}
           {location.pathname !== "/search/" &&
-            location.pathname !== "/search" && (
+            location.pathname !== "/testSearch/" &&
+            location.pathname !== "/search" &&
+            location.pathname !== "/testSearch" && (
               <Stack className={styles.searchBar} direction="vertical">
                 {/** Search input & Advanced Search dropdown */}
                 <SearchBar
-                  text="Enter ingredients with comma-separated list"
+                  text="onion, canned tomato"
                   btnText={"Search"}
                   className={styles.searchBar}
                   value={ingredients}
                   onChange={handleOnChange}
                   btnClick={() =>
-                    navigate("/search", { state: { ingredients, tags } })
+                    navigate("/testSearch", { state: { ingredients, tags } })
                   }
                 />
                 <AdvancedSearchMenu onTagsChange={handleTagsChange} />
@@ -164,7 +167,8 @@ const Navbar = () => {
             )}
 
           {/** If on search page */}
-          {location.pathname == "/search/" && (
+          {(location.pathname == "/search/" ||
+            location.pathname == "/testSearch/") && (
             <Nav.Link
               as={Link}
               to="/"
@@ -256,7 +260,11 @@ const Navbar = () => {
         </Stack>
       </Stack>{" "}
       {/** End menu dropdown */}
-      <TodoListsModal show={modalShow} onHide={() => setModalShow(false)} />
+      <TodoListsModal
+        id="todoListsModal"
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </nav>
   );
 };
