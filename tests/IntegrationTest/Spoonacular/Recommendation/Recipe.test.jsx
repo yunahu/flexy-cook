@@ -2,7 +2,7 @@ import { describe, test, expect, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Recipe from "src/pages/Recipe/Recipe";
 import { MemoryRouter } from "react-router-dom";
-import RecipeDetailMock from "./RecipeDetailMock";
+import RecipeDetailsMock from "./RecipeDetailsMock";
 import { TodoListsContext } from "src/App";
 
 vi.mock("react-router-dom", async (importOrig) => {
@@ -11,7 +11,7 @@ vi.mock("react-router-dom", async (importOrig) => {
   };
 });
 const mockLocationState = {
-  recipeDetail: RecipeDetailMock,
+  recipeDetail: RecipeDetailsMock,
 };
 const mockLocationStateWithoutInstructions = {
   recipeDetail: [{ recipe: { analyzedInstructions: [] } }],
