@@ -33,7 +33,7 @@ const Navbar = () => {
 
   // clear search bar when navigating to a different page
   useEffect(() => {
-    if (location.pathname != "/testSearch") {
+    if (location.pathname != "/search") {
       setSearch("");
     }
   }, [location.pathname]);
@@ -147,9 +147,7 @@ const Navbar = () => {
 
           {/** If not on search page */}
           {location.pathname !== "/search/" &&
-            location.pathname !== "/testSearch/" &&
-            location.pathname !== "/search" &&
-            location.pathname !== "/testSearch" && (
+            location.pathname !== "/search" && (
               <Stack className={styles.searchBar} direction="vertical">
                 {/** Search input & Advanced Search dropdown */}
                 <SearchBar
@@ -159,7 +157,7 @@ const Navbar = () => {
                   value={ingredients}
                   onChange={handleOnChange}
                   btnClick={() =>
-                    navigate("/testSearch", { state: { ingredients, tags } })
+                    navigate("/search", { state: { ingredients, tags } })
                   }
                 />
                 <AdvancedSearchMenu onTagsChange={handleTagsChange} />
@@ -167,8 +165,7 @@ const Navbar = () => {
             )}
 
           {/** If on search page */}
-          {(location.pathname == "/search/" ||
-            location.pathname == "/testSearch/") && (
+          {location.pathname == "/search/" && (
             <Nav.Link
               as={Link}
               to="/"
