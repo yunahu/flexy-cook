@@ -132,7 +132,6 @@ export const generateStepsList = async recipe => {
 
 	try{
 		const length = recipe.analyzedInstructions.length;
-		console.log(length)
 		const stepsLists = [];
 		if (length) {
 			for (let i = 0; i < length; i++) {

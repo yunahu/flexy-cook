@@ -246,8 +246,9 @@ const Navbar = () => {
             </Stack> {/** End menu dropdown */}
 
             <TodoListsModal
-               show={modalShow}
-               onHide={() => setModalShow(false)}
+							id="todoListsModal"
+              show={modalShow}
+              onHide={() => setModalShow(false)}
             />
          </nav>
    );
