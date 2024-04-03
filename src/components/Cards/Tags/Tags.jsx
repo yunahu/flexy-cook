@@ -24,10 +24,12 @@ const Tags = ({ className, tags = [] }) => {
   const handleOnClick = (event, tag) => {
     event.stopPropagation();
     if (getTagInfo(tag) != null) {
-      if (location.pathname == "/testSearch") {
+      if (location.pathname == "/search") {
         location.reload();
       }
-      navigate("/testSearch", { state: { tagInfo: getTagInfo(tag) } });
+      navigate("/search", {
+        state: { tagInfo: getTagInfo(tag) },
+      });
     }
   };
 
@@ -35,6 +37,7 @@ const Tags = ({ className, tags = [] }) => {
     <Stack direction="horizontal" gap={2} className={className}>
       {tags.map((tag, index) => (
         <Tag
+          testid={index}
           key={tag.text + index}
           bg={tag.type}
           title={tag.text}

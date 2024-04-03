@@ -85,13 +85,13 @@ export const handleNotLoggedIn = () => {
 export const getFlexyCookProject = async () => {
 	try {
 		const projects = await getProjects();
-		
+
 		for (let i = 0; i < projects.length; i++) {
 			if (projects[i].name === 'FlexyCook') {
 				return projects[i];
 			};
 		};
-		
+
 		const flexyCookProject = await addProject('FlexyCook');
 		return flexyCookProject;
 	} catch (err) {
@@ -100,7 +100,7 @@ export const getFlexyCookProject = async () => {
 };
 
 export const getShoppingList = async () => {
-	const flexyCookProject = await getFlexyCookProject();		
+	const flexyCookProject = await getFlexyCookProject();
 	const flexyCookSections = await getSections(flexyCookProject.id);
 	for (const section of flexyCookSections) {
 		if (section.name === 'Shopping List') return section;
@@ -111,7 +111,7 @@ export const getShoppingList = async () => {
 export const addToShoppingList = async recipe => {
 	if (!localStorage.getItem('todoistToken')) {
 		handleNotLoggedIn();
-		return;	
+		return;
 	};
 
 	const shoppingList = await getShoppingList();
@@ -127,10 +127,10 @@ export const addToShoppingList = async recipe => {
 export const generateStepsList = async recipe => {
 	if (!localStorage.getItem('todoistToken')) {
 		handleNotLoggedIn();
-		return;	
+		return;
 	};
 
-	try{
+	try {
 		const length = recipe.analyzedInstructions.length;
 		const stepsLists = [];
 		if (length) {
@@ -144,7 +144,7 @@ export const generateStepsList = async recipe => {
 				};
 				stepsLists.push(stepList);
 			};
-		
+
 			alert('Success');
 			return stepsLists;
 

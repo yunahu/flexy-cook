@@ -14,6 +14,7 @@ function SearchBar({
   btnText,
   className,
   testid,
+  onKeyDown,
 }) {
   return (
     <InputGroup className={`${styles.container} ${className}`}>
@@ -25,6 +26,7 @@ function SearchBar({
         type="text"
         onChange={onChange}
         className={styles.form}
+        onKeyDown={onKeyDown}
       />
       <Button
         data-testid={`${testid}_button`}

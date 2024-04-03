@@ -149,6 +149,7 @@ describe("Advanced Search", () => {
     // the button is disabled?
     await waitFor(() => expect(addTagButton).toBeDisabled());
 
+    amountForm.value = "";
     await userEvent.type(amountForm, "a");
     await waitFor(() =>
       // alert is shown?
@@ -159,15 +160,16 @@ describe("Advanced Search", () => {
     // the button is disabled?
     await waitFor(() => expect(addTagButton).toBeDisabled());
 
+    amountForm.value = "";
     await userEvent.type(amountForm, "100001");
+    console.log(amountForm.value);
     await waitFor(() =>
       // alert is shown?
       expect(window.alert).toHaveBeenCalledWith("Please enter a valid amount")
     );
     // alert was called?
     expect(window.alert).toHaveBeenCalledTimes(3);
-    // the button is disabled?
-    await waitFor(() => expect(addTagButton).toBeDisabled());
+    amountForm.value = "";
 
     await userEvent.type(amountForm, "10");
     // the button is enabled?
@@ -226,7 +228,10 @@ describe("Advanced Search", () => {
     );
 
     const closeButton = screen.getByRole("button", { name: "Close" });
+    window.confirm = vi.fn().mockImplementation(() => true);
     userEvent.click(closeButton);
+    // confirmation has been shown?
+    await waitFor(() => expect(window.confirm).toHaveBeenCalled());
     await waitFor(() =>
       // tag information is not shown?
       expect(screen.queryByText("Min Fat 10(g)")).not.toBeInTheDocument()

@@ -108,8 +108,8 @@ describe("LargeSquareCard", () => {
     await userEvent.click(JPTag);
     // use navigate is not called once?
     expect(mockUseNavigate).toBeCalledTimes(1);
-    // navigates "/testSearch" with information?
-    expect(mockUseNavigate).toBeCalledWith("/testSearch", {
+    // navigates "/search" with information?
+    expect(mockUseNavigate).toBeCalledWith("/search", {
       state: { tagInfo: getTagInfo(tags[2]) },
     });
   });
