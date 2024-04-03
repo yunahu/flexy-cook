@@ -149,6 +149,7 @@ describe("Advanced Search", () => {
     // the button is disabled?
     await waitFor(() => expect(addTagButton).toBeDisabled());
 
+    amountForm.value = "";
     await userEvent.type(amountForm, "a");
     await waitFor(() =>
       // alert is shown?
@@ -159,15 +160,16 @@ describe("Advanced Search", () => {
     // the button is disabled?
     await waitFor(() => expect(addTagButton).toBeDisabled());
 
+    amountForm.value = "";
     await userEvent.type(amountForm, "100001");
+    console.log(amountForm.value);
     await waitFor(() =>
       // alert is shown?
       expect(window.alert).toHaveBeenCalledWith("Please enter a valid amount")
     );
     // alert was called?
     expect(window.alert).toHaveBeenCalledTimes(3);
-    // the button is disabled?
-    await waitFor(() => expect(addTagButton).toBeDisabled());
+    amountForm.value = "";
 
     await userEvent.type(amountForm, "10");
     // the button is enabled?

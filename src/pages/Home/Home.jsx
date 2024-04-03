@@ -131,7 +131,7 @@ const Home = () => {
             )}
             tags={createTags(recipeDetails[0])}
             onClick={() =>
-              navigate(`/recipe`, {
+              navigate(`/recipe/${recipeDetails[0][0].id}`, {
                 state: {
                   recipeDetail: createLocationData(
                     recipeDetails[0][0],
@@ -162,7 +162,7 @@ const Home = () => {
               )}
               tags={createTags(recipeDetails[1])}
               onClick={() =>
-                navigate("/recipe", {
+                navigate(`/recipe/${recipeDetails[1][0].id}`, {
                   state: {
                     recipeDetail: createLocationData(
                       recipeDetails[1][0],
@@ -187,7 +187,7 @@ const Home = () => {
               )}
               tags={createTags(recipeDetails[2])}
               onClick={() =>
-                navigate("/recipe", {
+                navigate(`/recipe/${recipeDetails[2][0].id}`, {
                   state: {
                     recipeDetail: createLocationData(
                       recipeDetails[2][0],
@@ -212,7 +212,7 @@ const Home = () => {
               )}
               tags={createTags(recipeDetails[3])}
               onClick={() =>
-                navigate("/recipe", {
+                navigate(`/recipe/${recipeDetails[3][0].id}`, {
                   state: {
                     recipeDetail: createLocationData(
                       recipeDetails[3][0],
@@ -231,7 +231,7 @@ const Home = () => {
           <CarouselBanner
             prop1={three_props[0]}
             onClick1={() =>
-              navigate("/recipe", {
+              navigate(`/recipe/${recipeDetails[0][0].id}`, {
                 state: {
                   recipeDetail: createLocationData(
                     recipeDetails[0][0],
@@ -242,7 +242,7 @@ const Home = () => {
             }
             prop2={three_props[1]}
             onClick2={() =>
-              navigate("/recipe", {
+              navigate(`/recipe/${recipeDetails[1][0].id}`, {
                 state: {
                   recipeDetail: createLocationData(
                     recipeDetails[1][0],
@@ -253,7 +253,7 @@ const Home = () => {
             }
             prop3={three_props[2]}
             onClick3={() =>
-              navigate("/recipe", {
+              navigate(`/recipe/${recipeDetails[2][0].id}`, {
                 state: {
                   recipeDetail: createLocationData(
                     recipeDetails[2][0],
@@ -289,7 +289,7 @@ const Home = () => {
           )}
           tags={createTags(recipeDetails[4])}
           onClick={() =>
-            navigate("/recipe", {
+            navigate(`/recipe/${recipeDetails[4][0].id}`, {
               state: {
                 recipeDetail: createLocationData(
                   recipeDetails[4][0],
@@ -315,7 +315,7 @@ const Home = () => {
           )}
           tags={createTags(recipeDetails[5])}
           onClick={() =>
-            navigate("/recipe", {
+            navigate(`/recipe/${recipeDetails[5][0].id}`, {
               state: {
                 recipeDetail: createLocationData(
                   recipeDetails[5][0],
@@ -341,7 +341,7 @@ const Home = () => {
           )}
           tags={createTags(recipeDetails[6])}
           onClick={() =>
-            navigate("/recipe", {
+            navigate(`/recipe/${recipeDetails[6][0].id}`, {
               state: {
                 recipeDetail: createLocationData(
                   recipeDetails[6][0],

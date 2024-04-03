@@ -17,8 +17,15 @@ import styles from "./Recipe.module.css";
 const Recipe = () => {
   const [scale, setScale] = useState(false);
   const location = useLocation();
+  console.log(location.state.recipeDetail[0].recipe);
+  console.log(location.state.recipeDetail[0].tags);
   const recipe = location.state.recipeDetail[0].recipe || {};
   const tags = location.state.recipeDetail[0].tags || {};
+  console.log(recipe);
+  // useEffect(() => {
+  //   console.log("Recipe:", recipe.recipe);
+  //   console.log("Tags:", recipe.tags);
+  // }, [recipe]);
 
   if (recipe?.analyzedInstructions.length === 0) {
     return <h1>No instructions</h1>;

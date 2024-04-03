@@ -8,12 +8,6 @@ const SearchBy = ({
   nutrientFromNav,
   ingredientsFromNav,
 }) => {
-  console.log("ing", ingredients);
-  console.log("tags", tag);
-  console.log("nut", nutrient);
-  console.log("nutfromnav", nutrientFromNav);
-  console.log("ingfromnav", nutrientFromNav);
-
   return (
     <ul className={className}>
       <div>You are searching the recipes by</div>

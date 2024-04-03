@@ -28,7 +28,6 @@ const Tags = ({ className, tags = [] }) => {
         location.reload();
       }
       navigate("/search", {
-        replace: true,
         state: { tagInfo: getTagInfo(tag) },
       });
     }

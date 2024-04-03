@@ -140,7 +140,6 @@ const Search = () => {
             ...(prevRecipeDetail || []),
             ...recipeDetail,
           ]);
-          console.log(recipeDetail);
           setLoading(false);
         });
     } catch (error) {
@@ -149,8 +148,6 @@ const Search = () => {
   };
 
   useEffect(() => {
-    console.log("Ingredients:", ingredients);
-    console.log("Tags:", tags);
     if (tagInfo || ingredients || tags?.length > 0) {
       fetchRecipes();
     }
@@ -170,7 +167,6 @@ const Search = () => {
   };
 
   const handleKeyDown = (e) => {
-    console.log(e);
     if (e.key === "Enter") {
       handleBtnClick();
     }
@@ -237,7 +233,7 @@ const Search = () => {
                 recipeDetail[0].nutrition.nutrients[0].amount
               )}
               onClick={() =>
-                navigate("/recipe", {
+                navigate(`/recipe/${recipeDetail[0].id}`, {
                   state: {
                     recipeDetail: createLocationData(
                       recipeDetail[0],
@@ -251,13 +247,18 @@ const Search = () => {
         })}
         <StickyButton />
         {loading && (
-          <div className={styles.msg}>
+          <div className={styles.msg} data-testid="loading">
             <FontAwesomeIcon icon={faSpinner} spinPulse />
             &ensp;Loading...
           </div>
         )}
         {!loading && recipeDetails && recipeDetails?.length == 0 && (
-          <Stack className={styles.msg} direction="vertical" gap={5}>
+          <Stack
+            className={styles.msg}
+            direction="vertical"
+            gap={5}
+            data-testid="not_found"
+          >
             <span>
               <FontAwesomeIcon
                 icon={faCircleExclamation}
@@ -282,100 +283,5 @@ const Search = () => {
     </div>
   );
 };
-
-// {
-//     query = undefined,
-//     cuisine = undefined,
-//     excludeCuisine = undefined,
-//     diet = undefined,
-//     intolerances = undefined,
-//     equipment = undefined, // maybe not needed
-//     includeIngredients = undefined,
-//     excludeIngredients = undefined,
-//     type = undefined,
-//     instructionsRequired = undefined, //should be true
-//     fillIngredients = undefined,
-//     addRecipeInformation = undefined, // should be true
-//     addRecipeNutrition = undefined, // should be true for nutrients search
-//     recipeBoxId = undefined, // maybe not needed
-//     maxReadyTime = undefined,
-//     ignorePantry = undefined,
-//     sort = undefined,
-//     sortDirection = undefined,
-//     minCarbs = undefined,
-//     maxCarbs = undefined,
-//     minProtein = undefined,
-//     maxProtein = undefined,
-//     minCalories = undefined,
-//     maxCalories = undefined,
-//     mixFat = undefined,
-//     maxFat = undefined,
-//     minAlcohol = undefined,
-//     maxAlcohol = undefined,
-//     minCaffeine = undefined,
-//     maxCaffeine = undefined,
-//     minCopper = undefined,
-//     maxCopper = undefined,
-//     minCalcium = undefined,
-//     maxCalcium = undefined,
-//     minCholine = undefined,
-//     maxCholine = undefined,
-//     minCholesterol = undefined,
-//     maxCholesterol = undefined,
-//     minFluoride = undefined,
-//     maxFluoride = undefined,
-//     minSaturatedFat = undefined,
-//     maxSaturatedFat = undefined,
-//     minVitaminA = undefined,
-//     maxVitaminA = undefined,
-//     minVitaminC = undefined,
-//     maxVitaminC = undefined,
-//     minVitaminD = undefined,
-//     maxVitaminD = undefined,
-//     minVitaminE = undefined,
-//     maxVitaminE = undefined,
-//     minVitaminK = undefined,
-//     maxVitaminK = undefined,
-//     minVitaminB1 = undefined,
-//     maxVitaminB1 = undefined,
-//     minVitaminB2 = undefined,
-//     maxVitaminB2 = undefined,
-//     minVitaminB3 = undefined,
-//     maxVitaminB3 = undefined,
-//     minVitaminB5 = undefined,
-//     maxVitaminB5 = undefined,
-//     minVitaminB6 = undefined,
-//     maxVitaminB6 = undefined,
-//     minVitaminB12 = undefined,
-//     maxVitaminB12 = undefined,
-//     minFiber = undefined,
-//     maxFiber = undefined,
-//     minFolate = undefined,
-//     maxFolate = undefined,
-//     minFolicAcid = undefined,
-//     maxFolicAcid = undefined,
-//     minIodine = undefined,
-//     maxIodine = undefined,
-//     minIron = undefined,
-//     maxIron = undefined,
-//     minMagnesium = undefined,
-//     maxMagnesium = undefined,
-//     minManganese = undefined,
-//     maxManganese = undefined,
-//     minPhosphorus = undefined,
-//     maxPhosphorus = undefined,
-//     minPotassium = undefined,
-//     maxPotassium = undefined,
-//     minSelenium = undefined,
-//     maxSelenium = undefined,
-//     minSodium = undefined,
-//     maxSodium = undefined,
-//     minSugar = undefined,
-//     maxSugar = undefined,
-//     minZinc = undefined,
-//     maxZinc = undefined,
-//     offset = undefined, //??
-//     number = undefined,
-// }
 
 export default Search;

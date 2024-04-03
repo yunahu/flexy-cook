@@ -22,6 +22,10 @@ const mockLocationState = {
   ],
 };
 
+const mockLocationState2 = {
+  search: "lkanflakndlawknd",
+};
+
 vi.mock("axios");
 vi.mock("react-router-dom", async (importOrig) => {
   return {
@@ -217,8 +221,10 @@ describe("Search Page without passed nutrients /& ingredients", () => {
   });
 
   test("from the info that the user enter, fetch recipe", async () => {
-    const { getByTestId, getByText } = render(
-      <MemoryRouter>
+    render(
+      <MemoryRouter
+        initialEntries={[{ pathname: "/", state: { search: "salmon" } }]}
+      >
         <Search />
       </MemoryRouter>
     );
@@ -230,15 +236,6 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(
       screen.getByPlaceholderText("Enter ingredients with comma-separated list")
     ).toBeTruthy();
-
-    const searchBar_button = screen.getByTestId("searchbar_button");
-    // search button is rendered?
-    expect(searchBar_button).toBeTruthy();
-
-    const searchBar = getByTestId("searchbar_form");
-    fireEvent.change(searchBar, { target: { value: "salmon" } });
-
-    userEvent.click(screen.getByText("search"));
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
@@ -287,8 +284,10 @@ describe("Search Page without passed nutrients /& ingredients", () => {
   });
 
   test("when the recipe is loading, show loading", async () => {
-    const { getByTestId, getByText } = render(
-      <MemoryRouter>
+    render(
+      <MemoryRouter
+        initialEntries={[{ pathname: "/", state: { search: "salmon" } }]}
+      >
         <Search />
       </MemoryRouter>
     );
@@ -298,21 +297,16 @@ describe("Search Page without passed nutrients /& ingredients", () => {
 
     // search bar form is rendered?
     expect(
-      screen.getByPlaceholderText("onion, canned tomato, pasta")
+      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
     ).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");
     // search button is rendered?
     expect(searchBar_button).toBeTruthy();
 
-    const searchBar = getByTestId("searchbar_form");
-    fireEvent.change(searchBar, { target: { value: "salmon" } });
-
-    userEvent.click(screen.getByText("search"));
-
     // loading... is shown?
     await waitFor(() => {
-      expect(getByTestId("loading")).toBeTruthy();
+      expect(screen.getByTestId("loading")).toBeTruthy();
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/searchRecipe`,
         {
@@ -351,8 +345,10 @@ describe("Search Page without passed nutrients /& ingredients", () => {
   });
 
   test("when the user scroll, fetch more recipe", async () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
+    render(
+      <MemoryRouter
+        initialEntries={[{ pathname: "/", state: { search: "salmon" } }]}
+      >
         <Search />
       </MemoryRouter>
     );
@@ -369,11 +365,6 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     const searchBar_button = screen.getByTestId("searchbar_button");
     // search button is rendered?
     expect(searchBar_button).toBeTruthy();
-
-    const searchBar = getByTestId("searchbar_form");
-    fireEvent.change(searchBar, { target: { value: "salmon" } });
-
-    userEvent.click(screen.getByText("search"));
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
@@ -529,6 +520,46 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(screen.getByRole("textbox")).toHaveValue("asidhaihsida");
     await userEvent.click(screen.getByText("search"));
 
+    expect(mockUseNavigate).toBeCalledTimes(1);
+
+    // await waitFor(() => {
+    //   expect(axios.get).toHaveBeenCalledWith(
+    //     `${env.API_URL}/spoonacular/searchRecipe`,
+    //     {
+    //       params: {
+    //         offset: 0,
+    //         number: 6,
+    //         includeIngredients: "asidhaihsida",
+    //       },
+    //     }
+    //   );
+    // });
+
+    // axios is only called once?
+    // expect(axios.get).toHaveBeenCalledTimes(1);
+
+    // recipe not found is shown?
+    // await waitFor(() => {
+    //   expect(screen.getAllByTestId("not_found")).toBeTruthy();
+    // });
+  });
+
+  test("if no recipe found, show Recipe Not Found", async () => {
+    axios.get.mockRestore();
+    axios.get.mockResolvedValue({
+      data: {
+        results: [],
+      },
+    });
+
+    render(
+      <MemoryRouter
+        initialEntries={[{ pathname: "/", state: mockLocationState2 }]}
+      >
+        <Search />
+      </MemoryRouter>
+    );
+
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/searchRecipe`,
@@ -536,7 +567,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
           params: {
             offset: 0,
             number: 6,
-            includeIngredients: "asidhaihsida",
+            includeIngredients: mockLocationState2.search,
           },
         }
       );
