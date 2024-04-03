@@ -7,7 +7,7 @@ import { TODOIST_BASE_URL } from "src/services/todoist";
 import TodoistProjectsMock from "../../../mocks/Todoist/TodoistProjectsMock.json";
 import TodoistSectionsMock from "../../../mocks/Todoist/TodoistSectionsMock.json";
 import Navbar from "src/components/Navbar/Navbar";
-import { MemoryRouter, useLocation } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 const server = setupServer(
 	http.get(`${TODOIST_BASE_URL}/projects`, () => HttpResponse.json(TodoistProjectsMock)),
