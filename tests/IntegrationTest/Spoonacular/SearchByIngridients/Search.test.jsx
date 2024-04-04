@@ -73,7 +73,7 @@ describe("Search Page with passed nutrients /& ingredients", () => {
   test("render search bar", async () => {
     // search form is rendered?
     expect(
-      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
+      screen.getByText("Enter ingredients with comma-separated list")
     ).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");
@@ -233,9 +233,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(advanced_menu).toBeTruthy();
 
     // search bar form is rendered?
-    expect(
-      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
-    ).toBeTruthy();
+    expect(screen.getByTestId("searchbar_form")).toBeTruthy();
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
@@ -296,9 +294,8 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(advanced_menu).toBeTruthy();
 
     // search bar form is rendered?
-    expect(
-      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
-    ).toBeTruthy();
+
+    expect(screen.getByTestId("searchbar_form")).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");
     // search button is rendered?
@@ -358,9 +355,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(advanced_menu).toBeTruthy();
 
     // search bar form is rendered?
-    expect(
-      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
-    ).toBeTruthy();
+    expect(screen.getByTestId("searchbar_form")).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");
     // search button is rendered?
@@ -508,9 +503,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     expect(advanced_menu).toBeTruthy();
 
     // search bar form is rendered?
-    expect(
-      screen.getByPlaceholderText("Enter ingredients with comma-separated list")
-    ).toBeTruthy();
+    expect(screen.getByTestId("searchbar_form")).toBeTruthy();
 
     const searchBar_button = screen.getByTestId("searchbar_button");
     // search button is rendered?
@@ -521,30 +514,9 @@ describe("Search Page without passed nutrients /& ingredients", () => {
     await userEvent.click(screen.getByText("search"));
 
     expect(mockUseNavigate).toBeCalledTimes(1);
-
-    // await waitFor(() => {
-    //   expect(axios.get).toHaveBeenCalledWith(
-    //     `${env.API_URL}/spoonacular/searchRecipe`,
-    //     {
-    //       params: {
-    //         offset: 0,
-    //         number: 6,
-    //         includeIngredients: "asidhaihsida",
-    //       },
-    //     }
-    //   );
-    // });
-
-    // axios is only called once?
-    // expect(axios.get).toHaveBeenCalledTimes(1);
-
-    // recipe not found is shown?
-    // await waitFor(() => {
-    //   expect(screen.getAllByTestId("not_found")).toBeTruthy();
-    // });
   });
 
-  test("if no recipe found, show Recipe Not Found", async () => {
+  test("when enter ingredients in the search bar & click submit button, call useNavigate & reload page", async () => {
     axios.get.mockRestore();
     axios.get.mockResolvedValue({
       data: {

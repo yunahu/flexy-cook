@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
   padding: 1rem 0;
 }
 
 .amountInput {
-  max-width: 7.5rem;
+  max-width: 9rem;
 }
 
 .searchByText {
@@ -38,4 +38,17 @@
   min-width: 45%;
   min-height: 35vh;
   padding: 1rem 0.7rem;
+}
+
+/** Medium screen size */
+@media (max-width: 990px) {
+  .searchBy {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 0;
+  }
+  .amountInput {
+    max-width: 100%;
+  }
 }

@@ -35,6 +35,7 @@ const Search = () => {
   const [search, setSearch] = useState(location.state?.search || "");
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [maxReached, setMaxReached] = useState(false);
   const [nutrientsTags, setNutrientsTags] = useState(
     location.state?.nutrient || []
   );
@@ -75,7 +76,8 @@ const Search = () => {
         window.innerHeight + window.scrollY >=
           document.body.scrollHeight - 100 &&
         !loading &&
-        recipeDetails?.length < MAX_RECIPE_NUM
+        recipeDetails?.length < MAX_RECIPE_NUM &&
+        !maxReached
       ) {
         fetchRecipes();
       }
@@ -118,7 +120,9 @@ const Search = () => {
         })
         .then(async (res) => {
           const recipeId = res.data.results.map((recipe) => recipe.id);
-          console.log(recipeId);
+          if (recipeId < 6) {
+            setMaxReached(true);
+          }
 
           const recipeDetail = await Promise.all(
             recipeId.map((id) =>
@@ -178,7 +182,6 @@ const Search = () => {
         <div className={styles.searchBar}>
           <SearchBar
             testid="searchbar"
-            text="Enter ingredients with comma-separated list"
             value={search}
             onChange={handleOnChange}
             btnClick={handleBtnClick}

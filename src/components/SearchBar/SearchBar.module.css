@@ -1,10 +1,44 @@
+.formWrapper {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.formWrapper label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+
+  color: #bbb;
+  font: inherit;
+
+  animation: 0.75s ease-in forwards fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .form {
+  box-sizing: border-box;
   border: 1px solid #9eb384;
+  border-radius: 6px 0 0 6px;
   color: rgba(170, 170, 170);
   font-weight: 500;
   font-size: 16px;
   padding-left: 0.5rem;
+  height: 100%;
 }
+
 .form::placeholder {
   color: rgba(170, 170, 170);
   font-size: 16px;
@@ -17,6 +51,7 @@
   background-color: #9eb384;
   color: white;
   font-weight: 200;
+  height: 100%;
 }
 
 .outline-secondary:hover {
@@ -34,7 +69,8 @@
 .container {
   margin-bottom: 0.2rem;
   min-width: 10rem;
-  min-height: 3rem;
+  min-height: 2.5rem;
+  height: 2.5rem;
 }
 
 .icon {

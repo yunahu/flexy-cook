@@ -16,8 +16,8 @@ describe("SearchBar", async () => {
   });
 
   test("The text will be shown as a placeholder when render", () => {
-    render(<SearchBar text="test" />);
-    expect(screen.getByPlaceholderText("test")).toBeInTheDocument();
+    render(<SearchBar value="" />);
+    expect(screen.getByTestId("placeholder")).toBeTruthy();
   });
 
   test("when the user types into the search bar or delete text in the search bar, onChange should be called", async () => {
