@@ -36,7 +36,12 @@ const Footer = () => {
             <FontAwesomeIcon icon={faHive} />
             &ensp;FlexyCook
           </Link>
-          <Button variant="footer" onClick={handleShow}>
+          <Button
+            variant="footer"
+            onClick={() =>
+              (window.location = "mailto:cpsc2350group4@gmail.com")
+            }
+          >
             <FontAwesomeIcon icon={faEnvelope} />
             &ensp;Contact
           </Button>
