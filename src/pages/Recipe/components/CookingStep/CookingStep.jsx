@@ -76,7 +76,8 @@ const CookingStep = ({
                   {equipment.length > 0 ? displayList(equipment) : "none"}
                   <br />
                   <FontAwesomeIcon icon={faCarrot} />
-                  &ensp;Ingredients: {displayList(ingredients)}
+                  &ensp;Ingredients:{" "}
+                  {ingredients.length > 0 ? displayList(ingredients) : "none"}
                 </CardBootstrap.Text>
               </Col>
               <Col xs={1}>

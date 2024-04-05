@@ -118,7 +118,7 @@ export const addToShoppingList = async recipe => {
 
 	try {
 		await Promise.all(recipe.extendedIngredients.map(ingredient => addTask(`${ingredient.name} - ${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitLong}`, null, shoppingList.id)));
-		alert('Success');	// Do not remove, or modify the test to not rely on this
+		alert('✅ Successfully added to the shopping list');	// Do not remove, or modify the test to not rely on this
 	} catch (err) {
 		console.error(err);
 	};
@@ -145,7 +145,7 @@ export const generateStepsList = async recipe => {
 				stepsLists.push(stepList);
 			};
 
-			alert('Success');
+			alert('✅ Successfully created a cooking step list');
 			return stepsLists;
 
 		} else {

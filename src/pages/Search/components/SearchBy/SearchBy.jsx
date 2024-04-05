@@ -8,6 +8,7 @@ const SearchBy = ({
   nutrientFromNav,
   ingredientsFromNav,
 }) => {
+  console.log(tag);
   return (
     <ul className={className}>
       <div>You are searching the recipes by</div>
@@ -42,7 +43,9 @@ const SearchBy = ({
         </div>
       )}
       {tag && (
-        <div>{`${capitalize(tag[0].key)}: ${capitalize(tag[0].amount)}`}</div>
+        <div>{`${capitalize(tag[0].key)}: ${capitalize(
+          String(tag[0].amount)
+        )} minutes`}</div>
       )}
     </ul>
   );
