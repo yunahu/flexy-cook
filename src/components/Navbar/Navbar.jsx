@@ -46,6 +46,16 @@ const Navbar = () => {
     setTags(tags);
   };
 
+  const handleBtnClick = (e) => {
+    navigate("/search", { state: { ingredients, tags } });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleBtnClick();
+    }
+  };
+
   // Dropdown items
   const todoistItems = [
     {
@@ -155,9 +165,8 @@ const Navbar = () => {
                   className={styles.searchBar}
                   value={ingredients}
                   onChange={handleOnChange}
-                  btnClick={() =>
-                    navigate("/search", { state: { ingredients, tags } })
-                  }
+                  btnClick={handleBtnClick}
+                  onKeyDown={handleKeyDown}
                 />
                 <AdvancedSearchMenu onTagsChange={handleTagsChange} />
               </Stack>

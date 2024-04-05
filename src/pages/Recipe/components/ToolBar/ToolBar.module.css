@@ -1,104 +1,106 @@
 /** Large Screen Size */
 .toolBar {
-   width: 65px;
-   flex-direction: column;
+  width: 65px;
+  flex-direction: column;
 
-   position: fixed;
-   right: 0;
-   top: 15vh;
+  position: fixed;
+  right: 0;
+  top: 15vh;
 
-   text-align: center;
+  text-align: center;
 
-   background-color: var(--light-primary);
-   border-top-left-radius: 10px;
-   border-bottom-left-radius: 10px;
-   border: 1.5px solid var(--primary);
-   border-right: none;
+  background-color: var(--light-primary);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1.5px solid var(--primary);
+  border-right: none;
 
-   overflow: hidden; /** For border radius of tool items */
+  overflow: hidden; /** For border radius of tool items */
 }
 
 .toolItems {
-   display: flex;
+  display: flex;
 }
 
 .tool {
-   padding: 12px 5px;
-   height: 100%;
-   font-size: 26px;
+  padding: 12px 5px;
+  height: 100%;
+  font-size: 26px;
 
-   border-radius: 0;
-   border: none;
-   background-color: transparent;
-   color: var(--dark-primary);
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--dark-primary);
 }
 
 .tool:hover {
-   background-color: var(--dark-primary);
-   color: var(--white);
+  background-color: var(--dark-primary);
+  color: var(--white);
+}
+.tool:disabled {
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .tool:not(:disabled):not(:disabled):active {
-   background-color: var(--active-primary);
+  background-color: var(--active-primary);
 }
 
 #unitSwitch {
-   font-size: 80%;
-   gap: 2;
+  font-size: 80%;
+  gap: 2;
 }
 
 #unitSwitch input {
-   padding: 0;
-   height: 20px;
-   width: 37px;
-   border: 2px solid var(--primary);
+  padding: 0;
+  height: 20px;
+  width: 37px;
+  border: 2px solid var(--primary);
 }
 
 #unitSwitch input:checked {
-   background-color: var(--dark-primary) !important;
+  background-color: var(--dark-primary) !important;
 }
 
-button[id='control'] {
-   transform: rotate(0deg);
-   display: none;
+button[id="control"] {
+  transform: rotate(0deg);
+  display: none;
 }
-
 
 /** Small screen size */
 @media screen and (max-width: 576px) {
-   .toolBar {
-      width: auto;
-      height: 65px;
-      flex-direction: row;
+  .toolBar {
+    width: auto;
+    height: 65px;
+    flex-direction: row;
 
-      top: auto;
-      bottom: 15vh;
-   }
+    top: auto;
+    bottom: 15vh;
+  }
 
-   .toolItems {
-      flex-direction: row;
-      display: none; /** Hidden unless toggled */
-   }
+  .toolItems {
+    flex-direction: row;
+    display: none; /** Hidden unless toggled */
+  }
 
-   .tool {
-      padding: 7px 15px;
-      align-items: center;
-   }
+  .tool {
+    padding: 7px 15px;
+    align-items: center;
+  }
 
-   #unitSwitch {
-      font-size: 50%;
-      gap: 1;
-   }
+  #unitSwitch {
+    font-size: 50%;
+    gap: 1;
+  }
 
-   #unitSwitch input {
-      padding: 0;
-      height: 15px;
-      width: 30px;
-      border: 2px solid var(--primary);
-   }
+  #unitSwitch input {
+    padding: 0;
+    height: 15px;
+    width: 30px;
+    border: 2px solid var(--primary);
+  }
 
-   button[id='control'] {
-      display: flex;
-   }
-
+  button[id="control"] {
+    display: flex;
+  }
 }

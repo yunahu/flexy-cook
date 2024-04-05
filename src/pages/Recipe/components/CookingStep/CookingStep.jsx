@@ -13,8 +13,12 @@ import { Stack } from "react-bootstrap";
 // Extract equipment & ingredient names and form a string for diaplying
 const displayList = (objArr) => {
   let strList = "";
-  objArr.forEach((obj) => {
-    strList += obj.name + ", ";
+  objArr.forEach((obj, index) => {
+    if (objArr.length - 1 == index) {
+      strList += obj.name;
+    } else {
+      strList += obj.name + ", ";
+    }
   });
   return strList;
 };
@@ -52,42 +56,41 @@ const CookingStep = ({
   ingredients,
 }) => {
   return (
-    <>
-      <CardBootstrap className={styles.stepsCard} height={height}>
-        <Row>
-          <Col xs={4} className={styles.imgBlock}>
-            <CardBootstrap.Img src={image} className={styles.cardImg} />
-          </Col>
+    <CardBootstrap className={styles.stepsCard} height={height}>
+      <Row>
+        <Col xs={4} className={styles.imgBlock}>
+          <CardBootstrap.Img src={image} className={styles.cardImg} />
+        </Col>
 
-          <Col xs={8} className={styles.cardText}>
-            <CardBootstrap.Body className={styles.cardBody}>
-              <Stack direction="horizontal">
-                {" "}
-                {/** This stack is to put step number to the right & limit text width */}
-                <Col>
-                  <CardBootstrap.Title>{step}</CardBootstrap.Title>
+        <Col xs={8} className={styles.cardText}>
+          <CardBootstrap.Body className={styles.cardBody}>
+            <Stack direction="horizontal">
+              {" "}
+              {/** This stack is to put step number to the right & limit text width */}
+              <Col>
+                <CardBootstrap.Title>{step}</CardBootstrap.Title>
 
-                  <CardBootstrap.Text>
-                    <FontAwesomeIcon icon={faKitchenSet} />
-                    &ensp;Equipments: {displayList(equipment)} ...
-                    <br />
-                    <FontAwesomeIcon icon={faCarrot} />
-                    &ensp;Ingredients: {displayList(ingredients)} ...
-                  </CardBootstrap.Text>
-                </Col>
-                <Col xs={1}>
-                  <Tag
-                    title={number}
-                    bg={colorByNum(number)}
-                    className={styles.stepNum}
-                  />
-                </Col>
-              </Stack>
-            </CardBootstrap.Body>
-          </Col>
-        </Row>
-      </CardBootstrap>
-    </>
+                <CardBootstrap.Text>
+                  <FontAwesomeIcon icon={faKitchenSet} />
+                  &ensp;Equipments:{" "}
+                  {equipment.length > 0 ? displayList(equipment) : "none"}
+                  <br />
+                  <FontAwesomeIcon icon={faCarrot} />
+                  &ensp;Ingredients: {displayList(ingredients)}
+                </CardBootstrap.Text>
+              </Col>
+              <Col xs={1}>
+                <Tag
+                  title={number}
+                  bg={colorByNum(number)}
+                  className={styles.stepNum}
+                />
+              </Col>
+            </Stack>
+          </CardBootstrap.Body>
+        </Col>
+      </Row>
+    </CardBootstrap>
   );
 };
 

@@ -99,6 +99,13 @@ const Recipe = () => {
               </li>
             );
           })}
+          nutrients={recipe.nutrition.nutrients.map((nutrient) => {
+            return (
+              <li
+                className={styles.nutrients}
+              >{`${nutrient.name}: ${nutrient.amount} ${nutrient.unit}`}</li>
+            );
+          })}
           time={recipe.readyInMinutes}
           calories={Math.floor(recipe.nutrition.nutrients[0].amount)}
           size={recipe.servings}
