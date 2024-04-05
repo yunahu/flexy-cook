@@ -31,9 +31,14 @@
 }
 
 .ingredients {
-  max-height: 9rem;
+  max-height: 4.5rem;
   overflow-y: scroll;
   /* background: linear-gradient(); */
+}
+
+.nutrients {
+  max-height: 5rem;
+  overflow-y: scroll;
 }
 
 /** Small screen size */

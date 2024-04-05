@@ -10,6 +10,7 @@ const RecipeBanner = ({
   imgURL,
   title,
   ingredients,
+  nutrients,
   size,
   time,
   calories,
@@ -26,9 +27,14 @@ const RecipeBanner = ({
 
       <Card.ImgOverlay className={styles.caption}>
         <Card.Title>{title}</Card.Title>
+
         <Card.Text>
           Ingredients: <br></br>
           <div className={styles.ingredients}>{ingredients}</div>
+        </Card.Text>
+        <Card.Text>
+          Nutrients: <br></br>
+          <div className={styles.nutrients}>{nutrients}</div>
         </Card.Text>
         <Card.Text>
           <CookingInfo size={size} time={time} calories={calories} />
