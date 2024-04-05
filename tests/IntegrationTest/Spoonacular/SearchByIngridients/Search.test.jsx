@@ -511,7 +511,7 @@ describe("Search Page without passed nutrients /& ingredients", () => {
 
     await userEvent.type(screen.getByRole("textbox"), "asidhaihsida");
     expect(screen.getByRole("textbox")).toHaveValue("asidhaihsida");
-    await userEvent.click(screen.getByText("search"));
+    await userEvent.click(screen.getByText("Search"));
 
     expect(mockUseNavigate).toBeCalledTimes(1);
   });
