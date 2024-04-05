@@ -185,7 +185,7 @@ const Search = () => {
             value={search}
             onChange={handleOnChange}
             btnClick={handleBtnClick}
-            btnText="search"
+            btnText="Search"
             onKeyDown={handleKeyDown}
           />
           <AdvancedSearchMenu

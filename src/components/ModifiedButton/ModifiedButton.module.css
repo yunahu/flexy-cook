@@ -28,7 +28,8 @@
 .variant-light,
 .variant-light:visited,
 .variant-light:hover,
-.variant-light:focus {
+.variant-light:focus,
+.variant-light:focus-visible {
   background-color: var(--primary) !important;
   color: var(--white) !important;
 }
@@ -54,7 +55,9 @@
 
 .variant-dark,
 .variant-dark:hover,
-.variant-dark:visited {
+.variant-dark:visited,
+.variant-dark:focus,
+.variant-dark:focus-visible {
   background-color: var(--white) !important;
   border: 2px solid var(--primary) !important;
   color: var(--primary) !important;

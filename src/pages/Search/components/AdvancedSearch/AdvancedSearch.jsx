@@ -214,7 +214,9 @@ const AdvancedSearchMenu = ({
                   amount={tag.amount}
                   scale={tag.scale}
                   onClick={() => {
-                    var result = confirm("Want to delete?");
+                    var result = confirm(
+                      "Are you sure you want to delete the tag?"
+                    );
                     if (result) {
                       deleteTag(index);
                     }

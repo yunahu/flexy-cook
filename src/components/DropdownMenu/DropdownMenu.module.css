@@ -15,23 +15,22 @@
   color: var(--dark-primary);
   font: 17px "Noto Sans", sans-serif;
 }
-
+.btn-success:active,
+.btn-primary:active,
 .btn-success:hover,
 .btn-primary:hover,
+.btn-success:focus,
+.btn-primary:focus,
+.btn-success:focus-visible,
+.btn-primary:focus-visible,
 .show {
-  background-color: var(--primary) !important;
-  border-color: var(--primary);
-}
-
-.btn-success:active,
-.btn-primary:active {
   background-color: var(--primary) !important;
   border-color: var(--primary);
 }
 
 .container button[aria-expanded="true"] {
   background-color: var(--primary) !important;
-   border-color: var(--primary);
+  border-color: var(--primary);
 }
 
 .container {

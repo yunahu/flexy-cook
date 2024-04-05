@@ -19,7 +19,7 @@ import { addToShoppingList, generateStepsList } from "src/services/todoist";
 import { useContext, useState } from "react";
 import { TodoListsContext } from "src/App";
 
-const ToolBar = ({ onChange, recipe }) => {
+const ToolBar = ({ onChange, recipe, checked }) => {
   const { todoLists, setTodoLists } = useContext(TodoListsContext);
   const [addedShoppingList, setAddedShoppingList] = useState(false);
   const [addedStepList, setAddedStepList] = useState(false);
@@ -164,7 +164,7 @@ const ToolBar = ({ onChange, recipe }) => {
             <Form.Check type="switch" ref={switchRef} onChange={onChange} />
             {/* () => console.log(switchRef.current.checked) */}
             <span>
-              Imperial
+              {checked ? "Metric" : "Imperial"}
               <br />
               Unit
             </span>

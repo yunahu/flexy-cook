@@ -49,7 +49,9 @@ const Recipe = () => {
       amount = ingredient.measures.us.amount;
       unit = ingredient.measures.us.unitShort;
     }
-    return `${capitalize(ingredient.name)}: ${amount} ${unit ? unit : ""}`;
+    return `${capitalize(ingredient.name)}: ${amount.toFixed(2)} ${
+      unit ? unit : ""
+    }`;
   };
 
   const CookingSteps = recipe?.analyzedInstructions[0]?.steps.map(
@@ -126,7 +128,12 @@ const Recipe = () => {
         </Stack>
       </Stack>{" "}
       {/** End Content Wrapper */}
-      <ToolBar className={styles.toolBar} onChange={onChange} recipe={recipe} />
+      <ToolBar
+        className={styles.toolBar}
+        onChange={onChange}
+        recipe={recipe}
+        checked={scale}
+      />
     </>
   );
 };
