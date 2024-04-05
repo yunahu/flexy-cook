@@ -29,11 +29,11 @@ const RecipeBanner = ({
         <Card.Title>{title}</Card.Title>
 
         <Card.Text>
-          Ingredients: <br></br>
+          <b>Ingredients:</b> <br></br>
           <div className={styles.ingredients}>{ingredients}</div>
         </Card.Text>
         <Card.Text>
-          Nutrients: <br></br>
+          <b>Nutrients:</b> <br></br>
           <div className={styles.nutrients}>{nutrients}</div>
         </Card.Text>
         <Card.Text>

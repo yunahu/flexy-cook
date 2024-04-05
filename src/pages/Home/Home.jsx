@@ -1,4 +1,5 @@
 import styles from "./Home.module.css";
+import styleSearch from "src/pages/Search/Search.module.css";
 import Large_Square_Card from "./components/LargeSquareCard/LargeSquareCard";
 import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
@@ -13,12 +14,16 @@ import {
   trimIngredients,
 } from "src/utils/spoonacularFunctions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleExclamation,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import env from "src/utils/env";
 
 const Home = () => {
   const [fetchLoading, setFetchLoading] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -87,10 +92,13 @@ const Home = () => {
             setFetchLoading(false);
             setThreeProps(three_prop);
             console.log(recipeDetail[0][0].extendedIngredients);
+          })
+          .catch((err) => {
+            setFetchLoading(false);
+            setIsError(true);
           });
       } catch (error) {
         console.error("Error fetching recipes:", error);
-        setFetchLoading(true);
       }
     };
 
@@ -106,6 +114,31 @@ const Home = () => {
         <FontAwesomeIcon icon={faSpinner} spinPulse />
         &ensp;Loading recipes...
       </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Stack
+        className={styleSearch.msg}
+        direction="vertical"
+        gap={5}
+        data-testid="error"
+      >
+        <span>
+          <FontAwesomeIcon icon={faCircleExclamation} className="text-danger" />
+          &ensp;Server Error
+        </span>
+
+        <span className={styleSearch.secondaryMsg}>
+          <h5>Try these:</h5>
+          <ul className="h6">
+            <li>Check internet connection</li>
+            <li>Reload page</li>
+            <li>Check back in a few minutes</li>
+          </ul>
+        </span>
+      </Stack>
     );
   }
 
