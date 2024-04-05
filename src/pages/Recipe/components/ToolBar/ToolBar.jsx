@@ -75,8 +75,6 @@ const ToolBar = ({ onChange, recipe }) => {
     setShoppingLoading(false);
   };
 
-  console.log(shoppingLoading);
-
   return (
     <Stack
       className={styles.toolBar}
