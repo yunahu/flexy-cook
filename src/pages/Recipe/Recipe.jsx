@@ -49,7 +49,7 @@ const Recipe = () => {
       amount = ingredient.measures.us.amount;
       unit = ingredient.measures.us.unitShort;
     }
-    return `${capitalize(ingredient.name)}: ${amount.toFixed(2)} ${
+    return `${capitalize(ingredient.name)}: ${Math.round(amount * 100) / 100} ${
       unit ? unit : ""
     }`;
   };
