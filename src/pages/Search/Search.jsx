@@ -39,6 +39,7 @@ const Search = () => {
   const [nutrientsTags, setNutrientsTags] = useState(
     location.state?.nutrient || []
   );
+  const [isError, setIsError] = useState(false);
 
   let { ingredients, tags, tagInfo } = location.state || {};
 
@@ -145,6 +146,10 @@ const Search = () => {
             ...recipeDetail,
           ]);
           setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setIsError(true);
         });
     } catch (error) {
       console.error("Error fetching recipes:", error);
@@ -278,6 +283,31 @@ const Search = () => {
                 <li>
                   Double check the filter setting in Advanced Search panel
                 </li>
+              </ul>
+            </span>
+          </Stack>
+        )}
+        {isError && (
+          <Stack
+            className={styles.msg}
+            direction="vertical"
+            gap={5}
+            data-testid="error"
+          >
+            <span>
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className="text-danger"
+              />
+              &ensp;Server Error
+            </span>
+
+            <span className={styles.secondaryMsg}>
+              <h5>Try these:</h5>
+              <ul className="h6">
+                <li>Check internet connection</li>
+                <li>Reload page</li>
+                <li>Check back in a few minutes</li>
               </ul>
             </span>
           </Stack>

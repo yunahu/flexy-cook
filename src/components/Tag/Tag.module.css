@@ -1,6 +1,7 @@
 .bg-primary {
   background-color: #fb8c00 !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-primary:hover,
@@ -11,6 +12,7 @@
 .bg-danger {
   background-color: #5d4037 !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-danger:hover,
@@ -21,6 +23,7 @@
 .bg-info {
   background-color: #d81b60 !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-info:hover,
@@ -31,6 +34,7 @@
 .bg-secondary {
   background-color: #ab47bc !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-secondary:hover,
@@ -41,6 +45,7 @@
 .bg-success {
   background-color: #66bb6a !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-success:hover,
@@ -51,6 +56,7 @@
 .bg-warning {
   background-color: #b71c1c !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-warning:hover,
@@ -61,6 +67,7 @@
 .bg-light {
   background-color: #ef5350 !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-light:hover,
@@ -71,6 +78,7 @@
 .bg-dark {
   background-color: #42a5f5 !important;
   border: none;
+  padding: 0.4rem;
 }
 
 .bg-dark:hover,

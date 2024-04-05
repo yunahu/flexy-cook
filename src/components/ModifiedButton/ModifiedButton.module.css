@@ -27,14 +27,14 @@
 
 .variant-light,
 .variant-light:visited,
-.variant-light:hover,
 .variant-light:focus,
 .variant-light:focus-visible {
   background-color: var(--primary) !important;
   color: var(--white) !important;
 }
 
-.variant-light:active {
+.variant-light:active,
+.variant-light:hover {
   background-color: var(--dark-primary) !important;
   color: var(--white) !important;
 }
@@ -47,14 +47,14 @@
   font-weight: 600 !important;
 }
 
-.variant-dark:active {
+.variant-dark:active,
+.variant-dark:hover {
   background-color: var(--white) !important;
   border: 3px solid rgba(158, 179, 132, 0.3) !important;
   color: rgba(158, 179, 132, 0.5) !important;
 }
 
 .variant-dark,
-.variant-dark:hover,
 .variant-dark:visited,
 .variant-dark:focus,
 .variant-dark:focus-visible {
