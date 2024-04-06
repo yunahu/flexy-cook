@@ -48,7 +48,7 @@ describe("Home Page", () => {
     expect(axios.get).toHaveBeenNthCalledWith(
       1,
       `${env.API_URL}/spoonacular/randomRecipe`,
-      { params: { number: 7 } }
+      { params: { number: 13 } }
     );
   });
 
@@ -57,7 +57,7 @@ describe("Home Page", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/randomRecipe`,
-        { params: { number: 7 } }
+        { params: { number: 13 } }
       );
     });
 
@@ -91,7 +91,7 @@ describe("Home Page", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/randomRecipe`,
-        { params: { number: 7 } }
+        { params: { number: 13 } }
       );
     });
 
@@ -138,7 +138,7 @@ describe("Home Page", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
         `${env.API_URL}/spoonacular/randomRecipe`,
-        { params: { number: 7 } }
+        { params: { number: 13 } }
       );
     });
 
