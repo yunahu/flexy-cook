@@ -49,5 +49,17 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 - To deeply explore the differences between Kanban and Scrum Agile models.
 
 
+## Development environment setup:
+
+### How to run the application locally
+1. Clone this repository.
+2. Run `npm install`.
+3. Run `npm run dev`.
+4. Run flexy-cook-api (Please refer to its own readme file.)
+
+### How to run tests
+Run `npm run test`
+
+
 ## AI Usage Disclosure Forms:
 - Monica: [AI Disclosure Form For Project Milestone 1](AI_Disclosure_Forms/P1_AI_Declaration_Monica_Gao_100354959.pdf)
