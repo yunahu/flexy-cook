@@ -1,18 +1,16 @@
 import styles from "./Home.module.css";
 import styleSearch from "src/pages/Search/Search.module.css";
+import RefreshButton from "./components/RefreshButton/RefreshButton";
 import Large_Square_Card from "./components/LargeSquareCard/LargeSquareCard";
 import CarouselBanner from "./components/CarouselBanner/CarouselBanner";
 import HorizontalCard from "./components/HorizontalCard/HorizontalCard";
 import { Row, Col, Stack } from "react-bootstrap";
 import Divider from "src/components/Divider/Divider";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  createTags,
-  createLocationData,
-  trimIngredients,
-} from "src/utils/spoonacularFunctions";
+import { createTags, createLocationData } from "src/utils/spoonacularFunctions";
+import { getDislikes, addDislike } from "./utils/recommend";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleExclamation,
@@ -20,88 +18,88 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import env from "src/utils/env";
 
+const NUM_RECIPE = 7;
 const Home = () => {
   const [fetchLoading, setFetchLoading] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState([]);
   const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
+
+  const fetchRecipes = useCallback(async () => {
+    const dislikes = getDislikes();
+
+    try {
+      const res = await axios.get(`${env.API_URL}/spoonacular/randomRecipe`, {
+        params: { number: 13 },
+      });
+
+      const recipes = res.data.recipes
+        .filter((recipe) => !dislikes.includes(recipe.id))
+        .slice(0, NUM_RECIPE);
+      const recipeDetail = await Promise.all(
+        recipes.map((recipe) =>
+          Promise.all([
+            axios
+              .get(`${env.API_URL}/spoonacular/getRecipe`, {
+                params: { id: recipe.id, includeNutrition: true },
+              })
+              .then((res) => res.data),
+            axios
+              .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
+                params: { id: recipe.id, normalize: true },
+              })
+              .then((res) => res.data),
+          ])
+        )
+      );
+      setRecipeDetails(recipeDetail);
+      console.log(recipeDetail);
+
+      const three_prop = [
+        {
+          imgURL: recipeDetail[0][0].image,
+          title: recipeDetail[0][0].title,
+          calories: Math.floor(
+            recipeDetail[0][0].nutrition.nutrients[0].amount
+          ),
+          time: recipeDetail[0][0].readyInMinutes,
+          size: recipeDetail[0][0].servings,
+          tags: createTags(recipeDetail[0]),
+        },
+        {
+          imgURL: recipeDetail[1][0].image,
+          title: recipeDetail[1][0].title,
+          calories: Math.floor(
+            recipeDetail[1][0].nutrition.nutrients[0].amount
+          ),
+          time: recipeDetail[1][0].readyInMinutes,
+          size: recipeDetail[1][0].servings,
+          tags: createTags(recipeDetail[1]),
+        },
+        {
+          imgURL: recipeDetail[2][0].image,
+          title: recipeDetail[2][0].title,
+          calories: Math.floor(
+            recipeDetail[2][0].nutrition.nutrients[0].amount
+          ),
+          time: recipeDetail[2][0].readyInMinutes,
+          size: recipeDetail[2][0].servings,
+          tags: createTags(recipeDetail[2]),
+        },
+      ];
+
+      setFetchLoading(false);
+      setThreeProps(three_prop);
+      console.log(recipeDetail[0][0].extendedIngredients);
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+      setFetchLoading(false);
+      setIsError(true);
+    }
+  });
+
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        axios
-          .get(`${env.API_URL}/spoonacular/randomRecipe`, {
-            params: { number: 7 },
-          })
-          .then(async (res) => {
-            console.log(res.data.recipes);
-            const recipeId = res.data.recipes.map((recipe) => recipe.id);
-
-            const recipeDetail = await Promise.all(
-              recipeId.map((id) =>
-                Promise.all([
-                  axios
-                    .get(`${env.API_URL}/spoonacular/getRecipe`, {
-                      params: { id, includeNutrition: true },
-                    })
-                    .then((res) => res.data),
-                  axios
-                    .get(`${env.API_URL}/spoonacular/getRecipeTaste`, {
-                      params: { id, normalize: true },
-                    })
-                    .then((res) => res.data),
-                ])
-              )
-            );
-            setRecipeDetails(recipeDetail);
-            console.log(recipeDetail);
-
-            const three_prop = [
-              {
-                imgURL: recipeDetail[0][0].image,
-                title: recipeDetail[0][0].title,
-                calories: Math.floor(
-                  recipeDetail[0][0].nutrition.nutrients[0].amount
-                ),
-                time: recipeDetail[0][0].readyInMinutes,
-                size: recipeDetail[0][0].servings,
-                tags: createTags(recipeDetail[0]),
-              },
-              {
-                imgURL: recipeDetail[1][0].image,
-                title: recipeDetail[1][0].title,
-                calories: Math.floor(
-                  recipeDetail[1][0].nutrition.nutrients[0].amount
-                ),
-                time: recipeDetail[1][0].readyInMinutes,
-                size: recipeDetail[1][0].servings,
-                tags: createTags(recipeDetail[1]),
-              },
-              {
-                imgURL: recipeDetail[2][0].image,
-                title: recipeDetail[2][0].title,
-                calories: Math.floor(
-                  recipeDetail[2][0].nutrition.nutrients[0].amount
-                ),
-                time: recipeDetail[2][0].readyInMinutes,
-                size: recipeDetail[2][0].servings,
-                tags: createTags(recipeDetail[2]),
-              },
-            ];
-
-            setFetchLoading(false);
-            setThreeProps(three_prop);
-            console.log(recipeDetail[0][0].extendedIngredients);
-          })
-          .catch((err) => {
-            setFetchLoading(false);
-            setIsError(true);
-          });
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      }
-    };
-
     fetchRecipes();
   }, []);
 
@@ -385,6 +383,13 @@ const Home = () => {
           }
         />
       </Stack>
+      <RefreshButton
+        fetchRecipe={fetchRecipes}
+        onClick={() => {
+          const ids = recipeDetails.map((recipeDetail) => recipeDetail[0].id);
+          addDislike(ids);
+        }}
+      />
     </div>
   );
 };

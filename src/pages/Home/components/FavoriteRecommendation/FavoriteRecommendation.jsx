@@ -3,7 +3,7 @@ import axios from "axios";
 import LargeSquareCard from "src/components/LargeSquareCard/LargeCard";
 import { capitalize } from "src/utils/common";
 import { findStrongestTaste } from "src/utils/spoonacularFunctions";
-import { getDislikes, addDislike } from "./utils/recommend";
+import { getDislikes, addDislike } from "../../utils/recommend";
 import RefreshButton from "../RefreshButton/RefreshButton";
 
 const NUM_RECIPE = 3;

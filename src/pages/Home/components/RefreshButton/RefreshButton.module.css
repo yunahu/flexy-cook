@@ -1,0 +1,29 @@
+.btn-primary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-primary) !important;
+  border: var(--dark-primary) solid 2.5px !important;
+  color: var(--dark-primary);
+  padding: 1rem 4rem;
+  min-height: 5rem;
+  width: 60px;
+  border-radius: 5px 0px 0px 5px;
+  position: fixed;
+  bottom: 150px;
+  right: 0px;
+  z-index: 1000;
+  font-weight: 700;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus-visible,
+.btn-primary:visited,
+.btn-primary:disabled,
+.btn-primary:focus {
+  background-color: var(--dark-primary) !important;
+  border: var(--dark-primary) solid 1px !important;
+  color: var(--white);
+}
