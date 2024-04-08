@@ -3,6 +3,8 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 
 ### Link to FlexyCook Web Application: [https://production.d3ajroqntq3q3i.amplifyapp.com/](https://production.d3ajroqntq3q3i.amplifyapp.com/)
 
+
+
 ## Project Overview:
    This recipe web application is to provide an easy-to-use tool for people who would like to cook and would like to explore the cuisine world.
 
@@ -42,11 +44,13 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
    - Provides extra security to FlexyCook
 
 
+
 ## Project Objectives:
 - To combine the functionality of recipe-fetching API and todo list API and create an easy-to-use web application.
 - To practice collaborating using Github and project management skills.
 - To get a peek of step flows of real projects in the industry.
 - To deeply explore the differences between Kanban and Scrum Agile models.
+
 
 
 ## Development environment setup:
@@ -61,11 +65,13 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 Run `npm run test`
 
 
+
 ## Link To Relevant Files:
 - [Milestone 2 Project Report](docs/Milestone%202%20Report%20Group4.pdf)
-- ![Project Demo Video](docs/FlexyCook_DemoVideo.mp4)
+- [Project Demo Video](docs/FlexyCook_DemoVideo.mp4)
 - [Presentation Slides (.pptx format, video-embedded)](docs/[Video%20Embeded]%20(2nd%20Milestone)%20Presentation%20Slides.pptx)
 - [Presentation Slides (.pdf format)](docs/(2nd%20Milestone)%20Presentation%20Slides.pdf)
+
 
 
 ## AI Usage Disclosure Forms:
