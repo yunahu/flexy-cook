@@ -61,5 +61,14 @@ By Yuna Hu, Monica Gao, Fuka Nagata, Simran Kaur (CPSC-2350-M01, Group 4)
 Run `npm run test`
 
 
+## Link To Relevant Files:
+- [Milestone 2 Project Report](docs/Milestone%202%20Report%20Group4.pdf)
+- ![Project Demo Video](docs/FlexyCook_DemoVideo.mp4)
+- [Presentation Slides (.pptx format, video-embedded)](docs/[Video%20Embeded]%20(2nd%20Milestone)%20Presentation%20Slides.pptx)
+- [Presentation Slides (.pdf format)](docs/(2nd%20Milestone)%20Presentation%20Slides.pdf)
+
+
 ## AI Usage Disclosure Forms:
-- Monica: [AI Disclosure Form For Project Milestone 1](AI_Disclosure_Forms/P1_AI_Declaration_Monica_Gao_100354959.pdf)
+- Monica:
+  - [AI Disclosure Form For Project Milestone 1](AI_Disclosure_Forms/P1_AI_Declaration_Monica_Gao_100354959.pdf)
+  - [AI Disclosure Form For Project Milestone 2](AI_Disclosure_Forms/P2_AI_Declaration_Monica_Gao_100354959.pdf)
