@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { RiArrowUpSLine } from 'react-icons/ri';
+import React, { useState, useEffect } from "react";
+import { RiArrowUpSLine } from "react-icons/ri";
 
 const StickyButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,25 +14,43 @@ const StickyButton = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   return (
     <>
       {isVisible && (
-        <div style={{ position: 'fixed', bottom: '20px', right: '0px', zIndex: '1000' }}>
-          <button onClick={scrollToTop} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',backgroundColor:'var(--light-primary)',width:'60px',borderRadius:'5px 5px 5px 5px' }}>
-            <RiArrowUpSLine size={28} /> 
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "0px",
+            zIndex: "1000",
+          }}
+        >
+          <button
+            data-testid="sticky_button"
+            onClick={scrollToTop}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: "var(--light-primary)",
+              width: "60px",
+              borderRadius: "5px 5px 5px 5px",
+            }}
+          >
+            <RiArrowUpSLine size={28} />
             Back to Top
           </button>
         </div>
