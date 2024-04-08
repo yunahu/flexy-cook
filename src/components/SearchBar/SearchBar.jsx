@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 const placeholderText = [
   "Enter ingredients with comma-separated list",
+  "What ingredients do you have?",
   "onion, canned tomato, cream",
 ];
 
@@ -25,9 +26,9 @@ function SearchBar({
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const timer = () => {
-      setIndex((prevIndex) => (prevIndex + 1) % placeholderText.length);
+      setIndex((prevIndex) => (prevIndex + 2) % placeholderText.length);
     };
-    setInterval(timer, 7000);
+    setInterval(timer, 6000);
 
     return () => {
       clearInterval(timer);
